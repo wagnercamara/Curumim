@@ -60,7 +60,11 @@
     <Compile Include="BtnEventArgs\BtnLoginOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnRegisterOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
+    <Compile Include="Classe\ButtonField.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classe\GameProfileCasse.cs" />
+    <Compile Include="Classe\GameWeaponsClasse.cs" />
     <Compile Include="Classe\ImageClass.cs" />
     <Compile Include="GameAboutForms.cs">
       <SubType>Form</SubType>
@@ -128,6 +132,12 @@
     <Compile Include="GameProfileForms.Designer.cs">
       <DependentUpon>GameProfileForms.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameRoomsForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameRoomsForms.Designer.cs">
+      <DependentUpon>GameRoomsForms.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameSpectatorForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameProfileForms.resx">
       <DependentUpon>GameProfileForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameRoomsForms.resx">
+      <DependentUpon>GameRoomsForms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameStoreForms.resx">
       <DependentUpon>GameStoreForms.cs</DependentUpon>

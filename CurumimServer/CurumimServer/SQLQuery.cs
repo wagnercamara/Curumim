@@ -154,7 +154,6 @@ namespace CurumimServer
                 this.sqlCommand.CommandText = "UpdatePasswordPlayer";
                 this.sqlCommand.CommandType = CommandType.StoredProcedure;
                 this.sqlCommand.Parameters.Clear();
-                this.sqlCommand.Parameters.AddWithValue("@fullNamePlayer", fullNamePlayer);
                 this.sqlCommand.Parameters.AddWithValue("@loginPlayer", loginPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@passwordPlayer", passwordPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@secretPhresePlayer", secretPhresePlayer);

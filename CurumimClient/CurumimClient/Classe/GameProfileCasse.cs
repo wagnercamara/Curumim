@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CurumimGameForms
 {
 
-    public class GameProfileCasse
+    public class GameProfileClasse
     {
         private string fullNamePlayer { get; }
         private string loginPlayer { get; }
@@ -20,7 +20,7 @@ namespace CurumimGameForms
         private Int32 totalBatllesPlayer { get; set; }
         private Int32 esmeraldPlayer { get; set; }
 
-        public GameProfileCasse(Int32 idPlayer, string fullNamePlayer, string loginPlayer, string avatarPlayer)
+        public GameProfileClasse(Int32 idPlayer, string fullNamePlayer, string loginPlayer, string avatarPlayer)
         {
             this.fullNamePlayer = fullNamePlayer;
             this.loginPlayer = loginPlayer;
@@ -28,7 +28,7 @@ namespace CurumimGameForms
         }
 
         //Get
-        public string GetEsmeraAvatarPlayer()
+        public string GetAvatarPlayer()
         {
             return this.avatarPlayer;
         }
@@ -60,7 +60,7 @@ namespace CurumimGameForms
         {
             return this.victoryPlayer;
         }
-        public Int32 GetTotalBatllesPlayer()
+        public Int32 GetTotalBattlesPlayer()
         {
             return this.totalBatllesPlayer;
         }
