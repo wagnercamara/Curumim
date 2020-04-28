@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D45CCDC4-3A26-4763-96A1-CEEBBC24F3AB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CurumimClient</RootNamespace>
+    <AssemblyName>CurumimClient</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lbl\Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BtnEventArgs\BtnAvatarEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnAvatarSelectEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnForgotPaswordOnClickEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnLoginOnClickEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnRegisterOnClickEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
+    <Compile Include="Classe\GameProfileCasse.cs" />
+    <Compile Include="GameAboutForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameAboutForms.Designer.cs">
+      <DependentUpon>GameAboutForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameArsenalForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameArsenalForms.Designer.cs">
+      <DependentUpon>GameArsenalForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameAvatarForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameAvatarForms.Designer.cs">
+      <DependentUpon>GameAvatarForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameBaseForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameBaseForms.Designer.cs">
+      <DependentUpon>GameBaseForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameBattleForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameBattleForms.Designer.cs">
+      <DependentUpon>GameBattleForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameChatBatlleForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameChatBatlleForms.Designer.cs">
+      <DependentUpon>GameChatBatlleForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameChatPlayerFroms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameChatPlayerFroms.Designer.cs">
+      <DependentUpon>GameChatPlayerFroms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameForgotPasswordForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameForgotPasswordForms.Designer.cs">
+      <DependentUpon>GameForgotPasswordForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameLoginForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameLoginForms.Designer.cs">
+      <DependentUpon>GameLoginForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GamePlayerForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GamePlayerForms.Designer.cs">
+      <DependentUpon>GamePlayerForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameProfileForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameProfileForms.Designer.cs">
+      <DependentUpon>GameProfileForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameSpectatorForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameSpectatorForms.Designer.cs">
+      <DependentUpon>GameSpectatorForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameStoreForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameStoreForms.Designer.cs">
+      <DependentUpon>GameStoreForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GameAboutForms.resx">
+      <DependentUpon>GameAboutForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameArsenalForms.resx">
+      <DependentUpon>GameArsenalForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameAvatarForms.resx">
+      <DependentUpon>GameAvatarForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameBaseForms.resx">
+      <DependentUpon>GameBaseForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameBattleForms.resx">
+      <DependentUpon>GameBattleForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameChatBatlleForms.resx">
+      <DependentUpon>GameChatBatlleForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameChatPlayerFroms.resx">
+      <DependentUpon>GameChatPlayerFroms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameForgotPasswordForms.resx">
+      <DependentUpon>GameForgotPasswordForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameLoginForms.resx">
+      <DependentUpon>GameLoginForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GamePlayerForms.resx">
+      <DependentUpon>GamePlayerForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameProfileForms.resx">
+      <DependentUpon>GameProfileForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameStoreForms.resx">
+      <DependentUpon>GameStoreForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameAboutForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameArsenalForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameAvatarForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameBaseForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameBattleForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameChatBatlleForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameChatPlayerFroms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameForgotPasswordForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameLoginForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GamePlayerForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameProfileForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameStoreForms.resources" />
+    <EmbeddedResource Include="obj\Debug\CurumimGameForms.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameAboutForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameArsenalForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameAvatarForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameBaseForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameBattleForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameChatBatlleForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameChatPlayerFroms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameForgotPasswordForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameLoginForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameOptionForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GamePlayerForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameProfileForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameRegisterForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameStoreForms.resources" />
+    <EmbeddedResource Include="obj\Release\CurumimGameForms.Properties.Resources.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="obj\Debug\CurumimClient.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\CurumimGameForms.csproj.CopyComplete" />
+    <None Include="obj\Debug\CurumimGameForms.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\CurumimGameForms.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\CurumimGameForms.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Release\CurumimGameForms.csproj.CopyComplete" />
+    <None Include="obj\Release\CurumimGameForms.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\CurumimGameForms.csproj.GenerateResource.cache" />
+    <None Include="obj\Release\CurumimGameForms.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\About\About.txt" />
+    <Content Include="bin\Debug\img\Avatar\Caramuru.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Cauã.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Coyote.png" />
+    <Content Include="bin\Debug\img\Avatar\Gijinka.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Home\Home.jpg" />
+    <Content Include="bin\Debug\img\Avatar\Index.txt" />
+    <Content Include="bin\Debug\img\Avatar\Ivair.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Jaine.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Kambaí.png" />
+    <Content Include="bin\Debug\img\Avatar\Kauane.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Macunaíba.png" />
+    <Content Include="bin\Debug\img\Avatar\Pocarontas.png" />
+    <Content Include="bin\Debug\img\Avatar\Potira.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Rémi.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Thaynara.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Tupã.PNG" />
+    <Content Include="bin\Debug\img\Avatar\Ubirajara.PNG" />
+    <Content Include="bin\Debug\img\Icon\iconForm\Avatar.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\chang.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\loginBlock.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\loginLoad.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\logoGame.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\manAbout.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\manAdd.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\manChange.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\manExclam.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\manFalse.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\manTrue.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\register.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\womanAbout.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\womanAdd.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\womanChang.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\womanExclam.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\womanFalse.png" />
+    <Content Include="bin\Debug\img\Icon\iconForm\womanTrue.png" />
+    <Content Include="bin\Debug\img\Icon\level\60x60\Cacique.png" />
+    <Content Include="bin\Debug\img\Icon\level\60x60\Curumim.png" />
+    <Content Include="bin\Debug\img\Icon\level\60x60\Indio.png" />
+    <Content Include="bin\Debug\img\Icon\level\60x60\page.png" />
+    <Content Include="bin\Debug\img\Icon\level\96x96\Cacique.png" />
+    <Content Include="bin\Debug\img\Icon\level\96x96\Curumim.png" />
+    <Content Include="bin\Debug\img\Icon\level\96x96\Indio.png" />
+    <Content Include="bin\Debug\img\Icon\level\96x96\page.png" />
+    <Content Include="bin\Debug\img\Icon\level\origem\Cacique.png" />
+    <Content Include="bin\Debug\img\Icon\level\origem\Curumim.png" />
+    <Content Include="bin\Debug\img\Icon\level\origem\Indio.png" />
+    <Content Include="bin\Debug\img\Icon\level\origem\page.png" />
+    <Content Include="bin\Debug\img\Icon\logoGame.png" />
+    <Content Include="bin\Debug\img\Icon\player\96x96\Arsenal.png" />
+    <Content Include="bin\Debug\img\Icon\player\96x96\Store.png" />
+    <Content Include="bin\Debug\img\Icon\player\add.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\bkp.txt" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\bow1.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\bow2.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\bow3.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\catapult1.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\catapult2.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\catapult3.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\crossbow1.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\crossbow2.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\crossbow3.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\fishingNet1.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\fishingNet2.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\hookRope1.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\hookRope2.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\hookRope3.PNG" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\index.txt" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\Rope.png" />
+    <Content Include="bin\Debug\img\Icon\player\arsenal\stone.png" />
+    <Content Include="bin\Debug\img\Icon\player\Batlle.png" />
+    <Content Include="bin\Debug\img\Icon\player\Bau.png" />
+    <Content Include="bin\Debug\img\Icon\player\carCheio.png" />
+    <Content Include="bin\Debug\img\Icon\player\cart.png" />
+    <Content Include="bin\Debug\img\Icon\player\Clouse.png" />
+    <Content Include="bin\Debug\img\Icon\player\clouse_W.png" />
+    <Content Include="bin\Debug\img\Icon\player\defeat.png" />
+    <Content Include="bin\Debug\img\Icon\player\down.png" />
+    <Content Include="bin\Debug\img\Icon\player\down_W.png" />
+    <Content Include="bin\Debug\img\Icon\player\emerald.png" />
+    <Content Include="bin\Debug\img\Icon\player\eti_Eml.png" />
+    <Content Include="bin\Debug\img\Icon\player\fechar.png" />
+    <Content Include="bin\Debug\img\Icon\player\icons8-battle-net-512.png" />
+    <Content Include="bin\Debug\img\Icon\player\icons8-fechar-painel-96.png" />
+    <Content Include="bin\Debug\img\Icon\player\icons8-resistência-512.png" />
+    <Content Include="bin\Debug\img\Icon\player\Key.png" />
+    <Content Include="bin\Debug\img\Icon\player\Left.png" />
+    <Content Include="bin\Debug\img\Icon\player\List.png" />
+    <Content Include="bin\Debug\img\Icon\player\location.png" />
+    <Content Include="bin\Debug\img\Icon\player\logoGame.png" />
+    <Content Include="bin\Debug\img\Icon\player\Pact.png" />
+    <Content Include="bin\Debug\img\Icon\player\pngwing.com %283%29.png" />
+    <Content Include="bin\Debug\img\Icon\player\Rankig.png" />
+    <Content Include="bin\Debug\img\Icon\player\righit.png" />
+    <Content Include="bin\Debug\img\Icon\player\Score2.png" />
+    <Content Include="bin\Debug\img\Icon\player\Select.png" />
+    <Content Include="bin\Debug\img\Icon\player\Select_W.png" />
+    <Content Include="bin\Debug\img\Icon\player\Send.png" />
+    <Content Include="bin\Debug\img\Icon\player\skull.png" />
+    <Content Include="bin\Debug\img\Icon\player\Store.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\bow1.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\bow2.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\bow3.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\catapult1.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\catapult2.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\catapult3.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\crossbow1.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\crossbow2.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\crossbow3.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\fishingNet1.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\fishingNet2.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\hookRope1.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\hookRope2.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\hookRope3.PNG" />
+    <Content Include="bin\Debug\img\Icon\player\store\Rope.png" />
+    <Content Include="bin\Debug\img\Icon\player\store\stone.png" />
+    <Content Include="bin\Debug\img\Icon\player\subtraction.png" />
+    <Content Include="bin\Debug\img\Icon\player\trash.png" />
+    <Content Include="bin\Debug\img\Icon\player\UP.png" />
+    <Content Include="bin\Debug\img\Icon\player\up_W.png" />
+    <Content Include="bin\Debug\img\Icon\player\Vigia.png" />
+    <Content Include="bin\Debug\img\Icon\player\Winner.png" />
+    <Content Include="bin\Debug\img\WallpaperGame\WallpaperGamaBaseForms.jpg" />
+    <Content Include="lbl\Base.dll" />
+    <Content Include="lbl\Newtonsoft.Json.dll" />
+    <Content Include="obj\Debug\CurumimGameForms.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\CurumimGameForms.exe" />
+    <Content Include="obj\Debug\CurumimGameForms.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="obj\Release\CurumimGameForms.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\CurumimGameForms.exe" />
+    <Content Include="obj\Release\CurumimGameForms.pdb" />
+    <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
