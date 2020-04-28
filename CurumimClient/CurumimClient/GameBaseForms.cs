@@ -51,7 +51,7 @@ namespace CurumimGameForms
         GamePlayerForms gamePlayerForms = null;
 
         //Classe
-        GameProfileCasse gameProfile = null;
+        GameProfileClasse gameProfile = null;
 
         //Atributos
 
@@ -125,7 +125,7 @@ namespace CurumimGameForms
                 Int32 totalBatllesPlayer = messageEventArgs.Message.GetInt32("totalBatllesPlayer");//
                 Int32 esmeraldPlayer = messageEventArgs.Message.GetInt32("esmeraldPlayer");//
 
-                gameProfile = new GameProfileCasse(idPlayer, fullNamePlayer, loginPlayer, avatarPlayer);
+                gameProfile = new GameProfileClasse(idPlayer, fullNamePlayer, loginPlayer, avatarPlayer);
 
                 gameProfile.SetLevelPlayer(levelPlayer);
                 gameProfile.SetPunctuationPlayer(punctuationPlayer);
@@ -204,7 +204,6 @@ namespace CurumimGameForms
                 client.SendMessage(new
                 {
                     Type = FORGOT_PASSWORD_TYPE_SET_NEW_PASSWORD,
-                    btnReplaceOnClickEventArgs.fullNamePlayer,
                     btnReplaceOnClickEventArgs.loginPlayer,
                     btnReplaceOnClickEventArgs.passwordPlayer,
                     btnReplaceOnClickEventArgs.secretPhresePlayer

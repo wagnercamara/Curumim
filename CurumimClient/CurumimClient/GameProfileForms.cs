@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurumimClient.Classe;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,23 +13,42 @@ namespace CurumimGameForms
 {
     public partial class GameProfileForms : Form
     {
-        private string fileAppIcon = "";
-        private string fileAppAvatar = "";
+        GameProfileClasse gameProfile { get; set; }
+        ImageClass imagemClass { get; set; }
+
         private Boolean openMenu = true;
-        public GameProfileForms()
+
+        public GameProfileForms(GameProfileClasse gameProfileClasse)
         {
             InitializeComponent();
-            this.fileAppIcon = Application.StartupPath + @"\img\Icon\";
-            this.fileAppAvatar = Application.StartupPath + @"\img\Avatar\";
+            this.gameProfile = gameProfileClasse;
         }
 
 
         private void pnlInformation_Load(object sender, EventArgs e)
         {
-            this.pbxLevel.Image = Image.FromFile(fileAppIcon + @"level\96x96\Curumim.png");
-            this.pbxAvatar.Image = Image.FromFile(fileAppAvatar + @"Thaynara.PNG");
+            this.imagemClass = new ImageClass();
+            LoadIMageForms();
+            LoadTextForms();
         }
+        private void LoadIMageForms()
+        {
+            this.pbxLevel.Image = imagemClass.GetImageIconLevel(gameProfile.GetLevelPlayer());
+            this.pbxAvatar.Image = imagemClass.GetImageAvatar(gameProfile.GetAvatarPlayer());
+        }
+        private void LoadTextForms()
+        {
+            int battle = gameProfile.GetTotalBattlesPlayer();
+            int victory = gameProfile.GetVictoryPlayer();
 
+            lblBatlle.Text = battle.ToString();
+            lbldefeat.Text = (battle - victory).ToString();
+            lblLevel.Text = gameProfile.GetLevelPlayer();
+            lblScore.Text = gameProfile.GetPunctuationPlayer().ToString();
+            lblWinner.Text = gameProfile.GetVictoryPlayer().ToString();
+            lblName.Text = gameProfile.GetLoginPlayer();
+
+        }
         private void pbxOpenMenu_Click(object sender, EventArgs e)
         {
             if (openMenu == true)
@@ -46,7 +66,7 @@ namespace CurumimGameForms
                 }
 
                 ProfileVisible(true);
-                pbxOpenMenu.Image = Image.FromFile(fileAppIcon + @"player\righit.png");
+                pbxOpenMenu.Image = imagemClass.GetImageIconForms("righit");
                 openMenu = false;
             }
             else
@@ -62,7 +82,7 @@ namespace CurumimGameForms
                     this.lblName.Width = i;
                 }
                 ProfileVisible(true);
-                pbxOpenMenu.Image = Image.FromFile(fileAppIcon + @"player\left.png");
+                pbxOpenMenu.Image = imagemClass.GetImageIconForms("left");
                 openMenu = true;
             }
         }

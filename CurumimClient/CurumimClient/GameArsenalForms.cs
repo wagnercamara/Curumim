@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurumimClient.Classe;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,20 +15,23 @@ namespace CurumimGameForms
 {
     public partial class GameArsenalForms : Form
     {
+        ImageClass ImageClass { get; set; }
+
+        GameProfileClasse gameProfileClasse;
+        GameWeaponsClasse gameWeaponsClasse;
+
         private Dictionary<string, dynamic> battleList;
         private Boolean startBattle { get; set; }
         private Boolean butomBattle { get; set; }
         private Boolean openListBattle { get; set; }
-        private string filleAppImgArm { get; set; }
         private string avatar { get; set; }
-        private string[] weapons { get; set; }
 
-        public GameArsenalForms()
+        public GameArsenalForms(GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
         {
             InitializeComponent();
-            filleAppImgArm = Application.StartupPath + @"\img\Icon\player\arsenal\";
-            this.avatar = "Tupã";
-            this.startBattle = true;
+            this.gameProfileClasse = gameProfileClasse;
+            this.gameWeaponsClasse = gameWeaponsClasse;
+            this.startBattle = sender;
         }
         private void pbxBow1_Click(object sender, EventArgs e)
         {
@@ -153,7 +157,7 @@ namespace CurumimGameForms
         {
             ColumnsDatagrid();
 
-            this.weapons = File.ReadAllLines(filleAppImgArm + @"index.txt", Encoding.UTF8); // trocar por dicionario de dados
+            //this.weapons = File.ReadAllLines(filleAppImgArm + @"index.txt", Encoding.UTF8); // trocar por dicionario de dados
             ModeVisible();
             CarryWarArsenal(this.avatar);
         }
@@ -176,12 +180,12 @@ namespace CurumimGameForms
         // metodos
         private void CarryWarArsenal(string avatar)
         {
-            pbxAvatar.Image = Image.FromFile(Application.StartupPath + @"\img\Avatar\" + avatar + @".png");
+            pbxAvatar.Image = ImageClass.GetImageAvatar(avatar);
 
-            for (int i = 0; i < this.weapons.Length; i++)
-            {
-                ActivateAndLoadImage(weapons[i], i + 1);
-            }
+            //for (int i = 0; i < this.weapons.Length; i++)
+            //{
+            //    ActivateAndLoadImage(weapons[i], i + 1);
+            //}
         }
         private void ActivateAndLoadImage(string nameWeapons, int StockQuantity)
         {
@@ -190,98 +194,98 @@ namespace CurumimGameForms
                 case "bow1":
                     this.pbxBow1.Enabled = true;
                     this.pbxBow1.Visible = true;
-                    this.pbxBow1.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxBow1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdBrow1.Visible = true;
                     this.lblQtdBrow1.Text = StockQuantity.ToString();
                     break;
                 case "bow2":
                     this.pbxBow2.Enabled = true;
                     this.pbxBow2.Visible = true;
-                    this.pbxBow2.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxBow2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdBrow2.Visible = true;
                     this.lblQtdBrow2.Text = StockQuantity.ToString();
                     break;
                 case "bow3":
                     this.pbxBow3.Enabled = true;
                     this.pbxBow3.Visible = true;
-                    this.pbxBow3.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxBow3.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdBrow3.Visible = true;
                     this.lblQtdBrow3.Text = StockQuantity.ToString();
                     break;
                 case "catapult1":
                     this.pbxCatapult1.Enabled = true;
                     this.pbxCatapult1.Visible = true;
-                    this.pbxCatapult1.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxCatapult1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdCatapult1.Visible = true;
                     this.lblQtdCatapult1.Text = StockQuantity.ToString();
                     break;
                 case "catapult2":
                     this.pbxCatapult2.Enabled = true;
                     this.pbxCatapult2.Visible = true;
-                    this.pbxCatapult2.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxCatapult2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdCatapult2.Visible = true;
                     this.lblQtdCatapult2.Text = StockQuantity.ToString();
                     break;
                 case "catapult3":
                     this.pbxCatapult3.Enabled = true;
                     this.pbxCatapult3.Visible = true;
-                    this.pbxCatapult3.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxCatapult3.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdCatapult3.Visible = true;
                     this.lblQtdCatapult3.Text = StockQuantity.ToString();
                     break;
                 case "crossbow1":
                     this.pbxCrossbow1.Enabled = true;
                     this.pbxCrossbow1.Visible = true;
-                    this.pbxCrossbow1.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxCrossbow1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdCrossbow1.Visible = true;
                     this.lblQtdCrossbow1.Text = StockQuantity.ToString();
                     break;
                 case "crossbow2":
                     this.pbxCrossbow2.Enabled = true;
                     this.pbxCrossbow2.Visible = true;
-                    this.pbxCrossbow2.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxCrossbow2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdCrossbow2.Visible = true;
                     this.lblQtdCrossbow2.Text = StockQuantity.ToString();
                     break;
                 case "crossbow3":
                     this.pbxCrossbow3.Enabled = true;
                     this.pbxCrossbow3.Visible = true;
-                    this.pbxCrossbow3.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxCrossbow3.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdCrossbow3.Visible = true;
                     this.lblQtdCrossbow3.Text = StockQuantity.ToString();
                     break;
                 case "fishingNet1":
                     this.pbxFishingNet1.Enabled = true;
                     this.pbxFishingNet1.Visible = true;
-                    this.pbxFishingNet1.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxFishingNet1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdFishingNet1.Visible = true;
                     this.lblQtdFishingNet1.Text = StockQuantity.ToString();
                     break;
                 case "fishingNet2":
                     this.pbxFishingNet2.Enabled = true;
                     this.pbxFishingNet2.Visible = true;
-                    this.pbxFishingNet2.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxFishingNet2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdFishingNet2.Visible = true;
                     this.lblQtdFishingNet2.Text = StockQuantity.ToString();
                     break;
                 case "hookRope1":
                     this.pbxHookRope1.Enabled = true;
                     this.pbxHookRope1.Visible = true;
-                    this.pbxHookRope1.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxHookRope1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdHookRope1.Visible = true;
                     this.lblQtdHookRope1.Text = StockQuantity.ToString();
                     break;
                 case "hookRope2":
                     this.pbxHookRope2.Enabled = true;
                     this.pbxHookRope2.Visible = true;
-                    this.pbxHookRope2.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxHookRope2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdHookRope2.Visible = true;
                     this.lblQtdHookRope2.Text = StockQuantity.ToString();
                     break;
                 case "hookRope3":
                     this.pbxHookRope3.Enabled = true;
                     this.pbxHookRope3.Visible = true;
-                    this.pbxHookRope3.Image = Image.FromFile(filleAppImgArm + nameWeapons + @".png");
+                    this.pbxHookRope3.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdHookRope3.Visible = true;
                     this.lblQtdHookRope3.Text = StockQuantity.ToString();
                     break;
