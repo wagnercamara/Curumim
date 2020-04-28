@@ -164,9 +164,9 @@
             this.pnlRegister.Controls.Add(this.lblUpRegister);
             this.pnlRegister.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlRegister.ForeColor = System.Drawing.Color.White;
-            this.pnlRegister.Location = new System.Drawing.Point(0, 42);
+            this.pnlRegister.Location = new System.Drawing.Point(0, 510);
             this.pnlRegister.Name = "pnlRegister";
-            this.pnlRegister.Size = new System.Drawing.Size(422, 508);
+            this.pnlRegister.Size = new System.Drawing.Size(422, 40);
             this.pnlRegister.TabIndex = 13;
             // 
             // lblRegErro
@@ -321,9 +321,9 @@
             this.lblRegPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegPassword.Location = new System.Drawing.Point(81, 195);
             this.lblRegPassword.Name = "lblRegPassword";
-            this.lblRegPassword.Size = new System.Drawing.Size(122, 26);
+            this.lblRegPassword.Size = new System.Drawing.Size(83, 26);
             this.lblRegPassword.TabIndex = 21;
-            this.lblRegPassword.Text = "New Password";
+            this.lblRegPassword.Text = "Password";
             // 
             // button4
             // 
@@ -360,7 +360,7 @@
             this.btnNewRegister.Name = "btnNewRegister";
             this.btnNewRegister.Size = new System.Drawing.Size(257, 38);
             this.btnNewRegister.TabIndex = 25;
-            this.btnNewRegister.Text = "Register";
+            this.btnNewRegister.Text = "Next";
             this.btnNewRegister.UseVisualStyleBackColor = false;
             this.btnNewRegister.Click += new System.EventHandler(this.btnNewRegister_Click);
             // 
@@ -379,7 +379,7 @@
             // 
             this.lblUpRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.lblUpRegister.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpRegister.Location = new System.Drawing.Point(0, 0);
+            this.lblUpRegister.Location = new System.Drawing.Point(-3, 0);
             this.lblUpRegister.Name = "lblUpRegister";
             this.lblUpRegister.Size = new System.Drawing.Size(422, 39);
             this.lblUpRegister.TabIndex = 15;

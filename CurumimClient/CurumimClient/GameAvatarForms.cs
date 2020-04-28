@@ -11,11 +11,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CurumimGameForms.BtnEventArgs;
+using CurumimClient.Classe;
 
 namespace CurumimGameForms
 {
     public partial class GameAvatarForms : Form
     {
+        ImageClass classeImage = new ImageClass();
         private EventHandler BtnAvatarSelectOnClick = null;
         private string fileAppImg = "";
         private string[] names { get; set; }
@@ -49,9 +51,9 @@ namespace CurumimGameForms
         {
             NexImage("Next");
         }
-        private void pbxSelect_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
-            this.BtnAvatarSelectOnClick.Invoke(this, new BtnAvatarSelectEventArgs() {avatarPlayer = GetName(contImage)});
+            this.BtnAvatarSelectOnClick.Invoke(this, new BtnAvatarSelectEventArgs() { avatarPlayer = GetName(contImage) });
             this.Close();
         }
         //dois metodos abaixo retornam o nome ou a imagem do dicionario desde que vc passe o index para ele.
@@ -119,7 +121,7 @@ namespace CurumimGameForms
 
                 foreach (var nameimage in names)
                 {
-                    image = Image.FromFile(location + $"{nameimage}.PNG");
+                    image = classeImage.GetImageAvatar(nameimage);
                     this.imagens.Add(nameimage, image);
                 }
                 return true;
