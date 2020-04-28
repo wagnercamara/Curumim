@@ -29,7 +29,7 @@ namespace CurumimGameForms
 
         private void GameAvatarForms_Load(object sender, EventArgs e)
         {
-            this.fileAppImg = Application.StartupPath + @"\img\Avatar\";
+            this.fileAppImg =  "../../img/Avatar/";
 
             if (UploadFile(this.fileAppImg) == false)
             {

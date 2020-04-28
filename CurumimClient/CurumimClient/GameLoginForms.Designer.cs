@@ -136,7 +136,7 @@
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(125, 38);
             this.btnOpen.TabIndex = 7;
-            this.btnOpen.Text = "Open";
+            this.btnOpen.Text = "Logon";
             this.btnOpen.UseVisualStyleBackColor = false;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
@@ -164,9 +164,9 @@
             this.pnlRegister.Controls.Add(this.lblUpRegister);
             this.pnlRegister.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlRegister.ForeColor = System.Drawing.Color.White;
-            this.pnlRegister.Location = new System.Drawing.Point(0, 508);
+            this.pnlRegister.Location = new System.Drawing.Point(0, 42);
             this.pnlRegister.Name = "pnlRegister";
-            this.pnlRegister.Size = new System.Drawing.Size(422, 42);
+            this.pnlRegister.Size = new System.Drawing.Size(422, 508);
             this.pnlRegister.TabIndex = 13;
             // 
             // lblRegErro
@@ -201,7 +201,6 @@
             this.txtRegSecrPhrese.Name = "txtRegSecrPhrese";
             this.txtRegSecrPhrese.Size = new System.Drawing.Size(257, 23);
             this.txtRegSecrPhrese.TabIndex = 35;
-            this.txtRegSecrPhrese.UseSystemPasswordChar = true;
             // 
             // lblRegSecrPhrese
             // 
@@ -322,9 +321,9 @@
             this.lblRegPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegPassword.Location = new System.Drawing.Point(81, 195);
             this.lblRegPassword.Name = "lblRegPassword";
-            this.lblRegPassword.Size = new System.Drawing.Size(83, 26);
+            this.lblRegPassword.Size = new System.Drawing.Size(122, 26);
             this.lblRegPassword.TabIndex = 21;
-            this.lblRegPassword.Text = "Password";
+            this.lblRegPassword.Text = "New Password";
             // 
             // button4
             // 

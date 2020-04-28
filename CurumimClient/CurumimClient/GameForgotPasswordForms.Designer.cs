@@ -74,7 +74,6 @@
             this.txtRegSecrPhrese.Name = "txtRegSecrPhrese";
             this.txtRegSecrPhrese.Size = new System.Drawing.Size(257, 23);
             this.txtRegSecrPhrese.TabIndex = 51;
-            this.txtRegSecrPhrese.UseSystemPasswordChar = true;
             // 
             // lblRegSecrPhrese
             // 
