@@ -7,7 +7,7 @@ namespace CurumimGameForms
 {
     public partial class GameAboutForms : Form
     {
-        string fileAbout = "";
+        string fileAbout = "../../About/";
         public GameAboutForms()
         {
             InitializeComponent();
@@ -36,8 +36,6 @@ namespace CurumimGameForms
         }
         private void GameAboutForms_Load(object sender, EventArgs e)
         {
-            this.fileAbout = Application.StartupPath + @"\About\";
-
             if (UploadFile() == false)
             {
                 lblErro.Text = ("Erro ao Carregar Arquivo, verifique se o mesmo está na pasta About na raiz do progrma.");

@@ -61,6 +61,7 @@
     <Compile Include="BtnEventArgs\BtnRegisterOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
     <Compile Include="Classe\GameProfileCasse.cs" />
+    <Compile Include="Classe\ImageClass.cs" />
     <Compile Include="GameAboutForms.cs">
       <SubType>Form</SubType>
     </Compile>
