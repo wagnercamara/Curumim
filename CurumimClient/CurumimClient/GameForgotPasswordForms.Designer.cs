@@ -194,9 +194,9 @@
             this.lblRegPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegPassword.Location = new System.Drawing.Point(80, 274);
             this.lblRegPassword.Name = "lblRegPassword";
-            this.lblRegPassword.Size = new System.Drawing.Size(83, 26);
+            this.lblRegPassword.Size = new System.Drawing.Size(122, 26);
             this.lblRegPassword.TabIndex = 38;
-            this.lblRegPassword.Text = "Password";
+            this.lblRegPassword.Text = "New Password";
             // 
             // button4
             // 
