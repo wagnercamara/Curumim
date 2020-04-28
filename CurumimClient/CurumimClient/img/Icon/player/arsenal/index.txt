@@ -1,0 +1,14 @@
+bow1
+bow2
+bow3
+catapult1
+catapult2
+catapult3
+crossbow1
+crossbow2
+crossbow3
+fishingNet2
+fishingNet1
+hookRope1
+hookRope3
+hookRope2
