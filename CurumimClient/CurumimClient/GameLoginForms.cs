@@ -68,9 +68,16 @@ namespace CurumimGameForms
 
             if (forgotPassword > 3)
             {
-                lblForgotPassword.BackColor = Color.Red;
-                lblForgotPassword.Enabled = true;
-                lblForgotPassword.Text = "Forgot Password ?";
+                lblChangePassword.Visible = true;
+                btnReplecePassword.Enabled = true;
+                btnReplecePassword.Visible = true;
+                forgotPassword = 0;
+            }
+            else
+            {
+                lblChangePassword.Visible = false;
+                btnReplecePassword.Enabled = false;
+                btnReplecePassword.Visible = false;
             }
 
             if (LogValidateFields() == true)
@@ -214,7 +221,6 @@ namespace CurumimGameForms
             pbxLogoCurumim.Visible = visible;
             lblLogin.Visible = visible;
             lblPassword.Visible = visible;
-            lblForgotPassword.Visible = visible;
             lblErro.Visible = visible;
             txtPassword.Visible = visible;
             txtUser.Visible = visible;
@@ -225,14 +231,13 @@ namespace CurumimGameForms
         }
 
         //Return Base
-        private void lblForgotPassword_Click(object sender, EventArgs e)
+        private void btnReplecePassword_Click(object sender, EventArgs e)
         {
             this.BtnLoginRepleceOnClick.Invoke(this, new BtnForgotPaswordOnClickEventArgs()
             {
                 newGameReplece = true
             });
         }
-
         public void LoginSucess()
         {
             if (this.InvokeRequired == true)
@@ -312,5 +317,7 @@ namespace CurumimGameForms
                 });
             }
         }
+
+
     }
 }

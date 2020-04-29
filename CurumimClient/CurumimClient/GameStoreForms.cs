@@ -166,13 +166,13 @@ namespace CurumimGameForms
                             }
                             else
                             {
-                                this.lblInsufficientFunds.Text = "Insufficient Funds";
+                                AlertInsufficientFunds(true);
                             }
 
                             break;
 
                         case "remove":
-
+                            
                             qtd = qtd - 1;
 
                             RemoveCar(valueUn);
@@ -191,7 +191,7 @@ namespace CurumimGameForms
                                     this.lblInsufficientFunds.Text = "";
                                     break;
                             }
-
+                            AlertInsufficientFunds(false);
                             break;
 
                         case "Trash":
@@ -200,6 +200,7 @@ namespace CurumimGameForms
                             RemoveCar(valueItem);
                             this.purchase.Remove(nameArm);
                             this.lblInsufficientFunds.Text = "";
+                            AlertInsufficientFunds(false);
                             break;
                     }
 
@@ -242,12 +243,16 @@ namespace CurumimGameForms
             }
             else
             {
-                this.lblInsufficientFunds.Text = "Insufficient Funds";
+                AlertInsufficientFunds(true);
             }
             LoadingDgv();
 
         }
-
+        private void AlertInsufficientFunds(Boolean visible)
+        {
+            lblInsufficientFunds.Visible = visible;
+            pbxAlert.Visible = visible;
+        }
         // Devolve um determinado valor a Carteira
         private void RemoveCar(int valueUn)
         {
@@ -314,7 +319,7 @@ namespace CurumimGameForms
                 dgvListPurchase.Rows.Add(nameArm, valueUn, qtd, valueFull, labelQtd);
             }
             this.lblValPurchase.Text = $"{this.valuePurchase}£";
-            this.lblFullPurchase.Text = $"Valor Total da Compra £{this.valuePurchase}";
+            this.lblFullPurchase.Text = $"{this.valuePurchase}£";
         }
         private void ClearDatagridView()
         {

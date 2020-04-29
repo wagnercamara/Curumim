@@ -19,7 +19,7 @@ namespace CurumimServer
 
 
         SqlCommand sqlCommand = new SqlCommand();
-        
+
 
         public dynamic LoginPlayer(string login, string password)
         {
@@ -39,11 +39,10 @@ namespace CurumimServer
 
             if (successfullyConnected == true)
             {
-                //select getplayer()
-                this.sqlCommand.CommandText = "GetPlayer";
-
+                //getplayer
+                this.sqlCommand.CommandText = @"SELECT * FROM[dbo].[GetPlayer](@login, @password)";
                 //não precisa
-                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                //this.sqlCommand.CommandType = CommandType.StoredProcedure;
                 this.sqlCommand.Parameters.Clear();
                 this.sqlCommand.Parameters.AddWithValue("@login", login);
                 this.sqlCommand.Parameters.AddWithValue("@password", password);
@@ -57,9 +56,7 @@ namespace CurumimServer
                     {
                         dynamic = (new
                         {
-
                             Type = LOGIN_TYPE_RETURN_SUCCESS,
-
                             idPlayer = int.Parse(reader["idPlayer"].ToString()),
 
                             fullNamePlayer = reader["fullNamePlayer"].ToString(),
