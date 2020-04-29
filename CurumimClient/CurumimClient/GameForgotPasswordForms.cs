@@ -106,5 +106,6 @@ namespace CurumimGameForms
                 MessageBox.Show("It was not possible to register this data, try to change the login and try again");
             }
         }
+
     }
 }

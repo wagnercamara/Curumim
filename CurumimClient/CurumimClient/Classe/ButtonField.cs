@@ -38,18 +38,18 @@ namespace CurumimGameForms
 
         public void EsmeraldButton()
         {
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[4]);
+            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[4]);
         }
         public void IndianButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[5]);
+            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[5]);
         }
 
         public void BauButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[6]);
+            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[6]);
         }
 
         public void SetTypeButton(int type)

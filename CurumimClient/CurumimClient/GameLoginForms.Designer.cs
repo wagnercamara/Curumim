@@ -56,8 +56,9 @@
             this.pbxUpRegister = new System.Windows.Forms.PictureBox();
             this.lblUpRegister = new System.Windows.Forms.Label();
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.lblChangePassword = new System.Windows.Forms.Label();
+            this.btnReplecePassword = new System.Windows.Forms.Button();
             this.pbxDownLogin = new System.Windows.Forms.PictureBox();
-            this.lblForgotPassword = new System.Windows.Forms.Label();
             this.lblErro = new System.Windows.Forms.Label();
             this.btnBaseLogin = new System.Windows.Forms.Button();
             this.btnBasePassword = new System.Windows.Forms.Button();
@@ -75,7 +76,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.lblPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(81, 283);
+            this.lblPassword.Location = new System.Drawing.Point(81, 247);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(83, 26);
             this.lblPassword.TabIndex = 1;
@@ -86,7 +87,7 @@
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(86, 312);
+            this.txtPassword.Location = new System.Drawing.Point(86, 276);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(257, 23);
             this.txtPassword.TabIndex = 5;
@@ -96,7 +97,7 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogin.Location = new System.Drawing.Point(80, 221);
+            this.lblLogin.Location = new System.Drawing.Point(80, 185);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(52, 26);
             this.lblLogin.TabIndex = 0;
@@ -107,36 +108,40 @@
             this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUser.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(86, 250);
+            this.txtUser.Location = new System.Drawing.Point(86, 214);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(257, 23);
             this.txtUser.TabIndex = 4;
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(86, 380);
+            this.btnExit.Location = new System.Drawing.Point(3, 3);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(125, 38);
+            this.btnExit.Size = new System.Drawing.Size(47, 36);
             this.btnExit.TabIndex = 6;
-            this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnOpen
             // 
-            this.btnOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.btnOpen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpen.BackgroundImage")));
+            this.btnOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpen.FlatAppearance.BorderSize = 0;
+            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpen.ForeColor = System.Drawing.Color.White;
-            this.btnOpen.Location = new System.Drawing.Point(218, 380);
+            this.btnOpen.Location = new System.Drawing.Point(159, 331);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(125, 38);
+            this.btnOpen.Size = new System.Drawing.Size(104, 90);
             this.btnOpen.TabIndex = 7;
-            this.btnOpen.Text = "Logon";
             this.btnOpen.UseVisualStyleBackColor = false;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
@@ -163,16 +168,17 @@
             this.pnlRegister.Controls.Add(this.pbxUpRegister);
             this.pnlRegister.Controls.Add(this.lblUpRegister);
             this.pnlRegister.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlRegister.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlRegister.ForeColor = System.Drawing.Color.White;
-            this.pnlRegister.Location = new System.Drawing.Point(0, 510);
+            this.pnlRegister.Location = new System.Drawing.Point(0, 508);
             this.pnlRegister.Name = "pnlRegister";
-            this.pnlRegister.Size = new System.Drawing.Size(422, 40);
+            this.pnlRegister.Size = new System.Drawing.Size(422, 42);
             this.pnlRegister.TabIndex = 13;
             // 
             // lblRegErro
             // 
             this.lblRegErro.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegErro.Location = new System.Drawing.Point(0, 414);
+            this.lblRegErro.Location = new System.Drawing.Point(1, 390);
             this.lblRegErro.Name = "lblRegErro";
             this.lblRegErro.Size = new System.Drawing.Size(422, 85);
             this.lblRegErro.TabIndex = 37;
@@ -184,7 +190,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button6.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(85, 355);
+            this.button6.Location = new System.Drawing.Point(85, 310);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(257, 2);
             this.button6.TabIndex = 36;
@@ -195,9 +201,9 @@
             // 
             this.txtRegSecrPhrese.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.txtRegSecrPhrese.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRegSecrPhrese.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegSecrPhrese.ForeColor = System.Drawing.Color.White;
-            this.txtRegSecrPhrese.Location = new System.Drawing.Point(85, 334);
+            this.txtRegSecrPhrese.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegSecrPhrese.ForeColor = System.Drawing.Color.Black;
+            this.txtRegSecrPhrese.Location = new System.Drawing.Point(85, 289);
             this.txtRegSecrPhrese.Name = "txtRegSecrPhrese";
             this.txtRegSecrPhrese.Size = new System.Drawing.Size(257, 23);
             this.txtRegSecrPhrese.TabIndex = 35;
@@ -205,8 +211,9 @@
             // lblRegSecrPhrese
             // 
             this.lblRegSecrPhrese.AutoSize = true;
-            this.lblRegSecrPhrese.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegSecrPhrese.Location = new System.Drawing.Point(81, 305);
+            this.lblRegSecrPhrese.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegSecrPhrese.ForeColor = System.Drawing.Color.Black;
+            this.lblRegSecrPhrese.Location = new System.Drawing.Point(81, 260);
             this.lblRegSecrPhrese.Name = "lblRegSecrPhrese";
             this.lblRegSecrPhrese.Size = new System.Drawing.Size(117, 26);
             this.lblRegSecrPhrese.TabIndex = 34;
@@ -215,8 +222,9 @@
             // lblRegConfPassword
             // 
             this.lblRegConfPassword.AutoSize = true;
-            this.lblRegConfPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegConfPassword.Location = new System.Drawing.Point(80, 250);
+            this.lblRegConfPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegConfPassword.ForeColor = System.Drawing.Color.Black;
+            this.lblRegConfPassword.Location = new System.Drawing.Point(80, 205);
             this.lblRegConfPassword.Name = "lblRegConfPassword";
             this.lblRegConfPassword.Size = new System.Drawing.Size(150, 26);
             this.lblRegConfPassword.TabIndex = 31;
@@ -228,7 +236,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(85, 300);
+            this.button2.Location = new System.Drawing.Point(85, 255);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(257, 2);
             this.button2.TabIndex = 33;
@@ -239,9 +247,9 @@
             // 
             this.txtRegConfPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.txtRegConfPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRegConfPassword.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegConfPassword.ForeColor = System.Drawing.Color.White;
-            this.txtRegConfPassword.Location = new System.Drawing.Point(85, 279);
+            this.txtRegConfPassword.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegConfPassword.ForeColor = System.Drawing.Color.Black;
+            this.txtRegConfPassword.Location = new System.Drawing.Point(85, 234);
             this.txtRegConfPassword.Name = "txtRegConfPassword";
             this.txtRegConfPassword.Size = new System.Drawing.Size(257, 23);
             this.txtRegConfPassword.TabIndex = 32;
@@ -253,7 +261,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(86, 135);
+            this.button1.Location = new System.Drawing.Point(86, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(257, 2);
             this.button1.TabIndex = 30;
@@ -264,9 +272,9 @@
             // 
             this.txtRegFullName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.txtRegFullName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRegFullName.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegFullName.ForeColor = System.Drawing.Color.White;
-            this.txtRegFullName.Location = new System.Drawing.Point(86, 114);
+            this.txtRegFullName.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegFullName.ForeColor = System.Drawing.Color.Black;
+            this.txtRegFullName.Location = new System.Drawing.Point(86, 69);
             this.txtRegFullName.Name = "txtRegFullName";
             this.txtRegFullName.Size = new System.Drawing.Size(257, 23);
             this.txtRegFullName.TabIndex = 29;
@@ -274,8 +282,9 @@
             // lblRegFullName
             // 
             this.lblRegFullName.AutoSize = true;
-            this.lblRegFullName.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegFullName.Location = new System.Drawing.Point(81, 85);
+            this.lblRegFullName.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegFullName.ForeColor = System.Drawing.Color.Black;
+            this.lblRegFullName.Location = new System.Drawing.Point(81, 40);
             this.lblRegFullName.Name = "lblRegFullName";
             this.lblRegFullName.Size = new System.Drawing.Size(88, 26);
             this.lblRegFullName.TabIndex = 28;
@@ -287,7 +296,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(85, 190);
+            this.button3.Location = new System.Drawing.Point(85, 145);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(257, 2);
             this.button3.TabIndex = 27;
@@ -298,9 +307,9 @@
             // 
             this.txtRegLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.txtRegLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRegLogin.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegLogin.ForeColor = System.Drawing.Color.White;
-            this.txtRegLogin.Location = new System.Drawing.Point(86, 169);
+            this.txtRegLogin.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegLogin.ForeColor = System.Drawing.Color.Black;
+            this.txtRegLogin.Location = new System.Drawing.Point(86, 124);
             this.txtRegLogin.Name = "txtRegLogin";
             this.txtRegLogin.Size = new System.Drawing.Size(257, 23);
             this.txtRegLogin.TabIndex = 22;
@@ -308,8 +317,9 @@
             // lblRegLogin
             // 
             this.lblRegLogin.AutoSize = true;
-            this.lblRegLogin.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegLogin.Location = new System.Drawing.Point(81, 140);
+            this.lblRegLogin.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegLogin.ForeColor = System.Drawing.Color.Black;
+            this.lblRegLogin.Location = new System.Drawing.Point(81, 95);
             this.lblRegLogin.Name = "lblRegLogin";
             this.lblRegLogin.Size = new System.Drawing.Size(52, 26);
             this.lblRegLogin.TabIndex = 20;
@@ -318,8 +328,9 @@
             // lblRegPassword
             // 
             this.lblRegPassword.AutoSize = true;
-            this.lblRegPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegPassword.Location = new System.Drawing.Point(81, 195);
+            this.lblRegPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegPassword.ForeColor = System.Drawing.Color.Black;
+            this.lblRegPassword.Location = new System.Drawing.Point(81, 150);
             this.lblRegPassword.Name = "lblRegPassword";
             this.lblRegPassword.Size = new System.Drawing.Size(83, 26);
             this.lblRegPassword.TabIndex = 21;
@@ -331,7 +342,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(85, 246);
+            this.button4.Location = new System.Drawing.Point(85, 201);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(257, 2);
             this.button4.TabIndex = 26;
@@ -342,9 +353,9 @@
             // 
             this.txtRegPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.txtRegPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtRegPassword.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegPassword.ForeColor = System.Drawing.Color.White;
-            this.txtRegPassword.Location = new System.Drawing.Point(85, 224);
+            this.txtRegPassword.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegPassword.ForeColor = System.Drawing.Color.Black;
+            this.txtRegPassword.Location = new System.Drawing.Point(85, 179);
             this.txtRegPassword.Name = "txtRegPassword";
             this.txtRegPassword.Size = new System.Drawing.Size(257, 23);
             this.txtRegPassword.TabIndex = 23;
@@ -352,15 +363,17 @@
             // 
             // btnNewRegister
             // 
-            this.btnNewRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.btnNewRegister.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNewRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnNewRegister.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNewRegister.BackgroundImage")));
+            this.btnNewRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNewRegister.FlatAppearance.BorderSize = 0;
+            this.btnNewRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewRegister.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewRegister.ForeColor = System.Drawing.Color.Black;
-            this.btnNewRegister.Location = new System.Drawing.Point(85, 373);
+            this.btnNewRegister.ForeColor = System.Drawing.Color.White;
+            this.btnNewRegister.Location = new System.Drawing.Point(156, 318);
             this.btnNewRegister.Name = "btnNewRegister";
-            this.btnNewRegister.Size = new System.Drawing.Size(257, 38);
+            this.btnNewRegister.Size = new System.Drawing.Size(113, 69);
             this.btnNewRegister.TabIndex = 25;
-            this.btnNewRegister.Text = "Next";
             this.btnNewRegister.UseVisualStyleBackColor = false;
             this.btnNewRegister.Click += new System.EventHandler(this.btnNewRegister_Click);
             // 
@@ -378,8 +391,9 @@
             // lblUpRegister
             // 
             this.lblUpRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.lblUpRegister.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpRegister.Location = new System.Drawing.Point(-3, 0);
+            this.lblUpRegister.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpRegister.ForeColor = System.Drawing.Color.Black;
+            this.lblUpRegister.Location = new System.Drawing.Point(1, 3);
             this.lblUpRegister.Name = "lblUpRegister";
             this.lblUpRegister.Size = new System.Drawing.Size(422, 39);
             this.lblUpRegister.TabIndex = 15;
@@ -389,9 +403,13 @@
             // pnlLogin
             // 
             this.pnlLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.pnlLogin.Controls.Add(this.lblChangePassword);
+            this.pnlLogin.Controls.Add(this.btnReplecePassword);
             this.pnlLogin.Controls.Add(this.pbxDownLogin);
-            this.pnlLogin.Controls.Add(this.lblForgotPassword);
+            this.pnlLogin.Controls.Add(this.btnExit);
+            this.pnlLogin.Controls.Add(this.btnOpen);
             this.pnlLogin.Controls.Add(this.lblErro);
+            this.pnlLogin.Controls.Add(this.lblPassword);
             this.pnlLogin.Controls.Add(this.btnBaseLogin);
             this.pnlLogin.Controls.Add(this.btnBasePassword);
             this.pnlLogin.Controls.Add(this.pbxLogoCurumim);
@@ -405,6 +423,34 @@
             this.pnlLogin.Size = new System.Drawing.Size(422, 550);
             this.pnlLogin.TabIndex = 14;
             // 
+            // lblChangePassword
+            // 
+            this.lblChangePassword.AutoSize = true;
+            this.lblChangePassword.Location = new System.Drawing.Point(164, 478);
+            this.lblChangePassword.Name = "lblChangePassword";
+            this.lblChangePassword.Size = new System.Drawing.Size(93, 13);
+            this.lblChangePassword.TabIndex = 21;
+            this.lblChangePassword.Text = "Change Password";
+            this.lblChangePassword.Visible = false;
+            // 
+            // btnReplecePassword
+            // 
+            this.btnReplecePassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReplecePassword.BackgroundImage")));
+            this.btnReplecePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReplecePassword.Enabled = false;
+            this.btnReplecePassword.FlatAppearance.BorderSize = 0;
+            this.btnReplecePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReplecePassword.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReplecePassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReplecePassword.Location = new System.Drawing.Point(180, 427);
+            this.btnReplecePassword.Name = "btnReplecePassword";
+            this.btnReplecePassword.Size = new System.Drawing.Size(62, 48);
+            this.btnReplecePassword.TabIndex = 20;
+            this.btnReplecePassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReplecePassword.UseVisualStyleBackColor = true;
+            this.btnReplecePassword.Visible = false;
+            this.btnReplecePassword.Click += new System.EventHandler(this.btnReplecePassword_Click);
+            // 
             // pbxDownLogin
             // 
             this.pbxDownLogin.Image = ((System.Drawing.Image)(resources.GetObject("pbxDownLogin.Image")));
@@ -417,23 +463,11 @@
             this.pbxDownLogin.Visible = false;
             this.pbxDownLogin.Click += new System.EventHandler(this.pbxDownLogin_Click);
             // 
-            // lblForgotPassword
-            // 
-            this.lblForgotPassword.Enabled = false;
-            this.lblForgotPassword.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForgotPassword.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblForgotPassword.Location = new System.Drawing.Point(86, 437);
-            this.lblForgotPassword.Name = "lblForgotPassword";
-            this.lblForgotPassword.Size = new System.Drawing.Size(257, 26);
-            this.lblForgotPassword.TabIndex = 20;
-            this.lblForgotPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblForgotPassword.Click += new System.EventHandler(this.lblForgotPassword_Click);
-            // 
             // lblErro
             // 
             this.lblErro.Enabled = false;
             this.lblErro.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErro.Location = new System.Drawing.Point(3, 338);
+            this.lblErro.Location = new System.Drawing.Point(2, 302);
             this.lblErro.Name = "lblErro";
             this.lblErro.Size = new System.Drawing.Size(419, 26);
             this.lblErro.TabIndex = 15;
@@ -445,7 +479,7 @@
             this.btnBaseLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBaseLogin.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaseLogin.ForeColor = System.Drawing.Color.White;
-            this.btnBaseLogin.Location = new System.Drawing.Point(86, 271);
+            this.btnBaseLogin.Location = new System.Drawing.Point(86, 235);
             this.btnBaseLogin.Name = "btnBaseLogin";
             this.btnBaseLogin.Size = new System.Drawing.Size(257, 2);
             this.btnBaseLogin.TabIndex = 19;
@@ -458,7 +492,7 @@
             this.btnBasePassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBasePassword.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBasePassword.ForeColor = System.Drawing.Color.White;
-            this.btnBasePassword.Location = new System.Drawing.Point(86, 333);
+            this.btnBasePassword.Location = new System.Drawing.Point(86, 297);
             this.btnBasePassword.Name = "btnBasePassword";
             this.btnBasePassword.Size = new System.Drawing.Size(257, 2);
             this.btnBasePassword.TabIndex = 15;
@@ -468,9 +502,9 @@
             // pbxLogoCurumim
             // 
             this.pbxLogoCurumim.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogoCurumim.Image")));
-            this.pbxLogoCurumim.Location = new System.Drawing.Point(42, 42);
+            this.pbxLogoCurumim.Location = new System.Drawing.Point(0, 42);
             this.pbxLogoCurumim.Name = "pbxLogoCurumim";
-            this.pbxLogoCurumim.Size = new System.Drawing.Size(336, 176);
+            this.pbxLogoCurumim.Size = new System.Drawing.Size(422, 141);
             this.pbxLogoCurumim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxLogoCurumim.TabIndex = 18;
             this.pbxLogoCurumim.TabStop = false;
@@ -478,9 +512,9 @@
             // lblDownLogin
             // 
             this.lblDownLogin.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDownLogin.Location = new System.Drawing.Point(0, 0);
+            this.lblDownLogin.Location = new System.Drawing.Point(56, 0);
             this.lblDownLogin.Name = "lblDownLogin";
-            this.lblDownLogin.Size = new System.Drawing.Size(422, 39);
+            this.lblDownLogin.Size = new System.Drawing.Size(315, 39);
             this.lblDownLogin.TabIndex = 16;
             this.lblDownLogin.Text = "Login";
             this.lblDownLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -495,9 +529,6 @@
             this.ClientSize = new System.Drawing.Size(422, 550);
             this.ControlBox = false;
             this.Controls.Add(this.pnlRegister);
-            this.Controls.Add(this.btnOpen);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.pnlLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameLoginForms";
@@ -510,7 +541,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxDownLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogoCurumim)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -529,7 +559,6 @@
         private System.Windows.Forms.PictureBox pbxDownLogin;
         private System.Windows.Forms.Label lblDownLogin;
         private System.Windows.Forms.Button btnBasePassword;
-        private System.Windows.Forms.Label lblForgotPassword;
         private System.Windows.Forms.Label lblErro;
         private System.Windows.Forms.Button btnBaseLogin;
         private System.Windows.Forms.Button button3;
@@ -549,5 +578,7 @@
         private System.Windows.Forms.TextBox txtRegSecrPhrese;
         private System.Windows.Forms.Label lblRegSecrPhrese;
         private System.Windows.Forms.Label lblRegErro;
+        private System.Windows.Forms.Label lblChangePassword;
+        private System.Windows.Forms.Button btnReplecePassword;
     }
 }

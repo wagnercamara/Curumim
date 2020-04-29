@@ -188,29 +188,33 @@
             // 
             // btnReplace
             // 
-            this.btnReplace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.btnReplace.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReplace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.btnReplace.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReplace.BackgroundImage")));
+            this.btnReplace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReplace.FlatAppearance.BorderSize = 0;
+            this.btnReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReplace.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReplace.ForeColor = System.Drawing.Color.Black;
-            this.btnReplace.Location = new System.Drawing.Point(126, 347);
+            this.btnReplace.ForeColor = System.Drawing.Color.White;
+            this.btnReplace.Location = new System.Drawing.Point(250, 363);
             this.btnReplace.Name = "btnReplace";
-            this.btnReplace.Size = new System.Drawing.Size(167, 38);
+            this.btnReplace.Size = new System.Drawing.Size(91, 74);
             this.btnReplace.TabIndex = 41;
-            this.btnReplace.Text = "Replace";
             this.btnReplace.UseVisualStyleBackColor = false;
             this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
             // 
             // btnReturn
             // 
-            this.btnReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.btnReturn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReturn.BackgroundImage")));
+            this.btnReturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReturn.FlatAppearance.BorderSize = 0;
+            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturn.ForeColor = System.Drawing.Color.Black;
-            this.btnReturn.Location = new System.Drawing.Point(165, 391);
+            this.btnReturn.ForeColor = System.Drawing.Color.White;
+            this.btnReturn.Location = new System.Drawing.Point(17, 12);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(83, 38);
+            this.btnReturn.Size = new System.Drawing.Size(47, 44);
             this.btnReturn.TabIndex = 53;
-            this.btnReturn.Text = "Return";
             this.btnReturn.UseVisualStyleBackColor = false;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
@@ -226,9 +230,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(165, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(156, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(91, 81);
+            this.pictureBox1.Size = new System.Drawing.Size(91, 105);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 55;
             this.pictureBox1.TabStop = false;
