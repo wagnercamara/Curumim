@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameStoreForms));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlUp = new System.Windows.Forms.Panel();
             this.lblInsufficientFunds = new System.Windows.Forms.Label();
             this.pbxClouse = new System.Windows.Forms.PictureBox();
@@ -104,6 +104,7 @@
             this.pbxArco2 = new System.Windows.Forms.PictureBox();
             this.pbxArco3 = new System.Windows.Forms.PictureBox();
             this.pbxArco1 = new System.Windows.Forms.PictureBox();
+            this.pbxAlert = new System.Windows.Forms.PictureBox();
             this.pnlUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClouse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxBoxVal)).BeginInit();
@@ -144,11 +145,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxArco2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArco3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArco1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAlert)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlUp
             // 
             this.pnlUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.pnlUp.Controls.Add(this.pbxAlert);
             this.pnlUp.Controls.Add(this.lblInsufficientFunds);
             this.pnlUp.Controls.Add(this.pbxClouse);
             this.pnlUp.Controls.Add(this.lblValPurchase);
@@ -164,13 +167,15 @@
             // 
             // lblInsufficientFunds
             // 
-            this.lblInsufficientFunds.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInsufficientFunds.ForeColor = System.Drawing.Color.White;
-            this.lblInsufficientFunds.Location = new System.Drawing.Point(451, 3);
+            this.lblInsufficientFunds.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInsufficientFunds.ForeColor = System.Drawing.Color.Black;
+            this.lblInsufficientFunds.Location = new System.Drawing.Point(450, 4);
             this.lblInsufficientFunds.Name = "lblInsufficientFunds";
-            this.lblInsufficientFunds.Size = new System.Drawing.Size(253, 46);
+            this.lblInsufficientFunds.Size = new System.Drawing.Size(153, 27);
             this.lblInsufficientFunds.TabIndex = 6;
+            this.lblInsufficientFunds.Text = "Insufficient Funds";
             this.lblInsufficientFunds.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblInsufficientFunds.Visible = false;
             // 
             // pbxClouse
             // 
@@ -200,7 +205,7 @@
             this.pbxBoxVal.Location = new System.Drawing.Point(233, 4);
             this.pbxBoxVal.Name = "pbxBoxVal";
             this.pbxBoxVal.Size = new System.Drawing.Size(48, 42);
-            this.pbxBoxVal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxBoxVal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxBoxVal.TabIndex = 3;
             this.pbxBoxVal.TabStop = false;
             // 
@@ -321,7 +326,7 @@
             // pbxTrash
             // 
             this.pbxTrash.Image = ((System.Drawing.Image)(resources.GetObject("pbxTrash.Image")));
-            this.pbxTrash.Location = new System.Drawing.Point(231, 590);
+            this.pbxTrash.Location = new System.Drawing.Point(343, 616);
             this.pbxTrash.Name = "pbxTrash";
             this.pbxTrash.Size = new System.Drawing.Size(48, 42);
             this.pbxTrash.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -333,16 +338,16 @@
             // 
             this.lblFullPurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFullPurchase.ForeColor = System.Drawing.Color.White;
-            this.lblFullPurchase.Location = new System.Drawing.Point(13, 559);
+            this.lblFullPurchase.Location = new System.Drawing.Point(184, 543);
             this.lblFullPurchase.Name = "lblFullPurchase";
-            this.lblFullPurchase.Size = new System.Drawing.Size(373, 28);
+            this.lblFullPurchase.Size = new System.Drawing.Size(101, 28);
             this.lblFullPurchase.TabIndex = 7;
             this.lblFullPurchase.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pbxSubtract
             // 
             this.pbxSubtract.Image = ((System.Drawing.Image)(resources.GetObject("pbxSubtract.Image")));
-            this.pbxSubtract.Location = new System.Drawing.Point(123, 590);
+            this.pbxSubtract.Location = new System.Drawing.Point(17, 571);
             this.pbxSubtract.Name = "pbxSubtract";
             this.pbxSubtract.Size = new System.Drawing.Size(48, 42);
             this.pbxSubtract.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -353,7 +358,7 @@
             // pbxAdd
             // 
             this.pbxAdd.Image = ((System.Drawing.Image)(resources.GetObject("pbxAdd.Image")));
-            this.pbxAdd.Location = new System.Drawing.Point(177, 590);
+            this.pbxAdd.Location = new System.Drawing.Point(71, 571);
             this.pbxAdd.Name = "pbxAdd";
             this.pbxAdd.Size = new System.Drawing.Size(48, 42);
             this.pbxAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -364,9 +369,9 @@
             // pbxBuyList
             // 
             this.pbxBuyList.Image = ((System.Drawing.Image)(resources.GetObject("pbxBuyList.Image")));
-            this.pbxBuyList.Location = new System.Drawing.Point(285, 590);
+            this.pbxBuyList.Location = new System.Drawing.Point(186, 571);
             this.pbxBuyList.Name = "pbxBuyList";
-            this.pbxBuyList.Size = new System.Drawing.Size(48, 42);
+            this.pbxBuyList.Size = new System.Drawing.Size(98, 77);
             this.pbxBuyList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxBuyList.TabIndex = 6;
             this.pbxBuyList.TabStop = false;
@@ -377,14 +382,14 @@
             this.dgvListPurchase.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dgvListPurchase.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvListPurchase.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListPurchase.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListPurchase.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListPurchase.ColumnHeadersHeight = 25;
             this.dgvListPurchase.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvListPurchase.EnableHeadersVisualStyles = false;
@@ -393,20 +398,20 @@
             this.dgvListPurchase.Name = "dgvListPurchase";
             this.dgvListPurchase.ReadOnly = true;
             this.dgvListPurchase.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListPurchase.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.dgvListPurchase.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvListPurchase.Size = new System.Drawing.Size(375, 547);
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListPurchase.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.dgvListPurchase.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvListPurchase.Size = new System.Drawing.Size(375, 531);
             this.dgvListPurchase.TabIndex = 0;
             // 
             // lblQtdArc1
@@ -984,6 +989,17 @@
             this.pbxArco1.TabStop = false;
             this.pbxArco1.Click += new System.EventHandler(this.pbxArco1_Click);
             // 
+            // pbxAlert
+            // 
+            this.pbxAlert.Image = ((System.Drawing.Image)(resources.GetObject("pbxAlert.Image")));
+            this.pbxAlert.Location = new System.Drawing.Point(401, 3);
+            this.pbxAlert.Name = "pbxAlert";
+            this.pbxAlert.Size = new System.Drawing.Size(48, 42);
+            this.pbxAlert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxAlert.TabIndex = 7;
+            this.pbxAlert.TabStop = false;
+            this.pbxAlert.Visible = false;
+            // 
             // GameStoreForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1038,6 +1054,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxArco2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArco3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArco1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAlert)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1116,5 +1133,6 @@
         private System.Windows.Forms.PictureBox pbxAdd;
         private System.Windows.Forms.Label lblFullPurchase;
         private System.Windows.Forms.PictureBox pbxTrash;
+        private System.Windows.Forms.PictureBox pbxAlert;
     }
 }

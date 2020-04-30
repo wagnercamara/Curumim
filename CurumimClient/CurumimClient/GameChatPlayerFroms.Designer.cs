@@ -98,7 +98,7 @@
             // btnUp
             // 
             this.btnUp.Enabled = false;
-            this.btnUp.Location = new System.Drawing.Point(6, 409);
+            this.btnUp.Location = new System.Drawing.Point(6, 456);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(737, 3);
             this.btnUp.TabIndex = 5;
@@ -108,7 +108,7 @@
             // btnBax
             // 
             this.btnBax.Enabled = false;
-            this.btnBax.Location = new System.Drawing.Point(6, 467);
+            this.btnBax.Location = new System.Drawing.Point(6, 520);
             this.btnBax.Name = "btnBax";
             this.btnBax.Size = new System.Drawing.Size(737, 3);
             this.btnBax.TabIndex = 4;
@@ -121,9 +121,9 @@
             this.rbxMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rbxMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbxMessage.ForeColor = System.Drawing.Color.White;
-            this.rbxMessage.Location = new System.Drawing.Point(6, 416);
+            this.rbxMessage.Location = new System.Drawing.Point(6, 465);
             this.rbxMessage.Name = "rbxMessage";
-            this.rbxMessage.Size = new System.Drawing.Size(737, 45);
+            this.rbxMessage.Size = new System.Drawing.Size(664, 49);
             this.rbxMessage.TabIndex = 3;
             this.rbxMessage.Text = "";
             this.rbxMessage.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
@@ -131,9 +131,9 @@
             // pbxSend
             // 
             this.pbxSend.Image = ((System.Drawing.Image)(resources.GetObject("pbxSend.Image")));
-            this.pbxSend.Location = new System.Drawing.Point(345, 474);
+            this.pbxSend.Location = new System.Drawing.Point(676, 465);
             this.pbxSend.Name = "pbxSend";
-            this.pbxSend.Size = new System.Drawing.Size(82, 49);
+            this.pbxSend.Size = new System.Drawing.Size(67, 49);
             this.pbxSend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxSend.TabIndex = 2;
             this.pbxSend.TabStop = false;
@@ -159,7 +159,7 @@
             this.rbxHitory.Location = new System.Drawing.Point(6, 43);
             this.rbxHitory.Name = "rbxHitory";
             this.rbxHitory.ReadOnly = true;
-            this.rbxHitory.Size = new System.Drawing.Size(737, 360);
+            this.rbxHitory.Size = new System.Drawing.Size(737, 407);
             this.rbxHitory.TabIndex = 0;
             this.rbxHitory.Text = "";
             // 

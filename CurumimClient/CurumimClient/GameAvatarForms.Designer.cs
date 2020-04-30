@@ -33,17 +33,16 @@
             this.pbxAvatar = new System.Windows.Forms.PictureBox();
             this.pbxNext = new System.Windows.Forms.PictureBox();
             this.pbxReturn = new System.Windows.Forms.PictureBox();
-            this.pbxSelect = new System.Windows.Forms.PictureBox();
+            this.btnRegister = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxReturn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOptions
             // 
             this.lblOptions.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOptions.Location = new System.Drawing.Point(0, -1);
+            this.lblOptions.Location = new System.Drawing.Point(12, 9);
             this.lblOptions.Name = "lblOptions";
             this.lblOptions.Size = new System.Drawing.Size(350, 32);
             this.lblOptions.TabIndex = 2;
@@ -52,9 +51,9 @@
             // 
             // pbxAvatar
             // 
-            this.pbxAvatar.BackColor = System.Drawing.Color.White;
+            this.pbxAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.pbxAvatar.InitialImage = null;
-            this.pbxAvatar.Location = new System.Drawing.Point(0, 48);
+            this.pbxAvatar.Location = new System.Drawing.Point(12, 45);
             this.pbxAvatar.Name = "pbxAvatar";
             this.pbxAvatar.Size = new System.Drawing.Size(350, 500);
             this.pbxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -64,9 +63,10 @@
             // pbxNext
             // 
             this.pbxNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxNext.BackgroundImage")));
-            this.pbxNext.Location = new System.Drawing.Point(368, 197);
+            this.pbxNext.Location = new System.Drawing.Point(56, 551);
             this.pbxNext.Name = "pbxNext";
             this.pbxNext.Size = new System.Drawing.Size(38, 38);
+            this.pbxNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxNext.TabIndex = 7;
             this.pbxNext.TabStop = false;
             this.pbxNext.Click += new System.EventHandler(this.pbxNext_Click);
@@ -74,33 +74,36 @@
             // pbxReturn
             // 
             this.pbxReturn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxReturn.BackgroundImage")));
-            this.pbxReturn.Location = new System.Drawing.Point(368, 285);
+            this.pbxReturn.Location = new System.Drawing.Point(12, 550);
             this.pbxReturn.Name = "pbxReturn";
             this.pbxReturn.Size = new System.Drawing.Size(38, 39);
             this.pbxReturn.TabIndex = 8;
             this.pbxReturn.TabStop = false;
             this.pbxReturn.Click += new System.EventHandler(this.pbxReturn_Click);
             // 
-            // pbxSelect
+            // btnRegister
             // 
-            this.pbxSelect.Image = ((System.Drawing.Image)(resources.GetObject("pbxSelect.Image")));
-            this.pbxSelect.Location = new System.Drawing.Point(368, 241);
-            this.pbxSelect.Name = "pbxSelect";
-            this.pbxSelect.Size = new System.Drawing.Size(38, 38);
-            this.pbxSelect.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxSelect.TabIndex = 9;
-            this.pbxSelect.TabStop = false;
-            this.pbxSelect.Click += new System.EventHandler(this.pbxSelect_Click);
+            this.btnRegister.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRegister.BackgroundImage")));
+            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRegister.FlatAppearance.BorderSize = 0;
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Location = new System.Drawing.Point(310, 550);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(52, 39);
+            this.btnRegister.TabIndex = 9;
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // GameAvatarForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(420, 548);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(372, 591);
             this.ControlBox = false;
-            this.Controls.Add(this.pbxSelect);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.pbxReturn);
             this.Controls.Add(this.pbxNext);
             this.Controls.Add(this.pbxAvatar);
@@ -113,7 +116,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxAvatar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxReturn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSelect)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -123,6 +125,6 @@
         private System.Windows.Forms.PictureBox pbxAvatar;
         private System.Windows.Forms.PictureBox pbxNext;
         private System.Windows.Forms.PictureBox pbxReturn;
-        private System.Windows.Forms.PictureBox pbxSelect;
+        private System.Windows.Forms.Button btnRegister;
     }
 }

@@ -56,10 +56,10 @@ namespace CurumimServer
                     break;
             }
         }
-        private static void UpdatePlayer(ThreadClient client, string fullNamePlayer, string loginPlayer, string passwordPlayer, string secretPhresePlayer)
+        private static void UpdatePlayer(ThreadClient client, string loginPlayer, string passwordPlayer, string secretPhresePlayer)
         {
             SQLQuery sQLQuery = new SQLQuery();
-            Boolean OK = sQLQuery.SqlUpdatePassword(fullNamePlayer, loginPlayer, passwordPlayer, secretPhresePlayer);
+            Boolean OK = sQLQuery.SqlUpdatePassword(loginPlayer, passwordPlayer, secretPhresePlayer);
 
             switch (OK)
             {
@@ -122,12 +122,11 @@ namespace CurumimServer
                     case FORGOT_PASSWORD_TYPE_SET_NEW_PASSWORD:
 
                         Console.WriteLine("FORGOT_PASSWORD_TYPE_SET_NEW_PASSWORD");
-                        fullNamePlayer = messageEventArgs.Message.GetString("fullNamePlayer");
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
                         passwordPlayer = messageEventArgs.Message.GetString("passwordPlayer");
                         secretPhresePlayer = messageEventArgs.Message.GetString("secretPhresePlayer");
 
-                        UpdatePlayer(client, fullNamePlayer, loginPlayer, passwordPlayer, secretPhresePlayer);
+                        UpdatePlayer(client, loginPlayer, passwordPlayer, secretPhresePlayer);
                         break;
                 }
             }

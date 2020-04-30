@@ -1,12 +1,6 @@
 ﻿using CurumimGameForms.BtnEventArgs;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CurumimGameForms
@@ -21,20 +15,11 @@ namespace CurumimGameForms
         }
 
         private delegate void GenericDelegate();
-        private void GameForgotPasswordForms_Load(object sender, EventArgs e)
-        {
-
-        }
         private Boolean RegValidateFields()
         {
             Boolean RegOk = true;
             StringBuilder stringBuilder = new StringBuilder("Preecha os campos; ");
 
-            if (txtRegFullName.Text == "")
-            {
-                stringBuilder.Append("Full Name; ");
-                RegOk = false;
-            }
             if (txtRegLogin.Text == "")
             {
                 stringBuilder.Append("Login; ");
@@ -64,7 +49,6 @@ namespace CurumimGameForms
         }
         private void ClearCapRep()
         {
-            txtRegFullName.Text = "";
             txtRegLogin.Text = "";
             txtRegPassword.Text = "";
             txtRegConfPassword.Text = "";
@@ -78,7 +62,6 @@ namespace CurumimGameForms
                 {
                     this.BtnRepleceOnClick.Invoke(this, new BtnReplaceOnClickEventArgs()
                     {
-                        fullNamePlayer = this.txtRegFullName.Text,
                         loginPlayer = this.txtRegLogin.Text,
                         passwordPlayer = this.txtRegPassword.Text,
                         secretPhresePlayer = this.txtRegSecrPhrese.Text,
@@ -123,5 +106,6 @@ namespace CurumimGameForms
                 MessageBox.Show("It was not possible to register this data, try to change the login and try again");
             }
         }
+
     }
 }

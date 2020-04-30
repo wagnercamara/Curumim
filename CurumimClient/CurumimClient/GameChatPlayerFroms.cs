@@ -13,11 +13,9 @@ namespace CurumimGameForms
     public partial class GameChatPlayerFroms : Form
     {
         private Boolean openMenu = true;
-        private string fileAppIcon = "";
         public GameChatPlayerFroms()
         {
             InitializeComponent();
-            this.fileAppIcon = Application.StartupPath + @"\img\Icon\";
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
@@ -42,7 +40,6 @@ namespace CurumimGameForms
                 {
                     this.pnlLeft.Width = i;
                 }
-                this.pbxLeft.Image = Image.FromFile(fileAppIcon + @"player\righit.png");
                 this.openMenu = false;
                 MessageVisible(true);
             }
@@ -54,7 +51,6 @@ namespace CurumimGameForms
                     this.pnlLeft.Width = i;
                 }
                 MessageVisible(true);
-                this.pbxLeft.Image = Image.FromFile(fileAppIcon + @"player\left.png");
                 this.openMenu = true;
             }
         }

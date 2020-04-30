@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurumimClient.Classe;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,9 +11,10 @@ namespace CurumimGameForms
 {
     internal class ButtonField : Button
     {
-        private string fileAppIcon = "";
-        private string[] imagens = { @"battleForm\bush1.png", @"battleForm\bush2.png", @"battleForm\bush3.png", @"battleForm\bush4.png", @"battleForm\esmerald.png", @"battleForm\location.png", @"battleForm\Bau.png" };
-        private string[] imagensDestr = { @"battleForm\bush1Destr.png", @"battleForm\bush2Destr.png", @"battleForm\bush3Destr.png", @"battleForm\bush4Destr.png" };
+        private ImageClass ImageClass = new ImageClass(); //inceri esse cara.
+
+        private string[] imagens = { "bush1", "bush2", "bush3", "bush4", "esmerald", "location", "Bau" }; //simplifiquei os nomes.
+        private string[] imagensDestr = { "bush1Destr", "bush2Destr", "bush3Destr", "bush4Destr" };
         private int type;
         private int img;
 
@@ -20,8 +22,7 @@ namespace CurumimGameForms
         {
             this.img = img;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.fileAppIcon = Application.StartupPath + @"\img\Icon\";
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[img]);
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[img]); // troquei aqui taylor
             this.FlatAppearance.BorderSize = 0;
             this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -32,23 +33,23 @@ namespace CurumimGameForms
 
         public void DestroyedButton()
         {
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagensDestr[this.img]);
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagensDestr[this.img]); //fiz ate aqui.
         }
 
         public void EsmeraldButton()
         {
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[4]);
+            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[4]);
         }
         public void IndianButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[5]);
+            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[5]);
         }
 
         public void BauButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[6]);
+            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[6]);
         }
 
         public void SetTypeButton(int type)

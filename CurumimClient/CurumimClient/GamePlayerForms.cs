@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CurumimClient.Classe;
+using CurumimClient.pbxEventArgs;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,15 +8,17 @@ namespace CurumimGameForms
 {
     public partial class GamePlayerForms : Form
     {
-        private string fileAppIcon = "";
+        private EventHandler profileOPenOnCLick { get; set; }
+
+        private ImageClass ImageClass;
         private string controlLocation = "";
         private Boolean OpemMenu = true;
-        private GameAboutForms gameAboutForms;
-        public GamePlayerForms()
+
+        public GamePlayerForms(EventHandler profileOPenOnCLick)
         {
             InitializeComponent();
-
-            fileAppIcon = Application.StartupPath + @"\img\Icon\";
+            this.profileOPenOnCLick = profileOPenOnCLick;
+            this.ImageClass = new ImageClass();
         }
         private void pbxSpectador_Click(object sender, EventArgs e)
         {
@@ -35,8 +39,10 @@ namespace CurumimGameForms
 
         private void pbxHome_Click(object sender, EventArgs e)
         {
-            GameProfileForms gameProfileForms = new GameProfileForms();
-            gameProfileForms.Show();
+            this.profileOPenOnCLick.Invoke(this, new PbxProfileOpenEventeArgs()
+            {
+                OpenFormsProfile = true
+            }) ;
         }
 
         private void pbxStore_Click(object sender, EventArgs e)
@@ -47,15 +53,15 @@ namespace CurumimGameForms
 
         private void pbxBatlle_Click(object sender, EventArgs e)
         {
-            GameBattleForms gameBattleForms = new GameBattleForms();
-            gameBattleForms.Show();
+            //GameBattleForms gameBattleForms = new GameBattleForms();
+            //gameBattleForms.Show();
         }
 
         // Funcionalidaes do menu superior.
 
         private void SetLocation(PictureBox pictureBox)
         {
-            pictureBox.Image = Image.FromFile(fileAppIcon + @"player\location.png");
+            pictureBox.Image = this.ImageClass.GetImageIconForms("location");
         }
         private void ClearLocation()
         {
@@ -155,7 +161,7 @@ namespace CurumimGameForms
                 this.pnlUp.Height = 330;
                 this.pnlSpc.Height = 295;
                 VisibleSpectator(true);
-                this.pbxUpDown.Image = Image.FromFile(fileAppIcon + @"player\up_W.PNG");
+                this.pbxUpDown.Image = this.ImageClass.GetImageIconForms("up_W");
                 this.OpemMenu = false;
             }
             else
@@ -163,7 +169,7 @@ namespace CurumimGameForms
                 VisibleSpectator(false);
                 this.pnlUp.Height = 35;
                 this.pnlSpc.Height = 3;
-                this.pbxUpDown.Image = Image.FromFile(fileAppIcon + @"player\down_W.PNG");
+                this.pbxUpDown.Image = this.ImageClass.GetImageIconForms("down_W");
                 this.OpemMenu = true;
             }
         }
@@ -174,15 +180,15 @@ namespace CurumimGameForms
         }
         private void lblAbout_Click(object sender, EventArgs e)
         {
-            if (gameAboutForms != null)
-            {
-                Application.OpenForms["gameAboutForms"].BringToFront(); // traz um forms já criado pra fente novamente.
-            }
-            else
-            {
-                gameAboutForms = new GameAboutForms();
-                gameAboutForms.Show();
-            }
+            //if (gameAboutForms != null)
+            //{
+            //    Application.OpenForms["gameAboutForms"].BringToFront(); // traz um forms já criado pra fente novamente.
+            //}
+            //else
+            //{
+            //    gameAboutForms = new GameAboutForms();
+            //    gameAboutForms.Show();
+            //}
         }
 
         private void lblExit_Click(object sender, EventArgs e)
