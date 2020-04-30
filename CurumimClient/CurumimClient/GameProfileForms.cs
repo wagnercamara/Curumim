@@ -1,4 +1,5 @@
 ﻿using CurumimClient.Classe;
+using CurumimClient.PbxEventArgs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,17 @@ namespace CurumimGameForms
 {
     public partial class GameProfileForms : Form
     {
+        private EventHandler PbxProfileClouseOnClick;
         GameProfileClasse gameProfile { get; set; }
         ImageClass imagemClass { get; set; }
 
         private Boolean openMenu = true;
 
-        public GameProfileForms(GameProfileClasse gameProfileClasse)
+        public GameProfileForms(GameProfileClasse gameProfileClasse, EventHandler eventHandler)
         {
             InitializeComponent();
             this.gameProfile = gameProfileClasse;
+            this.PbxProfileClouseOnClick = eventHandler;
         }
 
 
@@ -33,20 +36,21 @@ namespace CurumimGameForms
         }
         private void LoadIMageForms()
         {
-            this.pbxLevel.Image = imagemClass.GetImageIconLevel(gameProfile.GetLevelPlayer());
-            this.pbxAvatar.Image = imagemClass.GetImageAvatar(gameProfile.GetAvatarPlayer());
+            this.pbxLevel.Image = imagemClass.GetImageIconLevel(this.gameProfile.GetLevelPlayer());
+            this.pbxAvatar.Image = imagemClass.GetImageAvatar(this.gameProfile.GetAvatarPlayer());
         }
         private void LoadTextForms()
         {
-            int battle = gameProfile.GetTotalBattlesPlayer();
-            int victory = gameProfile.GetVictoryPlayer();
+            int battle = this.gameProfile.GetTotalBattlesPlayer();
+            int victory = this.gameProfile.GetVictoryPlayer();
 
-            lblBatlle.Text = battle.ToString();
-            lbldefeat.Text = (battle - victory).ToString();
-            lblLevel.Text = gameProfile.GetLevelPlayer();
-            lblScore.Text = gameProfile.GetPunctuationPlayer().ToString();
-            lblWinner.Text = gameProfile.GetVictoryPlayer().ToString();
-            lblName.Text = gameProfile.GetLoginPlayer();
+            this.lblBatlle.Text = battle.ToString();
+            this.lbldefeat.Text = (battle - victory).ToString();
+            this.lblLevel.Text = this.gameProfile.GetLevelPlayer();
+            this.lblScore.Text = this.gameProfile.GetPunctuationPlayer().ToString();
+            this.lblWinner.Text = this.gameProfile.GetVictoryPlayer().ToString();
+            this.lblName.Text = this.gameProfile.GetLoginPlayer();
+            this.lblRank.Text = this.gameProfile.GetRankingPlayer().ToString();
 
         }
         private void pbxOpenMenu_Click(object sender, EventArgs e)
@@ -93,6 +97,10 @@ namespace CurumimGameForms
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
+            this.PbxProfileClouseOnClick.Invoke(this, new PbxProfileClouseEventArgs()
+            {
+                CloseProfileForms = true
+            });
             this.Close();
         }
 

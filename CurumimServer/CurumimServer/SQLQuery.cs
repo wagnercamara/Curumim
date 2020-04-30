@@ -133,7 +133,7 @@ namespace CurumimServer
             this.sQLConnection.ClouseConnection();
             return newPlayerSucess;
         }
-        public Boolean SqlUpdatePassword(string fullNamePlayer, string loginPlayer, string passwordPlayer, string secretPhresePlayer)
+        public Boolean SqlUpdatePassword(string loginPlayer, string passwordPlayer, string secretPhresePlayer)
         {
             Boolean successfullyConnected = false;
             Boolean updatePlayerSucess = false;

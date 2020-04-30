@@ -25,6 +25,7 @@ namespace CurumimGameForms
             this.fullNamePlayer = fullNamePlayer;
             this.loginPlayer = loginPlayer;
             this.idPlayer = idPlayer;
+            this.avatarPlayer = avatarPlayer;
         }
 
         //Get
