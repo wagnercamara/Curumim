@@ -36,7 +36,7 @@
             this.lbldefeat = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.pbxScore = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblRank = new System.Windows.Forms.Label();
             this.pbx = new System.Windows.Forms.PictureBox();
             this.pbxOpenMenu = new System.Windows.Forms.PictureBox();
             this.pbxClouse = new System.Windows.Forms.PictureBox();
@@ -74,13 +74,13 @@
             this.pnlInform.Controls.Add(this.lbldefeat);
             this.pnlInform.Controls.Add(this.lblScore);
             this.pnlInform.Controls.Add(this.pbxScore);
-            this.pnlInform.Controls.Add(this.label1);
+            this.pnlInform.Controls.Add(this.lblRank);
             this.pnlInform.Controls.Add(this.pbx);
             this.pnlInform.Controls.Add(this.pbxOpenMenu);
             this.pnlInform.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlInform.Location = new System.Drawing.Point(532, 0);
+            this.pnlInform.Location = new System.Drawing.Point(533, 0);
             this.pnlInform.Name = "pnlInform";
-            this.pnlInform.Size = new System.Drawing.Size(44, 540);
+            this.pnlInform.Size = new System.Drawing.Size(43, 540);
             this.pnlInform.TabIndex = 1;
             // 
             // pbxWinner
@@ -144,16 +144,16 @@
             this.pbxScore.TabIndex = 10;
             this.pbxScore.TabStop = false;
             // 
-            // label1
+            // lblRank
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(71, 497);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 23);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "20";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRank.BackColor = System.Drawing.Color.Transparent;
+            this.lblRank.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRank.Location = new System.Drawing.Point(71, 497);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(96, 23);
+            this.lblRank.TabIndex = 9;
+            this.lblRank.Text = "20";
+            this.lblRank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbx
             // 
@@ -277,7 +277,7 @@
             this.pnlImgAvatar.ForeColor = System.Drawing.Color.Black;
             this.pnlImgAvatar.Location = new System.Drawing.Point(0, 0);
             this.pnlImgAvatar.Name = "pnlImgAvatar";
-            this.pnlImgAvatar.Size = new System.Drawing.Size(532, 540);
+            this.pnlImgAvatar.Size = new System.Drawing.Size(533, 540);
             this.pnlImgAvatar.TabIndex = 3;
             // 
             // pnlProfileLevel
@@ -327,7 +327,7 @@
 
         private System.Windows.Forms.Panel pnlInform;
         private System.Windows.Forms.PictureBox pbxOpenMenu;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.PictureBox pbx;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.PictureBox pbxScore;

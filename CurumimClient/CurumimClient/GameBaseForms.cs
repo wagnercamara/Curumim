@@ -1,4 +1,6 @@
 ﻿using Base;
+using CurumimClient.pbxEventArgs;
+using CurumimClient.PbxEventArgs;
 using CurumimGameForms.BtnEventArgs;
 using System;
 using System.Windows.Forms;
@@ -47,8 +49,9 @@ namespace CurumimGameForms
         GameLoginForms gameLoginForms = null;
         GameForgotPasswordForms gameForgotPasswordForms = null;
         GameAvatarForms gameAvatarForms = null;
-
+        GameChatPlayerFroms gameChatPlayer = null;
         GamePlayerForms gamePlayerForms = null;
+        GameProfileForms gameProfileForms = null;
 
         //Classe
         GameProfileClasse gameProfile = null;
@@ -65,6 +68,7 @@ namespace CurumimGameForms
 
         private void GameBaseForms_Load(object sender, EventArgs e)
         {
+            this.Visible = false;
             Boolean controlConneted = false;
             Boolean logon = false;
             Int32 countConnection = 0;
@@ -101,12 +105,13 @@ namespace CurumimGameForms
             }
             catch
             {
-                MessageBox.Show("Erro de conexão com servidor", "Deseja tentar novamente");
+                //MessageBox.Show("Erro de conexão com servidor", "Deseja tentar novamente");
             }
             return false;
         }
         private void LoadClassePlayer(MessageEventArgs messageEventArgs)
         {
+            
             if (this.InvokeRequired == true)
             {
                 this.Invoke(new LoadClassePlayerDelegate(LoadClassePlayer), new object[] { messageEventArgs });
@@ -140,8 +145,38 @@ namespace CurumimGameForms
         }
         private void CreatGamePlayer()
         {
-            gamePlayerForms = new GamePlayerForms();
+            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick);
             gamePlayerForms.ShowDialog();
+        }
+        private void PbxProfileOnClick(object sender, EventArgs e) // Chama o chat do player
+        {
+            PbxProfileOpenEventeArgs pbxProfileOpenEventeArgs = e as PbxProfileOpenEventeArgs;
+            if (pbxProfileOpenEventeArgs != null)
+            {
+                if (pbxProfileOpenEventeArgs.OpenFormsProfile == true)
+                {
+                    if (this.gameProfileForms != null)
+                    {
+                        Application.OpenForms["gameProfileForms"].BringToFront(); // traz um forms já criado pra fente novamente.
+                    }
+                    else
+                    {
+                        this.gameProfileForms = new GameProfileForms(this.gameProfile, PbxProfileClouseOnClick);
+                        this.gameProfileForms.Show();
+                    }
+                }
+            }
+        }
+        private void PbxProfileClouseOnClick(object sender, EventArgs e)
+        {
+            PbxProfileClouseEventArgs pbxProfileClouseEventArgs = e as PbxProfileClouseEventArgs;
+            if (pbxProfileClouseEventArgs != null)
+            {
+                if (pbxProfileClouseEventArgs.CloseProfileForms == true)
+                {
+                    gameProfileForms = null;
+                }
+            }
         }
         private void BtnLoginOnClick(object sender, EventArgs e) //Logar no jogo
         {
@@ -219,6 +254,26 @@ namespace CurumimGameForms
                 this.gameLoginForms.RegisterDB();
             }
         }
+        private void PbxChatPlayerOpenOnClick(object sender, EventArgs e) // Chama o chat do player
+        {
+            PbxChatPlayerOpenEventeArgs pbxChatPlayerOpenEventeArgs = e as PbxChatPlayerOpenEventeArgs;
+            if (pbxChatPlayerOpenEventeArgs != null)
+            {
+                if (this.gameChatPlayer != null)
+                {
+                    Application.OpenForms["gameChatPlayer"].BringToFront(); // traz um forms já criado pra fente novamente.
+                }
+                else
+                {
+                    this.gameChatPlayer = new GameChatPlayerFroms();
+                    this.gameChatPlayer.Show();
+                }
+            }
+        }
+        private void PbxChatPlayerClouseOnClick(object sender, EventArgs e) // Chama o chat do player
+        {
+
+        }
         private void OnReceiveMessage(object sender, EventArgs e) //
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
@@ -228,10 +283,8 @@ namespace CurumimGameForms
                 switch (messageEventArgs.Message.GetInt32("Type"))
                 {
                     case LOGIN_TYPE_RETURN_SUCCESS:
-
-                        LoadClassePlayer(messageEventArgs);
                         this.gameLoginForms.LoginSucess();
-
+                        LoadClassePlayer(messageEventArgs);
                         break;
 
                     case LOGIN_TYPE_RETURN_ERROR:
@@ -260,3 +313,6 @@ namespace CurumimGameForms
         }
     }
 }
+
+
+

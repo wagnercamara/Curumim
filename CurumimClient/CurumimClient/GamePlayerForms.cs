@@ -1,4 +1,5 @@
 ﻿using CurumimClient.Classe;
+using CurumimClient.pbxEventArgs;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -7,13 +8,16 @@ namespace CurumimGameForms
 {
     public partial class GamePlayerForms : Form
     {
+        private EventHandler profileOPenOnCLick { get; set; }
+
         private ImageClass ImageClass;
         private string controlLocation = "";
         private Boolean OpemMenu = true;
 
-        public GamePlayerForms()
+        public GamePlayerForms(EventHandler profileOPenOnCLick)
         {
             InitializeComponent();
+            this.profileOPenOnCLick = profileOPenOnCLick;
             this.ImageClass = new ImageClass();
         }
         private void pbxSpectador_Click(object sender, EventArgs e)
@@ -35,8 +39,10 @@ namespace CurumimGameForms
 
         private void pbxHome_Click(object sender, EventArgs e)
         {
-            //GameProfileForms gameProfileForms = new GameProfileForms();
-            //gameProfileForms.Show();
+            this.profileOPenOnCLick.Invoke(this, new PbxProfileOpenEventeArgs()
+            {
+                OpenFormsProfile = true
+            }) ;
         }
 
         private void pbxStore_Click(object sender, EventArgs e)

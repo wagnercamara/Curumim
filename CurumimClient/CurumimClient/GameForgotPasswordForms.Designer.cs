@@ -195,9 +195,9 @@
             this.btnReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReplace.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReplace.ForeColor = System.Drawing.Color.White;
-            this.btnReplace.Location = new System.Drawing.Point(250, 363);
+            this.btnReplace.Location = new System.Drawing.Point(277, 362);
             this.btnReplace.Name = "btnReplace";
-            this.btnReplace.Size = new System.Drawing.Size(91, 74);
+            this.btnReplace.Size = new System.Drawing.Size(64, 61);
             this.btnReplace.TabIndex = 41;
             this.btnReplace.UseVisualStyleBackColor = false;
             this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);

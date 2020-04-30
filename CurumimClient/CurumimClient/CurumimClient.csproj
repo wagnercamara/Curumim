@@ -150,6 +150,16 @@
     <Compile Include="GameStoreForms.Designer.cs">
       <DependentUpon>GameStoreForms.cs</DependentUpon>
     </Compile>
+    <Compile Include="LblEventArgs\LblAboutOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxArsenaOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxBattleOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxChatPlayerClouseEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxChatPlayerOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxProfileClouseEventArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxProfileOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxRoomsOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxSpectatorOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxStoreOpenEventeArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GameAboutForms.resx">
