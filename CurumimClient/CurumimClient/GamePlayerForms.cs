@@ -9,15 +9,17 @@ namespace CurumimGameForms
     public partial class GamePlayerForms : Form
     {
         private EventHandler profileOPenOnCLick { get; set; }
+        EventHandler chatPlayerOpenOnCLick { get; set; }
 
         private ImageClass ImageClass;
         private string controlLocation = "";
         private Boolean OpemMenu = true;
 
-        public GamePlayerForms(EventHandler profileOPenOnCLick)
+        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick)
         {
             InitializeComponent();
             this.profileOPenOnCLick = profileOPenOnCLick;
+            this.chatPlayerOpenOnCLick = chatPlayerOpenOnCLick;
             this.ImageClass = new ImageClass();
         }
         private void pbxSpectador_Click(object sender, EventArgs e)
@@ -33,15 +35,17 @@ namespace CurumimGameForms
 
         private void pbxChat_Click(object sender, EventArgs e)
         {
-            GameChatPlayerFroms gameChatPlayerFroms = new GameChatPlayerFroms();
-            gameChatPlayerFroms.Show();
+            this.chatPlayerOpenOnCLick.Invoke(this, new PbxFormsOpenEventeArgs()
+            {
+                Open = true
+            });
         }
 
         private void pbxHome_Click(object sender, EventArgs e)
         {
-            this.profileOPenOnCLick.Invoke(this, new PbxProfileOpenEventeArgs()
+            this.profileOPenOnCLick.Invoke(this, new PbxFormsOpenEventeArgs()
             {
-                OpenFormsProfile = true
+                Open = true
             }) ;
         }
 
