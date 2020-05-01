@@ -96,11 +96,11 @@
     <Compile Include="GameBattleForms.Designer.cs">
       <DependentUpon>GameBattleForms.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameChatBatlleForms.cs">
+    <Compile Include="GameChatBattleForms.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameChatBatlleForms.Designer.cs">
-      <DependentUpon>GameChatBatlleForms.cs</DependentUpon>
+    <Compile Include="GameChatBattleForms.Designer.cs">
+      <DependentUpon>GameChatBattleForms.cs</DependentUpon>
     </Compile>
     <Compile Include="GameChatPlayerFroms.cs">
       <SubType>Form</SubType>
@@ -151,15 +151,8 @@
       <DependentUpon>GameStoreForms.cs</DependentUpon>
     </Compile>
     <Compile Include="LblEventArgs\LblAboutOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxArsenaOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxBattleOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxChatPlayerClouseEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxChatPlayerOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxProfileClouseEventArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxProfileOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxRoomsOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxSpectatorOpenEventeArgs.cs" />
-    <Compile Include="PbxEventArgs\PbxStoreOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxFormsCloseEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxFormsOpenEventeArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GameAboutForms.resx">
@@ -177,8 +170,8 @@
     <EmbeddedResource Include="GameBattleForms.resx">
       <DependentUpon>GameBattleForms.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameChatBatlleForms.resx">
-      <DependentUpon>GameChatBatlleForms.cs</DependentUpon>
+    <EmbeddedResource Include="GameChatBattleForms.resx">
+      <DependentUpon>GameChatBattleForms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameChatPlayerFroms.resx">
       <DependentUpon>GameChatPlayerFroms.cs</DependentUpon>

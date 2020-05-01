@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurumimClient.PbxEventArgs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,54 +13,123 @@ namespace CurumimGameForms
 {
     public partial class GameChatPlayerFroms : Form
     {
-        private Boolean openMenu = true;
-        public GameChatPlayerFroms()
+        GameProfileClasse profileClasse;
+        EventHandler sendMensage;
+        EventHandler closeChat;
+
+        private Boolean openMenuChat = true;
+        public GameChatPlayerFroms(GameProfileClasse gameProfileClasse, EventHandler CloseChat)
         {
             InitializeComponent();
+            this.profileClasse = gameProfileClasse;
+            this.closeChat = CloseChat;
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
+            this.closeChat.Invoke(this, new PbxFormsCloseEventeArgs() { Close = true });
             this.Close();
         }
 
         private void pbxSend_Click(object sender, EventArgs e)
         {
-            rbxHitory.AppendText(Environment.NewLine + $"{rbxMessage.Text}");
+            SideOfTheText(this.rbxMessage.Text, "Wagner");
         }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        private void SideOfTheText(string texto, string nome)
         {
+
+            if (nome == "Wagner")
+            {
+                rbxHitory.SelectionColor = Color.AliceBlue;   // = Color.Blue;
+                rbxHitory.AppendText(Environment.NewLine + $">{nome}< {texto}");
+                rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
+
+            }
+            else
+            {
+                rbxHitory.SelectionColor = Color.Green;
+                rbxHitory.AppendText(Environment.NewLine + $">{nome}< {texto}");
+                rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
+            }
 
         }
         private void pbxLeft_Click(object sender, EventArgs e)
         {
-            if (openMenu == true)
+            this.pbxLeft.Visible = false;
+            FunctionPnl(this.openMenuChat, true, 51, 307, this.pnlLeft);
+            this.dgvListConversaIniciada.Visible = true;
+            this.openMenuChat = false;
+            this.pbxClosePnl.Visible = true;
+
+        }
+        private void pbxClosePnl_Click(object sender, EventArgs e)
+        {
+            this.pbxClosePnl.Visible = false;
+            FunctionPnl(this.openMenuChat, true, 51, 307, this.pnlLeft);
+            this.dgvListConversaIniciada.Visible = false;
+            this.openMenuChat = true;
+            this.pbxLeft.Visible = true;
+        }
+        private void FunctionPnl(Boolean OpenForms, Boolean WidtOrHigth, int x, int y, Panel panel)
+        {
+            switch (WidtOrHigth)
             {
-                MessageVisible(false);
-                for (int i = 51; i <= 367; i++)
-                {
-                    this.pnlLeft.Width = i;
-                }
-                this.openMenu = false;
-                MessageVisible(true);
+                case true:
+
+                    switch (OpenForms)
+                    {
+                        case true:
+                            MessageVisible(false);
+                            for (int i = x; i <= y; i++)
+                            {
+                                panel.Width = i;
+                            }
+                            MessageVisible(true);
+                            break;
+                        case false:
+                            MessageVisible(false);
+                            for (int i = y; i >= x; i--)
+                            {
+                                panel.Width = i;
+                            }
+                            MessageVisible(true);
+                            break;
+                    }
+
+                    break;
             }
-            else
-            {
-                MessageVisible(false);
-                for (int i = 367; i >= 51; i--)
-                {
-                    this.pnlLeft.Width = i;
-                }
-                MessageVisible(true);
-                this.openMenu = true;
-            }
+            pbxOffline.BorderStyle = BorderStyle.None;
+            pbxOnline.BorderStyle = BorderStyle.None;
         }
         private void MessageVisible(Boolean visible)
         {
             this.rbxHitory.Visible = visible;
             this.rbxMessage.Visible = visible;
-            this.btnBax.Visible = visible;
-            this.btnUp.Visible = visible;
+        }
+
+        private void rbxMessage_TextChanged(object sender, EventArgs e)
+        {
+            if (rbxMessage.Text.Trim() != "")
+            {
+                pbxSend.Visible = true;
+            }
+            else
+            {
+                pbxSend.Visible = false;
+            }
+        }
+
+
+
+        private void pbxOffline_Click_1(object sender, EventArgs e)
+        {
+            pbxOnline.BorderStyle = BorderStyle.None;
+            pbxOffline.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void pbxOnline_Click(object sender, EventArgs e)
+        {
+            pbxOnline.BorderStyle = BorderStyle.FixedSingle;
+            pbxOffline.BorderStyle = BorderStyle.None;
         }
     }
 }

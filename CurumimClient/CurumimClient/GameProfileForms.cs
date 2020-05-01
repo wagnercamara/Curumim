@@ -51,7 +51,7 @@ namespace CurumimGameForms
             this.lblWinner.Text = this.gameProfile.GetVictoryPlayer().ToString();
             this.lblName.Text = this.gameProfile.GetLoginPlayer();
             this.lblRank.Text = this.gameProfile.GetRankingPlayer().ToString();
-
+            this.lblQtdEmerald.Text = this.gameProfile.GetEsmeraldPlayer().ToString();
         }
         private void pbxOpenMenu_Click(object sender, EventArgs e)
         {
@@ -97,9 +97,9 @@ namespace CurumimGameForms
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
-            this.PbxProfileClouseOnClick.Invoke(this, new PbxProfileClouseEventArgs()
+            this.PbxProfileClouseOnClick.Invoke(this, new PbxFormsCloseEventeArgs()
             {
-                CloseProfileForms = true
+                Close = true
             });
             this.Close();
         }
