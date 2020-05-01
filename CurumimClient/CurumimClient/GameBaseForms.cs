@@ -111,7 +111,7 @@ namespace CurumimGameForms
         }
         private void LoadClassePlayer(MessageEventArgs messageEventArgs)
         {
-            
+
             if (this.InvokeRequired == true)
             {
                 this.Invoke(new LoadClassePlayerDelegate(LoadClassePlayer), new object[] { messageEventArgs });
@@ -145,15 +145,15 @@ namespace CurumimGameForms
         }
         private void CreatGamePlayer()
         {
-            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick);
+            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick);
             gamePlayerForms.ShowDialog();
         }
         private void PbxProfileOnClick(object sender, EventArgs e) // Chama o chat do player
         {
-            PbxProfileOpenEventeArgs pbxProfileOpenEventeArgs = e as PbxProfileOpenEventeArgs;
-            if (pbxProfileOpenEventeArgs != null)
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+            if (pbxFormsOpenEventeArgs != null)
             {
-                if (pbxProfileOpenEventeArgs.OpenFormsProfile == true)
+                if (pbxFormsOpenEventeArgs.Open == true)
                 {
                     if (this.gameProfileForms != null)
                     {
@@ -165,14 +165,15 @@ namespace CurumimGameForms
                         this.gameProfileForms.Show();
                     }
                 }
+
             }
         }
         private void PbxProfileClouseOnClick(object sender, EventArgs e)
         {
-            PbxProfileClouseEventArgs pbxProfileClouseEventArgs = e as PbxProfileClouseEventArgs;
-            if (pbxProfileClouseEventArgs != null)
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
             {
-                if (pbxProfileClouseEventArgs.CloseProfileForms == true)
+                if (pbxFormsCloseEventeArgs.Close == true)
                 {
                     gameProfileForms = null;
                 }
@@ -256,23 +257,31 @@ namespace CurumimGameForms
         }
         private void PbxChatPlayerOpenOnClick(object sender, EventArgs e) // Chama o chat do player
         {
-            PbxChatPlayerOpenEventeArgs pbxChatPlayerOpenEventeArgs = e as PbxChatPlayerOpenEventeArgs;
-            if (pbxChatPlayerOpenEventeArgs != null)
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+            if (pbxFormsOpenEventeArgs != null)
             {
-                if (this.gameChatPlayer != null)
+                if (pbxFormsOpenEventeArgs.Open == true)
                 {
-                    Application.OpenForms["gameChatPlayer"].BringToFront(); // traz um forms já criado pra fente novamente.
-                }
-                else
-                {
-                    this.gameChatPlayer = new GameChatPlayerFroms();
-                    this.gameChatPlayer.Show();
+                    if (this.gameChatPlayer != null)
+                    {
+                        Application.OpenForms["gameChatPlayer"].BringToFront(); // traz um forms já criado pra fente novamente.
+                    }
+                    else
+                    {
+                        this.gameChatPlayer = new GameChatPlayerFroms(gameProfile, PbxChatPlayerClouseOnClick);
+                        this.gameChatPlayer.Show();
+                    }
                 }
             }
         }
         private void PbxChatPlayerClouseOnClick(object sender, EventArgs e) // Chama o chat do player
         {
-
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                    this.gameChatPlayer = null;
+            }
         }
         private void OnReceiveMessage(object sender, EventArgs e) //
         {

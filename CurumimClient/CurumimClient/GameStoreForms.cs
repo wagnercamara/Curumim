@@ -183,12 +183,10 @@ namespace CurumimGameForms
                                     labelQtd.Text = "";
                                     labelQtd.Visible = false;
                                     this.purchase.Remove(nameArm);
-                                    this.lblInsufficientFunds.Text = "";
                                     break;
                                 default:
                                     labelQtd.Text = qtd.ToString();
                                     AddCarPurchase(nameArm, valueUn, qtd, valueItem, labelQtd);
-                                    this.lblInsufficientFunds.Text = "";
                                     break;
                             }
                             AlertInsufficientFunds(false);
@@ -199,7 +197,6 @@ namespace CurumimGameForms
                             labelQtd.Visible = false;
                             RemoveCar(valueItem);
                             this.purchase.Remove(nameArm);
-                            this.lblInsufficientFunds.Text = "";
                             AlertInsufficientFunds(false);
                             break;
                     }
@@ -250,8 +247,9 @@ namespace CurumimGameForms
         }
         private void AlertInsufficientFunds(Boolean visible)
         {
-            lblInsufficientFunds.Visible = visible;
-            pbxAlert.Visible = visible;
+            this.lblInsufficientFunds.Text = "Insufficient Funds";
+            this.lblInsufficientFunds.Visible = visible;
+            this.pbxAlert.Visible = visible;
         }
         // Devolve um determinado valor a Carteira
         private void RemoveCar(int valueUn)
