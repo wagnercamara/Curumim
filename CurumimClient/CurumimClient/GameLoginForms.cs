@@ -1,4 +1,6 @@
-﻿using CurumimGameForms.BtnEventArgs;
+﻿using Base;
+using CurumimClient.EventArgsForms;
+using CurumimGameForms.BtnEventArgs;
 using System;
 using System.Drawing;
 using System.Text;
@@ -13,21 +15,24 @@ namespace CurumimGameForms
         private event EventHandler BtnLoginOnClick;
         private event EventHandler SelectAvatarOn;
         private event EventHandler BtnLoginRepleceOnClick;
+        private event EventHandler LoginSucessEvent;
 
         //atributos
         private string avatarPlayer = string.Empty;
         private int forgotPassword { get; set; }
         private Boolean registerOrLogin = true;
-        public GameLoginForms(EventHandler BtnRegisterOnClick, EventHandler BtnLoginOnClick, EventHandler BtnLoginRepleceOnClick, EventHandler SelectAvatarOn)
+        public GameLoginForms(EventHandler BtnRegisterOnClick, EventHandler BtnLoginOnClick, EventHandler BtnLoginRepleceOnClick, EventHandler SelectAvatarOn, EventHandler LoginSucessEvent)
         {
             InitializeComponent();
             this.BtnRegisterOnClick = BtnRegisterOnClick;
             this.BtnLoginOnClick = BtnLoginOnClick;
             this.BtnLoginRepleceOnClick = BtnLoginRepleceOnClick;
             this.SelectAvatarOn = SelectAvatarOn;
+            this.LoginSucessEvent = LoginSucessEvent;
         }
         //delegate
         private delegate void SetAvatarDelegate(string avatar);
+        private delegate void LoginSucessDelegate(MessageEventArgs messageEventArgs);
         private delegate void GenericDelegate();
         //
         //
@@ -238,15 +243,15 @@ namespace CurumimGameForms
                 newGameReplece = true
             });
         }
-        public void LoginSucess()
+        public void LoginSucess(MessageEventArgs messageEventArgs)
         {
             if (this.InvokeRequired == true)
             {
-                this.Invoke(new GenericDelegate(LoginSucess), new object[] { });
+                this.Invoke(new LoginSucessDelegate(LoginSucess), new object[] { messageEventArgs });
             }
             else
             {
-                this.Close();
+                this.LoginSucessEvent.Invoke(this, new LoginSucessEventArgs() { MessageEventArgs = messageEventArgs });
             }
         }
 

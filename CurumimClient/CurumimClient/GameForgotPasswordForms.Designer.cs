@@ -191,6 +191,7 @@
             this.btnReplace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.btnReplace.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReplace.BackgroundImage")));
             this.btnReplace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReplace.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReplace.FlatAppearance.BorderSize = 0;
             this.btnReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReplace.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -207,6 +208,7 @@
             this.btnReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.btnReturn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReturn.BackgroundImage")));
             this.btnReturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReturn.FlatAppearance.BorderSize = 0;
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturn.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -261,6 +263,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.txtRegPassword);
             this.Controls.Add(this.btnReplace);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameForgotPasswordForms";
