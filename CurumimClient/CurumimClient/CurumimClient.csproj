@@ -33,13 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lbl\Base.dll</HintPath>
+    <Reference Include="Base">
+      <HintPath>Base\Base.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +56,7 @@
     <Compile Include="BtnEventArgs\BtnAvatarSelectEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnForgotPaswordOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnLoginOnClickEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnMessageOff_On_LineEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnRegisterOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
     <Compile Include="Classe\ButtonField.cs">
@@ -66,6 +65,8 @@
     <Compile Include="Classe\GameProfileCasse.cs" />
     <Compile Include="Classe\GameWeaponsClasse.cs" />
     <Compile Include="Classe\ImageClass.cs" />
+    <Compile Include="EventArgsForms\LoginSucessEventArgs.cs" />
+    <Compile Include="EventArgsForms\StartMessagemOnLineOrOffLineEventArgs.cs" />
     <Compile Include="GameAboutForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +154,7 @@
     <Compile Include="LblEventArgs\LblAboutOpenEventeArgs.cs" />
     <Compile Include="PbxEventArgs\PbxFormsCloseEventeArgs.cs" />
     <Compile Include="PbxEventArgs\PbxFormsOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxMessageSendMessageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GameAboutForms.resx">
@@ -260,6 +262,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About\About.txt" />
+    <Content Include="Base\Base.dll" />
+    <Content Include="Base\Base.pdb" />
+    <Content Include="Base\Newtonsoft.Json.dll" />
+    <Content Include="Base\Newtonsoft.Json.xml" />
     <Content Include="bin\Debug\About\About.txt" />
     <Content Include="bin\Debug\img\Avatar\Caramuru.PNG" />
     <Content Include="bin\Debug\img\Avatar\Cauã.PNG" />
@@ -505,8 +511,6 @@
     <Content Include="img\Icon\player\Vigia.png" />
     <Content Include="img\Icon\player\Winner.png" />
     <Content Include="img\WallpaperGame\WallpaperGamaBaseForms.jpg" />
-    <Content Include="lbl\Base.dll" />
-    <Content Include="lbl\Newtonsoft.Json.dll" />
     <Content Include="obj\Debug\CurumimGameForms.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\CurumimGameForms.exe" />
     <Content Include="obj\Debug\CurumimGameForms.pdb" />
@@ -516,8 +520,6 @@
     <Content Include="obj\Release\CurumimGameForms.pdb" />
     <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

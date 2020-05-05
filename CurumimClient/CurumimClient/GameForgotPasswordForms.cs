@@ -91,6 +91,7 @@ namespace CurumimGameForms
             }
             else
             {
+                MessageBox.Show("Successfully registered");
                 ClearCapRep();
                 this.Close();
             }

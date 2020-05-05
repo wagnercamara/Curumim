@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pbxClosePnl = new System.Windows.Forms.PictureBox();
             this.pbxOffline = new System.Windows.Forms.PictureBox();
@@ -75,6 +76,7 @@
             // 
             // pbxClosePnl
             // 
+            this.pbxClosePnl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxClosePnl.Image = ((System.Drawing.Image)(resources.GetObject("pbxClosePnl.Image")));
             this.pbxClosePnl.Location = new System.Drawing.Point(3, 478);
             this.pbxClosePnl.Name = "pbxClosePnl";
@@ -87,6 +89,7 @@
             // 
             // pbxOffline
             // 
+            this.pbxOffline.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxOffline.Image = ((System.Drawing.Image)(resources.GetObject("pbxOffline.Image")));
             this.pbxOffline.Location = new System.Drawing.Point(162, 5);
             this.pbxOffline.Name = "pbxOffline";
@@ -100,6 +103,7 @@
             // 
             this.btnReceiver2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReceiver2.BackgroundImage")));
             this.btnReceiver2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReceiver2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReceiver2.FlatAppearance.BorderSize = 0;
             this.btnReceiver2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReceiver2.Location = new System.Drawing.Point(118, 458);
@@ -107,16 +111,17 @@
             this.btnReceiver2.Size = new System.Drawing.Size(79, 56);
             this.btnReceiver2.TabIndex = 45;
             this.btnReceiver2.UseVisualStyleBackColor = true;
+            this.btnReceiver2.Click += new System.EventHandler(this.btnReceiver2_Click);
             // 
             // dgvListConversaIniciada
             // 
             this.dgvListConversaIniciada.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dgvListConversaIniciada.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvListConversaIniciada.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvListConversaIniciada.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
             this.dgvListConversaIniciada.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
@@ -124,31 +129,41 @@
             this.dgvListConversaIniciada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListConversaIniciada.ColumnHeadersHeight = 25;
             this.dgvListConversaIniciada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvListConversaIniciada.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListConversaIniciada.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListConversaIniciada.EnableHeadersVisualStyles = false;
             this.dgvListConversaIniciada.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.dgvListConversaIniciada.Location = new System.Drawing.Point(4, 67);
             this.dgvListConversaIniciada.Name = "dgvListConversaIniciada";
             this.dgvListConversaIniciada.ReadOnly = true;
             this.dgvListConversaIniciada.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListConversaIniciada.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.dgvListConversaIniciada.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListConversaIniciada.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.dgvListConversaIniciada.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListConversaIniciada.Size = new System.Drawing.Size(293, 386);
             this.dgvListConversaIniciada.TabIndex = 44;
             this.dgvListConversaIniciada.Visible = false;
             // 
             // pbxOnline
             // 
+            this.pbxOnline.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxOnline.Image = ((System.Drawing.Image)(resources.GetObject("pbxOnline.Image")));
             this.pbxOnline.Location = new System.Drawing.Point(78, 5);
             this.pbxOnline.Name = "pbxOnline";
@@ -160,6 +175,7 @@
             // 
             // pbxLeft
             // 
+            this.pbxLeft.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxLeft.Image = ((System.Drawing.Image)(resources.GetObject("pbxLeft.Image")));
             this.pbxLeft.Location = new System.Drawing.Point(2, 4);
             this.pbxLeft.Name = "pbxLeft";
@@ -209,6 +225,7 @@
             // 
             // pbxSend
             // 
+            this.pbxSend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxSend.Image = ((System.Drawing.Image)(resources.GetObject("pbxSend.Image")));
             this.pbxSend.Location = new System.Drawing.Point(671, 469);
             this.pbxSend.Name = "pbxSend";
@@ -221,6 +238,7 @@
             // 
             // pbxClouse
             // 
+            this.pbxClouse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxClouse.Image = ((System.Drawing.Image)(resources.GetObject("pbxClouse.Image")));
             this.pbxClouse.Location = new System.Drawing.Point(0, 0);
             this.pbxClouse.Name = "pbxClouse";
@@ -239,7 +257,7 @@
             this.rbxHitory.Location = new System.Drawing.Point(6, 43);
             this.rbxHitory.Name = "rbxHitory";
             this.rbxHitory.ReadOnly = true;
-            this.rbxHitory.Size = new System.Drawing.Size(737, 426);
+            this.rbxHitory.Size = new System.Drawing.Size(737, 420);
             this.rbxHitory.TabIndex = 0;
             this.rbxHitory.Text = "";
             // 
@@ -264,6 +282,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameChatPlayerFroms";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.GameChatPlayerFroms_Load);
             this.pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxClosePnl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOffline)).EndInit();

@@ -6,13 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="lbl\**" />
+    <EmbeddedResource Remove="lbl\**" />
+    <None Remove="lbl\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Base">
-      <HintPath>lbl\Base.dll</HintPath>
+      <HintPath>Base\Base.dll</HintPath>
     </Reference>
   </ItemGroup>
 

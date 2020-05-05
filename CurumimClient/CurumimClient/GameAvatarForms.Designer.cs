@@ -42,7 +42,7 @@
             // lblOptions
             // 
             this.lblOptions.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOptions.Location = new System.Drawing.Point(12, 9);
+            this.lblOptions.Location = new System.Drawing.Point(12, 2);
             this.lblOptions.Name = "lblOptions";
             this.lblOptions.Size = new System.Drawing.Size(350, 32);
             this.lblOptions.TabIndex = 2;
@@ -53,7 +53,7 @@
             // 
             this.pbxAvatar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.pbxAvatar.InitialImage = null;
-            this.pbxAvatar.Location = new System.Drawing.Point(12, 45);
+            this.pbxAvatar.Location = new System.Drawing.Point(12, 38);
             this.pbxAvatar.Name = "pbxAvatar";
             this.pbxAvatar.Size = new System.Drawing.Size(350, 500);
             this.pbxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -63,6 +63,7 @@
             // pbxNext
             // 
             this.pbxNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxNext.BackgroundImage")));
+            this.pbxNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxNext.Location = new System.Drawing.Point(56, 551);
             this.pbxNext.Name = "pbxNext";
             this.pbxNext.Size = new System.Drawing.Size(38, 38);
@@ -74,6 +75,7 @@
             // pbxReturn
             // 
             this.pbxReturn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxReturn.BackgroundImage")));
+            this.pbxReturn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxReturn.Location = new System.Drawing.Point(12, 550);
             this.pbxReturn.Name = "pbxReturn";
             this.pbxReturn.Size = new System.Drawing.Size(38, 39);
@@ -85,12 +87,13 @@
             // 
             this.btnRegister.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRegister.BackgroundImage")));
             this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegister.FlatAppearance.BorderSize = 0;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(310, 550);
+            this.btnRegister.Location = new System.Drawing.Point(297, 539);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(52, 39);
+            this.btnRegister.Size = new System.Drawing.Size(65, 50);
             this.btnRegister.TabIndex = 9;
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -108,6 +111,7 @@
             this.Controls.Add(this.pbxNext);
             this.Controls.Add(this.pbxAvatar);
             this.Controls.Add(this.lblOptions);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameAvatarForms";

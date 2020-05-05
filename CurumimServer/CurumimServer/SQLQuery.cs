@@ -15,6 +15,10 @@ namespace CurumimServer
         private const int LOGIN_TYPE_RETURN_SUCCESS = 2;
         private const int LOGIN_TYPE_RETURN_ERROR = 3;
 
+        private const int MESSAGE_TYPE_READ_NEW_MESSAGE = 13;
+        private const int MESSAGE_TYPE_READ_ERRO = 14;
+        private const int MESSAGE_TYPE_GET_PLAYER_MESSAGE = 19;
+
         private ConnectionDB sQLConnection = new ConnectionDB();
 
 
@@ -39,10 +43,7 @@ namespace CurumimServer
 
             if (successfullyConnected == true)
             {
-                //getplayer
                 this.sqlCommand.CommandText = @"SELECT * FROM[dbo].[GetPlayer](@login, @password)";
-                //não precisa
-                //this.sqlCommand.CommandType = CommandType.StoredProcedure;
                 this.sqlCommand.Parameters.Clear();
                 this.sqlCommand.Parameters.AddWithValue("@login", login);
                 this.sqlCommand.Parameters.AddWithValue("@password", password);
@@ -118,7 +119,8 @@ namespace CurumimServer
                 this.sqlCommand.Parameters.AddWithValue("@rankingPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@victoryPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@totalBatllesPlayer", 0);
-                this.sqlCommand.Parameters.AddWithValue("@esmeraldPlayer", 0);
+                this.sqlCommand.Parameters.AddWithValue("@esmeraldPlayer", 20);
+                this.sqlCommand.Parameters.AddWithValue("@offOnPlayer", 0);
 
                 try
                 {
@@ -154,6 +156,180 @@ namespace CurumimServer
                 this.sqlCommand.Parameters.AddWithValue("@loginPlayer", loginPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@passwordPlayer", passwordPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@secretPhresePlayer", secretPhresePlayer);
+                try
+                {
+                    this.sqlCommand.ExecuteNonQuery();
+                    updatePlayerSucess = true;
+                }
+                catch
+                {
+                    updatePlayerSucess = false;
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return updatePlayerSucess;
+
+        }
+        public Boolean SqlInsertMenssage(int sender_id_tbPlayer, int receiver_id_tbPlayer, string messageMessage, string dateTimeMessage)
+        {
+            Boolean successfullyConnected = false;
+            Boolean newMessageSucess = false;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = "SetMessage";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+
+                this.sqlCommand.Parameters.AddWithValue("@sender_id_tbPlayer", sender_id_tbPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@receiver_id_tbPlayer", receiver_id_tbPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@messageMessage", messageMessage);
+                this.sqlCommand.Parameters.AddWithValue("@dateTimeMessage", dateTimeMessage);
+
+                try
+                {
+                    this.sqlCommand.ExecuteNonQuery();
+                    newMessageSucess = true;
+                }
+                catch
+                {
+                    newMessageSucess = false;
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return newMessageSucess;
+        }
+        public List<dynamic> SqlSelectMessage(int sender_id_tbPlayer, int receiver_id_tbPlayer)
+        {
+            Boolean successfullyConnected = false;
+            List<dynamic> message = new List<dynamic>();
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM[[dbo].[SetMessage] (@sender_id_tbPlayer, @receiver_id_tbPlayer)";
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@sender_id_tbPlayer", sender_id_tbPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@receiver_id_tbPlayer", receiver_id_tbPlayer);
+
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+                    Boolean CommandSucess = reader.Read();
+
+                    while (reader.Read() == true)
+                    {
+                        message.Add(new
+                        {
+                            Type = MESSAGE_TYPE_READ_NEW_MESSAGE,
+                            messageMessage = reader.GetString(reader.GetOrdinal("messageMessage")),
+                            dateTimeMessage = reader.GetString(reader.GetOrdinal("dateTimeMessage"))
+                        });
+                    }
+                }
+                catch
+                {
+                    message.Add(new { Type = MESSAGE_TYPE_READ_ERRO });
+                }
+                
+            }
+            else
+            {
+                message.Add(new { Type = MESSAGE_TYPE_READ_ERRO });
+            }
+
+
+                this.sQLConnection.ClouseConnection();
+            return message;
+        }
+        public List<dynamic> SqlSelectPlayerOffline(int OffOn)
+        {
+            List<dynamic> players = new List<dynamic>();
+
+            Boolean successfullyConnected = false;
+
+            try
+            {
+                sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetMessagePlayerOffLine] (@OffOn)";
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@OffOn", OffOn);
+
+                try
+                {
+
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+
+                    while (reader.Read() == true)
+                    {
+                        players.Add(new
+                        {
+                            Type = MESSAGE_TYPE_GET_PLAYER_MESSAGE,
+                            idPlayer = int.Parse(reader["idPlayer"].ToString()),
+                            loginPlayer = reader["loginPlayer"].ToString()
+                        });
+                    }
+                }
+                catch
+                {
+                    players.Add(new { Type = MESSAGE_TYPE_READ_ERRO });
+                }
+            }
+            else
+            {
+                players.Add(new { Type = MESSAGE_TYPE_READ_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return players;
+        }
+        public Boolean SqlSetOffOnLine(int idPlayer, int OffOn)
+        {
+            Boolean successfullyConnected = false;
+            Boolean updatePlayerSucess = false;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = "UpdateOffOnLinePlayer";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@OffOn", OffOn);
+
                 try
                 {
                     this.sqlCommand.ExecuteNonQuery();
