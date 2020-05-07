@@ -20,22 +20,22 @@ namespace CurumimGameForms
             Boolean RegOk = true;
             StringBuilder stringBuilder = new StringBuilder("Preecha os campos; ");
 
-            if (txtRegLogin.Text == "")
+            if (txtRegLogin.Text.Trim() == "")
             {
                 stringBuilder.Append("Login; ");
                 RegOk = false;
             }
-            if (txtRegPassword.Text == "")
+            if (txtRegPassword.Text.Trim() == "")
             {
                 stringBuilder.Append("Password; ");
                 RegOk = false;
             }
-            if (txtRegConfPassword.Text == "")
+            if (txtRegConfPassword.Text.Trim() == "")
             {
                 stringBuilder.Append("Confirm Password; ");
                 RegOk = false;
             }
-            if (txtRegSecrPhrese.Text == "")
+            if (txtRegSecrPhrese.Text.Trim() == "")
             {
                 stringBuilder.Append("Secret Pherese; ");
                 RegOk = false;

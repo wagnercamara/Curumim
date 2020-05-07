@@ -2,12 +2,14 @@
 using CurumimClient.pbxEventArgs;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CurumimGameForms
 {
     public partial class GamePlayerForms : Form
     {
+        MoveForms moveForms = new MoveForms();
         private EventHandler profileOPenOnCLick { get; set; }
         EventHandler chatPlayerOpenOnCLick { get; set; }
 
@@ -200,6 +202,10 @@ namespace CurumimGameForms
             Application.Exit();
             return;
         }
-
+        private void pnlUp_MouseMove(object sender, MouseEventArgs e)
+        {
+            moveForms.Move(this.Handle);
+        }
+      
     }
 }

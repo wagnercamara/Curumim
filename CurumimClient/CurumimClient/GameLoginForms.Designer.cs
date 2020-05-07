@@ -435,7 +435,6 @@
             this.lblChangePassword.Size = new System.Drawing.Size(93, 13);
             this.lblChangePassword.TabIndex = 21;
             this.lblChangePassword.Text = "Change Password";
-            this.lblChangePassword.Visible = false;
             // 
             // btnReplecePassword
             // 
@@ -453,7 +452,6 @@
             this.btnReplecePassword.TabIndex = 20;
             this.btnReplecePassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReplecePassword.UseVisualStyleBackColor = true;
-            this.btnReplecePassword.Visible = false;
             this.btnReplecePassword.Click += new System.EventHandler(this.btnReplecePassword_Click);
             // 
             // pbxDownLogin

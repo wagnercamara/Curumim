@@ -2,7 +2,6 @@
 using CurumimClient.EventArgsForms;
 using CurumimGameForms.BtnEventArgs;
 using System;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -19,7 +18,6 @@ namespace CurumimGameForms
 
         //atributos
         private string avatarPlayer = string.Empty;
-        private int forgotPassword { get; set; }
         private Boolean registerOrLogin = true;
         public GameLoginForms(EventHandler BtnRegisterOnClick, EventHandler BtnLoginOnClick, EventHandler BtnLoginRepleceOnClick, EventHandler SelectAvatarOn, EventHandler LoginSucessEvent)
         {
@@ -49,12 +47,12 @@ namespace CurumimGameForms
             Boolean RegOk = true;
             StringBuilder stringBuilder = new StringBuilder("Preecha os campos; ");
 
-            if (txtUser.Text == "")
+            if (txtUser.Text.Trim() == "")
             {
                 stringBuilder.Append("Login; ");
                 RegOk = false;
             }
-            if (txtPassword.Text == "")
+            if (txtPassword.Text.Trim() == "")
             {
                 stringBuilder.Append("Password; ");
                 RegOk = false;
@@ -69,22 +67,6 @@ namespace CurumimGameForms
         }
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            forgotPassword++;
-
-            if (forgotPassword > 3)
-            {
-                lblChangePassword.Visible = true;
-                btnReplecePassword.Enabled = true;
-                btnReplecePassword.Visible = true;
-                forgotPassword = 0;
-            }
-            else
-            {
-                lblChangePassword.Visible = false;
-                btnReplecePassword.Enabled = false;
-                btnReplecePassword.Visible = false;
-            }
-
             if (LogValidateFields() == true)
             {
                 this.BtnLoginOnClick.Invoke(this, new BtnLoginOnClickEventArgs()
@@ -108,27 +90,27 @@ namespace CurumimGameForms
             Boolean RegOk = true;
             StringBuilder stringBuilder = new StringBuilder("Preecha os campos; ");
 
-            if (txtRegFullName.Text == "")
+            if (txtRegFullName.Text.Trim() == "")
             {
                 stringBuilder.Append("Full Name; ");
                 RegOk = false;
             }
-            if (txtRegLogin.Text == "")
+            if (txtRegLogin.Text.Trim() == "")
             {
                 stringBuilder.Append("Login; ");
                 RegOk = false;
             }
-            if (txtRegPassword.Text == "")
+            if (txtRegPassword.Text.Trim() == "")
             {
                 stringBuilder.Append("Password; ");
                 RegOk = false;
             }
-            if (txtRegConfPassword.Text == "")
+            if (txtRegConfPassword.Text.Trim() == "")
             {
                 stringBuilder.Append("Confirm Password; ");
                 RegOk = false;
             }
-            if (txtRegSecrPhrese.Text == "")
+            if (txtRegSecrPhrese.Text.Trim() == "")
             {
                 stringBuilder.Append("Secret Pherese; ");
                 RegOk = false;
