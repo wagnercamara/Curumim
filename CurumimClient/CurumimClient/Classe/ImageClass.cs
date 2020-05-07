@@ -35,5 +35,9 @@ namespace CurumimClient.Classe
         {
             return Image.FromFile(fillApp + @"Icon/battleForm/" + nameIcon + @".png");
         }
+        public Image GetImageGenericIconForms(String nameIcon)
+        {
+            return Image.FromFile(fillApp + @"Icon/iconForm/" + nameIcon + @".png");
+        }
     }
 }

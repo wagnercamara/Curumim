@@ -118,6 +118,7 @@
             this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -134,6 +135,7 @@
             this.btnOpen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.btnOpen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpen.BackgroundImage")));
             this.btnOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpen.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOpen.FlatAppearance.BorderSize = 0;
             this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -379,6 +381,7 @@
             // 
             // pbxUpRegister
             // 
+            this.pbxUpRegister.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxUpRegister.Image = ((System.Drawing.Image)(resources.GetObject("pbxUpRegister.Image")));
             this.pbxUpRegister.Location = new System.Drawing.Point(377, 0);
             this.pbxUpRegister.Name = "pbxUpRegister";
@@ -417,6 +420,7 @@
             this.pnlLogin.Controls.Add(this.lblDownLogin);
             this.pnlLogin.Controls.Add(this.txtUser);
             this.pnlLogin.Controls.Add(this.lblLogin);
+            this.pnlLogin.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLogin.Location = new System.Drawing.Point(0, 0);
             this.pnlLogin.Name = "pnlLogin";
@@ -431,12 +435,12 @@
             this.lblChangePassword.Size = new System.Drawing.Size(93, 13);
             this.lblChangePassword.TabIndex = 21;
             this.lblChangePassword.Text = "Change Password";
-            this.lblChangePassword.Visible = false;
             // 
             // btnReplecePassword
             // 
             this.btnReplecePassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReplecePassword.BackgroundImage")));
             this.btnReplecePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReplecePassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReplecePassword.Enabled = false;
             this.btnReplecePassword.FlatAppearance.BorderSize = 0;
             this.btnReplecePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -448,11 +452,11 @@
             this.btnReplecePassword.TabIndex = 20;
             this.btnReplecePassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReplecePassword.UseVisualStyleBackColor = true;
-            this.btnReplecePassword.Visible = false;
             this.btnReplecePassword.Click += new System.EventHandler(this.btnReplecePassword_Click);
             // 
             // pbxDownLogin
             // 
+            this.pbxDownLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxDownLogin.Image = ((System.Drawing.Image)(resources.GetObject("pbxDownLogin.Image")));
             this.pbxDownLogin.Location = new System.Drawing.Point(377, 0);
             this.pbxDownLogin.Name = "pbxDownLogin";
@@ -530,6 +534,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.pnlRegister);
             this.Controls.Add(this.pnlLogin);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameLoginForms";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

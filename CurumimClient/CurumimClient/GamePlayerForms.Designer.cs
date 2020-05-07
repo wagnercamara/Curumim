@@ -30,12 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GamePlayerForms));
             this.pnlUp = new System.Windows.Forms.Panel();
+            this.pnlSpc = new System.Windows.Forms.Panel();
+            this.pbxSpectador = new System.Windows.Forms.PictureBox();
+            this.lblSpectator = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.div1 = new System.Windows.Forms.Button();
             this.pbxUpDown = new System.Windows.Forms.PictureBox();
-            this.lblSpectator = new System.Windows.Forms.Label();
             this.lblAbout = new System.Windows.Forms.Label();
             this.lblLocationBatlle = new System.Windows.Forms.Label();
             this.lblLocaitionStore = new System.Windows.Forms.Label();
@@ -50,9 +52,9 @@
             this.pbxStore = new System.Windows.Forms.PictureBox();
             this.pbxHome = new System.Windows.Forms.PictureBox();
             this.pbxImgFundo = new System.Windows.Forms.PictureBox();
-            this.pnlSpc = new System.Windows.Forms.Panel();
-            this.pbxSpectador = new System.Windows.Forms.PictureBox();
             this.pnlUp.SuspendLayout();
+            this.pnlSpc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxSpectador)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUpDown)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxBatlle)).BeginInit();
@@ -61,8 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxStore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImgFundo)).BeginInit();
-            this.pnlSpc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSpectador)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlUp
@@ -81,11 +81,49 @@
             this.pnlUp.Controls.Add(this.lblLocationArsenal);
             this.pnlUp.Controls.Add(this.lblHome);
             this.pnlUp.Controls.Add(this.lblExit);
+            this.pnlUp.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.pnlUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlUp.Location = new System.Drawing.Point(0, 0);
             this.pnlUp.Name = "pnlUp";
-            this.pnlUp.Size = new System.Drawing.Size(998, 35);
+            this.pnlUp.Size = new System.Drawing.Size(998, 39);
             this.pnlUp.TabIndex = 5;
+            this.pnlUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlUp_MouseMove);
+            // 
+            // pnlSpc
+            // 
+            this.pnlSpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.pnlSpc.Controls.Add(this.pbxSpectador);
+            this.pnlSpc.Controls.Add(this.lblSpectator);
+            this.pnlSpc.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlSpc.Location = new System.Drawing.Point(0, 34);
+            this.pnlSpc.Name = "pnlSpc";
+            this.pnlSpc.Size = new System.Drawing.Size(998, 3);
+            this.pnlSpc.TabIndex = 14;
+            // 
+            // pbxSpectador
+            // 
+            this.pbxSpectador.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxSpectador.Image = ((System.Drawing.Image)(resources.GetObject("pbxSpectador.Image")));
+            this.pbxSpectador.Location = new System.Drawing.Point(390, 15);
+            this.pbxSpectador.Name = "pbxSpectador";
+            this.pbxSpectador.Size = new System.Drawing.Size(252, 253);
+            this.pbxSpectador.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxSpectador.TabIndex = 9;
+            this.pbxSpectador.TabStop = false;
+            this.pbxSpectador.Visible = false;
+            this.pbxSpectador.Click += new System.EventHandler(this.pbxSpectador_Click);
+            // 
+            // lblSpectator
+            // 
+            this.lblSpectator.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpectator.ForeColor = System.Drawing.Color.Black;
+            this.lblSpectator.Location = new System.Drawing.Point(390, 269);
+            this.lblSpectator.Name = "lblSpectator";
+            this.lblSpectator.Size = new System.Drawing.Size(252, 23);
+            this.lblSpectator.TabIndex = 7;
+            this.lblSpectator.Text = "Modo Spectador";
+            this.lblSpectator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSpectator.Visible = false;
             // 
             // button3
             // 
@@ -125,6 +163,7 @@
             // 
             // pbxUpDown
             // 
+            this.pbxUpDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxUpDown.Image = ((System.Drawing.Image)(resources.GetObject("pbxUpDown.Image")));
             this.pbxUpDown.Location = new System.Drawing.Point(722, 2);
             this.pbxUpDown.Name = "pbxUpDown";
@@ -134,21 +173,10 @@
             this.pbxUpDown.TabStop = false;
             this.pbxUpDown.Click += new System.EventHandler(this.pbxUpDown_Click);
             // 
-            // lblSpectator
-            // 
-            this.lblSpectator.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpectator.ForeColor = System.Drawing.Color.Black;
-            this.lblSpectator.Location = new System.Drawing.Point(390, 269);
-            this.lblSpectator.Name = "lblSpectator";
-            this.lblSpectator.Size = new System.Drawing.Size(252, 23);
-            this.lblSpectator.TabIndex = 7;
-            this.lblSpectator.Text = "Modo Spectador";
-            this.lblSpectator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblSpectator.Visible = false;
-            // 
             // lblAbout
             // 
             this.lblAbout.AutoSize = true;
+            this.lblAbout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblAbout.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAbout.ForeColor = System.Drawing.Color.White;
             this.lblAbout.Location = new System.Drawing.Point(946, 9);
@@ -161,6 +189,7 @@
             // lblLocationBatlle
             // 
             this.lblLocationBatlle.AutoSize = true;
+            this.lblLocationBatlle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLocationBatlle.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocationBatlle.ForeColor = System.Drawing.Color.White;
             this.lblLocationBatlle.Location = new System.Drawing.Point(634, 9);
@@ -173,6 +202,7 @@
             // lblLocaitionStore
             // 
             this.lblLocaitionStore.AutoSize = true;
+            this.lblLocaitionStore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLocaitionStore.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocaitionStore.ForeColor = System.Drawing.Color.White;
             this.lblLocaitionStore.Location = new System.Drawing.Point(529, 9);
@@ -185,6 +215,7 @@
             // lblLocationChat
             // 
             this.lblLocationChat.AutoSize = true;
+            this.lblLocationChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLocationChat.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocationChat.ForeColor = System.Drawing.Color.White;
             this.lblLocationChat.Location = new System.Drawing.Point(428, 9);
@@ -197,6 +228,7 @@
             // lblLocationArsenal
             // 
             this.lblLocationArsenal.AutoSize = true;
+            this.lblLocationArsenal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLocationArsenal.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocationArsenal.ForeColor = System.Drawing.Color.White;
             this.lblLocationArsenal.Location = new System.Drawing.Point(307, 8);
@@ -209,6 +241,7 @@
             // lblHome
             // 
             this.lblHome.AutoSize = true;
+            this.lblHome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblHome.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHome.ForeColor = System.Drawing.Color.White;
             this.lblHome.Location = new System.Drawing.Point(221, 9);
@@ -221,6 +254,7 @@
             // lblExit
             // 
             this.lblExit.AutoSize = true;
+            this.lblExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblExit.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExit.ForeColor = System.Drawing.Color.White;
             this.lblExit.Location = new System.Drawing.Point(3, 9);
@@ -242,9 +276,9 @@
             this.panel1.Controls.Add(this.pbxHome);
             this.panel1.Controls.Add(this.pbxImgFundo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 35);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(998, 563);
+            this.panel1.Size = new System.Drawing.Size(998, 559);
             this.panel1.TabIndex = 6;
             // 
             // pbxBatlle
@@ -261,6 +295,7 @@
             // pbxChat
             // 
             this.pbxChat.BackColor = System.Drawing.Color.Transparent;
+            this.pbxChat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxChat.Location = new System.Drawing.Point(394, 420);
             this.pbxChat.Name = "pbxChat";
             this.pbxChat.Size = new System.Drawing.Size(75, 73);
@@ -272,6 +307,7 @@
             // pbxArsenal
             // 
             this.pbxArsenal.BackColor = System.Drawing.Color.Transparent;
+            this.pbxArsenal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxArsenal.Location = new System.Drawing.Point(184, 254);
             this.pbxArsenal.Name = "pbxArsenal";
             this.pbxArsenal.Size = new System.Drawing.Size(75, 73);
@@ -283,6 +319,7 @@
             // pbxStore
             // 
             this.pbxStore.BackColor = System.Drawing.Color.Transparent;
+            this.pbxStore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxStore.Location = new System.Drawing.Point(747, 290);
             this.pbxStore.Name = "pbxStore";
             this.pbxStore.Size = new System.Drawing.Size(75, 73);
@@ -294,6 +331,7 @@
             // pbxHome
             // 
             this.pbxHome.BackColor = System.Drawing.Color.Transparent;
+            this.pbxHome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxHome.Location = new System.Drawing.Point(542, 272);
             this.pbxHome.Name = "pbxHome";
             this.pbxHome.Size = new System.Drawing.Size(75, 73);
@@ -304,6 +342,7 @@
             // 
             // pbxImgFundo
             // 
+            this.pbxImgFundo.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxImgFundo.Image = ((System.Drawing.Image)(resources.GetObject("pbxImgFundo.Image")));
             this.pbxImgFundo.Location = new System.Drawing.Point(0, -8);
             this.pbxImgFundo.Name = "pbxImgFundo";
@@ -311,28 +350,6 @@
             this.pbxImgFundo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImgFundo.TabIndex = 0;
             this.pbxImgFundo.TabStop = false;
-            // 
-            // pnlSpc
-            // 
-            this.pnlSpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.pnlSpc.Controls.Add(this.pbxSpectador);
-            this.pnlSpc.Controls.Add(this.lblSpectator);
-            this.pnlSpc.Location = new System.Drawing.Point(0, 31);
-            this.pnlSpc.Name = "pnlSpc";
-            this.pnlSpc.Size = new System.Drawing.Size(998, 3);
-            this.pnlSpc.TabIndex = 14;
-            // 
-            // pbxSpectador
-            // 
-            this.pbxSpectador.Image = ((System.Drawing.Image)(resources.GetObject("pbxSpectador.Image")));
-            this.pbxSpectador.Location = new System.Drawing.Point(390, 15);
-            this.pbxSpectador.Name = "pbxSpectador";
-            this.pbxSpectador.Size = new System.Drawing.Size(252, 253);
-            this.pbxSpectador.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxSpectador.TabIndex = 9;
-            this.pbxSpectador.TabStop = false;
-            this.pbxSpectador.Visible = false;
-            this.pbxSpectador.Click += new System.EventHandler(this.pbxSpectador_Click);
             // 
             // GamePlayerForms
             // 
@@ -344,11 +361,14 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlUp);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GamePlayerForms";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.pnlUp.ResumeLayout(false);
             this.pnlUp.PerformLayout();
+            this.pnlSpc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxSpectador)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUpDown)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxBatlle)).EndInit();
@@ -357,8 +377,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxStore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImgFundo)).EndInit();
-            this.pnlSpc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSpectador)).EndInit();
             this.ResumeLayout(false);
 
         }
