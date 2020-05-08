@@ -12,15 +12,49 @@ namespace CurumimServer
     public class SQLQuery
     {
 
+        //Types
+        //Types Login
+        private const int LOGIN_TYPE_GET_PLAYER = 1;
         private const int LOGIN_TYPE_RETURN_SUCCESS = 2;
         private const int LOGIN_TYPE_RETURN_ERROR = 3;
-        //
+
+        //Types Register;
+        private const int REGISTER_TYPE_SET_NEW_PLAYER = 4;
+        private const int REGISTER_TYPE_RETURN_SUCCESS = 5;
+        private const int REGISTER_TYPE_RETURN_ERROR = 6;
+
+
+        //Types ForgotPassword;
+        private const int FORGOT_PASSWORD_TYPE_SET_NEW_PASSWORD = 7;
+        private const int FORGOT_PASSWORD_TYPE_RETURN_SUCCESS = 8;
+        private const int FORGOT_PASSWORD_TYPE_RETURN_ERROR = 9;
+
+        //Types Message
+        private const int MESSAGE_TYPE_GET_MESSAGES = 10;
+        private const int MESSAGE_TYPE_SEVER = 11;
+        private const int MESSAGE_TYPE_SEND_NEW_MESSAGE = 12;
         private const int MESSAGE_TYPE_READ_NEW_MESSAGE = 13;
         private const int MESSAGE_TYPE_READ_ERRO = 14;
-        private const int MESSAGE_TYPE_GET_PLAYER_MESSAGE = 19;
+
         //
-        private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 21;
-        private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 22;
+        private const int MESSAGE_TYPE_SET_PLAYER_OFF_LINE = 15;
+        private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE = 16;
+        private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE_ERRO = 17;
+        private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE_SUCCESS = 18;
+
+        //
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER = 19;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO = 20;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS = 21;
+
+        //
+        private const int MESSAGE_TYPE_GET_CONTACTS = 22;
+        private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 23;
+        private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 24;
+        private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 25;
+
+
+        private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
         private ConnectionDB sQLConnection = new ConnectionDB();
 
@@ -246,6 +280,74 @@ namespace CurumimServer
             this.sQLConnection.ClouseConnection();
             return dynamic;
         }
+        public dynamic GetSearchPlayer(string login, bool v)
+        {
+            dynamic dynamic = null;
+            Boolean successfullyConnected = false;
+
+            try
+            {
+                sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM[dbo].[GetSearchPlayerChat] (@login)";
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@login", login);
+                try
+                {
+
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+                    Boolean CommandSucess = reader.Read();
+
+                    if (CommandSucess == true)
+                    {
+                        if(v == true)
+                        {
+                            dynamic = (new
+                            {
+                                Type = MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS,
+                                idPlayer = int.Parse(reader["idPlayer"].ToString()),
+                                loginPlayer = reader["loginPlayer"].ToString(),
+                                OffOnPlayer = Int32.Parse(reader["OffOnPlayer"].ToString())
+                            });
+                        }
+                        else
+                        {
+                            dynamic = (new
+                            {
+                                Type = MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS,
+                                idPlayer = int.Parse(reader["idPlayer"].ToString()),
+                                loginPlayer = reader["loginPlayer"].ToString(),
+                                OffOnPlayer = Int32.Parse(reader["OffOnPlayer"].ToString())
+                            });
+                        }
+
+                    }
+                    else
+                    {
+                        dynamic = (new { Type = MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO });
+                    }
+                }
+                catch
+                {
+                    dynamic = (new { Type = MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO });
+                }
+            }
+            else
+            {
+                dynamic = (new { Type = MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return dynamic;
+        }
         public List<dynamic> SqlGetContacts(int idSender)
         {
             List<dynamic> dynamics = new List<dynamic>();
@@ -349,7 +451,6 @@ namespace CurumimServer
                 try
                 {
                     SqlDataReader reader = this.sqlCommand.ExecuteReader();
-                    Boolean CommandSucess = reader.Read();
 
                     while (reader.Read() == true)
                     {

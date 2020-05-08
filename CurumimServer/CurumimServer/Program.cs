@@ -45,11 +45,21 @@ namespace CurumimServer
         private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE = 16;
         private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE_ERRO = 17;
         private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE_SUCCESS = 18;
-        private const int MESSAGE_TYPE_GET_PLAYER_MESSAGE = 19;
 
         //
-        private const int MESSAGE_TYPE_GET_CONTACTS = 20;
-        private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 23;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER = 19;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO = 20;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS = 21;
+
+        //
+        private const int MESSAGE_TYPE_GET_CONTACTS = 22;
+        private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 23;
+        private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 24;
+        private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 25;
+
+        //
+        private const int MESSAGE_TYPE_GET_MESSAGE_BOX = 26;
+        private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
         static void Main(string[] args)
         {
@@ -80,6 +90,12 @@ namespace CurumimServer
             {
                 client.SendMessage(din);
             }
+        }
+        private static void GetSearchPlayer(ThreadClient client, string login, bool v)
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            dynamic dynamic = sQLQuery.GetSearchPlayer(login,v);
+            client.SendMessage(dynamic);
         }
         private static void SetNewPlayer(ThreadClient client, string fullNamePlayer, string loginPlayer, string passwordPlayer, string secretPhresePlayer, string avatarPlayer)
         {
@@ -318,6 +334,16 @@ namespace CurumimServer
                         sender_id_tbPlayer = messageEventArgs.Message.GetInt32("idSender");
                         receiver_id_tbPlayer = messageEventArgs.Message.GetInt32("idReceiver");
                         GetMessageChat(client, sender_id_tbPlayer, receiver_id_tbPlayer);
+                        break;
+                    case MESSAGE_TYPE_GET_SEARCH_PLAYER:
+                        Console.WriteLine("MESSAGE_TYPE_GET_SEARCH_PLAYER");
+                        loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
+                        GetSearchPlayer(client,loginPlayer,false);
+                        break;
+                    case MESSAGE_TYPE_GET_MESSAGE_BOX:
+                        Console.WriteLine("MESSAGE_TYPE_GET_MESSAGE_BOX");
+                        loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
+                        GetSearchPlayer(client, loginPlayer, false);
                         break;
                 }
             }

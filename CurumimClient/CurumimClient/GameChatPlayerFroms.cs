@@ -13,7 +13,8 @@ namespace CurumimGameForms
 {
     public partial class GameChatPlayerFroms : Form
     {
-        Dictionary<int, dynamic> ListCotacts = new Dictionary<int, dynamic>();
+        Dictionary<int, dynamic> listCotacts = new Dictionary<int, dynamic>();
+        Dictionary<int, dynamic> messageBox = new Dictionary<int, dynamic>();
 
         MoveForms moveForms = new MoveForms();
 
@@ -22,6 +23,7 @@ namespace CurumimGameForms
         private EventHandler sendMensage;
         private EventHandler closeChat;
         private EventHandler GetMessageOnLoad;
+        private EventHandler GetSearchPlayer;
 
         private ImageClass ImageClass;
         private int sender_id_tbPlayer { get; set; }
@@ -33,7 +35,8 @@ namespace CurumimGameForms
         private Boolean openMenuChat = true;
 
         private bool offline = true;
-        public GameChatPlayerFroms(GameProfileClasse gameProfileClasse, EventHandler closeChat, EventHandler MessageSendMessageOnClik, EventHandler loadContactsOnLoad, EventHandler GetMessageOnLoad)
+        private bool boxMessage;
+        public GameChatPlayerFroms(GameProfileClasse gameProfileClasse, EventHandler closeChat, EventHandler MessageSendMessageOnClik, EventHandler loadContactsOnLoad, EventHandler GetMessageOnLoad, EventHandler GetSearchPlayer)
         {
             InitializeComponent();
             this.loadContactsOnLoad = loadContactsOnLoad;
@@ -41,6 +44,7 @@ namespace CurumimGameForms
             this.sendMensage = MessageSendMessageOnClik;
             this.closeChat = closeChat;
             this.GetMessageOnLoad = GetMessageOnLoad;
+            this.GetSearchPlayer = GetSearchPlayer;
             this.myPlayer = this.profileClasse.GetLoginPlayer();
             this.sender_id_tbPlayer = this.profileClasse.GetIdPlayer();
         }
@@ -86,6 +90,7 @@ namespace CurumimGameForms
         {
             if (DatagrSelectReceiver() == true)
             {
+                this.rbxHitory.Clear();
                 this.GetMessageOnLoad.Invoke(this, new BtnGetMessagePlayerChatEventArgs() { idSender = this.sender_id_tbPlayer, idReceiver = this.receiver_id_tbPlayer });
             }
         }
@@ -108,16 +113,27 @@ namespace CurumimGameForms
             {
                 DataGridViewRow line = this.dgvListConversaIniciada.SelectedRows[0];
 
-                this.name_receiver = $">  {Convert.ToString(line.Cells["loginPlayer"].Value)}";
-                this.receiver_id_tbPlayer = Convert.ToInt32(line.Cells["IdReceiver"].Value);
+
+                string loginPlayer = Convert.ToString(line.Cells["loginPlayer"].Value);
+                int IdReceiver = Convert.ToInt32(line.Cells["IdReceiver"].Value);
                 string status = Convert.ToString(line.Cells["status"].Value);
 
-                Status(this.lblStatus,status);
+                this.name_receiver =$">>{loginPlayer}";
+                this.receiver_id_tbPlayer = IdReceiver;
+
+                Status(this.lblStatus, status);
 
                 this.lblStatus.Visible = true;
                 this.lblNameReceiver.Visible = true;
 
                 this.lblNameReceiver.Text = this.name_receiver;
+                if (this.boxMessage = true) { messageBox.Remove(this.receiver_id_tbPlayer); }
+
+                if (this.listCotacts.ContainsKey(receiver_id_tbPlayer) == false)
+                {
+                    this.listCotacts.Add(IdReceiver, (new { status, loginPlayer }));
+                }
+
                 PainelCLose();
                 return true;
             }
@@ -137,11 +153,11 @@ namespace CurumimGameForms
             if (receiver_id_tbPlayer != 0)
             {
                 this.lblServer.Text = "";
-                DateTime time = DateTime.Now;             
+                DateTime time = DateTime.Now;
                 string format = "yyyy/MM/dd HH:mm:ss";
 
 
-                this.dateTimeMessage = time.ToString(format) ;
+                this.dateTimeMessage = time.ToString(format);
 
                 this.sendMensage.Invoke(this, new PbxMessageSendMessageEventArgs()
                 {
@@ -181,7 +197,8 @@ namespace CurumimGameForms
         {
             if (this.offline == false)
             {
-                LoadDatagrid();
+                this.boxMessage = false;
+                LoadDatagrid(listCotacts);
                 PainelOpen();
             }
             else
@@ -196,12 +213,22 @@ namespace CurumimGameForms
         }
         private void PainelCLose()
         {
+            this.txtSearch.Visible = false;
+            this.btnSearch.Enabled = false;
+            this.btnSearch.Visible = false;
+            this.lblErroSearch.Visible = false;
+
             this.pbxClosePnl.Visible = false;
             this.dgvListConversaIniciada.Visible = false;
             FunctionPnl(this.openMenuChat, true, 51, 305, this.pnlLeft);
             this.openMenuChat = true;
             this.pbxLeft.Visible = true;
             this.lblServer.Visible = true;
+
+            if (messageBox.Count <= 0)
+            {
+                this.pbxCaixaMessage.Visible = false;
+            }
         }
         private void PainelOpen()
         {
@@ -210,6 +237,10 @@ namespace CurumimGameForms
             this.openMenuChat = false;
             this.pbxClosePnl.Visible = true;
             this.dgvListConversaIniciada.Visible = true;
+
+            this.txtSearch.Visible = true;
+            this.btnSearch.Enabled = true;
+            this.btnSearch.Visible = true;
         }
         private void FunctionPnl(Boolean OpenForms, Boolean WidtOrHigth, int x, int y, Panel panel)
         {
@@ -258,12 +289,12 @@ namespace CurumimGameForms
             this.rbxHitory.Visible = visible;
             this.rbxMessage.Visible = visible;
             this.lblServer.Visible = visible;
-            this.pbxSend.Visible = visible;
         }
         private void rbxMessage_TextChanged(object sender, EventArgs e)
         {
             if (rbxMessage.Text.Trim() != "")
             {
+                lblServer.Text = "";
                 pbxSend.Visible = true;
             }
             else
@@ -283,23 +314,23 @@ namespace CurumimGameForms
                 {
                     if (IdReceiver == this.receiver_id_tbPlayer)
                     {
-                        Status(this.lblStatus,status);
+                        Status(this.lblStatus, status);
                     }
-                    if(this.ListCotacts.ContainsKey(IdReceiver) == false)
+                    if (this.listCotacts.ContainsKey(IdReceiver) == false)
                     {
-                        this.ListCotacts.Add(IdReceiver, new { status, loginPlayer });
+                        this.listCotacts.Add(IdReceiver, new { status, loginPlayer });
                     }
                     else
                     {
-                        this.ListCotacts.Remove(IdReceiver);
-                        this.ListCotacts.Add(IdReceiver, new { status, loginPlayer });
+                        this.listCotacts.Remove(IdReceiver);
+                        this.listCotacts.Add(IdReceiver, new { status, loginPlayer });
                     }
-                    
+
                 }
             }
 
         }
-        private void LoadDatagrid()
+        private void LoadDatagrid(Dictionary<int, dynamic> dictionary)
         {
             dynamic d = null;
             int idReceiver;
@@ -309,10 +340,10 @@ namespace CurumimGameForms
 
             this.dgvListConversaIniciada.Rows.Clear();
 
-            for (int i = 0; i < this.ListCotacts.Count; i++)
+            for (int i = 0; i < dictionary.Count; i++)
             {
-                idReceiver = GetID(i);
-                d = GetDynamic(i);
+                idReceiver = GetID(i, dictionary);
+                d = GetDynamic(i, dictionary);
                 status = d.status;
                 loginPlayer = d.loginPlayer;
 
@@ -320,23 +351,48 @@ namespace CurumimGameForms
             }
 
         }
-        private dynamic GetDynamic(int index)
+        private dynamic GetDynamic(int index, Dictionary<int, dynamic> dictionary)
         {
 
-            ICollection valorColecao = ListCotacts.Values;
-            dynamic[] mValores = new dynamic[ListCotacts.Count];
+            ICollection valorColecao = dictionary.Values;
+            dynamic[] mValores = new dynamic[listCotacts.Count];
             valorColecao.CopyTo(mValores, 0);
 
             return mValores[index];
         }
-        private int GetID(int index)
+        private int GetID(int index, Dictionary<int, dynamic> dictionary)
         {
-            ICollection chaveColecao = ListCotacts.Keys;
-            int[] mChaves = new int[ListCotacts.Count];
+            ICollection chaveColecao = dictionary.Keys;
+            int[] mChaves = new int[listCotacts.Count];
             chaveColecao.CopyTo(mChaves, 0);
 
             return mChaves[index];
         }
+        private void AddMessageBox(int idReceiver, string sender)
+        {
+            if (listCotacts.ContainsKey(idReceiver) == true)
+            {
+                this.messageBox.Add(idReceiver, listCotacts[idReceiver]);
+            }
+            else
+            {
+                this.GetSearchPlayer.Invoke(this, new GetSearchPlayerEventArgs() { typeSearch = true, loginPlayer = sender });
+            }
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            this.lblErroSearch.Visible = false;
+            if (this.txtSearch.Text != "")
+            {
+                this.GetSearchPlayer.Invoke(this, new GetSearchPlayerEventArgs() { typeSearch = false, loginPlayer = this.txtSearch.Text });
+                this.txtSearch.Clear();
+            }
+            else
+            {
+                MessageBox.Show("The research field is empty");
+            }
+        }
+
         public void ReceiverOline(Boolean Oline)
         {
             if (this.InvokeRequired == true)
@@ -364,22 +420,23 @@ namespace CurumimGameForms
                 }
             }
         }
-        public void ReceiverMessage(string sender, string message, string date, int receiver)
+        public void ReceiverMessage(string sender, string message, string date, int idSender)
         {
 
             if (this.InvokeRequired == true)
             {
-                this.Invoke(new ReceiverMessageDelegate(ReceiverMessage), new object[] { sender, message, date , receiver});
+                this.Invoke(new ReceiverMessageDelegate(ReceiverMessage), new object[] { sender, message, date, idSender });
             }
             else
             {
-                if (receiver == this.receiver_id_tbPlayer)
+                if (idSender == this.receiver_id_tbPlayer)
                 {
                     SideOfTheText(message, sender, date);
                 }
                 else
                 {
-                    //fazer algo aqui para mostrar que tem msg de outro cliente.
+                    pbxCaixaMessage.Visible = true;////////////////////////////////////
+                    AddMessageBox(idSender, sender);
                 }
 
             }
@@ -395,6 +452,55 @@ namespace CurumimGameForms
                 this.lblServer.Text = Message;
             }
         }
-
+        private void pbxCaixaMessage_Click(object sender, EventArgs e)
+        {
+            this.boxMessage = true;
+            LoadDatagrid(messageBox);
+            PainelOpen();
+        }
+        public void AddNewContactMessageBox(int IdReceiver, string loginPlayer, string status)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new InsertDatagridDelegate(AddNewContactMessageBox), new object[] { IdReceiver, loginPlayer, status });
+            }
+            else
+            {
+                if (this.messageBox.ContainsKey(IdReceiver) == false)
+                {
+                    this.messageBox.Add(IdReceiver, new { status, loginPlayer });
+                }
+                else
+                {
+                    this.messageBox.Remove(IdReceiver);
+                    this.messageBox.Add(IdReceiver, new { status, loginPlayer });
+                }
+            }
+        }
+        public void ResulteGetSearch(int IdReceiver, string loginPlayer, string status)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new InsertDatagridDelegate(ResulteGetSearch), new object[] { IdReceiver, loginPlayer, status });
+            }
+            else
+            {
+                this.dgvListConversaIniciada.Rows.Clear();
+                this.dgvListConversaIniciada.Rows.Add(IdReceiver, status, loginPlayer);
+            }
+        }
+        public void ResultGetErro(string Erro)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new SetMessageServerDelegate(ResultGetErro), new object[] { Erro });
+            }
+            else
+            {
+                this.lblErroSearch.Text = Erro;
+                this.lblErroSearch.ForeColor = Color.DarkBlue;
+                this.lblErroSearch.Visible = true;
+            }
+        }
     }
 }
