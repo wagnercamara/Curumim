@@ -43,13 +43,21 @@ namespace CurumimGameForms
         private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE = 16;
         private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE_ERRO = 17;
         private const int MESSAGE_TYPE_SET_PLAYER_ON_LINE_SUCCESS = 18;
-        ///private const int MESSAGE_TYPE_GET_PLAYER_MESSAGE = 19;
 
         //
-        private const int MESSAGE_TYPE_GET_CONTACTS = 20;
-        private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 21;
-        private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 22;
-        private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 23;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER = 19;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO = 20;
+        private const int MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS = 21;
+
+        //
+        private const int MESSAGE_TYPE_GET_CONTACTS = 22;
+        private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 23;
+        private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 24;
+        private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 25;
+
+        //
+        private const int MESSAGE_TYPE_GET_MESSAGE_BOX = 26;
+        private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
         //Froms
         GameLoginForms gameLoginForms = null;
@@ -287,9 +295,32 @@ namespace CurumimGameForms
                     }
                     else
                     {
-                        this.gameChatPlayer = new GameChatPlayerFroms(this.gameProfile, this.PbxChatPlayerClouseOnClick, this.MessageSendMessageOnClik, this.LoadContactsOnLoad, this.GetMessageOnLoad);
+                        this.gameChatPlayer = new GameChatPlayerFroms(this.gameProfile, this.PbxChatPlayerClouseOnClick, this.MessageSendMessageOnClik, this.LoadContactsOnLoad, this.GetMessageOnLoad, this.GetSearchPlayer);
                         this.gameChatPlayer.Show();
                     }
+                }
+            }
+        }
+        private void GetSearchPlayer(object sender, EventArgs e)
+        {
+            GetSearchPlayerEventArgs getSearchPlayerEventArgs = e as GetSearchPlayerEventArgs;
+            if(getSearchPlayerEventArgs != null)
+            {
+                if(getSearchPlayerEventArgs.typeSearch == true)
+                {
+                    client.SendMessage(new
+                    {
+                        Type = MESSAGE_TYPE_GET_MESSAGE_BOX,
+                        getSearchPlayerEventArgs.loginPlayer
+                    });
+                }
+                else
+                {
+                    client.SendMessage(new
+                    {
+                        Type = MESSAGE_TYPE_GET_SEARCH_PLAYER,
+                        getSearchPlayerEventArgs.loginPlayer
+                    });
                 }
             }
         }
@@ -341,7 +372,7 @@ namespace CurumimGameForms
                     pbxMessageSendMessageEventArgs.receiver_id_tbPlayer,
                     pbxMessageSendMessageEventArgs.sender_id_tbPlayer,
                     pbxMessageSendMessageEventArgs.messageMessage,
-                    pbxMessageSendMessageEventArgs.name_Sender                   
+                    pbxMessageSendMessageEventArgs.name_Sender
                 });
             }
         }
@@ -366,6 +397,10 @@ namespace CurumimGameForms
         private void OnReceiveMessage(object sender, EventArgs e) //
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
+
+            int sender_id_tbPlayer, status, idPlayer, receiver_id_tbPlayer;
+            string message, dateTime, login;
+
             if (messageEventArgs != null)
             {
                 switch (messageEventArgs.Message.GetInt32("Type"))
@@ -395,12 +430,12 @@ namespace CurumimGameForms
 
                     //Chat PLayer
                     case MESSAGE_TYPE_READ_NEW_MESSAGE:
-                        string MessageSender = messageEventArgs.Message.GetString("sender");
-                        string message = messageEventArgs.Message.GetString("message");
-                        string date = messageEventArgs.Message.GetString("date");
-                        int receiver = messageEventArgs.Message.GetInt32("receiver_id_tbPlayer");
+                        login = messageEventArgs.Message.GetString("sender");
+                        message = messageEventArgs.Message.GetString("message");
+                        dateTime = messageEventArgs.Message.GetString("date");
+                        receiver_id_tbPlayer = messageEventArgs.Message.GetInt32("receiver_id_tbPlayer");
 
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverMessage(MessageSender, message, date, receiver); }
+                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverMessage(login, message, dateTime, receiver_id_tbPlayer); }
                         break;
 
                     case MESSAGE_TYPE_READ_ERRO:
@@ -416,16 +451,16 @@ namespace CurumimGameForms
                         break;
 
                     case MESSAGE_TYPE_GET_CONTACTS_SUCCESS:
-                        int send = messageEventArgs.Message.GetInt32("idPlayer");
-                        string login = messageEventArgs.Message.GetString("login");
-                        int rStatus = messageEventArgs.Message.GetInt32("status");
-                        if (rStatus == 1)
+                        sender_id_tbPlayer = messageEventArgs.Message.GetInt32("idPlayer");
+                        login = messageEventArgs.Message.GetString("login");
+                        status = messageEventArgs.Message.GetInt32("status");
+                        if (status == 1)
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(send, login, "OnLine"); }
+                            if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(sender_id_tbPlayer, login, "OnLine"); }
                         }
                         else
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(send, login, "OffLine"); }
+                            if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(sender_id_tbPlayer, login, "OffLine"); }
                         }
 
                         break;
@@ -433,18 +468,51 @@ namespace CurumimGameForms
                     case MESSAGE_TYPE_GET_CONTACTS_ERRO:
                         if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(0, "login does not exist", "OffLine"); }
                         break;
+
                     case MESSAGE_TYPE_SEVER:
-                        string messageServer = messageEventArgs.Message.GetString("message");
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.SetMessageServer(messageServer); }
+                        message = messageEventArgs.Message.GetString("message");
+                        if (this.gameChatPlayer != null) { this.gameChatPlayer.SetMessageServer(message); }
                         break;
+
                     case MESSAGE_TYPE_NEW_MESSAGE_ONLINE:
+                        login = messageEventArgs.Message.GetString("loginSender");
+                        sender_id_tbPlayer = messageEventArgs.Message.GetInt32("sender_id_tbPlayer");
+                        message = messageEventArgs.Message.GetString("messageMessage");
+                        dateTime = messageEventArgs.Message.GetString("date");
 
-                        string loginSender = messageEventArgs.Message.GetString("loginSender");
-                        int receiver_id_tbPlayer = messageEventArgs.Message.GetInt32("sender_id_tbPlayer");
-                        string messageMessage = messageEventArgs.Message.GetString("messageMessage");
-                        string dateTime = messageEventArgs.Message.GetString("date");
+                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverMessage(login, message, dateTime, sender_id_tbPlayer); }
+                        break;
 
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverMessage(loginSender, messageMessage, dateTime, receiver_id_tbPlayer); }
+                    case MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO:
+                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ResultGetErro("login does not exist"); }
+                        break;
+
+                    case MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS:
+                        sender_id_tbPlayer = messageEventArgs.Message.GetInt32("idPlayer");
+                        login = messageEventArgs.Message.GetString("loginPlayer");
+                        status = messageEventArgs.Message.GetInt32("OffOnPlayer");
+                        if (status == 1)
+                        {
+                            if (this.gameChatPlayer != null) { this.gameChatPlayer.ResulteGetSearch(sender_id_tbPlayer, login, "OnLine"); }
+                        }
+                        else
+                        {
+                            if (this.gameChatPlayer != null) { this.gameChatPlayer.ResulteGetSearch(sender_id_tbPlayer, login, "OffLine"); }
+                        }
+                        break;
+
+                    case MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS:
+                        sender_id_tbPlayer = messageEventArgs.Message.GetInt32("idPlayer");
+                        login = messageEventArgs.Message.GetString("loginPlayer");
+                        status = messageEventArgs.Message.GetInt32("OffOnPlayer");
+                        if (status == 1)
+                        {
+                            if (this.gameChatPlayer != null) { this.gameChatPlayer.AddNewContactMessageBox(sender_id_tbPlayer, login, "OnLine"); }
+                        }
+                        else
+                        {
+                            if (this.gameChatPlayer != null) { this.gameChatPlayer.AddNewContactMessageBox(sender_id_tbPlayer, login, "OffLine"); }
+                        }
                         break;
                 }
             }
