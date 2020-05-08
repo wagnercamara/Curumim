@@ -68,6 +68,7 @@
     <Compile Include="Classe\GameWeaponsClasse.cs" />
     <Compile Include="Classe\ImageClass.cs" />
     <Compile Include="Classe\MoveForms.cs" />
+    <Compile Include="EventArgsForms\GetSearchPlayerEventArgs.cs" />
     <Compile Include="EventArgsForms\LoadContactsEventArgs.cs" />
     <Compile Include="EventArgsForms\LoginSucessEventArgs.cs" />
     <Compile Include="GameAboutForms.cs">
