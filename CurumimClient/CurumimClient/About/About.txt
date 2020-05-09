@@ -1,0 +1,145 @@
+CURUMIM
+Bem Vindo a Selva;
+
+
+Regras Gerais:
+Cada jogador tem um campo
+Cada jogador joga uma vez por rodada;
+Sala com chat!
+
+Regras Específicas:
+
+Tema: Selva
+O campo terá   20 (comprimento) x 15(largura)  = 300
+Moeda  Esmeraldas.
+Inicia sempre com 20 esmeraldas.
+Não tem dano, ele começa com apenas uma vida, caso for atingido perde a partida!
+Existirá escondida no campo uma vida extra, caso o jogador achar, essa vida ficará a sua disposição, caso seja atingido ele não morrerá;
+Cada tipo de arma tem um diferente alcance e um raio de destruição; user-arma
+O jogador só pode se mover 2 quadros por jogada;
+
+
+PATENTE:
+Curumim (iniciante)
+Índio (500 pontos)
+Pajé (2000 pontos)
+Cacique (5000 pontos)
+
+Itens:
+Tipos de armas: pedra, faca, lança, arco e flecha, besta, catapulta;
+Tipos de Coletores de recompensa: corda, corda com gancho, rede;
+Única arma infinita é a pedra; Única coletor infinito é a corda;
+
+A cada rodada o jogador decide se irá usar uma arma para atingir o oponente, ou se irá usar um coletor para capturar um tesouro, que usará para comprar os itens do jogo;
+
+==============
+Armas:
+
+Pedra:
+Primeira arma disponível para o jogador, sem limites, de graça, sempre disponível;
+Atinge apenas um quadro;
+
+Arco e Flecha:
+Cada tipo de arco tem um preço, alcance e um raio de destruição diferente;
+Nível 1, tem um alcance de 5 quadros após a fronteira, atinge apenas 2 quadros seguidos; 
+(2 esmeraldas)
+
+Nível 2, tem um alcance de 7 quadros após a fronteira, atinge apenas um raio de 3 quadros, atingindo 2 quadros, aleatórios em volta do ponto escolhido, por ataque; 
+(5 esmeraldas)
+
+Nível 3, tem um alcance de 10 quadros após a fronteira, atinge apenas um raio de 4 quadros, atingindo 4, aleatórios em volta do ponto escolhido, quadros por ataque;
+As flechas são as mesmas;
+(10 esmeraldas)
+
+
+Besta:
+nível 1,  ele tem o alcance de 10 quadrados conseguindo detonas 5 quadrados, em linha reta do ponto de partida;
+(20 esmeralda)
+
+nível 2,  ele tem o alcance de 15 quadrados conseguindo detonas 6 quadrados, em linha reta do ponto de partida;
+(30 esmeralda)
+
+nível 3,  ele tem o alcance de 20 quadrados conseguindo detonas 8 quadrados, em linha reta do ponto de partida;
+(35 esmeralda)
+
+Catapulta:
+nível 1, alcança o campo todo, poder de raio 2 partindo do ponto de impacto;
+(45 esmeralda)
+
+nível 2, alcança o campo todo, poder de raio 3 partindo do ponto de impacto;
+(50 esmeralda)
+
+nível 3, alcança o campo todo, poder de raio 4 partindo do ponto de impacto;
+
+(60 esmeralda)
+
+==============
+Coletores.:
+
+Corda: 
+Nivel1: Capaz de coletar apenas esmeraldas avulsas no campo, não coleta baú de tesouro. Tem um alcance total! Raio de apenas um quadro!
+sempre disponível
+
+
+Corda com gancho:
+Nível1: Capaz de coletar, além das esmeraldas avulsas no campo, também pode coletar baú de tesouro. Tem um alcance de 7 quadros! Raio de apenas um quadro!
+20 esmeraldas pacote (5)
+
+Nível2: Capaz de coletar, além das esmeraldas avulsas no campo, também pode coletar baú de tesouro. Tem um alcance de 15 quadros! Raio de apenas um quadro!
+25 esmeraldas pacote (5)
+
+
+Nível3: Capaz de coletar, além das esmeraldas avulsas no campo, também pode coletar baú de tesouro. Tem um alcance de 20 quadros! Raio de apenas um quadro!
+30 esmeraldas pacote(5)
+
+
+Rede:
+Nível1: Capaz de coletar, além das esmeraldas avulsas no campo, também pode coletar baú de tesouro. Tem um alcance de 15 quadros! Raio de apenas 3 quadros a partir do quadro atingido!
+50 esmeraldas (1)
+
+Nível2: Capaz de coletar, além das esmeraldas avulsas no campo, também pode coletar baú de tesouro. Tem um alcance de 20 quadros! Raio de apenas 5 quadros a partir do quadro atingido!
+100 esmeraldas (1)
+
+==============
+Salas (campos):
+Cada sala tem um perfil de jogo, com ou sem aposta, e com diferentes tipos de prêmios:
+
+
+
+Sala da esperança aos menos favorecidos: Sala inicial, onde não se aposta para entrar na partida, para jogadores que acabaram de começar e para jogadores que estão sem recursos (com saldo máximo de 50 esmeraldas). Não será usado coletor nesta sala, apenas armas! Terá disponível nesta sala apenas pedra e uma besta do nível 3 (apenas um tiro)! O jogador que ganhar a partida ficar com o prêmio da partida, que será de 100 esmeraldas!
+(5 pontos)
+
+
+Sala de aposta:
+Salas onde o jogador tem que apostar um valor fixo para entrar! Neste tipo de  sala pode escolher com qual item e a quantidade de itens que irá entrar! 
+
+O vencedor fica com o dinheiro das apostas e com aquilo que ele coletar de tesouro no campo, também com os pontos que valem o tipo de sala! só será debitado do seu arsenal o que ele utilizou durante a partida.
+
+O perdedor, irá perder aquilo que apostou e todas as armas que levou para o jogo!
+
+
+Níveis de apostas:
+100 esmeraldas (20 pontos)
+Nesta sala terá 2 baús de tesouro com 100 esmeralda cada, mais cada 50 esmeraldas avulsas!
+250 esmeraldas(40 pontos)
+Nesta sala terá 2 baús de tesouro com 250 esmeralda cada, mais cada 60 esmeraldas avulsas!
+500 esmeraldas(60 pontos)
+Nesta sala terá 2 baús de tesouro com 500 esmeralda cada, mais cada 70 esmeraldas avulsas!
+1000 esmeraldas(100 pontos)
+Nesta sala terá 2 baús de tesouro com 1000 esmeralda cada, mais cada 80 esmeraldas avulsas!
+2500 esmeraldas(250 pontos)
+Nesta sala terá 2 baús de tesouro com 2500 esmeralda cada, mais cada 90 esmeraldas avulsas!
+5000 esmeraldas(500 pontos)
+Nesta sala terá 2 baús de tesouro com 5000 esmeralda cada, mais cada 150 esmeraldas avulsas!
+
+
+
+Opcional
+Sala Maluca:
+Aposta livre:(valor da aposta/10)
+CAMPO MAIOR = 30x20
+Nesta sala terá uma quantidade aleatória de baús de tesouro (1 a 10) com o valor apostado dividido pela quantidade de baús cada (ex: 20000 apostado total, 5 baús = 4000 cada baú), quantidade aleatória de esmeraldas avulsas (100 a 400)!
+
+MODO OBSERVADOR:
+O observador pode conversar com os demais observadores apenas, no chat!
+O observador consegue ver tudo o que tem no campo!

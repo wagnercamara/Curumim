@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurumimClient", "CurumimClient\CurumimClient.csproj", "{D45CCDC4-3A26-4763-96A1-CEEBBC24F3AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D45CCDC4-3A26-4763-96A1-CEEBBC24F3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D45CCDC4-3A26-4763-96A1-CEEBBC24F3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D45CCDC4-3A26-4763-96A1-CEEBBC24F3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D45CCDC4-3A26-4763-96A1-CEEBBC24F3AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3638E546-3C0B-43B1-B92D-175F9B336F91}
+	EndGlobalSection
+EndGlobal
