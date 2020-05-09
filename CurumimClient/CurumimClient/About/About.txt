@@ -143,3 +143,5 @@ Nesta sala terá uma quantidade aleatória de baús de tesouro (1 a 10) com o va
 MODO OBSERVADOR:
 O observador pode conversar com os demais observadores apenas, no chat!
 O observador consegue ver tudo o que tem no campo!
+
+teste
