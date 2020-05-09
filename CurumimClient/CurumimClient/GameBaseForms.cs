@@ -392,8 +392,6 @@ namespace CurumimGameForms
                 }
             }
         }
-
-        private delegate void OnReceiverMessageDelegate(object sender, EventArgs e);
         private void OnReceiveMessage(object sender, EventArgs e) //
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;

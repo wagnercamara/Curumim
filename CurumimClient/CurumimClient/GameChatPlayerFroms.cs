@@ -435,7 +435,7 @@ namespace CurumimGameForms
                 }
                 else
                 {
-                    pbxCaixaMessage.Visible = true;////////////////////////////////////
+                    pbxCaixaMessage.Visible = true;
                     AddMessageBox(idSender, sender);
                 }
 
