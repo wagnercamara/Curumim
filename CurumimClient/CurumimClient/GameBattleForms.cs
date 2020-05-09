@@ -27,10 +27,11 @@ namespace CurumimGameForms
         private Random random = new Random();
         public GameBattleForms(int typeBattle)
         {
-            InitializeComponent();
             this.typeBattle = typeBattle;
-            LoadTypeBattle();
+            InitializeComponent();
+
             OnClickButtonField = OnClick_ButtonField;
+
             if (this.random.Next(0, 2) == 1)
             {
                 pnlFieldLeft.Enabled = false;
@@ -44,8 +45,15 @@ namespace CurumimGameForms
 
         private void GameBattleForms_Load(object sender, EventArgs e)
         {
+            LoadTypeBattle();
+            LoadWeaponsBattle();
             LoadFieldLeft();
             LoadFieldRight();
+        }
+
+        private void LoadWeaponsBattle()
+        {
+
         }
 
         private void LoadTypeBattle()
@@ -168,7 +176,7 @@ namespace CurumimGameForms
             {
                 while (image == img)
                 {
-                    img = this.random.Next(0, 3);
+                    img = this.random.Next(0, 4);
                 }
                 ButtonField btn = new ButtonField(img);
                 if (singleEsmeraldsRight < this.singleEsmeralds)
