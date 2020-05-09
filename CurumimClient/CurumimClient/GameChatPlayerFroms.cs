@@ -485,8 +485,7 @@ namespace CurumimGameForms
             }
             else
             {
-                this.dgvListConversaIniciada.Rows.Clear();
-                this.dgvListConversaIniciada.Rows.Add(IdReceiver, status, loginPlayer);
+                this.messageBox.Add(IdReceiver, (new { status, loginPlayer }));
             }
         }
         public void ResultGetErro(string Erro)
