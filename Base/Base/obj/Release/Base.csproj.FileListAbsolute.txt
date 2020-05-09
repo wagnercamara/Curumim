@@ -1,0 +1,9 @@
+C:\myProject\Curumim\Base\Base\bin\Release\Base.dll
+C:\myProject\Curumim\Base\Base\bin\Release\Base.pdb
+C:\myProject\Curumim\Base\Base\bin\Release\Newtonsoft.Json.dll
+C:\myProject\Curumim\Base\Base\bin\Release\Newtonsoft.Json.xml
+C:\myProject\Curumim\Base\Base\obj\Release\Base.csprojAssemblyReference.cache
+C:\myProject\Curumim\Base\Base\obj\Release\Base.csproj.CoreCompileInputs.cache
+C:\myProject\Curumim\Base\Base\obj\Release\Base.csproj.CopyComplete
+C:\myProject\Curumim\Base\Base\obj\Release\Base.dll
+C:\myProject\Curumim\Base\Base\obj\Release\Base.pdb
