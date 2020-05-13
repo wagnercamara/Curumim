@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "DBCurrumim", "DBCurrumim\DBCurrumim.ssmssqlproj", "{438F45DB-B457-47F4-A23C-AC1DF9E0E72D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{438F45DB-B457-47F4-A23C-AC1DF9E0E72D}.Default|Default.ActiveCfg = Default
+		{ECA33A40-CCCE-4B3C-8FE4-5660E9E21F07}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FB18A03-E821-4940-8535-C41E7A6C2C02}
+	EndGlobalSection
+EndGlobal

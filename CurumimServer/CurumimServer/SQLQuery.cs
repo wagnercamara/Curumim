@@ -92,7 +92,7 @@ namespace CurumimServer
                 this.sqlCommand.Parameters.AddWithValue("@victoryPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@totalBatllesPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@esmeraldPlayer", 20);
-                this.sqlCommand.Parameters.AddWithValue("@offOnPlayer", 0);
+                this.sqlCommand.Parameters.AddWithValue("@playerOnOrOff", 0);
 
                 try
                 {
@@ -195,11 +195,11 @@ namespace CurumimServer
             }
             if (successfullyConnected == true)
             {
-                this.sqlCommand.CommandText = "UpdateOffOnLinePlayer";
+                this.sqlCommand.CommandText = "UpdateOffOrOnPlayer";
                 this.sqlCommand.CommandType = CommandType.StoredProcedure;
                 this.sqlCommand.Parameters.Clear();
                 this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
-                this.sqlCommand.Parameters.AddWithValue("@OffOn", OffOn);
+                this.sqlCommand.Parameters.AddWithValue("@OffOrOn", OffOn);
 
                 try
                 {
@@ -316,7 +316,7 @@ namespace CurumimServer
                                 Type = MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS,
                                 idPlayer = int.Parse(reader["idPlayer"].ToString()),
                                 loginPlayer = reader["loginPlayer"].ToString(),
-                                OffOnPlayer = Int32.Parse(reader["OffOnPlayer"].ToString())
+                                OffOnPlayer = Int32.Parse(reader["playerOnOrOff"].ToString())
                             });
                         }
                         else
@@ -326,7 +326,7 @@ namespace CurumimServer
                                 Type = MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS,
                                 idPlayer = int.Parse(reader["idPlayer"].ToString()),
                                 loginPlayer = reader["loginPlayer"].ToString(),
-                                OffOnPlayer = Int32.Parse(reader["OffOnPlayer"].ToString())
+                                OffOnPlayer = Int32.Parse(reader["playerOnOrOff"].ToString())
                             });
                         }
 
@@ -458,8 +458,8 @@ namespace CurumimServer
                         {
                             Type = MESSAGE_TYPE_READ_NEW_MESSAGE,
                             sender = reader["sender"].ToString(),
-                            message = reader["message"].ToString(),
-                            date = reader["date"].ToString(),
+                            message = reader["messageMessage"].ToString(),
+                            date = reader["dateTimeMessage"].ToString(),
                             receiver_id_tbPlayer
                         });
                     }

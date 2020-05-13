@@ -500,11 +500,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\myProject\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
+      "projectUniqueName": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
       "projectName": "CurumimServer",
-      "projectPath": "C:\\myProject\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
+      "projectPath": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
       "packagesPath": "C:\\Users\\wagne\\.nuget\\packages\\",
-      "outputPath": "C:\\myProject\\Curumim\\CurumimServer\\CurumimServer\\obj\\",
+      "outputPath": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wagne\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -555,7 +555,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

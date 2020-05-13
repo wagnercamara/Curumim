@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T6LH6Wdbgj92hzy1cfzm8oECIU9g4Jx8qIJXfZfY2/k4QdIzXiaZRSYQBliaJkwtBv3g+WUsDvEg5y+wlhVdMg==",
+  "dgSpecHash": "8RhUkyFB6/WZkrtm+SrDpO+KS8KJVIM++wbdZuxLOlSC9V5JL4HVV9XynYZS3XjGrjJfGkXMxXzgkFSBRZQr5w==",
   "success": true,
-  "projectFilePath": "C:\\myProject\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
+  "projectFilePath": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wagne\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\wagne\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,11 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Base">
+    <Reference Include="Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Base\Base.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -236,6 +239,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="obj\Debug\CurumimClient.csprojAssemblyReference.cache" />
     <None Include="obj\Debug\CurumimGameForms.csproj.CopyComplete" />
@@ -270,129 +274,6 @@
     <Content Include="Base\Base.pdb" />
     <Content Include="Base\Newtonsoft.Json.dll" />
     <Content Include="Base\Newtonsoft.Json.xml" />
-    <Content Include="bin\Debug\About\About.txt" />
-    <Content Include="bin\Debug\img\Avatar\Caramuru.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Cauã.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Coyote.png" />
-    <Content Include="bin\Debug\img\Avatar\Gijinka.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Home\Home.jpg" />
-    <Content Include="bin\Debug\img\Avatar\Index.txt" />
-    <Content Include="bin\Debug\img\Avatar\Ivair.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Jaine.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Kambaí.png" />
-    <Content Include="bin\Debug\img\Avatar\Kauane.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Macunaíba.png" />
-    <Content Include="bin\Debug\img\Avatar\Pocarontas.png" />
-    <Content Include="bin\Debug\img\Avatar\Potira.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Rémi.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Thaynara.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Tupã.PNG" />
-    <Content Include="bin\Debug\img\Avatar\Ubirajara.PNG" />
-    <Content Include="bin\Debug\img\Icon\iconForm\Avatar.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\chang.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\loginBlock.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\loginLoad.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\logoGame.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\manAbout.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\manAdd.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\manChange.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\manExclam.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\manFalse.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\manTrue.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\register.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\womanAbout.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\womanAdd.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\womanChang.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\womanExclam.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\womanFalse.png" />
-    <Content Include="bin\Debug\img\Icon\iconForm\womanTrue.png" />
-    <Content Include="bin\Debug\img\Icon\level\60x60\Cacique.png" />
-    <Content Include="bin\Debug\img\Icon\level\60x60\Curumim.png" />
-    <Content Include="bin\Debug\img\Icon\level\60x60\Indio.png" />
-    <Content Include="bin\Debug\img\Icon\level\60x60\page.png" />
-    <Content Include="bin\Debug\img\Icon\level\96x96\Cacique.png" />
-    <Content Include="bin\Debug\img\Icon\level\96x96\Curumim.png" />
-    <Content Include="bin\Debug\img\Icon\level\96x96\Indio.png" />
-    <Content Include="bin\Debug\img\Icon\level\96x96\page.png" />
-    <Content Include="bin\Debug\img\Icon\level\origem\Cacique.png" />
-    <Content Include="bin\Debug\img\Icon\level\origem\Curumim.png" />
-    <Content Include="bin\Debug\img\Icon\level\origem\Indio.png" />
-    <Content Include="bin\Debug\img\Icon\level\origem\page.png" />
-    <Content Include="bin\Debug\img\Icon\logoGame.png" />
-    <Content Include="bin\Debug\img\Icon\player\96x96\Arsenal.png" />
-    <Content Include="bin\Debug\img\Icon\player\96x96\Store.png" />
-    <Content Include="bin\Debug\img\Icon\player\add.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\bkp.txt" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\bow1.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\bow2.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\bow3.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\catapult1.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\catapult2.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\catapult3.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\crossbow1.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\crossbow2.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\crossbow3.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\fishingNet1.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\fishingNet2.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\hookRope1.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\hookRope2.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\hookRope3.PNG" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\index.txt" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\Rope.png" />
-    <Content Include="bin\Debug\img\Icon\player\arsenal\stone.png" />
-    <Content Include="bin\Debug\img\Icon\player\Batlle.png" />
-    <Content Include="bin\Debug\img\Icon\player\Bau.png" />
-    <Content Include="bin\Debug\img\Icon\player\carCheio.png" />
-    <Content Include="bin\Debug\img\Icon\player\cart.png" />
-    <Content Include="bin\Debug\img\Icon\player\Clouse.png" />
-    <Content Include="bin\Debug\img\Icon\player\clouse_W.png" />
-    <Content Include="bin\Debug\img\Icon\player\defeat.png" />
-    <Content Include="bin\Debug\img\Icon\player\down.png" />
-    <Content Include="bin\Debug\img\Icon\player\down_W.png" />
-    <Content Include="bin\Debug\img\Icon\player\emerald.png" />
-    <Content Include="bin\Debug\img\Icon\player\eti_Eml.png" />
-    <Content Include="bin\Debug\img\Icon\player\fechar.png" />
-    <Content Include="bin\Debug\img\Icon\player\icons8-battle-net-512.png" />
-    <Content Include="bin\Debug\img\Icon\player\icons8-fechar-painel-96.png" />
-    <Content Include="bin\Debug\img\Icon\player\icons8-resistência-512.png" />
-    <Content Include="bin\Debug\img\Icon\player\Key.png" />
-    <Content Include="bin\Debug\img\Icon\player\Left.png" />
-    <Content Include="bin\Debug\img\Icon\player\List.png" />
-    <Content Include="bin\Debug\img\Icon\player\location.png" />
-    <Content Include="bin\Debug\img\Icon\player\logoGame.png" />
-    <Content Include="bin\Debug\img\Icon\player\Pact.png" />
-    <Content Include="bin\Debug\img\Icon\player\pngwing.com %283%29.png" />
-    <Content Include="bin\Debug\img\Icon\player\Rankig.png" />
-    <Content Include="bin\Debug\img\Icon\player\righit.png" />
-    <Content Include="bin\Debug\img\Icon\player\Score2.png" />
-    <Content Include="bin\Debug\img\Icon\player\Select.png" />
-    <Content Include="bin\Debug\img\Icon\player\Select_W.png" />
-    <Content Include="bin\Debug\img\Icon\player\Send.png" />
-    <Content Include="bin\Debug\img\Icon\player\skull.png" />
-    <Content Include="bin\Debug\img\Icon\player\Store.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\bow1.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\bow2.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\bow3.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\catapult1.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\catapult2.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\catapult3.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\crossbow1.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\crossbow2.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\crossbow3.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\fishingNet1.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\fishingNet2.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\hookRope1.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\hookRope2.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\hookRope3.PNG" />
-    <Content Include="bin\Debug\img\Icon\player\store\Rope.png" />
-    <Content Include="bin\Debug\img\Icon\player\store\stone.png" />
-    <Content Include="bin\Debug\img\Icon\player\subtraction.png" />
-    <Content Include="bin\Debug\img\Icon\player\trash.png" />
-    <Content Include="bin\Debug\img\Icon\player\UP.png" />
-    <Content Include="bin\Debug\img\Icon\player\up_W.png" />
-    <Content Include="bin\Debug\img\Icon\player\Vigia.png" />
-    <Content Include="bin\Debug\img\Icon\player\Winner.png" />
-    <Content Include="bin\Debug\img\WallpaperGame\WallpaperGamaBaseForms.jpg" />
     <Content Include="img\Avatar\Caramuru.PNG" />
     <Content Include="img\Avatar\Cauã.PNG" />
     <Content Include="img\Avatar\Coyote.png" />
@@ -524,6 +405,8 @@
     <Content Include="obj\Release\CurumimGameForms.pdb" />
     <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
