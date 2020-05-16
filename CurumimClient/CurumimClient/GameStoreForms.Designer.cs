@@ -715,7 +715,7 @@
             // 
             this.lblValCat3.AutoSize = true;
             this.lblValCat3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValCat3.Location = new System.Drawing.Point(872, 500);
+            this.lblValCat3.Location = new System.Drawing.Point(875, 490);
             this.lblValCat3.Name = "lblValCat3";
             this.lblValCat3.Size = new System.Drawing.Size(22, 16);
             this.lblValCat3.TabIndex = 26;
@@ -796,7 +796,7 @@
             // 
             this.lblValArc1.AutoSize = true;
             this.lblValArc1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValArc1.Location = new System.Drawing.Point(25, 335);
+            this.lblValArc1.Location = new System.Drawing.Point(36, 335);
             this.lblValArc1.Name = "lblValArc1";
             this.lblValArc1.Size = new System.Drawing.Size(15, 16);
             this.lblValArc1.TabIndex = 18;
@@ -835,7 +835,7 @@
             // pbxEsmCat3
             // 
             this.pbxEsmCat3.Image = ((System.Drawing.Image)(resources.GetObject("pbxEsmCat3.Image")));
-            this.pbxEsmCat3.Location = new System.Drawing.Point(896, 497);
+            this.pbxEsmCat3.Location = new System.Drawing.Point(896, 487);
             this.pbxEsmCat3.Name = "pbxEsmCat3";
             this.pbxEsmCat3.Size = new System.Drawing.Size(23, 21);
             this.pbxEsmCat3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

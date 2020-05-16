@@ -441,7 +441,6 @@
             this.btnReplecePassword.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReplecePassword.BackgroundImage")));
             this.btnReplecePassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnReplecePassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReplecePassword.Enabled = false;
             this.btnReplecePassword.FlatAppearance.BorderSize = 0;
             this.btnReplecePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReplecePassword.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

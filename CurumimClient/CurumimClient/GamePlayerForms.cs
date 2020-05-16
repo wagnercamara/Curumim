@@ -11,17 +11,19 @@ namespace CurumimGameForms
     {
         MoveForms moveForms = new MoveForms();
         private EventHandler profileOPenOnCLick { get; set; }
-        EventHandler chatPlayerOpenOnCLick { get; set; }
+        private EventHandler chatPlayerOpenOnCLick { get; set; }
+        private EventHandler RoomsOpen { get; set; }
 
         private ImageClass ImageClass;
         private string controlLocation = "";
         private Boolean OpemMenu = true;
 
-        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick)
+        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick, EventHandler RoomsOpen)
         {
             InitializeComponent();
             this.profileOPenOnCLick = profileOPenOnCLick;
             this.chatPlayerOpenOnCLick = chatPlayerOpenOnCLick;
+            this.RoomsOpen = RoomsOpen;
             this.ImageClass = new ImageClass();
         }
         private void pbxSpectador_Click(object sender, EventArgs e)
@@ -31,8 +33,7 @@ namespace CurumimGameForms
         }
         private void pbxArsenal_Click(object sender, EventArgs e)
         {
-            GameArsenalForms gameArsenalForms = new GameArsenalForms();
-            gameArsenalForms.Show();
+            //arsenal
         }
 
         private void pbxChat_Click(object sender, EventArgs e)
@@ -59,8 +60,7 @@ namespace CurumimGameForms
 
         private void pbxBatlle_Click(object sender, EventArgs e)
         {
-            //GameBattleForms gameBattleForms = new GameBattleForms();
-            //gameBattleForms.Show();
+            this.RoomsOpen.Invoke(this, new PbxFormsOpenEventeArgs() { Open = true });
         }
 
         // Funcionalidaes do menu superior.
@@ -186,15 +186,7 @@ namespace CurumimGameForms
         }
         private void lblAbout_Click(object sender, EventArgs e)
         {
-            //if (gameAboutForms != null)
-            //{
-            //    Application.OpenForms["gameAboutForms"].BringToFront(); // traz um forms já criado pra fente novamente.
-            //}
-            //else
-            //{
-            //    gameAboutForms = new GameAboutForms();
-            //    gameAboutForms.Show();
-            //}
+            // About
         }
 
         private void lblExit_Click(object sender, EventArgs e)

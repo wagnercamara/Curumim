@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRoomsStart = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -37,21 +37,22 @@
             this.button7 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnRoomsStart
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(100, 50);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(700, 100);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Curumim Battle";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnRoomsStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnRoomsStart.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnRoomsStart.FlatAppearance.BorderSize = 2;
+            this.btnRoomsStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRoomsStart.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRoomsStart.ForeColor = System.Drawing.Color.White;
+            this.btnRoomsStart.Location = new System.Drawing.Point(100, 50);
+            this.btnRoomsStart.Name = "btnRoomsStart";
+            this.btnRoomsStart.Size = new System.Drawing.Size(700, 100);
+            this.btnRoomsStart.TabIndex = 0;
+            this.btnRoomsStart.Text = "Curumim Battle";
+            this.btnRoomsStart.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnRoomsStart.UseVisualStyleBackColor = false;
+            this.btnRoomsStart.Click += new System.EventHandler(this.btnRoomsStart_Click);
             // 
             // button2
             // 
@@ -163,7 +164,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRoomsStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GameRoomsForms";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -173,7 +174,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRoomsStart;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;

@@ -27,42 +27,34 @@ namespace CurumimGameForms
         {
             PurchaseSum("bow1", this.lblQtdArc1, this.lblValArc1);
         }
-
         private void pbxArco2_Click(object sender, EventArgs e)
         {
             PurchaseSum("bow2", this.lblQtdArc2, this.lblValArc2);
         }
-
         private void pbxArco3_Click(object sender, EventArgs e)
         {
             PurchaseSum("bow3", this.lblQtdArc3, this.lblValArc3);
         }
-
         private void pbxBest1_Click(object sender, EventArgs e)
         {
             PurchaseSum("crossbow1", this.lblQtdBest1, this.lblValBest1);
         }
-
         private void pbxBest2_Click(object sender, EventArgs e)
         {
             PurchaseSum("crossbow2", this.lblQtdBest2, this.lblValBest2);
         }
-
         private void pbxBest3_Click(object sender, EventArgs e)
         {
             PurchaseSum("crossbow3", this.lblQtdBest3, this.lblValBest3);
         }
-
         private void pbxCat1_Click(object sender, EventArgs e)
         {
             PurchaseSum("catapult1", this.lblQtdCat1, this.lblValCat1);
         }
-
         private void pbxCat2_Click(object sender, EventArgs e)
         {
             PurchaseSum("catapult2", this.lblQtdCat2, this.lblValCat2);
         }
-
         private void pbxCat3_Click(object sender, EventArgs e)
         {
             PurchaseSum("catapult3", this.lblQtdCat3, this.lblValCat3);
@@ -71,22 +63,18 @@ namespace CurumimGameForms
         {
             PurchaseSum("hookRope1", this.lblQtdRope1, this.lblValRop1);
         }
-
         private void pbxRop2_Click(object sender, EventArgs e)
         {
             PurchaseSum("hookRope2", this.lblQtdRope2, this.lblValRop2);
         }
-
         private void pbxRop3_Click(object sender, EventArgs e)
         {
             PurchaseSum("hookRope3", this.lblQtdRope3, this.lblValRop3);
         }
-
         private void pbxRed1_Click(object sender, EventArgs e)
         {
             PurchaseSum("fishingNet1", this.lblQtdRed1, this.lblValRed1);
         }
-
         private void pbxRed2_Click(object sender, EventArgs e)
         {
             PurchaseSum("fishingNet2", this.lblQtdRed2, this.lblValRed2);
@@ -109,7 +97,7 @@ namespace CurumimGameForms
         }
         private void pbxBuyList_Click(object sender, EventArgs e)
         {
-
+            ///carriho
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
@@ -370,5 +358,7 @@ namespace CurumimGameForms
 
             return mChaves[index];
         }
+
+
     }
 }

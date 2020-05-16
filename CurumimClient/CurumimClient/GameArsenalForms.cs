@@ -26,12 +26,12 @@ namespace CurumimGameForms
         private Boolean openListBattle { get; set; }
         private string avatar { get; set; }
 
-        public GameArsenalForms()//GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
+        public GameArsenalForms(bool type)//GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
         {
             InitializeComponent();
             //this.gameProfileClasse = gameProfileClasse;
             //this.gameWeaponsClasse = gameWeaponsClasse;
-            this.startBattle = true;
+            this.startBattle = type;
         }
         private void pbxBow1_Click(object sender, EventArgs e)
         {

@@ -16,8 +16,13 @@ namespace CurumimGameForms
         {
             InitializeComponent();
 
-            GameBattleForms gameBattleForms = new GameBattleForms(2);
-            gameBattleForms.ShowDialog();
+            //GameBattleForms gameBattleForms = new GameBattleForms(2);
+            //gameBattleForms.ShowDialog();
+        }
+
+        private void btnRoomsStart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

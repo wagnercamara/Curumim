@@ -59,6 +59,46 @@ namespace CurumimGameForms
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX = 26;
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ///taylor
+  ///
         //Froms
         GameLoginForms gameLoginForms = null;
         GameForgotPasswordForms gameForgotPasswordForms = null;
@@ -66,11 +106,14 @@ namespace CurumimGameForms
         GameChatPlayerFroms gameChatPlayer = null;
         GamePlayerForms gamePlayerForms = null;
         GameProfileForms gameProfileForms = null;
+        GameRoomsForms gameRooms = null;
+        GameArsenalForms gameArsenal = null;
 
         //Classe
         GameProfileClasse gameProfile = null;
 
         //Atributos
+        string rooms = "";
 
         //Delegate
         private delegate void LoadClassePlayerDelegate(MessageEventArgs messageEventArgs);
@@ -169,7 +212,7 @@ namespace CurumimGameForms
         }
         private void CreatGamePlayer()
         {
-            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick);
+            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick);
             gamePlayerForms.Show();
         }//criação do forms da base de guerra
         private void PbxProfileOnClick(object sender, EventArgs e) // Chama o ptofile do player
@@ -191,6 +234,14 @@ namespace CurumimGameForms
                     }
                 }
 
+            }
+        }
+        private void RoomsOpenOnClick(object sender, EventArgs e)
+        {
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+            if(pbxFormsOpenEventeArgs != null)
+            {
+                if (pbxFormsOpenEventeArgs.Open == true) { this.gameRooms = new GameRoomsForms(); this.gameRooms.Show(); }
             }
         }
         private void PbxProfileClouseOnClick(object sender, EventArgs e)
@@ -391,6 +442,34 @@ namespace CurumimGameForms
                     });
                 }
             }
+        }
+        private void PbxArsenalOnClick(object sender, EventArgs e)
+        {
+            OpenArsenal(false);
+        }
+        private void BtnOpenRoomsOnClick(object sender, EventArgs e)
+        {
+            BtnSelectRoomsEventArgs btnSelectRoomsEventArgs = e as BtnSelectRoomsEventArgs;
+            if (btnSelectRoomsEventArgs.Open == true)
+            {
+                SelectRooms(btnSelectRoomsEventArgs.TypeRooms);
+            }
+        }
+        private void SelectRooms(string Room)
+        {
+            Boolean x = false;
+            switch(Room)
+            {
+                case "1":
+                    this.rooms = Room;
+                    x = true;
+                    break;
+            }
+            OpenArsenal(true);
+        }
+        private void OpenArsenal(Boolean Type)
+        {
+            this.gameArsenal = new GameArsenalForms(Type);
         }
         private void OnReceiveMessage(object sender, EventArgs e) //
         {

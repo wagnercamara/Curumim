@@ -160,30 +160,30 @@ namespace CurumimGameForms
 
             if (myPlayer == Send)
             {
-                this.rbxHitory.SelectionColor = Color.Blue;
-                this.rbxHitory.SelectionFont = new Font("Arial", 5);
+                this.rbxHitory.SelectionColor = Color.FromArgb(153, 217, 251);
+                this.rbxHitory.SelectionFont = new Font("Arial", 7);
                 this.rbxHitory.AppendText(Environment.NewLine + $":{Send}");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
                 this.rbxHitory.SelectionFont = new Font("Segoe Print", 12);
                 this.rbxHitory.AppendText(Environment.NewLine + $"{texto} <");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
-                this.rbxHitory.SelectionFont = new Font("Arial", 5);
+                this.rbxHitory.SelectionFont = new Font("Arial", 7);
                 this.rbxHitory.AppendText(Environment.NewLine + $"{dateTime}:");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
 
             }
             else
             {
-                this.rbxHitory.SelectionColor = Color.Green;
-                this.rbxHitory.SelectionFont = new Font("Arial", 5);
+                this.rbxHitory.SelectionColor = Color.FromArgb(56, 184, 173);
+                this.rbxHitory.SelectionFont = new Font("Arial", 7);
                 this.rbxHitory.AppendText(Environment.NewLine + $":{Send}");
-                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
+                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
                 this.rbxHitory.SelectionFont = new Font("Segoe Print", 12);
-                this.rbxHitory.AppendText(Environment.NewLine + $"{texto} <");
-                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
-                this.rbxHitory.SelectionFont = new Font("Arial", 5);
+                this.rbxHitory.AppendText(Environment.NewLine + $"> {texto}");
+                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
+                this.rbxHitory.SelectionFont = new Font("Arial", 7);
                 this.rbxHitory.AppendText(Environment.NewLine + $"{dateTime}:");
-                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
+                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
             }
         }
         private void pbxLeft_Click(object sender, EventArgs e)
