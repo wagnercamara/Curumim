@@ -17,12 +17,13 @@ namespace CurumimGameForms
         private EventHandler pbxArsenalOpen { get; set; }
         private EventHandler pbxStoreOpen { get; set; }
         private EventHandler exitOnClick { get; set; }
+        private EventHandler openAboutOnClick { get; set; }
 
         private ImageClass ImageClass;
         private string controlLocation = "";
         private Boolean OpemMenu = true;
 
-        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick, EventHandler RoomsOpen, EventHandler PbxArsenalOpen, EventHandler PbxStoreOpen, EventHandler ExitOnClick)
+        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick, EventHandler RoomsOpen, EventHandler PbxArsenalOpen, EventHandler PbxStoreOpen, EventHandler ExitOnClick, EventHandler OpenAboutOnClick)
         {
             InitializeComponent();
             this.profileOPenOnCLick = profileOPenOnCLick;
@@ -31,7 +32,7 @@ namespace CurumimGameForms
             this.pbxArsenalOpen = PbxArsenalOpen;
             this.pbxStoreOpen = PbxStoreOpen;
             this.exitOnClick = ExitOnClick;
-            this.ImageClass = new ImageClass();
+            this.openAboutOnClick = OpenAboutOnClick;
         }
         private void pbxSpectador_Click(object sender, EventArgs e)
         {
@@ -192,9 +193,8 @@ namespace CurumimGameForms
         }
         private void lblAbout_Click(object sender, EventArgs e)
         {
-            // About
+            this.openAboutOnClick.Invoke(this, new PbxFormsOpenEventeArgs() { Open = true });
         }
-
         private void lblExit_Click(object sender, EventArgs e)
         {
             this.exitOnClick.Invoke(this, new PbxFormsCloseEventeArgs() { Close = true });

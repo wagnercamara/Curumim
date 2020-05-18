@@ -224,6 +224,82 @@ namespace CurumimServer
             return updatePlayerSucess;
 
         }
+        public Boolean SqlSetItemPurchase(List<dynamic> BuyList, string dateTime, Int32 idPlayer)
+        {
+            Boolean successfullyConnected = false;
+            Boolean insertSucess = false;
+            Int32 id_tbPurchase = 0;
+            Int32 id_tbItem = 0;
+            Int32 amountItemPurchase = 0;
+            Int32 valueUnitItemPurchase = 0;
+            Int32 valueTotalItemPurchase = 0;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = "SetPurchase";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@dataTime", dateTime);
+
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+                    if(reader.Read() == true)
+                    {
+                        id_tbPurchase = int.Parse(reader["idPurchase"].ToString());
+                        insertSucess = true;
+                    }
+                    if(insertSucess == true)
+                    {
+                        if (successfullyConnected == true)
+                        {
+                            foreach(dynamic dynBuy in BuyList)
+                            {
+                                id_tbItem               = dynBuy.id_tbItem;
+                                amountItemPurchase      = dynBuy.amountItemPurchase;
+                                valueUnitItemPurchase   = dynBuy.valueUnitItemPurchase;
+                                valueTotalItemPurchase  = dynBuy.valueTotalItemPurchase;
+
+                                this.sqlCommand.CommandText = "tbItemPurchase";
+                                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                                this.sqlCommand.Parameters.Clear();
+                                this.sqlCommand.Parameters.AddWithValue("@id_tbPurchase", id_tbPurchase);
+                                this.sqlCommand.Parameters.AddWithValue("@id_tbItem", id_tbItem);
+                                this.sqlCommand.Parameters.AddWithValue("@amountItemPurchase", amountItemPurchase);
+                                this.sqlCommand.Parameters.AddWithValue("@valueUnitItemPurchase", valueUnitItemPurchase);
+                                this.sqlCommand.Parameters.AddWithValue("@valueTotalItemPurchase", valueTotalItemPurchase);
+
+                                try
+                                {
+                                    this.sqlCommand.ExecuteReader();
+                                    insertSucess = true;
+                                }
+                                catch
+                                {
+                                    insertSucess = false;
+                                }
+                            }  
+                        }
+                    }
+                }
+                catch
+                {
+                    insertSucess = false;
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return insertSucess;
+
+        }
         public dynamic LoginGetPlayer(string login, string password)
         {
             dynamic dynamic = null;

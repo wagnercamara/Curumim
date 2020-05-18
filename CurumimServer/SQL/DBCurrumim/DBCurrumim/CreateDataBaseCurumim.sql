@@ -222,7 +222,6 @@ GO
 CREATE TABLE [dbo].[tbPurchase](
 	[idPurchase] [int] IDENTITY(1,1) NOT NULL,
 	[id_tbPlayer] [int] NOT NULL,
-	[totalPayablePurchase] [bigint] NOT NULL,
 	[dateTimePurchase] [datetime] NOT NULL,
  CONSTRAINT [PK_tbPurchase] PRIMARY KEY CLUSTERED 
 (
@@ -429,6 +428,43 @@ BEGIN
 END
 GO
 
+
+CREATE PROCEDURE [dbo].[SetItemPurchase] -- new
+           (@id_tbPurchase int
+           ,@id_tbItem int
+           ,@amountItemPurchase int
+           ,@valueUnitItemPurchase int
+           ,@valueTotalItemPurchase int)
+AS
+BEGIN
+INSERT INTO [dbo].[tbItemPurchase]
+           ([id_tbPurchase]
+           ,[id_tbItem]
+           ,[amountItemPurchase]
+           ,[valueUnitItemPurchase]
+           ,[valueTotalItemPurchase])
+     VALUES
+           (@id_tbPurchase
+           ,@id_tbItem
+           ,@amountItemPurchase
+           ,@valueUnitItemPurchase
+           ,@valueTotalItemPurchase)
+END
+GO
+
+CREATE PROCEDURE [dbo].[SetPurchase] --new
+	(@idPlayer int, @dataTime dateTime)
+AS
+BEGIN
+INSERT INTO [dbo].[tbPurchase]
+           ([id_tbPlayer]
+           ,[dateTimePurchase])
+     VALUES
+           (@idPlayer,
+            @dataTime)
+			SELECT SCOPE_IDENTITY() as idPurchase
+END
+GO
 ---=====================================================================
 ---Funções
 ---=====================================================================

@@ -14,20 +14,22 @@ namespace CurumimGameForms
     {
         private Dictionary<string, dynamic> purchase = new Dictionary<string, dynamic>();
         private Dictionary<string, GameWeaponsClasse> itemStore;
+        private List<dynamic> buyCar;
         private EventHandler pbxCloseStore { get; set; }
+        private EventHandler buyItemOnCLick { get; set; }
         private Boolean OpenCar = true;
         private int valueWallet { get; set; }
         private int valuePurchase { get; set; }
-        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, Int32 valueWallet)
+        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, Int32 valueWallet, EventHandler BuyItemOnCLick)
         {
             InitializeComponent();
             this.valueWallet = valueWallet;
             this.lblWallet.Text = $"{this.valueWallet}£";
             this.itemStore = ItemStore;
             this.pbxCloseStore = pbxCloseStore;
+            this.buyItemOnCLick = BuyItemOnCLick;
             ColumnsDatagrid();
         }
-
         private void pbxArco1_Click(object sender, EventArgs e)
         {
             PurchaseSum("bow1", this.lblQtdArc1, this.lblValArc1);
@@ -102,7 +104,34 @@ namespace CurumimGameForms
         }
         private void pbxBuyList_Click(object sender, EventArgs e)
         {
-            ///carriho
+            buyCar = new List<dynamic>();
+            dynamic dyn;
+            string nameItem = "";
+            Int32 id_tbItem = 0;
+            Int32 amountItemPurchase = 0;
+            Int32 valueUnitItemPurchase = 0;
+            Int32 valueTotalItemPurchase = 0;
+            GameWeaponsClasse gwc;
+
+            foreach (KeyValuePair<string,dynamic> car in this.purchase)
+            {
+                nameItem = car.Key;
+                dyn = car.Value;
+                gwc = this.itemStore[nameItem];
+                id_tbItem = gwc.GetIdItem();
+                amountItemPurchase = dyn.qtd;
+                valueUnitItemPurchase = dyn.valueUn;
+                valueTotalItemPurchase = dyn.valueFull;
+
+                buyCar.Add(new
+                {
+                    id_tbItem,
+                    amountItemPurchase,
+                    valueUnitItemPurchase,
+                    valueTotalItemPurchase
+                });
+            }
+            this.buyItemOnCLick.Invoke(this, new PbxBuyItemCartEventArgs() { Buy = this.buyCar });
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {

@@ -27,7 +27,7 @@ namespace CurumimClient.Classe
             this.reach = reach;
             this.typeItem = typeItem;
         }
-        public Int32 GetNameWeapons() { return this.idItem; }
+        public Int32 GetIdItem() { return this.idItem; }
         public Int32 GetAmountWeapons() { return this.amountWeapons; }
         public Int32 GetLevelItem() { return this.levelItem; }
         public Int32 GetValueUnitItem() { return this.valueUnitItem; }

@@ -15,7 +15,7 @@ namespace CurumimServer
     {
         static List<ThreadClient> Login_threadClients = new List<ThreadClient>();
         static Dictionary<int, ThreadClient> MessegeOnLine = new Dictionary<int, ThreadClient>();
-
+        static Dictionary<int, Dictionary<string, int>> ArsenalPlayer = new Dictionary<int, Dictionary<string, int>>();
         //Types
         //Types Login
         private const int LOGIN_TYPE_GET_PLAYER = 1;
@@ -67,10 +67,16 @@ namespace CurumimServer
         private const int STORE_TYPE_GET_ITEM_ERRO = 30;
 
         //Type Arsenal
-        List<int> ItemPlayer = new List<int>();
+        private static Dictionary<string, int> ItemPlayer = new Dictionary<string, int>();
         private const int ARSENAL_TYPE_GET_ITEM = 31;
         private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
         private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
+
+        //BuyStore
+        private static List<dynamic> BuyList = new List<dynamic>();
+        private const int STORE_TYPE_SET_BUY = 34;
+        private const int STORE_TYPE_SET_BUY_SUCCESS = 35;
+        private const int STORE_TYPE_SET_BUY_ERRO = 36;
 
         static void Main(string[] args)
         {
@@ -115,10 +121,16 @@ namespace CurumimServer
         {
             SQLQuery sQLQuery = new SQLQuery();
             List<dynamic> dynamics = sQLQuery.SqlGetItemArsenal(idPlayer);
+            string nameItem = "";
+            int amountArsenal = 0;
             foreach (dynamic din in dynamics)
             {
                 client.SendMessage(din);
+                nameItem = din.nameItem;
+                amountArsenal = din.amountArsenal;
+                ItemPlayer.Add(nameItem, amountArsenal);
             }
+            ArsenalPlayer.Add(idPlayer, ItemPlayer);
         }
         private static void GetSearchPlayer(ThreadClient client, string login, bool v)
         {
@@ -239,6 +251,38 @@ namespace CurumimServer
 
 
         }
+        private static void SetItemPurchase(ThreadClient client,Int32 idPlayer, Int32 id_tbItem, Int32 amountItemPurchase, Int32 valueUnitItemPurchase, Int32 valueTotalItemPurchase, Int32 listSize)
+        {
+            BuyList.Add(new
+            {
+                id_tbItem,
+                amountItemPurchase,
+                valueUnitItemPurchase,
+                valueTotalItemPurchase
+            });
+            if (BuyList.Count == listSize)
+            {
+                DateTime dateTime = DateTime.Now;
+                string format = "yyyy/MM/dd HH:mm:ss";
+                string date = dateTime.ToString(format);
+                SQLQuery sQLQuery = new SQLQuery();
+                Boolean InsertSucess = sQLQuery.SqlSetItemPurchase(BuyList, date, idPlayer);
+                switch(InsertSucess)
+                {
+                    case true:
+                        client.SendMessage(new { Type = STORE_TYPE_SET_BUY_SUCCESS });
+                        UpdateArsenal();
+                        break;
+                    case false:
+                        client.SendMessage(new { Type = STORE_TYPE_SET_BUY_ERRO });
+                        break;
+                }
+            }
+        }
+        private static void UpdateArsenal()
+        {
+
+        }
         private static void UpdatePlayer(ThreadClient client, string loginPlayer, string passwordPlayer, string secretPhresePlayer)
         {
             SQLQuery sQLQuery = new SQLQuery();
@@ -293,10 +337,10 @@ namespace CurumimServer
             ThreadClient client = sender as ThreadClient;
 
             string fullNamePlayer, loginPlayer, passwordPlayer, secretPhresePlayer, avatarPlayer, messageMessage;
-            int sender_id_tbPlayer, receiver_id_tbPlayer, idPlayer;
-
-            if (messageEventArgs != null)
-            {
+            int sender_id_tbPlayer, receiver_id_tbPlayer, idPlayer, id_tbItem, amountItemPurchase, valueUnitItemPurchase, valueTotalItemPurchase, listSize;
+                                                                  
+            if (messageEventArgs != null)                         
+            {                                                     
                 switch (messageEventArgs.Message.GetInt32("Type"))
                 {
                     case LOGIN_TYPE_GET_PLAYER:
@@ -383,8 +427,19 @@ namespace CurumimServer
                         idPlayer = messageEventArgs.Message.GetInt32("idPlayer");
                         GetItemArsenal(client, idPlayer);
                         break;
+                    case STORE_TYPE_SET_BUY:
+                        idPlayer = messageEventArgs.Message.GetInt32("idPlayer");
+                        id_tbItem = messageEventArgs.Message.GetInt32("id_tbItem");
+                        amountItemPurchase = messageEventArgs.Message.GetInt32("amountItemPurchase");
+                        valueUnitItemPurchase = messageEventArgs.Message.GetInt32("valueUnitItemPurchase");
+                        valueTotalItemPurchase = messageEventArgs.Message.GetInt32("valueTotalItemPurchase");
+                        listSize = messageEventArgs.Message.GetInt32("listSize");
+                        
+                        SetItemPurchase(client, idPlayer, id_tbItem, amountItemPurchase, valueUnitItemPurchase, valueTotalItemPurchase, listSize);
+                        break;
                 }
             }
         }
+
     }
 }

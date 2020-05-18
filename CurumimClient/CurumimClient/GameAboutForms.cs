@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CurumimClient.PbxEventArgs;
+using System;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -7,14 +8,16 @@ namespace CurumimGameForms
 {
     public partial class GameAboutForms : Form
     {
+        private EventHandler closeAboutOnClick { get; set; }
         string fileAbout = "../../About/";
-        public GameAboutForms()
+        public GameAboutForms(EventHandler CloseAboutOnClick)
         {
             InitializeComponent();
+            this.closeAboutOnClick = CloseAboutOnClick;
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.closeAboutOnClick.Invoke(this, new PbxFormsCloseEventeArgs() { Close = true });
         }
         //Metodo para carregar o Arquivo About.txt
         private Boolean UploadFile()
@@ -38,7 +41,7 @@ namespace CurumimGameForms
         {
             if (UploadFile() == false)
             {
-                lblErro.Text = ("Erro ao Carregar Arquivo, verifique se o mesmo está na pasta About na raiz do progrma.");
+                lblErro.Text = ("Error loading file, check if it is in the About folder at the root of the program.");
             }
         }
     }

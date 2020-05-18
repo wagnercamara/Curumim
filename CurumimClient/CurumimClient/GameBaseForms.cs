@@ -76,6 +76,29 @@ namespace CurumimGameForms
         private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
         private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
 
+        //BuyStore
+        private const int STORE_TYPE_SET_BUY = 34;
+        private const int STORE_TYPE_SET_BUY_SUCCESS = 35;
+        private const int STORE_TYPE_SET_BUY_ERRO = 36;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ///taylor
         ///
         //Froms
@@ -88,6 +111,7 @@ namespace CurumimGameForms
         GameRoomsForms gameRoomsForms = null;
         GameArsenalForms gameArsenalForms = null;
         GameStoreForms gameStoreForms = null;
+        GameAboutForms gameAboutForms = null;
 
         //Classe
         GameProfileClasse gameProfile = null;
@@ -268,7 +292,6 @@ namespace CurumimGameForms
             if (gameForgotPasswordForms != null) { x = false; }
             if (gameAvatarForms != null) { x = false; }
             if (gameChatPlayerForms != null) { x = false; }
-            if (gamePlayerFormsFoms != null) { x = false; }
             if (gameProfileForms != null) { x = false; }
             if (gameRoomsForms != null) { x = false; }
             if (gameArsenalForms != null) { x = false; }
@@ -290,7 +313,7 @@ namespace CurumimGameForms
         }
         private void CreatGamePlayer()
         {
-            gamePlayerFormsFoms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick);
+            gamePlayerFormsFoms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick, OpenAboutOnClick);
             gamePlayerFormsFoms.Show();
         }
         private void CloseGameOnClick(object sender, EventArgs e)
@@ -308,13 +331,44 @@ namespace CurumimGameForms
                     }
                     else
                     {
-                        MessageBox.Show("It was not possible to close the game with windows open and you need shutters", "Attention", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        MessageBox.Show("It was not possible to close the game with windows open and you need shutters", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             else
             {
                 MessageBox.Show("Error Clouse GameCurumim");
+            }
+        }
+        private void OpenAboutOnClick(object sender, EventArgs e)
+        {
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+            if (pbxFormsOpenEventeArgs != null)
+            {
+                if (pbxFormsOpenEventeArgs.Open == true) {
+                    this.gameAboutForms = new GameAboutForms(CloseAboutOnClick);
+                    this.gameAboutForms.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Opening About");
+            }
+        }
+        private void CloseAboutOnClick(object sender, EventArgs e)
+        {
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                {
+                    this.gameAboutForms.Close();
+                    this.gameAboutForms = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Close Profile");
             }
         }
         private void PbxProfileOnClick(object sender, EventArgs e) // Chama o ptofile do player
@@ -361,7 +415,8 @@ namespace CurumimGameForms
             {
                 if (pbxFormsCloseEventeArgs.Close == true)
                 {
-                    gameProfileForms = null;
+                    this.gameProfileForms.Close();
+                    this.gameProfileForms = null;
                 }
             }
             else
@@ -644,7 +699,7 @@ namespace CurumimGameForms
                 if (pbxFormsOpenEventeArgs.Open == true)
                 {
                     Int32 valueWallet = gameProfile.GetEsmeraldPlayer();
-                    this.gameStoreForms = new GameStoreForms(PbxCloseStore, this.StoreItem, valueWallet);
+                    this.gameStoreForms = new GameStoreForms(PbxCloseStore, this.StoreItem, valueWallet, BuyItemOnCLick);
                     this.gameStoreForms.ShowDialog();
                 }
                 else
@@ -655,6 +710,33 @@ namespace CurumimGameForms
             else
             {
                 MessageBox.Show("Error Opening Store");
+            }
+        }
+        private void BuyItemOnCLick(object sender, EventArgs e)
+        {
+            PbxBuyItemCartEventArgs pbxBuyItemCartEventArgs = e as PbxBuyItemCartEventArgs;
+            if(pbxBuyItemCartEventArgs!=null)
+            {
+                List<dynamic> Buy = pbxBuyItemCartEventArgs.Buy;
+                int listSize = Buy.Count;
+
+                foreach(dynamic dinBuy in Buy)
+                {
+                    client.SendMessage(new
+                    {
+                        Type = STORE_TYPE_SET_BUY,
+                        idPlayer = gameProfile.GetIdPlayer(),
+                        dinBuy.id_tbItem,
+                        dinBuy.amountItemPurchase,
+                        dinBuy.valueUnitItemPurchase,
+                        dinBuy.valueTotalItemPurchase,
+                        listSize
+                    });
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Buy Store");
             }
         }
         private void PbxCloseStore(object sender, EventArgs e)

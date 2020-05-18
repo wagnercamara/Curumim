@@ -85,7 +85,7 @@
             this.pnlUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlUp.Location = new System.Drawing.Point(0, 0);
             this.pnlUp.Name = "pnlUp";
-            this.pnlUp.Size = new System.Drawing.Size(998, 39);
+            this.pnlUp.Size = new System.Drawing.Size(998, 35);
             this.pnlUp.TabIndex = 5;
             this.pnlUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlUp_MouseMove);
             // 
@@ -95,7 +95,7 @@
             this.pnlSpc.Controls.Add(this.pbxSpectador);
             this.pnlSpc.Controls.Add(this.lblSpectator);
             this.pnlSpc.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlSpc.Location = new System.Drawing.Point(0, 34);
+            this.pnlSpc.Location = new System.Drawing.Point(0, 32);
             this.pnlSpc.Name = "pnlSpc";
             this.pnlSpc.Size = new System.Drawing.Size(998, 3);
             this.pnlSpc.TabIndex = 14;
@@ -276,9 +276,9 @@
             this.panel1.Controls.Add(this.pbxHome);
             this.panel1.Controls.Add(this.pbxImgFundo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Location = new System.Drawing.Point(0, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(998, 559);
+            this.panel1.Size = new System.Drawing.Size(998, 563);
             this.panel1.TabIndex = 6;
             // 
             // pbxBatlle
