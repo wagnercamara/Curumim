@@ -1,4 +1,6 @@
 ﻿using Base;
+using CurumimClient.Classe;
+using CurumimClient.PbxEventArgs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,15 +13,18 @@ namespace CurumimGameForms
     public partial class GameStoreForms : Form
     {
         private Dictionary<string, dynamic> purchase = new Dictionary<string, dynamic>();
-
+        private Dictionary<string, GameWeaponsClasse> itemStore;
+        private EventHandler pbxCloseStore { get; set; }
         private Boolean OpenCar = true;
         private int valueWallet { get; set; }
         private int valuePurchase { get; set; }
-        public GameStoreForms()
+        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, Int32 valueWallet)
         {
             InitializeComponent();
-            this.valueWallet = 200;
-            this.lblWallet.Text = $"{this.valueWallet}£"; ;
+            this.valueWallet = valueWallet;
+            this.lblWallet.Text = $"{this.valueWallet}£";
+            this.itemStore = ItemStore;
+            this.pbxCloseStore = pbxCloseStore;
             ColumnsDatagrid();
         }
 
@@ -101,9 +106,72 @@ namespace CurumimGameForms
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.pbxCloseStore.Invoke(this, new PbxFormsCloseEventeArgs { Close = true });
         }
+        private void GameStoreForms_Load(object sender, EventArgs e)
+        {
+            GameWeaponsClasse gameWeapons = null;
+            string nameWeapons = String.Empty;
+            Int32 valueUnitItem = 0;
 
+            foreach (KeyValuePair<string, GameWeaponsClasse> p in itemStore)
+            {
+                gameWeapons = p.Value;
+                nameWeapons = p.Key;
+                valueUnitItem = gameWeapons.GetValueUnitItem();
+                LoadValueItem(nameWeapons, valueUnitItem);
+            }
+        }
+        private void LoadValueItem(string nameWeapons, Int32 valueUnitItem)
+        {
+            switch(nameWeapons)
+            {
+                case "bow1":
+                    lblValArc1.Text = valueUnitItem.ToString();
+                    break;
+                case "bow2":
+                    lblValArc2.Text = valueUnitItem.ToString();
+                    break;
+                case "bow3":
+                    lblValArc3.Text = valueUnitItem.ToString();
+                    break;
+                case "crossbow1":
+                    lblValBest1.Text = valueUnitItem.ToString();
+                    break;
+                case "crossbow2":
+                    lblValBest2.Text = valueUnitItem.ToString();
+                    break;
+                case "crossbow3":
+                    lblValBest3.Text = valueUnitItem.ToString();
+                    break;
+                case "catapult1":
+                    lblValCat1.Text = valueUnitItem.ToString();
+                    break;
+                case "catapult2":
+                    lblValCat2.Text = valueUnitItem.ToString();
+                    break;
+                case "catapult3":
+                    lblValCat3.Text = valueUnitItem.ToString();
+                    break;
+                case "hookRope1":
+                    lblValRop1.Text = valueUnitItem.ToString();
+                    break;
+                case "hookRope2":
+                    lblValRop2.Text = valueUnitItem.ToString();
+                    break;
+                case "hookRope3":
+                    lblValRop3.Text = valueUnitItem.ToString();
+                    break;
+                case "fishingNet1":
+                    lblValRed1.Text = valueUnitItem.ToString();
+                    break;
+                case "fishingNet2":
+                    lblValRed2.Text = valueUnitItem.ToString();
+                    break;
+                default:
+                    break;
+            }
+        }
         // Colunas Data GRid
         private void ColumnsDatagrid()
         {
@@ -358,7 +426,5 @@ namespace CurumimGameForms
 
             return mChaves[index];
         }
-
-
     }
 }

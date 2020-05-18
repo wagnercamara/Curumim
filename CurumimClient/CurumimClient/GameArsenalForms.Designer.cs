@@ -107,6 +107,7 @@
             this.pnlUp.Controls.Add(this.pbxModBattle);
             this.pnlUp.Controls.Add(this.pbxArsenalBattle);
             this.pnlUp.Controls.Add(this.pbxClouse);
+            this.pnlUp.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlUp.Location = new System.Drawing.Point(0, 0);
             this.pnlUp.Name = "pnlUp";
@@ -141,7 +142,6 @@
             // pbxClouse
             // 
             this.pbxClouse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbxClouse.Enabled = false;
             this.pbxClouse.Image = ((System.Drawing.Image)(resources.GetObject("pbxClouse.Image")));
             this.pbxClouse.Location = new System.Drawing.Point(12, 3);
             this.pbxClouse.Name = "pbxClouse";
@@ -184,6 +184,7 @@
             this.pnlBase.Controls.Add(this.pbxBow1);
             this.pnlBase.Controls.Add(this.pbxBow2);
             this.pnlBase.Controls.Add(this.pbxAvatar);
+            this.pnlBase.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBase.Location = new System.Drawing.Point(0, 0);
             this.pnlBase.Name = "pnlBase";
@@ -255,6 +256,7 @@
             // 
             // pbxTrash
             // 
+            this.pbxTrash.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxTrash.Image = ((System.Drawing.Image)(resources.GetObject("pbxTrash.Image")));
             this.pbxTrash.Location = new System.Drawing.Point(343, 504);
             this.pbxTrash.Name = "pbxTrash";
@@ -266,6 +268,7 @@
             // 
             // pbxSubtract
             // 
+            this.pbxSubtract.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxSubtract.Image = ((System.Drawing.Image)(resources.GetObject("pbxSubtract.Image")));
             this.pbxSubtract.Location = new System.Drawing.Point(19, 464);
             this.pbxSubtract.Name = "pbxSubtract";
@@ -277,6 +280,7 @@
             // 
             // pbxAdd
             // 
+            this.pbxAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxAdd.Image = ((System.Drawing.Image)(resources.GetObject("pbxAdd.Image")));
             this.pbxAdd.Location = new System.Drawing.Point(73, 464);
             this.pbxAdd.Name = "pbxAdd";
@@ -288,6 +292,7 @@
             // 
             // pbxBattle
             // 
+            this.pbxBattle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxBattle.Image = ((System.Drawing.Image)(resources.GetObject("pbxBattle.Image")));
             this.pbxBattle.Location = new System.Drawing.Point(219, 468);
             this.pbxBattle.Name = "pbxBattle";
@@ -425,7 +430,7 @@
             // 
             // pbxHookRope2
             // 
-            this.pbxHookRope2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxHookRope2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxHookRope2.Enabled = false;
             this.pbxHookRope2.Location = new System.Drawing.Point(811, 62);
             this.pbxHookRope2.Name = "pbxHookRope2";
@@ -438,7 +443,7 @@
             // 
             // pbxFishingNet1
             // 
-            this.pbxFishingNet1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxFishingNet1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxFishingNet1.Enabled = false;
             this.pbxFishingNet1.Location = new System.Drawing.Point(540, 245);
             this.pbxFishingNet1.Name = "pbxFishingNet1";
@@ -451,7 +456,7 @@
             // 
             // pbxCrossbow1
             // 
-            this.pbxCrossbow1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxCrossbow1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxCrossbow1.Enabled = false;
             this.pbxCrossbow1.Location = new System.Drawing.Point(461, 400);
             this.pbxCrossbow1.Name = "pbxCrossbow1";
@@ -464,7 +469,7 @@
             // 
             // pbxFishingNet2
             // 
-            this.pbxFishingNet2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxFishingNet2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxFishingNet2.Enabled = false;
             this.pbxFishingNet2.Location = new System.Drawing.Point(722, 198);
             this.pbxFishingNet2.Name = "pbxFishingNet2";
@@ -477,7 +482,7 @@
             // 
             // pbxCatapult2
             // 
-            this.pbxCatapult2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxCatapult2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxCatapult2.Enabled = false;
             this.pbxCatapult2.Location = new System.Drawing.Point(16, 188);
             this.pbxCatapult2.Name = "pbxCatapult2";
@@ -490,7 +495,7 @@
             // 
             // pbxCrossbow3
             // 
-            this.pbxCrossbow3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxCrossbow3.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxCrossbow3.Enabled = false;
             this.pbxCrossbow3.Location = new System.Drawing.Point(773, 393);
             this.pbxCrossbow3.Name = "pbxCrossbow3";
@@ -503,7 +508,7 @@
             // 
             // pbxCrossbow2
             // 
-            this.pbxCrossbow2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxCrossbow2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxCrossbow2.Enabled = false;
             this.pbxCrossbow2.Location = new System.Drawing.Point(617, 400);
             this.pbxCrossbow2.Name = "pbxCrossbow2";
@@ -516,7 +521,7 @@
             // 
             // pbxCatapult1
             // 
-            this.pbxCatapult1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxCatapult1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxCatapult1.Enabled = false;
             this.pbxCatapult1.Location = new System.Drawing.Point(234, 400);
             this.pbxCatapult1.Name = "pbxCatapult1";
@@ -529,7 +534,7 @@
             // 
             // pbxHookRope1
             // 
-            this.pbxHookRope1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxHookRope1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxHookRope1.Enabled = false;
             this.pbxHookRope1.Location = new System.Drawing.Point(703, 47);
             this.pbxHookRope1.Name = "pbxHookRope1";
@@ -542,7 +547,7 @@
             // 
             // pbxHookRope3
             // 
-            this.pbxHookRope3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxHookRope3.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxHookRope3.Enabled = false;
             this.pbxHookRope3.Location = new System.Drawing.Point(540, 44);
             this.pbxHookRope3.Name = "pbxHookRope3";
@@ -555,7 +560,7 @@
             // 
             // pbxCatapult3
             // 
-            this.pbxCatapult3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxCatapult3.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxCatapult3.Enabled = false;
             this.pbxCatapult3.Location = new System.Drawing.Point(16, 339);
             this.pbxCatapult3.Name = "pbxCatapult3";
@@ -568,7 +573,7 @@
             // 
             // pbxBow3
             // 
-            this.pbxBow3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxBow3.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxBow3.Enabled = false;
             this.pbxBow3.Location = new System.Drawing.Point(234, 47);
             this.pbxBow3.Name = "pbxBow3";
@@ -581,7 +586,7 @@
             // 
             // pbxBow1
             // 
-            this.pbxBow1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxBow1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxBow1.Enabled = false;
             this.pbxBow1.Location = new System.Drawing.Point(12, 47);
             this.pbxBow1.Name = "pbxBow1";
@@ -594,7 +599,7 @@
             // 
             // pbxBow2
             // 
-            this.pbxBow2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxBow2.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxBow2.Enabled = false;
             this.pbxBow2.Location = new System.Drawing.Point(14, 116);
             this.pbxBow2.Name = "pbxBow2";
@@ -607,6 +612,7 @@
             // 
             // pbxAvatar
             // 
+            this.pbxAvatar.Cursor = System.Windows.Forms.Cursors.Default;
             this.pbxAvatar.Enabled = false;
             this.pbxAvatar.Location = new System.Drawing.Point(315, 47);
             this.pbxAvatar.Name = "pbxAvatar";

@@ -1,10 +1,14 @@
 ﻿using Base;
 using CurumimClient.BtnEventArgs;
+using CurumimClient.Classe;
 using CurumimClient.EventArgsForms;
 using CurumimClient.pbxEventArgs;
 using CurumimClient.PbxEventArgs;
 using CurumimGameForms.BtnEventArgs;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CurumimGameForms
@@ -59,55 +63,31 @@ namespace CurumimGameForms
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX = 26;
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
+        //Store
+        private Dictionary<string, GameWeaponsClasse> StoreItem = new Dictionary<string, GameWeaponsClasse>();
+        //type Store
+        private const int STORE_TYPE_GET_ITEM = 28;
+        private const int STORE_TYPE_GET_ITEM_SUCCESS = 29;
+        private const int STORE_TYPE_GET_ITEM_ERRO = 30;
+        //Arsenal
+        private Dictionary<string, GameWeaponsClasse> ArsenalItem = new Dictionary<string, GameWeaponsClasse>();
+        //Type Arsenal
+        private const int ARSENAL_TYPE_GET_ITEM = 31;
+        private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
+        private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ///taylor
-  ///
+        ///taylor
+        ///
         //Froms
         GameLoginForms gameLoginForms = null;
         GameForgotPasswordForms gameForgotPasswordForms = null;
         GameAvatarForms gameAvatarForms = null;
-        GameChatPlayerFroms gameChatPlayer = null;
-        GamePlayerForms gamePlayerForms = null;
+        GameChatPlayerFroms gameChatPlayerForms = null;
+        GamePlayerForms gamePlayerFormsFoms = null;
         GameProfileForms gameProfileForms = null;
-        GameRoomsForms gameRooms = null;
-        GameArsenalForms gameArsenal = null;
+        GameRoomsForms gameRoomsForms = null;
+        GameArsenalForms gameArsenalForms = null;
+        GameStoreForms gameStoreForms = null;
 
         //Classe
         GameProfileClasse gameProfile = null;
@@ -116,7 +96,7 @@ namespace CurumimGameForms
         string rooms = "";
 
         //Delegate
-        private delegate void LoadClassePlayerDelegate(MessageEventArgs messageEventArgs);
+        private delegate void LoadDelegate(MessageEventArgs messageEventArgs);
         private delegate void LoadChatPlayerDelegate();
 
         public GameBaseForms()
@@ -141,7 +121,7 @@ namespace CurumimGameForms
                 }
                 if (countConnection > 2)
                 {
-                    MessageBox.Show("Servidor está indiponivel", "Verifique sua intenet");
+                    MessageBox.Show("Server is unavailable", "Check your internet or try again later");
                     controlConneted = true;
                 }
                 countConnection++;
@@ -149,33 +129,44 @@ namespace CurumimGameForms
 
             if (logon == true)
             {
+                GetItemStore();
                 this.gameLoginForms = new GameLoginForms(BtnRegisterOnClick, BtnLoginOnClick, BtnLoginRepleceOnClick, SelectAvatarOn, LoginSucessEvent);
                 gameLoginForms.ShowDialog();
             }
         }
         private Boolean ConectionServer()
         {
+            Boolean x = false;
             try
             {
                 this.client = new Client("127.0.0.1", 5000);
                 this.client.Connect(OnReceiveMessage);
-                return true;
+                x = true;
             }
             catch
             {
-                //MessageBox.Show("Erro de conexão com servidor", "Deseja tentar novamente");
+                DialogResult result = MessageBox.Show("Server connection error ", " Do you want to try again", MessageBoxButtons.YesNo);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        x = false;
+                        break;
+                    case DialogResult.No:
+                        Application.Exit();
+                        break;
+                }
             }
-            return false;
+            return x;
         }
         private void LoadClassePlayer(MessageEventArgs messageEventArgs)
         {
-
             if (this.InvokeRequired == true)
             {
-                this.Invoke(new LoadClassePlayerDelegate(LoadClassePlayer), new object[] { messageEventArgs });
+                this.Invoke(new LoadDelegate(LoadClassePlayer), new object[] { messageEventArgs });
             }
             else
             {
+                this.gameLoginForms = null;
                 string fullNamePlayer = messageEventArgs.Message.GetString("fullNamePlayer");//
                 string loginPlayer = messageEventArgs.Message.GetString("loginPlayer");//
                 string avatarPlayer = messageEventArgs.Message.GetString("avatarPlayer");//
@@ -196,10 +187,93 @@ namespace CurumimGameForms
                 gameProfile.SetVictoryPlayer(victoryPlayer);
                 gameProfile.SetTotalBatllesPlayer(totalBatllesPlayer);
                 gameProfile.SetEsmeraldPlayer(esmeraldPlayer);
-
+                GetItemArsenal();
                 CreatGamePlayer();
             }
 
+        }
+        private void GetItemStore()
+        {
+            client.SendMessage(new { Type = STORE_TYPE_GET_ITEM });
+        }
+        private void SetItemStore(MessageEventArgs messageEventArgs)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new LoadDelegate(SetItemStore), new object[] { messageEventArgs });
+            }
+            else
+            {
+                Int32 idItem = messageEventArgs.Message.GetInt32("idItem");
+                string nameItem = messageEventArgs.Message.GetString("nameItem");
+                Int32 levelItem = messageEventArgs.Message.GetInt32("levelItem");
+                Int32 valueUnitItem = messageEventArgs.Message.GetInt32("valueUnitItem");
+                Int32 destructionAreaItem = messageEventArgs.Message.GetInt32("destructionAreaItem");
+                Int32 spaceHit = messageEventArgs.Message.GetInt32("spaceHit");
+                Int32 reach = messageEventArgs.Message.GetInt32("reach");
+                Int32 typeItem = messageEventArgs.Message.GetInt32("typeItem");
+
+                if (this.StoreItem.ContainsKey(nameItem) == false)
+                {
+                    this.StoreItem.Add(nameItem, new GameWeaponsClasse(
+                      idItem
+                    , levelItem
+                    , valueUnitItem
+                    , destructionAreaItem
+                    , spaceHit
+                    , reach
+                    , typeItem));
+                }
+            }
+        }
+        private void GetItemArsenal()
+        {
+            client.SendMessage(new
+            {
+                Type = ARSENAL_TYPE_GET_ITEM,
+                idPlayer = gameProfile.GetIdPlayer()
+            });
+        }
+        private void SetItemArsenal(MessageEventArgs messageEventArgs)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new LoadDelegate(SetItemArsenal), new object[] { messageEventArgs });
+            }
+            else
+            {
+                string nameItem = messageEventArgs.Message.GetString("nameItem");
+                Int32 amountArsenal = messageEventArgs.Message.GetInt32("amountArsenal");
+
+                if (this.ArsenalItem.ContainsKey(nameItem) == false)
+                {
+                    GameWeaponsClasse g = this.StoreItem[nameItem];
+                    g.SetAmountWeapons(amountArsenal);
+                    this.ArsenalItem.Add(nameItem, g);
+                }
+                else
+                {
+                    this.ArsenalItem.Remove(nameItem);
+
+                    GameWeaponsClasse g = this.StoreItem[nameItem];
+                    g.SetAmountWeapons(amountArsenal);
+                    this.ArsenalItem.Add(nameItem, g);
+                }
+            }
+        }
+        private Boolean CloseGameCurumim()
+        {
+            Boolean x = true;
+            if (gameLoginForms != null) { x = false; }
+            if (gameForgotPasswordForms != null) { x = false; }
+            if (gameAvatarForms != null) { x = false; }
+            if (gameChatPlayerForms != null) { x = false; }
+            if (gamePlayerFormsFoms != null) { x = false; }
+            if (gameProfileForms != null) { x = false; }
+            if (gameRoomsForms != null) { x = false; }
+            if (gameArsenalForms != null) { x = false; }
+            if (gameStoreForms != null) { x = false; }
+            return x;
         }
         private void LoginSucessEvent(object sender, EventArgs e)
         {
@@ -209,12 +283,40 @@ namespace CurumimGameForms
                 this.gameLoginForms.Close();
                 LoadClassePlayer(loginSucessEventArgs.MessageEventArgs);
             }
+            else
+            {
+                MessageBox.Show("Error Opening Login");
+            }
         }
         private void CreatGamePlayer()
         {
-            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick);
-            gamePlayerForms.Show();
-        }//criação do forms da base de guerra
+            gamePlayerFormsFoms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick);
+            gamePlayerFormsFoms.Show();
+        }
+        private void CloseGameOnClick(object sender, EventArgs e)
+        {
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                {
+                    if (CloseGameCurumim() == true)
+                    {
+                        gamePlayerFormsFoms.Close();
+                        Application.Exit();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("It was not possible to close the game with windows open and you need shutters", "Attention", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Clouse GameCurumim");
+            }
+        }
         private void PbxProfileOnClick(object sender, EventArgs e) // Chama o ptofile do player
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
@@ -233,15 +335,23 @@ namespace CurumimGameForms
                         this.gameProfileForms.Show();
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Error Opening Profile");
+                }
 
             }
         }
         private void RoomsOpenOnClick(object sender, EventArgs e)
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
-            if(pbxFormsOpenEventeArgs != null)
+            if (pbxFormsOpenEventeArgs != null)
             {
-                if (pbxFormsOpenEventeArgs.Open == true) { this.gameRooms = new GameRoomsForms(); this.gameRooms.Show(); }
+                if (pbxFormsOpenEventeArgs.Open == true) { this.gameRoomsForms = new GameRoomsForms(); this.gameRoomsForms.Show(); }
+            }
+            else
+            {
+                MessageBox.Show("Error Opening Rooms");
             }
         }
         private void PbxProfileClouseOnClick(object sender, EventArgs e)
@@ -253,6 +363,10 @@ namespace CurumimGameForms
                 {
                     gameProfileForms = null;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Error Close Profile");
             }
         }
         private void BtnLoginOnClick(object sender, EventArgs e) //Logar no jogo
@@ -266,6 +380,10 @@ namespace CurumimGameForms
                     btnLoginOnClickEventArgs.loginPlayer,
                     btnLoginOnClickEventArgs.passwordPlayer
                 });
+            }
+            else
+            {
+                MessageBox.Show("Error Send Login");
             }
         }
         private void BtnRegisterOnClick(object sender, EventArgs e) // mandar informações ao servidor
@@ -283,6 +401,10 @@ namespace CurumimGameForms
                     btnRegisterOnClickEventArgs.avatarPlayer
                 });
             }
+            else
+            {
+                MessageBox.Show("Error Send Register");
+            }
         }
         private void SelectAvatarOn(object sender, EventArgs e) //chamar forms avatar
         {
@@ -295,6 +417,10 @@ namespace CurumimGameForms
                     this.gameAvatarForms.ShowDialog();
                 }
             }
+            else
+            {
+                MessageBox.Show("Error Opening Avatar");
+            }
         }
         private void BtnLoginRepleceOnClick(object sender, EventArgs e)//chamar forms para trocar de senha
         {
@@ -306,6 +432,10 @@ namespace CurumimGameForms
                     this.gameForgotPasswordForms = new GameForgotPasswordForms(BtnRepleceOnClick);
                     this.gameForgotPasswordForms.ShowDialog();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Error Opening Replece");
             }
         }
         private void BtnRepleceOnClick(object sender, EventArgs e)//mandar senha nova ao servidor
@@ -321,6 +451,10 @@ namespace CurumimGameForms
                     btnReplaceOnClickEventArgs.secretPhresePlayer
                 });
             }
+            else
+            {
+                MessageBox.Show("Error Send Replece Password");
+            }
         }
         private void BtnAvatarSelectOnClick(object sender, EventArgs e) // setar avatar do cliente
         {
@@ -329,6 +463,10 @@ namespace CurumimGameForms
             {
                 this.gameLoginForms.SetAvatar(btnAvatarSelectEventArgs.avatarPlayer);
                 this.gameLoginForms.RegisterDB();
+            }
+            else
+            {
+                MessageBox.Show("Error Set Avatar Player");
             }
         }
         private void PbxChatPlayerOpenOnClick(object sender, EventArgs e) // Chama o chat do player
@@ -339,25 +477,33 @@ namespace CurumimGameForms
                 if (pbxFormsOpenEventeArgs.Open == true)
                 {
 
-                    if (this.gameChatPlayer != null)
+                    if (this.gameChatPlayerForms != null)
                     {
                         //Application.OpenForms["gameChatPlayer"].BringToFront(); // traz um forms já criado pra fente novamente.
-                        this.gameChatPlayer.Show();
+                        this.gameChatPlayerForms.Show();
                     }
                     else
                     {
-                        this.gameChatPlayer = new GameChatPlayerFroms(this.gameProfile, this.PbxChatPlayerClouseOnClick, this.MessageSendMessageOnClik, this.LoadContactsOnLoad, this.GetMessageOnLoad, this.GetSearchPlayer);
-                        this.gameChatPlayer.Show();
+                        this.gameChatPlayerForms = new GameChatPlayerFroms(this.gameProfile, this.PbxChatPlayerCloseOnClick, this.MessageSendMessageOnClik, this.LoadContactsOnLoad, this.GetMessageOnLoad, this.GetSearchPlayer);
+                        this.gameChatPlayerForms.Show();
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Error Opening Chat Player");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Opening Chat Player");
             }
         }
         private void GetSearchPlayer(object sender, EventArgs e)
         {
             GetSearchPlayerEventArgs getSearchPlayerEventArgs = e as GetSearchPlayerEventArgs;
-            if(getSearchPlayerEventArgs != null)
+            if (getSearchPlayerEventArgs != null)
             {
-                if(getSearchPlayerEventArgs.typeSearch == true)
+                if (getSearchPlayerEventArgs.typeSearch == true)
                 {
                     client.SendMessage(new
                     {
@@ -411,6 +557,10 @@ namespace CurumimGameForms
                     });
                 }
             }
+            else
+            {
+                MessageBox.Show("Error getting contacts");
+            }
         }
         private void MessageSendMessageOnClik(object sender, EventArgs e) //manda a mensagem para um receiver.
         {
@@ -426,26 +576,102 @@ namespace CurumimGameForms
                     pbxMessageSendMessageEventArgs.name_Sender
                 });
             }
+            else
+            {
+                MessageBox.Show("Error Send new Message");
+            }
         }
-        private void PbxChatPlayerClouseOnClick(object sender, EventArgs e) // fecha o chat no servidor.
+        private void PbxChatPlayerCloseOnClick(object sender, EventArgs e) // fecha o chat no servidor.
         {
             PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
             if (pbxFormsCloseEventeArgs != null)
             {
                 if (pbxFormsCloseEventeArgs.Close == true)
                 {
-                    this.gameChatPlayer = null;
+                    this.gameChatPlayerForms = null;
                     this.client.SendMessage(new
                     {
                         Type = MESSAGE_TYPE_SET_PLAYER_OFF_LINE,
                         idPlayer = gameProfile.GetIdPlayer()
                     });
                 }
+                else
+                {
+                    MessageBox.Show("Error Close Chat Player");
+                }
             }
         }
-        private void PbxArsenalOnClick(object sender, EventArgs e)
+        private void PbxOpenArsenalOnClick(object sender, EventArgs e)
         {
-            OpenArsenal(false);
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+            if (pbxFormsOpenEventeArgs != null)
+            {
+                if (pbxFormsOpenEventeArgs.Open == true)
+                {
+                    OpenArsenal(false);
+                }
+                else
+                {
+                    MessageBox.Show("Error Opening Arsenal");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Opening Arsenal");
+            }
+        }
+        private void PbxCloseArsenal(object sender, EventArgs e)
+        {
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                {
+                    this.gameArsenalForms.Close();
+                    this.gameArsenalForms = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Clouse Arsenal");
+            }
+        }
+        private void PbxOpenStoreOnClick(object sender, EventArgs e)
+        {
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+            if (pbxFormsOpenEventeArgs != null)
+            {
+                if (pbxFormsOpenEventeArgs.Open == true)
+                {
+                    Int32 valueWallet = gameProfile.GetEsmeraldPlayer();
+                    this.gameStoreForms = new GameStoreForms(PbxCloseStore, this.StoreItem, valueWallet);
+                    this.gameStoreForms.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Error Opening Store");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Opening Store");
+            }
+        }
+        private void PbxCloseStore(object sender, EventArgs e)
+        {
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                {
+                    this.gameStoreForms.Close();
+                    this.gameStoreForms = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Clouse Store");
+            }
         }
         private void BtnOpenRoomsOnClick(object sender, EventArgs e)
         {
@@ -454,11 +680,15 @@ namespace CurumimGameForms
             {
                 SelectRooms(btnSelectRoomsEventArgs.TypeRooms);
             }
+            else
+            {
+                MessageBox.Show("Error Opening Rooms");
+            }
         }
         private void SelectRooms(string Room)
         {
             Boolean x = false;
-            switch(Room)
+            switch (Room)
             {
                 case "1":
                     this.rooms = Room;
@@ -469,7 +699,9 @@ namespace CurumimGameForms
         }
         private void OpenArsenal(Boolean Type)
         {
-            this.gameArsenal = new GameArsenalForms(Type);
+            string avatar = gameProfile.GetAvatarPlayer();
+            this.gameArsenalForms = new GameArsenalForms(Type, avatar, this.ArsenalItem, PbxCloseArsenal);
+            this.gameArsenalForms.ShowDialog();
         }
         private void OnReceiveMessage(object sender, EventArgs e) //
         {
@@ -512,19 +744,19 @@ namespace CurumimGameForms
                         dateTime = messageEventArgs.Message.GetString("date");
                         receiver_id_tbPlayer = messageEventArgs.Message.GetInt32("receiver_id_tbPlayer");
 
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverMessage(login, message, dateTime, receiver_id_tbPlayer); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ReceiverMessage(login, message, dateTime, receiver_id_tbPlayer); }
                         break;
 
                     case MESSAGE_TYPE_READ_ERRO:
-                        if (this.gameChatPlayer != null) { MessageBox.Show("Erro ao Carregar msg"); }//altarar
+                        if (this.gameChatPlayerForms != null) { MessageBox.Show("Erro ao Carregar msg"); }//altarar
                         break;
 
                     case MESSAGE_TYPE_SET_PLAYER_ON_LINE_ERRO:
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverOline(false); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ReceiverOline(false); }
                         break;
 
                     case MESSAGE_TYPE_SET_PLAYER_ON_LINE_SUCCESS:
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverOline(true); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ReceiverOline(true); }
                         break;
 
                     case MESSAGE_TYPE_GET_CONTACTS_SUCCESS:
@@ -533,22 +765,22 @@ namespace CurumimGameForms
                         status = messageEventArgs.Message.GetInt32("status");
                         if (status == 1)
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(sender_id_tbPlayer, login, "OnLine"); }
+                            if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.InsertDatagrid(sender_id_tbPlayer, login, "OnLine"); }
                         }
                         else
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(sender_id_tbPlayer, login, "OffLine"); }
+                            if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.InsertDatagrid(sender_id_tbPlayer, login, "OffLine"); }
                         }
 
                         break;
 
                     case MESSAGE_TYPE_GET_CONTACTS_ERRO:
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.InsertDatagrid(0, "login does not exist", "OffLine"); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.InsertDatagrid(0, "login does not exist", "OffLine"); }
                         break;
 
                     case MESSAGE_TYPE_SEVER:
                         message = messageEventArgs.Message.GetString("message");
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.SetMessageServer(message); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.SetMessageServer(message); }
                         break;
 
                     case MESSAGE_TYPE_NEW_MESSAGE_ONLINE:
@@ -557,11 +789,11 @@ namespace CurumimGameForms
                         message = messageEventArgs.Message.GetString("messageMessage");
                         dateTime = messageEventArgs.Message.GetString("date");
 
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ReceiverMessage(login, message, dateTime, sender_id_tbPlayer); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ReceiverMessage(login, message, dateTime, sender_id_tbPlayer); }
                         break;
 
                     case MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO:
-                        if (this.gameChatPlayer != null) { this.gameChatPlayer.ResultGetErro("login does not exist"); }
+                        if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ResultGetErro("login does not exist"); }
                         break;
 
                     case MESSAGE_TYPE_GET_SEARCH_PLAYER_SUCCESS:
@@ -570,11 +802,11 @@ namespace CurumimGameForms
                         status = messageEventArgs.Message.GetInt32("OffOnPlayer");
                         if (status == 1)
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.ResulteGetSearch(sender_id_tbPlayer, login, "OnLine"); }
+                            if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ResulteGetSearch(sender_id_tbPlayer, login, "OnLine"); }
                         }
                         else
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.ResulteGetSearch(sender_id_tbPlayer, login, "OffLine"); }
+                            if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.ResulteGetSearch(sender_id_tbPlayer, login, "OffLine"); }
                         }
                         break;
 
@@ -584,13 +816,27 @@ namespace CurumimGameForms
                         status = messageEventArgs.Message.GetInt32("OffOnPlayer");
                         if (status == 1)
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.AddNewContactMessageBox(sender_id_tbPlayer, login, "OnLine"); }
+                            if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.AddNewContactMessageBox(sender_id_tbPlayer, login, "OnLine"); }
                         }
                         else
                         {
-                            if (this.gameChatPlayer != null) { this.gameChatPlayer.AddNewContactMessageBox(sender_id_tbPlayer, login, "OffLine"); }
+                            if (this.gameChatPlayerForms != null) { this.gameChatPlayerForms.AddNewContactMessageBox(sender_id_tbPlayer, login, "OffLine"); }
                         }
                         break;
+
+                    case STORE_TYPE_GET_ITEM_SUCCESS:
+                        SetItemStore(messageEventArgs);
+                        break;
+                    case STORE_TYPE_GET_ITEM_ERRO:
+                        MessageBox.Show("Unable to load store items", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    case ARSENAL_TYPE_GET_ITEM_SUCCESS:
+                        SetItemArsenal(messageEventArgs);
+                        break;
+                    case ARSENAL_TYPE_GET_ITEM_ERRO:
+                        MessageBox.Show("Unable to load arsenal items", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+
                 }
             }
         }

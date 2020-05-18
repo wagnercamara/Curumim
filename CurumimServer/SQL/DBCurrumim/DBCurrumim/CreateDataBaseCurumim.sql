@@ -51,7 +51,7 @@ CREATE TABLE [dbo].[tbItem](
 	[destructionAreaItem] [int] NOT NULL,
 	[spaceHit][int]NOT NULL,
 	[reach] [int] NOT NULL,
-	[typeItem] [bit] NOT NULL, /*0 para coletor e 1 para arma*/
+	[typeItem] [int] NOT NULL, /*0 para coletor e 1 para arma*/
 CONSTRAINT [PK_tbItem] PRIMARY KEY CLUSTERED 
 (
 	[idItem] ASC
@@ -132,8 +132,8 @@ CREATE TABLE [dbo].[tbBatllePlayer](
 	[idBatllePlayer] [int] IDENTITY(1,1) NOT NULL,
 	[id_tbPlayer] [int] NOT NULL,
 	[id_tbBatlle] [int] NOT NULL,
-	[sideBatllePlayer] [bit] NOT NULL, /*0 para esquerda 1 para direita*/
-	[winnerBatllePlayer] [bit] NOT NULL, /*0 para derrota 1 para vitória*/
+	[sideBatllePlayer] [int] NOT NULL, /*0 para esquerda 1 para direita*/
+	[winnerBatllePlayer] [int] NOT NULL, /*0 para derrota 1 para vitória*/
  CONSTRAINT [PK_tbBatllePlayer] PRIMARY KEY CLUSTERED 
 (
 	[idBatllePlayer] ASC
@@ -248,7 +248,7 @@ CREATE TABLE [dbo].[tbItemPurchase](
 	[id_tbItem] [int] NOT NULL,
 	[amountItemPurchase] [int] NOT NULL,
 	[valueUnitItemPurchase] [int] NOT NULL,
-	[valueTotalItemPurchase] [bigint] NOT NULL,
+	[valueTotalItemPurchase] [int] NOT NULL,
  CONSTRAINT [PK_tbItemPurchase] PRIMARY KEY CLUSTERED 
 (
 	[idItemPurchase] ASC
@@ -528,5 +528,38 @@ SELECT [idPlayer]
       ,[playerOnOrOff]
   FROM [dbo].[tbPlayer]
   WHERE [loginPlayer] = @login
+)
+GO
+
+CREATE FUNCTION [dbo].[GetItem] ---
+()
+RETURNS TABLE 
+AS
+RETURN 
+(
+SELECT [idItem]
+      ,[nameItem]
+      ,[levelItem]
+      ,[valueUnitItem]
+      ,[destructionAreaItem]
+      ,[spaceHit]
+      ,[reach]
+      ,[typeItem]
+  FROM [dbo].[tbItem]
+)
+GO
+
+CREATE FUNCTION [dbo].[GetItemArsenal]
+(@idPlayer int)
+RETURNS TABLE 
+AS
+RETURN 
+(
+SELECT 
+	  i.[nameItem]
+      ,a.[amountArsenal]
+  FROM [dbo].[tbArsenalPlayer]as a
+  INNER JOIN [dbo].[tbItem] as i on i.idItem = a.[id_tbItem]
+  WHERE a.[id_tbPlayer] = @idPlayer
 )
 GO

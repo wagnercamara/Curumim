@@ -1,5 +1,6 @@
 ﻿using CurumimClient.Classe;
 using CurumimClient.pbxEventArgs;
+using CurumimClient.PbxEventArgs;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -12,18 +13,24 @@ namespace CurumimGameForms
         MoveForms moveForms = new MoveForms();
         private EventHandler profileOPenOnCLick { get; set; }
         private EventHandler chatPlayerOpenOnCLick { get; set; }
-        private EventHandler RoomsOpen { get; set; }
+        private EventHandler roomsOpen { get; set; }
+        private EventHandler pbxArsenalOpen { get; set; }
+        private EventHandler pbxStoreOpen { get; set; }
+        private EventHandler exitOnClick { get; set; }
 
         private ImageClass ImageClass;
         private string controlLocation = "";
         private Boolean OpemMenu = true;
 
-        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick, EventHandler RoomsOpen)
+        public GamePlayerForms(EventHandler profileOPenOnCLick, EventHandler chatPlayerOpenOnCLick, EventHandler RoomsOpen, EventHandler PbxArsenalOpen, EventHandler PbxStoreOpen, EventHandler ExitOnClick)
         {
             InitializeComponent();
             this.profileOPenOnCLick = profileOPenOnCLick;
             this.chatPlayerOpenOnCLick = chatPlayerOpenOnCLick;
-            this.RoomsOpen = RoomsOpen;
+            this.roomsOpen = RoomsOpen;
+            this.pbxArsenalOpen = PbxArsenalOpen;
+            this.pbxStoreOpen = PbxStoreOpen;
+            this.exitOnClick = ExitOnClick;
             this.ImageClass = new ImageClass();
         }
         private void pbxSpectador_Click(object sender, EventArgs e)
@@ -33,7 +40,7 @@ namespace CurumimGameForms
         }
         private void pbxArsenal_Click(object sender, EventArgs e)
         {
-            //arsenal
+            this.pbxArsenalOpen.Invoke(this, new PbxFormsOpenEventeArgs { Open = true });
         }
 
         private void pbxChat_Click(object sender, EventArgs e)
@@ -54,13 +61,12 @@ namespace CurumimGameForms
 
         private void pbxStore_Click(object sender, EventArgs e)
         {
-            GameStoreForms gameStoreForms = new GameStoreForms();
-            gameStoreForms.Show();
+            this.pbxStoreOpen.Invoke(this, new PbxFormsOpenEventeArgs { Open = true });
         }
 
         private void pbxBatlle_Click(object sender, EventArgs e)
         {
-            this.RoomsOpen.Invoke(this, new PbxFormsOpenEventeArgs() { Open = true });
+            this.roomsOpen.Invoke(this, new PbxFormsOpenEventeArgs() { Open = true });
         }
 
         // Funcionalidaes do menu superior.
@@ -191,8 +197,7 @@ namespace CurumimGameForms
 
         private void lblExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-            return;
+            this.exitOnClick.Invoke(this, new PbxFormsCloseEventeArgs() { Close = true });
         }
         private void pnlUp_MouseMove(object sender, MouseEventArgs e)
         {

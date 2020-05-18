@@ -1,4 +1,5 @@
 ﻿using CurumimClient.Classe;
+using CurumimClient.PbxEventArgs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,22 +16,22 @@ namespace CurumimGameForms
 {
     public partial class GameArsenalForms : Form
     {
-        ImageClass ImageClass { get; set; }
-
-        GameProfileClasse gameProfileClasse;
-        GameWeaponsClasse gameWeaponsClasse;
+        private EventHandler pbxCloseArsenal { get; set; }
+        private ImageClass ImageClass { get; set; }
 
         private Dictionary<string, dynamic> battleList;
+        private Dictionary<string, GameWeaponsClasse> itemArsenal;
         private Boolean startBattle { get; set; }
         private Boolean butomBattle { get; set; }
         private Boolean openListBattle { get; set; }
         private string avatar { get; set; }
 
-        public GameArsenalForms(bool type)//GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
+        public GameArsenalForms(bool type,string avatar, Dictionary<string, GameWeaponsClasse> itemArsenal,EventHandler PbxCloseArsenal)//GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
         {
             InitializeComponent();
-            //this.gameProfileClasse = gameProfileClasse;
-            //this.gameWeaponsClasse = gameWeaponsClasse;
+            this.pbxCloseArsenal = PbxCloseArsenal;
+            this.avatar = avatar;
+            this.itemArsenal = itemArsenal;
             this.startBattle = type;
         }
         private void pbxBow1_Click(object sender, EventArgs e)
@@ -137,7 +138,7 @@ namespace CurumimGameForms
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.pbxCloseArsenal.Invoke(this, new PbxFormsCloseEventeArgs { Close = true });
         }
         private void pbxModBattle_Click(object sender, EventArgs e)
         {
@@ -155,11 +156,10 @@ namespace CurumimGameForms
         }
         private void GameArsenalForms_Load(object sender, EventArgs e)
         {
+            ImageClass = new ImageClass();
             ColumnsDatagrid();
-
-            //this.weapons = File.ReadAllLines(filleAppImgArm + @"index.txt", Encoding.UTF8); // trocar por dicionario de dados
-            ModeVisible();
-            CarryWarArsenal(this.avatar);
+            ModeVisible(this.startBattle);
+            CarryWarArsenal();
         }
         private void pbxSubtract_Click_1(object sender, EventArgs e)
         {
@@ -178,14 +178,24 @@ namespace CurumimGameForms
 
         }
         // metodos
-        private void CarryWarArsenal(string avatar)
+        private void CarryWarArsenal()
         {
-            pbxAvatar.Image = ImageClass.GetImageAvatar(avatar);
+            this.pbxAvatar.Image = this.ImageClass.GetImageAvatar(this.avatar);
 
-            //for (int i = 0; i < this.weapons.Length; i++)
-            //{
-            //    ActivateAndLoadImage(weapons[i], i + 1);
-            //}
+            GameWeaponsClasse gameWeapons = null;
+            string nameWeapons = String.Empty;
+            Int32 StockQuantity = 0;
+
+            foreach (KeyValuePair<string, GameWeaponsClasse> p in itemArsenal)
+            {
+                gameWeapons = p.Value;
+                nameWeapons = p.Key;
+                StockQuantity = gameWeapons.GetAmountWeapons();
+                if (StockQuantity > 0)
+                {
+                    ActivateAndLoadImage(nameWeapons, StockQuantity);
+                }
+            }
         }
         private void ActivateAndLoadImage(string nameWeapons, int StockQuantity)
         {
@@ -301,6 +311,7 @@ namespace CurumimGameForms
                     {
                         case true: //ativar modo de batalha
                             startBattle = true;
+                            this.LoadCursorSelect(true);
                             this.battleList = new Dictionary<string, dynamic>();
                             this.openListBattle = true; // iniciando variavel para abrir painel
                             this.pbxArsenalBattle.Visible = true;
@@ -322,7 +333,7 @@ namespace CurumimGameForms
                             this.startBattle = false;
                             this.pbxArsenalBattle.Visible = false;
                             this.pnlRight.Visible = false;
-
+                            this.LoadCursorSelect(true);
                             break;
                     }
                     break;
@@ -345,6 +356,44 @@ namespace CurumimGameForms
                             this.pnlRight.Visible = false;
                             break;
                     }
+                    break;
+            }
+        }
+        private void LoadCursorSelect(Boolean v)
+        {
+            switch(v)
+            {
+                case true:
+                    this.pbxBow1.Cursor = Cursors.Hand;
+                    this.pbxBow2.Cursor = Cursors.Hand;
+                    this.pbxBow3.Cursor = Cursors.Hand;
+                    this.pbxCatapult1.Cursor = Cursors.Hand;
+                    this.pbxCatapult2.Cursor = Cursors.Hand;
+                    this.pbxCatapult3.Cursor = Cursors.Hand;
+                    this.pbxCrossbow1.Cursor = Cursors.Hand;
+                    this.pbxCrossbow2.Cursor = Cursors.Hand;
+                    this.pbxCrossbow3.Cursor = Cursors.Hand;
+                    this.pbxFishingNet1.Cursor = Cursors.Hand;
+                    this.pbxFishingNet2.Cursor = Cursors.Hand;
+                    this.pbxHookRope1.Cursor = Cursors.Hand;
+                    this.pbxHookRope2.Cursor = Cursors.Hand;
+                    this.pbxHookRope3.Cursor = Cursors.Hand;
+                    break;
+                case false:
+                    this.pbxBow1.Cursor = Cursors.Default;
+                    this.pbxBow2.Cursor = Cursors.Default;
+                    this.pbxBow3.Cursor = Cursors.Default;
+                    this.pbxCatapult1.Cursor = Cursors.Default;
+                    this.pbxCatapult2.Cursor = Cursors.Default;
+                    this.pbxCatapult3.Cursor = Cursors.Default;
+                    this.pbxCrossbow1.Cursor = Cursors.Default;
+                    this.pbxCrossbow2.Cursor = Cursors.Default;
+                    this.pbxCrossbow3.Cursor = Cursors.Default;
+                    this.pbxFishingNet1.Cursor = Cursors.Default;
+                    this.pbxFishingNet2.Cursor = Cursors.Default;
+                    this.pbxHookRope1.Cursor = Cursors.Default;
+                    this.pbxHookRope2.Cursor = Cursors.Default;
+                    this.pbxHookRope3.Cursor = Cursors.Default;
                     break;
             }
         }

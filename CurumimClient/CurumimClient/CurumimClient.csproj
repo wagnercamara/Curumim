@@ -64,6 +64,7 @@
     <Compile Include="BtnEventArgs\BtnLoginOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnRegisterOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnSelectRoomsEventArgs.cs" />
     <Compile Include="Classe\ButtonField.cs">
       <SubType>Component</SubType>
     </Compile>

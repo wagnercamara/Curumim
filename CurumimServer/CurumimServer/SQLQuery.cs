@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
 
 namespace CurumimServer
 {
@@ -52,6 +53,14 @@ namespace CurumimServer
         private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 23;
         private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 24;
         private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 25;
+
+        //
+        private const int STORE_TYPE_GET_ITEM_SUCCESS = 29;
+        private const int STORE_TYPE_GET_ITEM_ERRO = 30;
+
+        //
+        private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
+        private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
 
 
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
@@ -309,7 +318,7 @@ namespace CurumimServer
 
                     if (CommandSucess == true)
                     {
-                        if(v == true)
+                        if (v == true)
                         {
                             dynamic = (new
                             {
@@ -478,6 +487,107 @@ namespace CurumimServer
 
             this.sQLConnection.ClouseConnection();
             return message;
+        }
+        public List<dynamic> SqlGetItemStore()
+        {
+            List<dynamic> listItems = new List<dynamic>();
+            Boolean successfullyConnected = false;
+
+            try
+            {
+                sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
+
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetItem] ()";
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+
+                    while (reader.Read() == true)
+                    {
+
+                        listItems.Add(new
+                        {
+                            Type = STORE_TYPE_GET_ITEM_SUCCESS,
+                            nameItem = reader["nameItem"].ToString(),
+                            idItem = Int32.Parse(reader["idItem"].ToString()),
+                            levelItem = Int32.Parse(reader["levelItem"].ToString()),
+                            valueUnitItem = Int32.Parse(reader["valueUnitItem"].ToString()),
+                            destructionAreaItem = Int32.Parse(reader["destructionAreaItem"].ToString()),
+                            spaceHit = Int32.Parse(reader["spaceHit"].ToString()),
+                            reach = Int32.Parse(reader["reach"].ToString()),
+                            typeItem = Int32.Parse(reader["typeItem"].ToString())
+                        });
+                    }
+                }
+                catch
+                {
+                    listItems.Add(new { Type = STORE_TYPE_GET_ITEM_ERRO });
+                }
+            }
+            else
+            {
+                listItems.Add(new { Type = STORE_TYPE_GET_ITEM_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return listItems;
+        }
+        public List<dynamic> SqlGetItemArsenal(int idPlayer)
+        {
+
+            List<dynamic> listItems = new List<dynamic>();
+            Boolean successfullyConnected = false;
+
+            try
+            {
+                sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetItemArsenal] (@idPlayer)";
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+
+                    while (reader.Read() == true)
+                    {
+
+                        listItems.Add(new
+                        {
+                            Type = ARSENAL_TYPE_GET_ITEM_SUCCESS,
+                            nameItem = reader["nameItem"].ToString(),
+                            amountArsenal = Int32.Parse(reader["amountArsenal"].ToString())
+                        });
+                    }
+                }
+                catch
+                {
+                    listItems.Add(new { Type = ARSENAL_TYPE_GET_ITEM_ERRO });
+                }
+            }
+            else
+            {
+                listItems.Add(new { Type = ARSENAL_TYPE_GET_ITEM_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return listItems;
         }
     }
 }

@@ -61,6 +61,16 @@ namespace CurumimServer
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX = 26;
         private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
+        //type Store
+        private const int STORE_TYPE_GET_ITEM = 28;
+        private const int STORE_TYPE_GET_ITEM_SUCCESS = 29;
+        private const int STORE_TYPE_GET_ITEM_ERRO = 30;
+
+        //Type Arsenal
+        List<int> ItemPlayer = new List<int>();
+        private const int ARSENAL_TYPE_GET_ITEM = 31;
+        private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
+        private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
 
         static void Main(string[] args)
         {
@@ -87,6 +97,24 @@ namespace CurumimServer
         {
             SQLQuery sQLQuery = new SQLQuery();
             List<dynamic> dynamics = sQLQuery.SqlGetMessage(sender, receiver);
+            foreach (dynamic din in dynamics)
+            {
+                client.SendMessage(din);
+            }
+        }
+        private static void GetItemStore(ThreadClient client)
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            List<dynamic> dynamics = sQLQuery.SqlGetItemStore();
+            foreach(dynamic din in dynamics)
+            {
+                client.SendMessage(din);
+            }
+        }
+        private static void GetItemArsenal(ThreadClient client, int idPlayer)
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            List<dynamic> dynamics = sQLQuery.SqlGetItemArsenal(idPlayer);
             foreach (dynamic din in dynamics)
             {
                 client.SendMessage(din);
@@ -345,6 +373,15 @@ namespace CurumimServer
                         Console.WriteLine("MESSAGE_TYPE_GET_MESSAGE_BOX");
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
                         GetSearchPlayer(client, loginPlayer, false);
+                        break;
+                    case STORE_TYPE_GET_ITEM:
+                        Console.WriteLine("STORE_TYPE_GET_ITEM");
+                        GetItemStore(client);
+                        break;
+                    case ARSENAL_TYPE_GET_ITEM:
+                        Console.WriteLine("ARSENAL_TYPE_GET_ITEM");
+                        idPlayer = messageEventArgs.Message.GetInt32("idPlayer");
+                        GetItemArsenal(client, idPlayer);
                         break;
                 }
             }
