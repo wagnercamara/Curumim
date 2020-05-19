@@ -255,7 +255,7 @@ namespace CurumimServer
                     SqlDataReader reader = this.sqlCommand.ExecuteReader();
                     if(reader.Read() == true)
                     {
-                        id_tbPurchase = int.Parse(reader["idPurchase"].ToString());
+                        id_tbPurchase = int.Parse(reader["idPurchase"].ToString()); // verificar se vai voltar o ID
                         insertSucess = true;
                     }
                     if(insertSucess == true)

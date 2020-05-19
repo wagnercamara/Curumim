@@ -15,7 +15,8 @@ namespace CurumimServer
     {
         static List<ThreadClient> Login_threadClients = new List<ThreadClient>();
         static Dictionary<int, ThreadClient> MessegeOnLine = new Dictionary<int, ThreadClient>();
-        static Dictionary<int, Dictionary<string, int>> ArsenalPlayer = new Dictionary<int, Dictionary<string, int>>();
+        static Dictionary<int, Dictionary<string, int>> ArsenalPlayers = new Dictionary<int, Dictionary<string, int>>();
+        static Dictionary<int, List<dynamic>> BuyPlayers = new Dictionary<int, List<dynamic>>();
         //Types
         //Types Login
         private const int LOGIN_TYPE_GET_PLAYER = 1;
@@ -67,13 +68,13 @@ namespace CurumimServer
         private const int STORE_TYPE_GET_ITEM_ERRO = 30;
 
         //Type Arsenal
-        private static Dictionary<string, int> ItemPlayer = new Dictionary<string, int>();
+        private static Dictionary<string, int> ItemPlayer;
         private const int ARSENAL_TYPE_GET_ITEM = 31;
         private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
         private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
 
         //BuyStore
-        private static List<dynamic> BuyList = new List<dynamic>();
+        private static List<dynamic> BuyList;
         private const int STORE_TYPE_SET_BUY = 34;
         private const int STORE_TYPE_SET_BUY_SUCCESS = 35;
         private const int STORE_TYPE_SET_BUY_ERRO = 36;
@@ -123,6 +124,7 @@ namespace CurumimServer
             List<dynamic> dynamics = sQLQuery.SqlGetItemArsenal(idPlayer);
             string nameItem = "";
             int amountArsenal = 0;
+            ItemPlayer = new Dictionary<string, int>();
             foreach (dynamic din in dynamics)
             {
                 client.SendMessage(din);
@@ -130,7 +132,7 @@ namespace CurumimServer
                 amountArsenal = din.amountArsenal;
                 ItemPlayer.Add(nameItem, amountArsenal);
             }
-            ArsenalPlayer.Add(idPlayer, ItemPlayer);
+            ArsenalPlayers.Add(idPlayer, ItemPlayer);
         }
         private static void GetSearchPlayer(ThreadClient client, string login, bool v)
         {
@@ -253,25 +255,48 @@ namespace CurumimServer
         }
         private static void SetItemPurchase(ThreadClient client,Int32 idPlayer, Int32 id_tbItem, Int32 amountItemPurchase, Int32 valueUnitItemPurchase, Int32 valueTotalItemPurchase, Int32 listSize)
         {
-            BuyList.Add(new
+            List<dynamic> DinBuy;
+            if (BuyPlayers.ContainsKey(idPlayer) == false)
             {
-                id_tbItem,
-                amountItemPurchase,
-                valueUnitItemPurchase,
-                valueTotalItemPurchase
-            });
-            if (BuyList.Count == listSize)
+                BuyList = new List<dynamic>();
+                BuyPlayers.Add(idPlayer, BuyList);
+                DinBuy = BuyPlayers[idPlayer];
+                DinBuy.Add(new
+                {
+                    id_tbItem,
+                    amountItemPurchase,
+                    valueUnitItemPurchase,
+                    valueTotalItemPurchase
+                });
+                InsertBuyItem(DinBuy, client,idPlayer,listSize);
+            }
+            else
+            {
+                DinBuy = BuyPlayers[idPlayer];
+                DinBuy.Add(new
+                {
+                    id_tbItem,
+                    amountItemPurchase,
+                    valueUnitItemPurchase,
+                    valueTotalItemPurchase
+                });
+                InsertBuyItem(DinBuy,client, idPlayer, listSize);
+            }
+        }
+        private static void InsertBuyItem(List<dynamic> DinBuy, ThreadClient client, Int32 idPlayer, Int32 listSize)
+        {
+            if (DinBuy.Count == listSize)
             {
                 DateTime dateTime = DateTime.Now;
                 string format = "yyyy/MM/dd HH:mm:ss";
                 string date = dateTime.ToString(format);
                 SQLQuery sQLQuery = new SQLQuery();
-                Boolean InsertSucess = sQLQuery.SqlSetItemPurchase(BuyList, date, idPlayer);
-                switch(InsertSucess)
+                Boolean InsertSucess = sQLQuery.SqlSetItemPurchase(DinBuy, date, idPlayer);
+                switch (InsertSucess)
                 {
                     case true:
                         client.SendMessage(new { Type = STORE_TYPE_SET_BUY_SUCCESS });
-                        UpdateArsenal();
+                        UpdateArsenal(idPlayer);
                         break;
                     case false:
                         client.SendMessage(new { Type = STORE_TYPE_SET_BUY_ERRO });
@@ -279,7 +304,7 @@ namespace CurumimServer
                 }
             }
         }
-        private static void UpdateArsenal()
+        private static void UpdateArsenal(int idPlayer)
         {
 
         }
