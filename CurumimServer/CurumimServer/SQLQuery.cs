@@ -300,6 +300,50 @@ namespace CurumimServer
             return insertSucess;
 
         }
+        public Boolean SqlSetOrUpdateArsenal(Int32 idPlayer, List<dynamic> BuyList)
+        {
+            Boolean successfullyConnected = false;
+            Boolean updatePlayerSucess = false;
+            Int32 idItem = 0;
+            Int32 amount = 0;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+
+                foreach (dynamic dynBuy in BuyList)
+                {
+                    idItem = dynBuy.id_tbItem;
+                    amount = dynBuy.amountItemPurchase;
+
+                    this.sqlCommand.CommandText = "SqlSetArsenalPlayer";
+                    this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                    this.sqlCommand.Parameters.Clear();
+                    this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                    this.sqlCommand.Parameters.AddWithValue("@idItem", idItem);
+                    this.sqlCommand.Parameters.AddWithValue("@amount", amount);
+
+                    try
+                    {
+                        this.sqlCommand.ExecuteReader();
+                        updatePlayerSucess = true;
+                    }
+                    catch
+                    {
+                        updatePlayerSucess = false;
+                    }
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return updatePlayerSucess;
+        }
         public dynamic LoginGetPlayer(string login, string password)
         {
             dynamic dynamic = null;

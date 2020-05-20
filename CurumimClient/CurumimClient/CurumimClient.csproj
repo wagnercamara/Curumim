@@ -160,6 +160,7 @@
       <DependentUpon>GameStoreForms.cs</DependentUpon>
     </Compile>
     <Compile Include="LblEventArgs\LblAboutOpenEventeArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxBuyItemCartEventArgs.cs" />
     <Compile Include="PbxEventArgs\PbxFormsCloseEventeArgs.cs" />
     <Compile Include="PbxEventArgs\PbxFormsOpenEventeArgs.cs" />
     <Compile Include="PbxEventArgs\PbxMessageSendMessageEventArgs.cs" />

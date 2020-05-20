@@ -15,8 +15,8 @@ namespace CurumimServer
     {
         static List<ThreadClient> Login_threadClients = new List<ThreadClient>();
         static Dictionary<int, ThreadClient> MessegeOnLine = new Dictionary<int, ThreadClient>();
-        static Dictionary<int, Dictionary<string, int>> ArsenalPlayers = new Dictionary<int, Dictionary<string, int>>();
-        static Dictionary<int, List<dynamic>> BuyPlayers = new Dictionary<int, List<dynamic>>();
+        //static Dictionary<int, Dictionary<string, int>> ArsenalPlayers = new Dictionary<int, Dictionary<string, int>>();
+        static Dictionary<int, List<dynamic>> BuyPlayers = new Dictionary<int, List<dynamic>>(); //carrinho de cada jogador.
         //Types
         //Types Login
         private const int LOGIN_TYPE_GET_PLAYER = 1;
@@ -27,7 +27,6 @@ namespace CurumimServer
         private const int REGISTER_TYPE_SET_NEW_PLAYER = 4;
         private const int REGISTER_TYPE_RETURN_SUCCESS = 5;
         private const int REGISTER_TYPE_RETURN_ERROR = 6;
-
 
         //Types ForgotPassword;
         private const int FORGOT_PASSWORD_TYPE_SET_NEW_PASSWORD = 7;
@@ -68,7 +67,7 @@ namespace CurumimServer
         private const int STORE_TYPE_GET_ITEM_ERRO = 30;
 
         //Type Arsenal
-        private static Dictionary<string, int> ItemPlayer;
+        //private static Dictionary<string, int> ItemPlayer;
         private const int ARSENAL_TYPE_GET_ITEM = 31;
         private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
         private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
@@ -124,15 +123,15 @@ namespace CurumimServer
             List<dynamic> dynamics = sQLQuery.SqlGetItemArsenal(idPlayer);
             string nameItem = "";
             int amountArsenal = 0;
-            ItemPlayer = new Dictionary<string, int>();
+            //ItemPlayer = new Dictionary<string, int>();
             foreach (dynamic din in dynamics)
             {
                 client.SendMessage(din);
                 nameItem = din.nameItem;
                 amountArsenal = din.amountArsenal;
-                ItemPlayer.Add(nameItem, amountArsenal);
+                //ItemPlayer.Add(nameItem, amountArsenal);
             }
-            ArsenalPlayers.Add(idPlayer, ItemPlayer);
+            //ArsenalPlayers.Add(idPlayer, ItemPlayer);
         }
         private static void GetSearchPlayer(ThreadClient client, string login, bool v)
         {
@@ -296,7 +295,7 @@ namespace CurumimServer
                 {
                     case true:
                         client.SendMessage(new { Type = STORE_TYPE_SET_BUY_SUCCESS });
-                        UpdateArsenal(idPlayer);
+                        UpdateArsenal(client,idPlayer, DinBuy);
                         break;
                     case false:
                         client.SendMessage(new { Type = STORE_TYPE_SET_BUY_ERRO });
@@ -304,9 +303,15 @@ namespace CurumimServer
                 }
             }
         }
-        private static void UpdateArsenal(int idPlayer)
+        private static void UpdateArsenal(ThreadClient client,int idPlayer, List<dynamic> DinBuy)
         {
-
+            SQLQuery sQLQuery = new SQLQuery();
+            Boolean InsertSucess = sQLQuery.SqlSetOrUpdateArsenal(idPlayer, DinBuy);
+            if(InsertSucess == true)
+            {
+                BuyPlayers.Remove(idPlayer);
+                GetItemArsenal(client, idPlayer);
+            }
         }
         private static void UpdatePlayer(ThreadClient client, string loginPlayer, string passwordPlayer, string secretPhresePlayer)
         {

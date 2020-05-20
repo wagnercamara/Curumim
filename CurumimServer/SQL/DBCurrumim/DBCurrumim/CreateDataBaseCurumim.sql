@@ -465,6 +465,41 @@ INSERT INTO [dbo].[tbPurchase]
 			SELECT SCOPE_IDENTITY() as idPurchase
 END
 GO
+
+ALTER PROCEDURE [dbo].[SqlSetArsenalPlayer] --new
+@idArsenal int = null,
+@amountArsenal int = null,
+@idItem int,
+@idPlayer int,
+@amount int
+AS
+BEGIN
+	SET @idArsenal = (SELECT idArsenalPlayer FROM [dbo].[tbArsenalPlayer] WHERE id_tbItem = @idItem and id_tbPlayer = @idPlayer)
+if(@idArsenal > 0)
+	Begin
+	SET @amountArsenal = (SELECT amountArsenal FROM [dbo].[tbArsenalPlayer] WHERE idArsenalPlayer = @idArsenal )
+	SET @amount = @amount + @amountArsenal
+	
+	UPDATE [dbo].[tbArsenalPlayer] 
+	set  
+	amountArsenal = @amount
+    where 
+	idArsenalPlayer = @idArsenal
+
+	End
+else
+	Begin
+		INSERT INTO [dbo].[tbArsenalPlayer]
+           ([id_tbPlayer]
+           ,[id_tbItem]
+           ,[amountArsenal])
+     VALUES
+           (@idPlayer
+           ,@idItem
+		   ,@amount)
+	end
+
+END
 ---=====================================================================
 ---Funções
 ---=====================================================================
