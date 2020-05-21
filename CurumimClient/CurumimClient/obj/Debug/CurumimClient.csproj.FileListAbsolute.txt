@@ -52,3 +52,4 @@ C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.C
 C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.exe
 C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.pdb
 C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csprojAssemblyReference.cache
+C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.GameLoadForms.resources

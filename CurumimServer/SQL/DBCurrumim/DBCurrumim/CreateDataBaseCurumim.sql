@@ -24,7 +24,6 @@ CREATE TABLE [dbo].[tbPlayer](
 	[passwordPlayer] [varchar](50) NOT NULL,
 	[secretPhresePlayer] [varchar](200) NOT NULL,
 	[avatarPlayer] [varchar](50) NOT NULL,
-	[levelPlayer] [varchar](50) NOT NULL,
 	[punctuationPlayer] [bigint] NOT NULL,
 	[rankingPlayer] [int] NOT NULL,
 	[victoryPlayer] [int] NOT NULL,
@@ -342,7 +341,7 @@ CREATE PROCEDURE [dbo].[SetNewPlayer]
 @passwordPlayer varchar(50),
 @secretPhresePlayer varchar(200),
 @avatarPlayer varchar(50),
-@levelPlayer varchar(50),
+
 
 @punctuationPlayer bigint,
 @rankingPlayer int,
@@ -361,7 +360,6 @@ INSERT INTO [dbo].[tbPlayer]
       ,[passwordPlayer]
       ,[secretPhresePlayer]
       ,[avatarPlayer]
-      ,[levelPlayer]
       ,[punctuationPlayer]
       ,[rankingPlayer]
       ,[victoryPlayer]
@@ -377,7 +375,6 @@ VALUES
 @passwordPlayer,
 @secretPhresePlayer,
 @avatarPlayer,
-@levelPlayer,
 
 @punctuationPlayer,
 @rankingPlayer,
@@ -428,7 +425,24 @@ BEGIN
 END
 GO
 
+-------------
+Create PROCEDURE [dbo].[UpdateEmeraldPlayer]
 
+@idPlayer int,
+@esmerald int
+AS
+BEGIN
+     
+    UPDATE [dbo].[tbPlayer] 
+	set  
+	[esmeraldPlayer] = @esmerald
+    where 
+	idPlayer = @idPlayer
+	IF @@ROWCOUNT = 0  
+	return 'false'
+END
+GO
+--------------
 CREATE PROCEDURE [dbo].[SetItemPurchase] -- new
            (@id_tbPurchase int
            ,@id_tbItem int
@@ -462,16 +476,18 @@ INSERT INTO [dbo].[tbPurchase]
      VALUES
            (@idPlayer,
             @dataTime)
-			SELECT SCOPE_IDENTITY() as idPurchase
+			SELECT SCOPE_IDENTITY()
 END
 GO
 
-ALTER PROCEDURE [dbo].[SqlSetArsenalPlayer] --new
+CREATE PROCEDURE [dbo].[SqlSetArsenalPlayer]
+(
 @idArsenal int = null,
 @amountArsenal int = null,
 @idItem int,
 @idPlayer int,
 @amount int
+)
 AS
 BEGIN
 	SET @idArsenal = (SELECT idArsenalPlayer FROM [dbo].[tbArsenalPlayer] WHERE id_tbItem = @idItem and id_tbPlayer = @idPlayer)
@@ -500,6 +516,7 @@ else
 	end
 
 END
+GO
 ---=====================================================================
 ---Funções
 ---=====================================================================
@@ -518,7 +535,6 @@ RETURN
 	[fullNamePlayer],
 	[loginPlayer],
 	[avatarPlayer],
-	[levelPlayer],
 	[passwordPlayer],
 	[secretPhresePlayer],
 	[punctuationPlayer],

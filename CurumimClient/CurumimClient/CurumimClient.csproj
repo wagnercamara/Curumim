@@ -75,6 +75,7 @@
     <Compile Include="EventArgsForms\GetSearchPlayerEventArgs.cs" />
     <Compile Include="EventArgsForms\LoadContactsEventArgs.cs" />
     <Compile Include="EventArgsForms\LoginSucessEventArgs.cs" />
+    <Compile Include="EventArgsForms\UpdateEmeraldEventArgs.cs" />
     <Compile Include="GameAboutForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +123,12 @@
     </Compile>
     <Compile Include="GameForgotPasswordForms.Designer.cs">
       <DependentUpon>GameForgotPasswordForms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameLoadForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameLoadForms.Designer.cs">
+      <DependentUpon>GameLoadForms.cs</DependentUpon>
     </Compile>
     <Compile Include="GameLoginForms.cs">
       <SubType>Form</SubType>
@@ -189,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameForgotPasswordForms.resx">
       <DependentUpon>GameForgotPasswordForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameLoadForms.resx">
+      <DependentUpon>GameLoadForms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameLoginForms.resx">
       <DependentUpon>GameLoginForms.cs</DependentUpon>

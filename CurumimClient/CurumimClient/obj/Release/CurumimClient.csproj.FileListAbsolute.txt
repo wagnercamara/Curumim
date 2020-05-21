@@ -32,7 +32,6 @@ C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Release\Base.dll
 C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Release\Newtonsoft.Json.dll
 C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Release\Base.pdb
 C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Release\Newtonsoft.Json.xml
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csprojAssemblyReference.cache
 C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameAboutForms.resources
 C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameArsenalForms.resources
 C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameAvatarForms.resources

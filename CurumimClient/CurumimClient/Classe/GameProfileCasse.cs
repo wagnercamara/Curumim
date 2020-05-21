@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ namespace CurumimGameForms
     {
         private string fullNamePlayer { get; }
         private string loginPlayer { get; }
-        private string levelPlayer { get; set; }
         private string avatarPlayer { get; set; }
         private Int32 idPlayer { get; }
         private Int32 punctuationPlayer { get; set; }
@@ -41,10 +41,6 @@ namespace CurumimGameForms
         {
             return this.loginPlayer;
         }
-        public string GetLevelPlayer()
-        {
-            return this.levelPlayer;
-        }
         public Int32 GetIdPlayer()
         {
             return this.idPlayer;
@@ -70,11 +66,23 @@ namespace CurumimGameForms
             return this.esmeraldPlayer;
         }
 
-        //Set
-        public void SetLevelPlayer(string levelPlayer)
+        public string GetLevelPlayer()
         {
-            this.levelPlayer = levelPlayer;
+            if (this.punctuationPlayer <= 500)
+            {
+                return "Curumim";
+            }
+            if (this.punctuationPlayer > 500 && this.punctuationPlayer <= 2000)
+            {
+                return "Indio";
+            }
+            if (this.punctuationPlayer > 2000 && this.punctuationPlayer <= 5000)
+            {
+                return "Page";
+            }
+            return "Cacique";
         }
+        //Set
         public void SetPunctuationPlayer(Int32 punctuationPlayer)
         {
             this.punctuationPlayer = punctuationPlayer;

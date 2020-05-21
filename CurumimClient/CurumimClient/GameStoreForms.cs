@@ -1,5 +1,6 @@
 ﻿using Base;
 using CurumimClient.Classe;
+using CurumimClient.EventArgsForms;
 using CurumimClient.PbxEventArgs;
 using System;
 using System.Collections;
@@ -15,19 +16,21 @@ namespace CurumimGameForms
         private Dictionary<string, dynamic> purchase = new Dictionary<string, dynamic>();
         private Dictionary<string, GameWeaponsClasse> itemStore;
         private List<dynamic> buyCar;
-        private EventHandler pbxCloseStore { get; set; }
-        private EventHandler buyItemOnCLick { get; set; }
+        private EventHandler PbxCloseStore { get; set; }
+        private EventHandler BuyItemOnCLick { get; set; }
+        private EventHandler UpdateEmeraldEvent { get; set; }
         private Boolean OpenCar = true;
-        private int valueWallet { get; set; }
-        private int valuePurchase { get; set; }
-        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, Int32 valueWallet, EventHandler BuyItemOnCLick)
+        private int ValueWallet { get; set; }
+        private int ValuePurchase { get; set; }
+        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, Int32 valueWallet, EventHandler BuyItemOnCLick, EventHandler UpdateEmeraldEvent)
         {
             InitializeComponent();
-            this.valueWallet = valueWallet;
-            this.lblWallet.Text = $"{this.valueWallet}£";
+            this.ValueWallet = valueWallet;
+            this.lblWallet.Text = $"{this.ValueWallet}£";
             this.itemStore = ItemStore;
-            this.pbxCloseStore = pbxCloseStore;
-            this.buyItemOnCLick = BuyItemOnCLick;
+            this.PbxCloseStore = pbxCloseStore;
+            this.UpdateEmeraldEvent = UpdateEmeraldEvent;
+            this.BuyItemOnCLick = BuyItemOnCLick;
             ColumnsDatagrid();
         }
         private void pbxArco1_Click(object sender, EventArgs e)
@@ -131,11 +134,11 @@ namespace CurumimGameForms
                     valueTotalItemPurchase
                 });
             }
-            this.buyItemOnCLick.Invoke(this, new PbxBuyItemCartEventArgs() { Buy = this.buyCar });
+            this.BuyItemOnCLick.Invoke(this, new PbxBuyItemCartEventArgs() { Buy = this.buyCar });
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {
-            this.pbxCloseStore.Invoke(this, new PbxFormsCloseEventeArgs { Close = true });
+            this.PbxCloseStore.Invoke(this, new PbxFormsCloseEventeArgs { Close = true });
         }
         private void GameStoreForms_Load(object sender, EventArgs e)
         {
@@ -243,7 +246,7 @@ namespace CurumimGameForms
                     {
                         case "add":
                            
-                            if (valueUn <= this.valueWallet)
+                            if (valueUn <= this.ValueWallet)
                             {
                                 qtd = qtd + 1;
                                 labelQtd.Text = qtd.ToString();
@@ -307,7 +310,7 @@ namespace CurumimGameForms
             int valueItem = (Convert.ToInt32(labelVal.Text));
             labelQtd.Visible = true;
             labelQtd.ForeColor = Color.Red;
-            if (this.valueWallet >= valueItem)
+            if (this.ValueWallet >= valueItem)
             {
                 this.lblInsufficientFunds.Text = "";
                 if (labelQtd.Text == "")
@@ -317,10 +320,10 @@ namespace CurumimGameForms
                 int qtdItem = (Convert.ToInt32(labelQtd.Text) + 1);
                 labelQtd.Text = (qtdItem).ToString();
 
-                this.valuePurchase = (this.valuePurchase + valueItem);
-                this.valueWallet = this.valueWallet - valueItem;
+                this.ValuePurchase = (this.ValuePurchase + valueItem);
+                this.ValueWallet = this.ValueWallet - valueItem;
 
-                this.lblWallet.Text = $"{this.valueWallet}£";
+                this.lblWallet.Text = $"{this.ValueWallet}£";
                 AddCarPurchase(nameArm, valueItem, qtdItem, valueItem, labelQtd);
             }
             else
@@ -339,8 +342,8 @@ namespace CurumimGameForms
         // Devolve um determinado valor a Carteira
         private void RemoveCar(int valueUn)
         {
-            this.valueWallet = this.valueWallet + valueUn;
-            this.lblWallet.Text = $"{this.valueWallet}£";
+            this.ValueWallet = this.ValueWallet + valueUn;
+            this.lblWallet.Text = $"{this.ValueWallet}£";
         }
 
         //Adiciona ao carrinho.
@@ -387,7 +390,7 @@ namespace CurumimGameForms
             int valueUn, qtd, valueFull;
 
             ClearDatagridView();
-            this.valuePurchase = 0;
+            this.ValuePurchase = 0;
             for (int i = 0; i < this.purchase.Count; i++)
             {
                 d = GetVaue(i);
@@ -397,12 +400,12 @@ namespace CurumimGameForms
                 valueFull = d.valueFull;
                 labelQtd = d.labelQtd;
 
-                this.valuePurchase = this.valuePurchase + valueFull;
+                this.ValuePurchase = this.ValuePurchase + valueFull;
 
                 dgvListPurchase.Rows.Add(nameArm, valueUn, qtd, valueFull, labelQtd);
             }
-            this.lblValPurchase.Text = $"{this.valuePurchase}£";
-            this.lblFullPurchase.Text = $"{this.valuePurchase}£";
+            this.lblValPurchase.Text = $"{this.ValuePurchase}£";
+            this.lblFullPurchase.Text = $"{this.ValuePurchase}£";
         }
         private void ClearDatagridView()
         {
@@ -454,6 +457,53 @@ namespace CurumimGameForms
             chaveColecao.CopyTo(mChaves, 0);
 
             return mChaves[index];
+        }
+        private delegate void BuySucessDelegate();
+        public void BuySucess()
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new BuySucessDelegate(BuySucess), new object[] {});
+            }
+            else
+            {
+                if (this.OpenCar == false)
+                {
+                    OpenPnlCar();
+                    this.UpdateEmeraldEvent.Invoke(this, new UpdateEmeraldEventArgs() { ValuePurchase = this.ValuePurchase });
+                    this.purchase.Clear();
+                }
+                else
+                {
+                    this.UpdateEmeraldEvent.Invoke(this, new UpdateEmeraldEventArgs() { ValuePurchase = this.ValuePurchase });
+                    this.purchase.Clear();
+                }
+                ClearLbl();
+            }
+        }
+        private void ClearLbl()
+        {
+            lblQtdArc1.Text = "";
+            lblQtdArc2.Text = "";
+            lblQtdArc3.Text = "";
+
+            lblQtdBest1.Text = "";
+            lblQtdBest2.Text = "";
+            lblQtdBest3.Text = "";
+
+            lblQtdCat1.Text = "";
+            lblQtdCat2.Text = "";
+            lblQtdCat3.Text = "";
+
+            lblQtdRed1.Text = "";
+            lblQtdRed2.Text = "";
+
+            lblQtdRope1.Text = "";
+            lblQtdRope2.Text = "";
+            lblQtdRope3.Text = "";
+
+            lblFullPurchase.Text = "";
+            lblValPurchase.Text = "";
         }
     }
 }

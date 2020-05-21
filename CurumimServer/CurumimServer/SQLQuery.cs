@@ -95,7 +95,6 @@ namespace CurumimServer
                 this.sqlCommand.Parameters.AddWithValue("@passwordPlayer", passwordPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@secretPhresePlayer", secretPhresePlayer);
                 this.sqlCommand.Parameters.AddWithValue("@avatarPlayer", avatarPlayer);
-                this.sqlCommand.Parameters.AddWithValue("@levelPlayer", "Curumim");
                 this.sqlCommand.Parameters.AddWithValue("@punctuationPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@rankingPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@victoryPlayer", 0);
@@ -150,6 +149,39 @@ namespace CurumimServer
             this.sQLConnection.ClouseConnection();
             return updatePlayerSucess;
 
+        }
+        public Boolean SqlUpdateEmaraldPlayer(int idPlayer, int emerald)
+        {
+            Boolean successfullyConnected = false;
+            Boolean updatePlayerSucess = false;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = "UpdateEmeraldPlayer";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@esmerald", emerald);
+                try
+                {
+                    this.sqlCommand.ExecuteNonQuery();
+                    updatePlayerSucess = true;
+                }
+                catch
+                {
+                    updatePlayerSucess = false;
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return updatePlayerSucess;
         }
         public Boolean SqlInsertMenssage(int sender_id_tbPlayer, int receiver_id_tbPlayer, string messageMessage, DateTime dateTimeMessage)
         {
@@ -224,15 +256,10 @@ namespace CurumimServer
             return updatePlayerSucess;
 
         }
-        public Boolean SqlSetItemPurchase(List<dynamic> BuyList, string dateTime, Int32 idPlayer)
+        public Int32? SqlSetPurchase(DateTime dateTime, Int32 idPlayer)
         {
             Boolean successfullyConnected = false;
-            Boolean insertSucess = false;
-            Int32 id_tbPurchase = 0;
-            Int32 id_tbItem = 0;
-            Int32 amountItemPurchase = 0;
-            Int32 valueUnitItemPurchase = 0;
-            Int32 valueTotalItemPurchase = 0;
+            Int32? id_tbPurchase = null;
             try
             {
                 this.sqlCommand.Connection = sQLConnection.OpenConnection();
@@ -249,47 +276,48 @@ namespace CurumimServer
                 this.sqlCommand.Parameters.Clear();
                 this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@dataTime", dateTime);
+                try
+                {
+                    object objIdPurchase = this.sqlCommand.ExecuteScalar();
+                    id_tbPurchase = (objIdPurchase == null || Convert.IsDBNull(objIdPurchase)) ? (Int32?)null : Convert.ToInt32(objIdPurchase);
+                }
+                catch
+                {
+                    id_tbPurchase = null;
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return id_tbPurchase;
+
+        }
+        public Boolean SqlSetItemPuchase(Int32 id_tbPurchase, Int32 id_tbItem, Int32 amountItemPurchase, Int32 valueUnitItemPurchase, Int32 valueTotalItemPurchase)
+        {
+            Boolean insertSucess = false;
+            Boolean successfullyConnected = false;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = "SetItemPurchase";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@id_tbPurchase", id_tbPurchase);
+                this.sqlCommand.Parameters.AddWithValue("@id_tbItem", id_tbItem);
+                this.sqlCommand.Parameters.AddWithValue("@amountItemPurchase", amountItemPurchase);
+                this.sqlCommand.Parameters.AddWithValue("@valueUnitItemPurchase", valueUnitItemPurchase);
+                this.sqlCommand.Parameters.AddWithValue("@valueTotalItemPurchase", valueTotalItemPurchase);
 
                 try
                 {
-                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
-                    if(reader.Read() == true)
-                    {
-                        id_tbPurchase = int.Parse(reader["idPurchase"].ToString()); // verificar se vai voltar o ID
-                        insertSucess = true;
-                    }
-                    if(insertSucess == true)
-                    {
-                        if (successfullyConnected == true)
-                        {
-                            foreach(dynamic dynBuy in BuyList)
-                            {
-                                id_tbItem               = dynBuy.id_tbItem;
-                                amountItemPurchase      = dynBuy.amountItemPurchase;
-                                valueUnitItemPurchase   = dynBuy.valueUnitItemPurchase;
-                                valueTotalItemPurchase  = dynBuy.valueTotalItemPurchase;
-
-                                this.sqlCommand.CommandText = "tbItemPurchase";
-                                this.sqlCommand.CommandType = CommandType.StoredProcedure;
-                                this.sqlCommand.Parameters.Clear();
-                                this.sqlCommand.Parameters.AddWithValue("@id_tbPurchase", id_tbPurchase);
-                                this.sqlCommand.Parameters.AddWithValue("@id_tbItem", id_tbItem);
-                                this.sqlCommand.Parameters.AddWithValue("@amountItemPurchase", amountItemPurchase);
-                                this.sqlCommand.Parameters.AddWithValue("@valueUnitItemPurchase", valueUnitItemPurchase);
-                                this.sqlCommand.Parameters.AddWithValue("@valueTotalItemPurchase", valueTotalItemPurchase);
-
-                                try
-                                {
-                                    this.sqlCommand.ExecuteReader();
-                                    insertSucess = true;
-                                }
-                                catch
-                                {
-                                    insertSucess = false;
-                                }
-                            }  
-                        }
-                    }
+                    this.sqlCommand.ExecuteReader();
+                    insertSucess = true;
                 }
                 catch
                 {
@@ -300,12 +328,10 @@ namespace CurumimServer
             return insertSucess;
 
         }
-        public Boolean SqlSetOrUpdateArsenal(Int32 idPlayer, List<dynamic> BuyList)
+        public Boolean SqlSetOrUpdateArsenal(Int32 idPlayer, Int32 idItem, Int32 amount)
         {
             Boolean successfullyConnected = false;
             Boolean updatePlayerSucess = false;
-            Int32 idItem = 0;
-            Int32 amount = 0;
             try
             {
                 this.sqlCommand.Connection = sQLConnection.OpenConnection();
@@ -318,28 +344,23 @@ namespace CurumimServer
             if (successfullyConnected == true)
             {
 
-                foreach (dynamic dynBuy in BuyList)
+                this.sqlCommand.CommandText = "SqlSetArsenalPlayer";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@idItem", idItem);
+                this.sqlCommand.Parameters.AddWithValue("@amount", amount);
+
+                try
                 {
-                    idItem = dynBuy.id_tbItem;
-                    amount = dynBuy.amountItemPurchase;
-
-                    this.sqlCommand.CommandText = "SqlSetArsenalPlayer";
-                    this.sqlCommand.CommandType = CommandType.StoredProcedure;
-                    this.sqlCommand.Parameters.Clear();
-                    this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
-                    this.sqlCommand.Parameters.AddWithValue("@idItem", idItem);
-                    this.sqlCommand.Parameters.AddWithValue("@amount", amount);
-
-                    try
-                    {
-                        this.sqlCommand.ExecuteReader();
-                        updatePlayerSucess = true;
-                    }
-                    catch
-                    {
-                        updatePlayerSucess = false;
-                    }
+                    this.sqlCommand.ExecuteReader();
+                    updatePlayerSucess = true;
                 }
+                catch
+                {
+                    updatePlayerSucess = false;
+                }
+
             }
             this.sQLConnection.ClouseConnection();
             return updatePlayerSucess;
@@ -381,7 +402,6 @@ namespace CurumimServer
 
                             fullNamePlayer = reader["fullNamePlayer"].ToString(),
                             loginPlayer = reader["loginPlayer"].ToString(),
-                            levelPlayer = reader["levelPlayer"].ToString(),
                             avatarPlayer = reader["avatarPlayer"].ToString(),
 
                             punctuationPlayer = Int32.Parse(reader["punctuationPlayer"].ToString()),
@@ -622,7 +642,7 @@ namespace CurumimServer
             {
                 Console.WriteLine(ex.ToString());
             }
-            
+
 
             if (successfullyConnected == true)
             {
