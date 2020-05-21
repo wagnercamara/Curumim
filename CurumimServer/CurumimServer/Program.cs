@@ -15,7 +15,6 @@ namespace CurumimServer
     {
         static List<ThreadClient> Login_threadClients = new List<ThreadClient>();
         static Dictionary<int, ThreadClient> MessegeOnLine = new Dictionary<int, ThreadClient>();
-        //static Dictionary<int, Dictionary<string, int>> ArsenalPlayers = new Dictionary<int, Dictionary<string, int>>();
         static Dictionary<int, List<dynamic>> BuyPlayers = new Dictionary<int, List<dynamic>>(); //carrinho de cada jogador.
         //Types
         //Types Login

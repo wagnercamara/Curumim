@@ -99,7 +99,7 @@ namespace CurumimGameForms
         GameForgotPasswordForms gameForgotPasswordForms = null;
         GameAvatarForms gameAvatarForms = null;
         GameChatPlayerFroms gameChatPlayerForms = null;
-        GamePlayerForms gamePlayerFormsFoms = null;
+        GamePlayerForms gamePlayerForms = null;
         GameProfileForms gameProfileForms = null;
         GameRoomsForms gameRoomsForms = null;
         GameArsenalForms gameArsenalForms = null;
@@ -320,8 +320,8 @@ namespace CurumimGameForms
         }
         private void CreatGamePlayer()
         {
-            gamePlayerFormsFoms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick, OpenAboutOnClick);
-            gamePlayerFormsFoms.Show();
+            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick, OpenAboutOnClick);
+            gamePlayerForms.Show();
         }
         private void CloseGameOnClick(object sender, EventArgs e)
         {
@@ -332,7 +332,7 @@ namespace CurumimGameForms
                 {
                     if (CloseGameCurumim() == true)
                     {
-                        gamePlayerFormsFoms.Close();
+                        gamePlayerForms.Close();
                         Application.Exit();
                         return;
                     }
@@ -415,7 +415,7 @@ namespace CurumimGameForms
             {
                 MessageBox.Show("Error Opening Rooms");
             }
-        }
+        } // abre a sala
         private void PbxProfileClouseOnClick(object sender, EventArgs e)
         {
             PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
@@ -847,7 +847,7 @@ namespace CurumimGameForms
             this.gameArsenalForms = new GameArsenalForms(Type, avatar, this.ArsenalItem, PbxCloseArsenal);
             this.gameArsenalForms.ShowDialog();
         }
-        private void OnReceiveMessage(object sender, EventArgs e) //
+        private void OnReceiveMessage(object sender, EventArgs e) // receiver
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
 
