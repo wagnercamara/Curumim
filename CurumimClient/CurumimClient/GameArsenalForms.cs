@@ -175,7 +175,7 @@ namespace CurumimGameForms
         }
         private void pbxBattle_Click(object sender, EventArgs e)
         {
-
+            //// varificar que chamou se ta true or false;
         }
         // metodos
         private void CarryWarArsenal()
@@ -199,7 +199,7 @@ namespace CurumimGameForms
         }
         private void ActivateAndLoadImage(string nameWeapons, int StockQuantity)
         {
-            switch (nameWeapons)
+            switch (nameWeapons.ToLower())
             {
                 case "bow1":
                     this.pbxBow1.Enabled = true;
@@ -264,35 +264,35 @@ namespace CurumimGameForms
                     this.lblQtdCrossbow3.Visible = true;
                     this.lblQtdCrossbow3.Text = StockQuantity.ToString();
                     break;
-                case "fishingNet1":
+                case "fishingnet1":
                     this.pbxFishingNet1.Enabled = true;
                     this.pbxFishingNet1.Visible = true;
                     this.pbxFishingNet1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdFishingNet1.Visible = true;
                     this.lblQtdFishingNet1.Text = StockQuantity.ToString();
                     break;
-                case "fishingNet2":
+                case "fishingnet2":
                     this.pbxFishingNet2.Enabled = true;
                     this.pbxFishingNet2.Visible = true;
                     this.pbxFishingNet2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdFishingNet2.Visible = true;
                     this.lblQtdFishingNet2.Text = StockQuantity.ToString();
                     break;
-                case "hookRope1":
+                case "hookrope1":
                     this.pbxHookRope1.Enabled = true;
                     this.pbxHookRope1.Visible = true;
                     this.pbxHookRope1.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdHookRope1.Visible = true;
                     this.lblQtdHookRope1.Text = StockQuantity.ToString();
                     break;
-                case "hookRope2":
+                case "hookrope2":
                     this.pbxHookRope2.Enabled = true;
                     this.pbxHookRope2.Visible = true;
                     this.pbxHookRope2.Image = ImageClass.GetImageIconArsenal(nameWeapons);
                     this.lblQtdHookRope2.Visible = true;
                     this.lblQtdHookRope2.Text = StockQuantity.ToString();
                     break;
-                case "hookRope3":
+                case "hookrope3":
                     this.pbxHookRope3.Enabled = true;
                     this.pbxHookRope3.Visible = true;
                     this.pbxHookRope3.Image = ImageClass.GetImageIconArsenal(nameWeapons);
@@ -418,7 +418,7 @@ namespace CurumimGameForms
                 if (picture.Image == null)
                 {
                     labelQuantity.Visible = true;
-                    ActivateAndLoadImage(weaponName.ToLower(), stockQuantity);
+                    ActivateAndLoadImage(weaponName, stockQuantity);
                 }
 
             }
