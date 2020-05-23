@@ -12,17 +12,11 @@ namespace CurumimGameForms
 {
     public partial class GameRoomsForms : Form
     {
-        public GameRoomsForms()
+        private Boolean caller { get; set; }
+        public GameRoomsForms(Boolean caller )
         {
             InitializeComponent();
-
-            //GameBattleForms gameBattleForms = new GameBattleForms(2);
-            //gameBattleForms.ShowDialog();
-        }
-
-        private void btnRoomsStart_Click(object sender, EventArgs e)
-        {
-
+            this.caller = caller;
         }
     }
 }

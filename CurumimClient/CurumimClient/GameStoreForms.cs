@@ -13,23 +13,23 @@ namespace CurumimGameForms
 {
     public partial class GameStoreForms : Form
     {
+        private GameProfileClasse gameProfileClasse;
         private Dictionary<string, dynamic> purchase = new Dictionary<string, dynamic>();
         private Dictionary<string, GameWeaponsClasse> itemStore;
         private List<dynamic> buyCar;
         private EventHandler PbxCloseStore { get; set; }
         private EventHandler BuyItemOnCLick { get; set; }
-        private EventHandler UpdateEmeraldEvent { get; set; }
         private Boolean OpenCar = true;
         private int ValueWallet { get; set; }
         private int ValuePurchase { get; set; }
-        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, Int32 valueWallet, EventHandler BuyItemOnCLick, EventHandler UpdateEmeraldEvent)
+        public GameStoreForms(EventHandler pbxCloseStore, Dictionary<string, GameWeaponsClasse> ItemStore, GameProfileClasse gameProfileClasse, EventHandler BuyItemOnCLick)
         {
             InitializeComponent();
-            this.ValueWallet = valueWallet;
+            this.gameProfileClasse = gameProfileClasse;
+            this.ValueWallet = this.gameProfileClasse.GetEsmeraldPlayer();
             this.lblWallet.Text = $"{this.ValueWallet}£";
             this.itemStore = ItemStore;
             this.PbxCloseStore = pbxCloseStore;
-            this.UpdateEmeraldEvent = UpdateEmeraldEvent;
             this.BuyItemOnCLick = BuyItemOnCLick;
             ColumnsDatagrid();
         }
@@ -125,13 +125,14 @@ namespace CurumimGameForms
                 amountItemPurchase = dyn.qtd;
                 valueUnitItemPurchase = dyn.valueUn;
                 valueTotalItemPurchase = dyn.valueFull;
-
+                
                 buyCar.Add(new
                 {
                     id_tbItem,
                     amountItemPurchase,
                     valueUnitItemPurchase,
-                    valueTotalItemPurchase
+                    valueTotalItemPurchase,
+                    this.ValueWallet
                 });
             }
             this.BuyItemOnCLick.Invoke(this, new PbxBuyItemCartEventArgs() { Buy = this.buyCar });
@@ -470,15 +471,11 @@ namespace CurumimGameForms
                 if (this.OpenCar == false)
                 {
                     OpenPnlCar();
-                    this.UpdateEmeraldEvent.Invoke(this, new UpdateEmeraldEventArgs() { ValuePurchase = this.ValuePurchase });
-                    this.purchase.Clear();
                 }
-                else
-                {
-                    this.UpdateEmeraldEvent.Invoke(this, new UpdateEmeraldEventArgs() { ValuePurchase = this.ValuePurchase });
-                    this.purchase.Clear();
-                }
+                this.purchase.Clear();
+                this.gameProfileClasse.SetEsmeraldPlayer(this.ValueWallet);
                 ClearLbl();
+                MessageBox.Show("Purchase successful", "Congratulations");
             }
         }
         private void ClearLbl()

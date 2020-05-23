@@ -70,10 +70,10 @@ namespace CurumimGameForms
         private const int STORE_TYPE_SET_BUY = 34;
         private const int STORE_TYPE_SET_BUY_SUCCESS = 35;
         private const int STORE_TYPE_SET_BUY_ERRO = 36;
-        //
-        private const int PLAYER_TYPE_SET_EMERALD = 37;
-        private const int PLAYER_TYPE_SET_EMERALD_SUCCESS = 38;
-        private const int PLAYER_TYPE_SET_EMERALD_ERRO = 39;
+
+        //private const int PLAYER_TYPE_SET_EMERALD = 37;
+        //private const int PLAYER_TYPE_SET_EMERALD_SUCCESS = 38;
+        //private const int PLAYER_TYPE_SET_EMERALD_ERRO = 39;
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
 
@@ -294,15 +294,8 @@ namespace CurumimGameForms
         }
         private Boolean CloseGameCurumim()
         {
-            Boolean x = true;
-            if (gameLoginForms != null) { x = false; }
-            if (gameForgotPasswordForms != null) { x = false; }
-            if (gameAvatarForms != null) { x = false; }
+            Boolean x = true;      
             if (gameChatPlayerForms != null) { x = false; }
-            if (gameProfileForms != null) { x = false; }
-            if (gameRoomsForms != null) { x = false; }
-            if (gameArsenalForms != null) { x = false; }
-            if (gameStoreForms != null) { x = false; }
             return x;
         }
         private void LoginSucessEvent(object sender, EventArgs e)
@@ -409,7 +402,7 @@ namespace CurumimGameForms
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
             if (pbxFormsOpenEventeArgs != null)
             {
-                if (pbxFormsOpenEventeArgs.Open == true) { this.gameRoomsForms = new GameRoomsForms(); this.gameRoomsForms.Show(); }
+                if (pbxFormsOpenEventeArgs.Open == true) { this.gameRoomsForms = new GameRoomsForms(pbxFormsOpenEventeArgs.Open); this.gameRoomsForms.Show(); }
             }
             else
             {
@@ -561,7 +554,7 @@ namespace CurumimGameForms
                 MessageBox.Show("Error Opening Chat Player");
             }
         }
-        private void GetSearchPlayer(object sender, EventArgs e)
+        private void GetSearchPlayer(object sender, EventArgs e)// Pesquisar por jogadores no jogo
         {
             GetSearchPlayerEventArgs getSearchPlayerEventArgs = e as GetSearchPlayerEventArgs;
             if (getSearchPlayerEventArgs != null)
@@ -584,7 +577,7 @@ namespace CurumimGameForms
                 }
             }
         }
-        private void GetMessageOnLoad(object sender, EventArgs e)
+        private void GetMessageOnLoad(object sender, EventArgs e)//Carrega as mensagem entre dois jogadores
         {
             BtnGetMessagePlayerChatEventArgs btnGetMessage = e as BtnGetMessagePlayerChatEventArgs;
             if (btnGetMessage != null)
@@ -682,7 +675,7 @@ namespace CurumimGameForms
             {
                 MessageBox.Show("Error Opening Arsenal");
             }
-        }
+        } //abrir o forms do ARSENAL
         private void PbxCloseArsenal(object sender, EventArgs e)
         {
             PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
@@ -698,8 +691,8 @@ namespace CurumimGameForms
             {
                 MessageBox.Show("Error Clouse Arsenal");
             }
-        }
-        private void PbxOpenStoreOnClick(object sender, EventArgs e)
+        }//fechar forms ARSENAL
+        private void PbxOpenStoreOnClick(object sender, EventArgs e) // abrir forms STORE
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
             if (pbxFormsOpenEventeArgs != null)
@@ -707,7 +700,7 @@ namespace CurumimGameForms
                 if (pbxFormsOpenEventeArgs.Open == true)
                 {
                     Int32 valueWallet = gameProfile.GetEsmeraldPlayer();
-                    this.gameStoreForms = new GameStoreForms(PbxCloseStore, this.StoreItem, valueWallet, BuyItemOnCLick, UpdateEmeraldEvent);
+                    this.gameStoreForms = new GameStoreForms(PbxCloseStore, this.StoreItem, this.gameProfile, BuyItemOnCLick);
                     this.gameStoreForms.ShowDialog();
                 }
                 else
@@ -720,34 +713,13 @@ namespace CurumimGameForms
                 MessageBox.Show("Error Opening Store");
             }
         }
-        private void UpdateEmeraldEvent(object sender, EventArgs e)
-        {
-            UpdateEmeraldEventArgs updateEmeraldEventArgs = e as UpdateEmeraldEventArgs;
-            if (updateEmeraldEventArgs != null)
-            {
-                int valueRurchase = updateEmeraldEventArgs.ValuePurchase;
-                int ValueWallet = gameProfile.GetEsmeraldPlayer();
-                ValueWallet = ValueWallet - valueRurchase;
-
-                client.SendMessage(new
-                {
-                    Type = PLAYER_TYPE_SET_EMERALD,
-                    idPlayer = gameProfile.GetIdPlayer(),
-                    ValueWallet
-                });
-            }
-            else
-            {
-                MessageBox.Show("Error Update Esmerald");
-            }
-        }
         private void BuyItemOnCLick(object sender, EventArgs e)
         {
             PbxBuyItemCartEventArgs pbxBuyItemCartEventArgs = e as PbxBuyItemCartEventArgs;
             if (pbxBuyItemCartEventArgs != null)
             {
                 this.BuyList = pbxBuyItemCartEventArgs.Buy;
-                this.gameLoadForms = new GameLoadForms(this.BuyList.Count + 1);
+                this.gameLoadForms = new GameLoadForms(this.BuyList.Count);
                 NextItemBuy();
                 this.gameLoadForms.ShowDialog();
             }
@@ -766,13 +738,13 @@ namespace CurumimGameForms
             {
                 if(this.contBuy <= this.BuyList.Count -1)
                 {
-                    int index = this.contBuy;
                     int listSize = this.BuyList.Count;
                     int idPlayer = gameProfile.GetIdPlayer();
-                    Int32 id_tbItem = this.BuyList[index].id_tbItem;
-                    Int32 amountItemPurchase = this.BuyList[index].amountItemPurchase;
-                    Int32 valueUnitItemPurchase = this.BuyList[index].valueUnitItemPurchase;
-                    Int32 valueTotalItemPurchase = this.BuyList[index].valueTotalItemPurchase;
+                    Int32 id_tbItem = this.BuyList[this.contBuy].id_tbItem;
+                    Int32 amountItemPurchase = this.BuyList[this.contBuy].amountItemPurchase;
+                    Int32 valueUnitItemPurchase = this.BuyList[this.contBuy].valueUnitItemPurchase;
+                    Int32 valueTotalItemPurchase = this.BuyList[this.contBuy].valueTotalItemPurchase;
+                    Int32 ValueWallet = this.BuyList[this.contBuy].ValueWallet;
 
                     client.SendMessage(new
                     {
@@ -782,6 +754,7 @@ namespace CurumimGameForms
                         amountItemPurchase,
                         valueUnitItemPurchase,
                         valueTotalItemPurchase,
+                        ValueWallet,
                         listSize
                     });
                 }
@@ -839,7 +812,7 @@ namespace CurumimGameForms
                     x = true;
                     break;
             }
-            OpenArsenal(true);
+            OpenArsenal(x);
         }
         private void OpenArsenal(Boolean Type)
         {
@@ -851,7 +824,7 @@ namespace CurumimGameForms
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
 
-            int sender_id_tbPlayer, status, idPlayer, receiver_id_tbPlayer, ValueWallet;
+            int sender_id_tbPlayer, status, receiver_id_tbPlayer;
             string message, dateTime, login;
 
             if (messageEventArgs != null)
@@ -983,21 +956,11 @@ namespace CurumimGameForms
                     case STORE_TYPE_SET_BUY_SUCCESS:
                         this.contBuy++;
                         this.gameLoadForms.SetValueProgessBar(this.contBuy);
+                        ClosePogressBar();
                         this.gameStoreForms.BuySucess();
                         break;
                     case STORE_TYPE_SET_BUY_ERRO:
-                        MessageBox.Show("erro na compra");
-                        ClosePogressBar();
-                        break;
-                    case PLAYER_TYPE_SET_EMERALD_SUCCESS:
-                        ValueWallet = messageEventArgs.Message.GetInt32("emerald");
-                        this.contBuy++;
-                        this.gameLoadForms.SetValueProgessBar(this.contBuy);
-                        ClosePogressBar();
-                        SetEmeralPlayer(ValueWallet);
-                        break;
-                    case PLAYER_TYPE_SET_EMERALD_ERRO:
-                        MessageBox.Show("Unable to update emerald", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Unable to load items buy", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         ClosePogressBar();
                         break;
                     case PROGRESSBAR_TYPE_NEXT:

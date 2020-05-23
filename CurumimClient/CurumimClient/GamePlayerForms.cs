@@ -19,7 +19,7 @@ namespace CurumimGameForms
         private EventHandler exitOnClick { get; set; }
         private EventHandler openAboutOnClick { get; set; }
 
-        private ImageClass ImageClass;
+        private ImageClass ImageClass = new ImageClass();
         private string controlLocation = "";
         private Boolean OpemMenu = true;
 
@@ -111,7 +111,6 @@ namespace CurumimGameForms
                 ClearLocation();
             }
         }
-
         private void lblLocationArsenal_Click(object sender, EventArgs e)
         {
             if (this.pbxArsenal.Image == null)

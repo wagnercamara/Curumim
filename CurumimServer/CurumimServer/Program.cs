@@ -66,7 +66,6 @@ namespace CurumimServer
         private const int STORE_TYPE_GET_ITEM_ERRO = 30;
 
         //Type Arsenal
-        //private static Dictionary<string, int> ItemPlayer;
         private const int ARSENAL_TYPE_GET_ITEM = 31;
         private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
         private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
@@ -78,9 +77,9 @@ namespace CurumimServer
         private const int STORE_TYPE_SET_BUY_ERRO = 36;
 
         //
-        private const int PLAYER_TYPE_SET_EMERALD = 37;
-        private const int PLAYER_TYPE_SET_EMERALD_SUCCESS = 38;
-        private const int PLAYER_TYPE_SET_EMERALD_ERRO = 39;
+        //private const int PLAYER_TYPE_SET_EMERALD = 37;
+        //private const int PLAYER_TYPE_SET_EMERALD_SUCCESS = 38;
+        //private const int PLAYER_TYPE_SET_EMERALD_ERRO = 39;
 
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
@@ -252,26 +251,18 @@ namespace CurumimServer
 
 
         }
-        private static void SetEmeraldUpdatePlayer(ThreadClient client, int idPlayer, int emerald)
+        private static Boolean SetEmeraldUpdatePlayer(ThreadClient client, int idPlayer, int emerald)
         {
             SQLQuery sQLQuery = new SQLQuery();
-            bool x = sQLQuery.SqlUpdateEmaraldPlayer(idPlayer, emerald);
-            if (x == true)
-            {
-                client.SendMessage(new { Type = PLAYER_TYPE_SET_EMERALD_SUCCESS, emerald });
-            }
-            else
-            {
-                client.SendMessage(new { Type = PLAYER_TYPE_SET_EMERALD_ERRO, emerald });
-            }
+            return sQLQuery.SqlUpdateEmaraldPlayer(idPlayer, emerald);
         }
-        private static void SetItemPurchase(ThreadClient client, Int32 idPlayer, Int32 id_tbItem, Int32 amountItemPurchase, Int32 valueUnitItemPurchase, Int32 valueTotalItemPurchase, Int32 listSize)
+        private static void SetItemPurchase(ThreadClient client, Int32 idPlayer, Int32 id_tbItem, Int32 amountItemPurchase, Int32 valueUnitItemPurchase, Int32 valueTotalItemPurchase, Int32 listSize, int emerald)
         {
             List<dynamic> DinBuy;
             if (BuyPlayers.ContainsKey(idPlayer) == false)
             {
                 BuyList = new List<dynamic>();
-                BuyPlayers.Add(idPlayer, BuyList);
+                BuyPlayers.Add(idPlayer, BuyList);//dicionario
                 DinBuy = BuyPlayers[idPlayer];
                 DinBuy.Add(new
                 {
@@ -280,7 +271,7 @@ namespace CurumimServer
                     valueUnitItemPurchase,
                     valueTotalItemPurchase
                 });
-                InsertBuyItem(DinBuy, client, idPlayer, listSize);
+                InsertBuyItem(DinBuy, client, idPlayer, listSize, emerald);
             }
             else
             {
@@ -292,10 +283,10 @@ namespace CurumimServer
                     valueUnitItemPurchase,
                     valueTotalItemPurchase
                 });
-                InsertBuyItem(DinBuy, client, idPlayer, listSize);
+                InsertBuyItem(DinBuy, client, idPlayer, listSize, emerald);
             }
         }
-        private static void InsertBuyItem(List<dynamic> DinBuy, ThreadClient client, Int32 idPlayer, Int32 listSize)
+        private static void InsertBuyItem(List<dynamic> DinBuy, ThreadClient client, Int32 idPlayer, Int32 listSize, int emerald)
         {
             if (DinBuy.Count == listSize)
             {
@@ -326,7 +317,7 @@ namespace CurumimServer
                     switch (InsertSucess)
                     {
                         case true:
-                            UpdateArsenal(client, idPlayer, DinBuy);
+                            UpdateArsenal(client, idPlayer, DinBuy, emerald);
                             break;
                         case false:
                             BuyPlayers.Remove(idPlayer);
@@ -345,7 +336,7 @@ namespace CurumimServer
                 client.SendMessage(new { Type = PROGRESSBAR_TYPE_NEXT });
             }
         }
-        private static void UpdateArsenal(ThreadClient client, int idPlayer, List<dynamic> DinBuy)
+        private static void UpdateArsenal(ThreadClient client, int idPlayer, List<dynamic> DinBuy, int emerald)
         {
             Console.WriteLine("ARSENAL_TYPE_GET_ITEM");
             Boolean InsertSucess = false;
@@ -367,8 +358,15 @@ namespace CurumimServer
             if (InsertSucess == true)
             {
                 BuyPlayers.Remove(idPlayer);
-                GetItemArsenal(client, idPlayer);
-                client.SendMessage(new { Type = STORE_TYPE_SET_BUY_SUCCESS });
+                if (SetEmeraldUpdatePlayer(client, idPlayer, emerald)==true)
+                {
+                    GetItemArsenal(client, idPlayer);
+                    client.SendMessage(new { Type = STORE_TYPE_SET_BUY_SUCCESS });
+                }
+                else
+                {
+                    client.SendMessage(new { Type = ARSENAL_TYPE_GET_ITEM_ERRO });
+                }
             }
             else
             {
@@ -526,15 +524,10 @@ namespace CurumimServer
                         amountItemPurchase = messageEventArgs.Message.GetInt32("amountItemPurchase");
                         valueUnitItemPurchase = messageEventArgs.Message.GetInt32("valueUnitItemPurchase");
                         valueTotalItemPurchase = messageEventArgs.Message.GetInt32("valueTotalItemPurchase");
+                        emerald = messageEventArgs.Message.GetInt32("ValueWallet");
                         listSize = messageEventArgs.Message.GetInt32("listSize");
 
-                        SetItemPurchase(client, idPlayer, id_tbItem, amountItemPurchase, valueUnitItemPurchase, valueTotalItemPurchase, listSize);
-                        break;
-                    case PLAYER_TYPE_SET_EMERALD:
-                        Console.WriteLine("PLAYER_TYPE_SET_EMERALD");
-                        idPlayer = messageEventArgs.Message.GetInt32("idPlayer");
-                        emerald = messageEventArgs.Message.GetInt32("ValueWallet");
-                        SetEmeraldUpdatePlayer(client, idPlayer, emerald);
+                        SetItemPurchase(client, idPlayer, id_tbItem, amountItemPurchase, valueUnitItemPurchase, valueTotalItemPurchase, listSize, emerald);
                         break;
                 }
             }

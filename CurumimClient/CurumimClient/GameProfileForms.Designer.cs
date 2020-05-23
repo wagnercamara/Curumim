@@ -193,6 +193,7 @@
             this.pbxAvatar.Location = new System.Drawing.Point(3, 40);
             this.pbxAvatar.Name = "pbxAvatar";
             this.pbxAvatar.Size = new System.Drawing.Size(354, 500);
+            this.pbxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxAvatar.TabIndex = 2;
             this.pbxAvatar.TabStop = false;
             // 
