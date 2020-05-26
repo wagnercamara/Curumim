@@ -39,5 +39,9 @@ namespace CurumimClient.Classe
         {
             return Image.FromFile(fillApp + @"Icon/iconForm/" + nameIcon + @".png");
         }
+        public Image GetImageRooms(String nameImage)
+        {
+            return Image.FromFile(fillApp + @"Rooms/" + nameImage + @".JPG");
+        }
     }
 }

@@ -1,0 +1,7 @@
+■ Sala de aposta:
+Salas onde o jogador tem que apostar um valor fixo para entrar! Neste tipo de  sala pode escolher com qual item e a quantidade de itens que irá entrar! 
+
+O vencedor fica com o dinheiro das apostas e com aquilo que ele coletar de tesouro no campo, também com os pontos que valem o tipo de sala! só será debitado do seu arsenal o que ele utilizou durante a partida.
+
+O perdedor, irá perder aquilo que apostou e todas as armas que levou para o jogo!
+

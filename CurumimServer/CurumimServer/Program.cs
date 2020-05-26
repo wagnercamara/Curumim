@@ -77,9 +77,9 @@ namespace CurumimServer
         private const int STORE_TYPE_SET_BUY_ERRO = 36;
 
         //
-        //private const int PLAYER_TYPE_SET_EMERALD = 37;
-        //private const int PLAYER_TYPE_SET_EMERALD_SUCCESS = 38;
-        //private const int PLAYER_TYPE_SET_EMERALD_ERRO = 39;
+        private const int PLAYER_TYPE_GET_POSITION = 37;
+        private const int PLAYER_TYPE_GET_POSITION_SUCCESS = 38;
+        private const int PLAYER_TYPE_GET_POSITION_ERRO = 39;
 
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
@@ -136,6 +136,12 @@ namespace CurumimServer
         {
             SQLQuery sQLQuery = new SQLQuery();
             dynamic dynamic = sQLQuery.GetSearchPlayer(login, v);
+            client.SendMessage(dynamic);
+        }
+        private static void GetPlayerPosition(ThreadClient client, int idPlayer)
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            dynamic dynamic = sQLQuery.GetPlayerPosition(idPlayer);
             client.SendMessage(dynamic);
         }
         private static void SetNewPlayer(ThreadClient client, string fullNamePlayer, string loginPlayer, string passwordPlayer, string secretPhresePlayer, string avatarPlayer)
@@ -528,6 +534,11 @@ namespace CurumimServer
                         listSize = messageEventArgs.Message.GetInt32("listSize");
 
                         SetItemPurchase(client, idPlayer, id_tbItem, amountItemPurchase, valueUnitItemPurchase, valueTotalItemPurchase, listSize, emerald);
+                        break;
+                    case PLAYER_TYPE_GET_POSITION:
+                        Console.WriteLine("PLAYER_TYPE_GET_POSITION");
+                        idPlayer = messageEventArgs.Message.GetInt32("idPlayer");
+                        GetPlayerPosition(client, idPlayer);
                         break;
                 }
             }

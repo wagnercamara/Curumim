@@ -135,7 +135,7 @@ namespace CurumimGameForms
                     this.ValueWallet
                 });
             }
-            this.BuyItemOnCLick.Invoke(this, new PbxBuyItemCartEventArgs() { Buy = this.buyCar });
+            this.BuyItemOnCLick.Invoke(this, new PbxItemsEventArgs() { Items = this.buyCar });
         }
         private void pbxClouse_Click(object sender, EventArgs e)
         {

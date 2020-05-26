@@ -25,7 +25,6 @@ CREATE TABLE [dbo].[tbPlayer](
 	[secretPhresePlayer] [varchar](200) NOT NULL,
 	[avatarPlayer] [varchar](50) NOT NULL,
 	[punctuationPlayer] [bigint] NOT NULL,
-	[rankingPlayer] [int] NOT NULL,
 	[victoryPlayer] [int] NOT NULL,
 	[totalBatllesPlayer] [int] NOT NULL,
 	[esmeraldPlayer] [bigint] NOT NULL,
@@ -344,7 +343,6 @@ CREATE PROCEDURE [dbo].[SetNewPlayer]
 
 
 @punctuationPlayer bigint,
-@rankingPlayer int,
 @victoryPlayer int,
 @totalBatllesPlayer int,
 @esmeraldPlayer bigint,
@@ -361,7 +359,6 @@ INSERT INTO [dbo].[tbPlayer]
       ,[secretPhresePlayer]
       ,[avatarPlayer]
       ,[punctuationPlayer]
-      ,[rankingPlayer]
       ,[victoryPlayer]
       ,[totalBatllesPlayer]
       ,[esmeraldPlayer]
@@ -377,7 +374,6 @@ VALUES
 @avatarPlayer,
 
 @punctuationPlayer,
-@rankingPlayer,
 @victoryPlayer,
 @totalBatllesPlayer,
 @esmeraldPlayer,
@@ -538,7 +534,6 @@ RETURN
 	[passwordPlayer],
 	[secretPhresePlayer],
 	[punctuationPlayer],
-	[rankingPlayer],
 	[victoryPlayer],
 	[totalBatllesPlayer],
 	[esmeraldPlayer]
@@ -648,5 +643,20 @@ SELECT
   FROM [dbo].[tbArsenalPlayer]as a
   INNER JOIN [dbo].[tbItem] as i on i.idItem = a.[id_tbItem]
   WHERE a.[id_tbPlayer] = @idPlayer
+)
+GO
+
+CREATE FUNCTION [dbo].[GetPlayerPosition] ---
+(@idPlayer int)
+RETURNS TABLE 
+AS
+RETURN 
+(
+SELECT t.* FROM(
+	SELECT
+		idPlayer,
+		ROW_NUMBER() OVER(order by punctuationPlayer desc) AS position
+	FROM tbPlayer) t
+WHERE t.idPlayer = @idPlayer
 )
 GO

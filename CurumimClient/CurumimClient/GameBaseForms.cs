@@ -70,10 +70,10 @@ namespace CurumimGameForms
         private const int STORE_TYPE_SET_BUY = 34;
         private const int STORE_TYPE_SET_BUY_SUCCESS = 35;
         private const int STORE_TYPE_SET_BUY_ERRO = 36;
-
-        //private const int PLAYER_TYPE_SET_EMERALD = 37;
-        //private const int PLAYER_TYPE_SET_EMERALD_SUCCESS = 38;
-        //private const int PLAYER_TYPE_SET_EMERALD_ERRO = 39;
+        //
+        private const int PLAYER_TYPE_GET_POSITION = 37;
+        private const int PLAYER_TYPE_GET_POSITION_SUCCESS = 38;
+        private const int PLAYER_TYPE_GET_POSITION_ERRO = 39;
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
 
@@ -106,6 +106,7 @@ namespace CurumimGameForms
         GameStoreForms gameStoreForms = null;
         GameAboutForms gameAboutForms = null;
         GameLoadForms gameLoadForms = null;
+        GameBattleForms gameBattleForms = null;
 
         //Classe
         GameProfileClasse gameProfile = null;
@@ -113,7 +114,7 @@ namespace CurumimGameForms
         //Atributos
         string rooms = "";
         int contBuy = 0;
-        List<dynamic> BuyList = new List<dynamic>();
+        List<dynamic> ListItem = new List<dynamic>();
 
         //Delegate
         private delegate void LoadDelegate(MessageEventArgs messageEventArgs);
@@ -194,7 +195,6 @@ namespace CurumimGameForms
 
                 Int32 idPlayer = messageEventArgs.Message.GetInt32("idPlayer");//
                 Int32 punctuationPlayer = messageEventArgs.Message.GetInt32("punctuationPlayer");//
-                Int32 rankingPlayer = messageEventArgs.Message.GetInt32("rankingPlayer");//
                 Int32 victoryPlayer = messageEventArgs.Message.GetInt32("victoryPlayer");//
                 Int32 totalBatllesPlayer = messageEventArgs.Message.GetInt32("totalBatllesPlayer");//
                 Int32 esmeraldPlayer = messageEventArgs.Message.GetInt32("esmeraldPlayer");//
@@ -202,7 +202,6 @@ namespace CurumimGameForms
                 gameProfile = new GameProfileClasse(idPlayer, fullNamePlayer, loginPlayer, avatarPlayer);
 
                 gameProfile.SetPunctuationPlayer(punctuationPlayer);
-                gameProfile.SetRankingPlayer(rankingPlayer);
                 gameProfile.SetVictoryPlayer(victoryPlayer);
                 gameProfile.SetTotalBatllesPlayer(totalBatllesPlayer);
                 gameProfile.SetEsmeraldPlayer(esmeraldPlayer);
@@ -221,6 +220,17 @@ namespace CurumimGameForms
             {
                 gameProfile.SetEsmeraldPlayer(ValueWallet);
                 MessageBox.Show("Purchase completed successfully", "Congratulations");
+            }
+        }
+        private void GetPlayerPosition(int position)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new UpdateDelegate(GetPlayerPosition), new object[] { position });
+            }
+            else
+            {
+                gameProfile.SetRankingPlayer(position);
             }
         }
         private void GetItemStore()
@@ -284,8 +294,6 @@ namespace CurumimGameForms
                 }
                 else
                 {
-                    this.ArsenalItem.Remove(nameItem);
-
                     GameWeaponsClasse g = this.StoreItem[nameItem];
                     g.SetAmountWeapons(amountArsenal);
                     this.ArsenalItem.Add(nameItem, g);
@@ -294,7 +302,7 @@ namespace CurumimGameForms
         }
         private Boolean CloseGameCurumim()
         {
-            Boolean x = true;      
+            Boolean x = true;
             if (gameChatPlayerForms != null) { x = false; }
             return x;
         }
@@ -372,23 +380,16 @@ namespace CurumimGameForms
                 MessageBox.Show("Error Close Profile");
             }
         }
-        private void PbxProfileOnClick(object sender, EventArgs e) // Chama o ptofile do player
+        private void PbxProfileOnClick(object sender, EventArgs e) // Chama o Forms profile do player
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
             if (pbxFormsOpenEventeArgs != null)
             {
                 if (pbxFormsOpenEventeArgs.Open == true)
                 {
-                    if (this.gameProfileForms != null)
-                    {
-                        this.gameProfileForms.Show();
-                        //Application.OpenForms["gameProfileForms"].BringToFront(); // traz um forms já criado pra fente novamente.
-                    }
-                    else
-                    {
-                        this.gameProfileForms = new GameProfileForms(this.gameProfile, PbxProfileClouseOnClick);
-                        this.gameProfileForms.Show();
-                    }
+                    this.client.SendMessage(new {Type = PLAYER_TYPE_GET_POSITION, idPlayer = this.gameProfile.GetIdPlayer()});
+                    this.gameProfileForms = new GameProfileForms(this.gameProfile, PbxProfileClouseOnClick);
+                    this.gameProfileForms.ShowDialog();
                 }
                 else
                 {
@@ -397,18 +398,52 @@ namespace CurumimGameForms
 
             }
         }
-        private void RoomsOpenOnClick(object sender, EventArgs e)
+        private void RoomsOpenOnClick(object sender, EventArgs e)//chama o forms das Salas.
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
             if (pbxFormsOpenEventeArgs != null)
             {
-                if (pbxFormsOpenEventeArgs.Open == true) { this.gameRoomsForms = new GameRoomsForms(pbxFormsOpenEventeArgs.Open); this.gameRoomsForms.Show(); }
+                if (pbxFormsOpenEventeArgs.Open == true)
+                {
+                    this.gameRoomsForms = new GameRoomsForms(pbxFormsOpenEventeArgs.Open, this.gameProfile, ClouseRoomsOnClick, InformationRoomLoad);
+                    this.gameRoomsForms.ShowDialog();
+                }
             }
             else
             {
                 MessageBox.Show("Error Opening Rooms");
             }
-        } // abre a sala
+        }
+        private void InformationRoomLoad(object sender, EventArgs e) //carregar informações da sala (taylor)
+        {
+            BtnRoomsInformationEventArgs btnRoomsInformationEventArgs = e as BtnRoomsInformationEventArgs;
+            if (btnRoomsInformationEventArgs != null)
+            {
+                int[] values = btnRoomsInformationEventArgs.valuesRoom;
+                this.gameBattleForms = new GameBattleForms(values[0]);
+                this.gameBattleForms.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Error Buy Store");
+            }
+        }
+        private void ClouseRoomsOnClick(object sender, EventArgs e)// facha o forms das salas
+        {
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                {
+                    this.gameRoomsForms.Close();
+                    this.gameRoomsForms = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Close Rooms");
+            }
+        }
         private void PbxProfileClouseOnClick(object sender, EventArgs e)
         {
             PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
@@ -715,11 +750,11 @@ namespace CurumimGameForms
         }
         private void BuyItemOnCLick(object sender, EventArgs e)
         {
-            PbxBuyItemCartEventArgs pbxBuyItemCartEventArgs = e as PbxBuyItemCartEventArgs;
+            PbxItemsEventArgs pbxBuyItemCartEventArgs = e as PbxItemsEventArgs;
             if (pbxBuyItemCartEventArgs != null)
             {
-                this.BuyList = pbxBuyItemCartEventArgs.Buy;
-                this.gameLoadForms = new GameLoadForms(this.BuyList.Count);
+                this.ListItem = pbxBuyItemCartEventArgs.Items;
+                this.gameLoadForms = new GameLoadForms(this.ListItem.Count);
                 NextItemBuy();
                 this.gameLoadForms.ShowDialog();
             }
@@ -736,15 +771,15 @@ namespace CurumimGameForms
             }
             else
             {
-                if(this.contBuy <= this.BuyList.Count -1)
+                if (this.contBuy <= this.ListItem.Count - 1)
                 {
-                    int listSize = this.BuyList.Count;
+                    int listSize = this.ListItem.Count;
                     int idPlayer = gameProfile.GetIdPlayer();
-                    Int32 id_tbItem = this.BuyList[this.contBuy].id_tbItem;
-                    Int32 amountItemPurchase = this.BuyList[this.contBuy].amountItemPurchase;
-                    Int32 valueUnitItemPurchase = this.BuyList[this.contBuy].valueUnitItemPurchase;
-                    Int32 valueTotalItemPurchase = this.BuyList[this.contBuy].valueTotalItemPurchase;
-                    Int32 ValueWallet = this.BuyList[this.contBuy].ValueWallet;
+                    Int32 id_tbItem = this.ListItem[this.contBuy].id_tbItem;
+                    Int32 amountItemPurchase = this.ListItem[this.contBuy].amountItemPurchase;
+                    Int32 valueUnitItemPurchase = this.ListItem[this.contBuy].valueUnitItemPurchase;
+                    Int32 valueTotalItemPurchase = this.ListItem[this.contBuy].valueTotalItemPurchase;
+                    Int32 ValueWallet = this.ListItem[this.contBuy].ValueWallet;
 
                     client.SendMessage(new
                     {
@@ -770,11 +805,11 @@ namespace CurumimGameForms
             {
                 this.gameLoadForms.Close();
                 this.contBuy = 0;
-                this.BuyList.Clear();
+                this.ListItem.Clear();
                 this.gameLoadForms = null;
             }
         }
-        private void PbxCloseStore(object sender, EventArgs e)
+        private void PbxCloseStore(object sender, EventArgs e)//fechar forms Loja
         {
             PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
             if (pbxFormsCloseEventeArgs != null)
@@ -824,7 +859,7 @@ namespace CurumimGameForms
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
 
-            int sender_id_tbPlayer, status, receiver_id_tbPlayer;
+            int sender_id_tbPlayer, status, receiver_id_tbPlayer, position;
             string message, dateTime, login;
 
             if (messageEventArgs != null)
@@ -967,6 +1002,13 @@ namespace CurumimGameForms
                         this.contBuy++;
                         this.gameLoadForms.SetValueProgessBar(this.contBuy);
                         NextItemBuy();
+                        break;
+                    case PLAYER_TYPE_GET_POSITION_SUCCESS:
+                        position = messageEventArgs.Message.GetInt32("position");
+                        GetPlayerPosition(position);
+                        break;
+                    case PLAYER_TYPE_GET_POSITION_ERRO:
+                        MessageBox.Show("Unable to load position", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
 
                 }

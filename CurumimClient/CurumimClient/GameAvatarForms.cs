@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CurumimGameForms.BtnEventArgs;
 using CurumimClient.Classe;
@@ -35,7 +30,7 @@ namespace CurumimGameForms
 
             if (UploadFile(this.fileAppImg) == false)
             {
-                MessageBox.Show("Erro ao Carregar imagens, Verifique o aquivo Index", "Erro Carregamento de Image,");
+                MessageBox.Show("Error loading images, check the Index file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             this.lblOptions.Text = GetName(0);

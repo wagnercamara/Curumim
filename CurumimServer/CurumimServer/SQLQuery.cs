@@ -53,7 +53,8 @@ namespace CurumimServer
         private const int MESSAGE_TYPE_GET_CONTACTS_SUCCESS = 23;
         private const int MESSAGE_TYPE_GET_CONTACTS_ERRO = 24;
         private const int MESSAGE_TYPE_NEW_MESSAGE_ONLINE = 25;
-
+        //
+        private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
         //
         private const int STORE_TYPE_GET_ITEM_SUCCESS = 29;
         private const int STORE_TYPE_GET_ITEM_ERRO = 30;
@@ -61,9 +62,11 @@ namespace CurumimServer
         //
         private const int ARSENAL_TYPE_GET_ITEM_SUCCESS = 32;
         private const int ARSENAL_TYPE_GET_ITEM_ERRO = 33;
+        //
+        private const int PLAYER_TYPE_GET_POSITION_SUCCESS = 38;
+        private const int PLAYER_TYPE_GET_POSITION_ERRO = 39;
 
 
-        private const int MESSAGE_TYPE_GET_MESSAGE_BOX_SUCCESS = 27;
 
         private ConnectionDB sQLConnection = new ConnectionDB();
 
@@ -96,7 +99,6 @@ namespace CurumimServer
                 this.sqlCommand.Parameters.AddWithValue("@secretPhresePlayer", secretPhresePlayer);
                 this.sqlCommand.Parameters.AddWithValue("@avatarPlayer", avatarPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@punctuationPlayer", 0);
-                this.sqlCommand.Parameters.AddWithValue("@rankingPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@victoryPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@totalBatllesPlayer", 0);
                 this.sqlCommand.Parameters.AddWithValue("@esmeraldPlayer", 20);
@@ -405,7 +407,6 @@ namespace CurumimServer
                             avatarPlayer = reader["avatarPlayer"].ToString(),
 
                             punctuationPlayer = Int32.Parse(reader["punctuationPlayer"].ToString()),
-                            rankingPlayer = Int32.Parse(reader["rankingPlayer"].ToString()),
                             victoryPlayer = Int32.Parse(reader["victoryPlayer"].ToString()),
                             totalBatllesPlayer = Int32.Parse(reader["totalBatllesPlayer"].ToString()),
                             esmeraldPlayer = Int32.Parse(reader["esmeraldPlayer"].ToString()),
@@ -493,6 +494,52 @@ namespace CurumimServer
             else
             {
                 dynamic = (new { Type = MESSAGE_TYPE_GET_SEARCH_PLAYER_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return dynamic;
+        }
+        public dynamic GetPlayerPosition(int idPlayer)
+        {
+            dynamic dynamic = null;
+            Boolean successfullyConnected = false;
+
+            try
+            {
+                sqlCommand.Connection = sQLConnection.OpenConnection();
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetPlayerPosition] (@idPlayer)";
+                this.sqlCommand.Parameters.Clear();
+                this.sqlCommand.Parameters.AddWithValue("@idPlayer", idPlayer);
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+
+                    if (reader.Read() == true)
+                    {
+                        dynamic(new
+                        {
+                            Type = PLAYER_TYPE_GET_POSITION_SUCCESS,
+                            position = Int32.Parse(reader["position"].ToString())
+                        });
+                    }
+                }
+                catch
+                {
+                    dynamic(new { Type = PLAYER_TYPE_GET_POSITION_ERRO });
+                }
+            }
+            else
+            {
+                dynamic(new { Type = PLAYER_TYPE_GET_POSITION_ERRO });
             }
             this.sQLConnection.ClouseConnection();
             return dynamic;

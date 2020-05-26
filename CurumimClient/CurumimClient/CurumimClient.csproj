@@ -64,6 +64,7 @@
     <Compile Include="BtnEventArgs\BtnLoginOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnRegisterOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnRoomsInformationEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnSelectRoomsEventArgs.cs" />
     <Compile Include="Classe\ButtonField.cs">
       <SubType>Component</SubType>
@@ -406,6 +407,15 @@
     <Content Include="img\Icon\player\up_W.png" />
     <Content Include="img\Icon\player\Vigia.png" />
     <Content Include="img\Icon\player\Winner.png" />
+    <Content Include="img\Rooms\Acauã.JPG" />
+    <Content Include="img\Rooms\Anhangá.jpg" />
+    <Content Include="img\Rooms\Caipora.jpg" />
+    <Content Include="img\Rooms\Folclore.jpg" />
+    <Content Include="img\Rooms\Iara.jpg" />
+    <Content Include="img\Rooms\index.txt" />
+    <Content Include="img\Rooms\Jací.jpg" />
+    <Content Include="img\Rooms\Kianumaka-Manã.jpg" />
+    <Content Include="img\Rooms\Tupã.jpg" />
     <Content Include="img\WallpaperGame\WallpaperGamaBaseForms.jpg" />
     <Content Include="obj\Debug\CurumimGameForms.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\CurumimGameForms.exe" />

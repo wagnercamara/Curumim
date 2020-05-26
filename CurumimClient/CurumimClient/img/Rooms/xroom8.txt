@@ -1,0 +1,6 @@
+Sala Maluca:
+Aposta livre: (pontos = valor da aposta / 2)
+Bau: Nesta sala terá uma quantidade aleatória de baús de tesouro (1 a 10)com o valor apostado dividido pela quantidade de baús cada (ex: 20000 apostado total, 5 baús = 4000 cada baú).
+Quantidade aleatória de esmeraldas avulsas (100 a 300)!
+
+Observação: Só será atribuido o valor inteiro da divisão.

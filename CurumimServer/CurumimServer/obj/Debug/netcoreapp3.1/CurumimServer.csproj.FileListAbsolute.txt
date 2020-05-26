@@ -36,7 +36,6 @@ C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes
 C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.dll
 C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.pdb
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csprojAssemblyReference.cache
 C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CoreCompileInputs.cache
 C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfoInputs.cache
 C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfo.cs

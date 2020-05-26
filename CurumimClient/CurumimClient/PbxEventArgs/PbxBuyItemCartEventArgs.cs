@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace CurumimClient.PbxEventArgs
 {
-    public class PbxBuyItemCartEventArgs : EventArgs
+    public class PbxItemsEventArgs : EventArgs
     {
-        public List<dynamic> Buy;
+        public List<dynamic> Items;
     }
 }

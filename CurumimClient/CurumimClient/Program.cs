@@ -17,7 +17,7 @@ namespace CurumimGameForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameRoomsForms(true));
+            Application.Run(new GameBaseForms());
         }
     }
 }
