@@ -513,7 +513,6 @@ namespace CurumimServer
                 Console.WriteLine(ex.ToString());
             }
 
-
             if (successfullyConnected == true)
             {
                 this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetPlayerPosition] (@idPlayer)";
@@ -525,21 +524,21 @@ namespace CurumimServer
 
                     if (reader.Read() == true)
                     {
-                        dynamic(new
+                        dynamic = (new
                         {
                             Type = PLAYER_TYPE_GET_POSITION_SUCCESS,
                             position = Int32.Parse(reader["position"].ToString())
-                        });
+                    });
                     }
                 }
                 catch
                 {
-                    dynamic(new { Type = PLAYER_TYPE_GET_POSITION_ERRO });
+                    dynamic = (new { Type = PLAYER_TYPE_GET_POSITION_ERRO });
                 }
             }
             else
             {
-                dynamic(new { Type = PLAYER_TYPE_GET_POSITION_ERRO });
+                dynamic = (new { Type = PLAYER_TYPE_GET_POSITION_ERRO });
             }
             this.sQLConnection.ClouseConnection();
             return dynamic;

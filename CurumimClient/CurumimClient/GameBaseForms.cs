@@ -231,6 +231,8 @@ namespace CurumimGameForms
             else
             {
                 gameProfile.SetRankingPlayer(position);
+                this.gameProfileForms = new GameProfileForms(this.gameProfile, PbxProfileClouseOnClick);
+                this.gameProfileForms.ShowDialog();
             }
         }
         private void GetItemStore()
@@ -388,8 +390,6 @@ namespace CurumimGameForms
                 if (pbxFormsOpenEventeArgs.Open == true)
                 {
                     this.client.SendMessage(new {Type = PLAYER_TYPE_GET_POSITION, idPlayer = this.gameProfile.GetIdPlayer()});
-                    this.gameProfileForms = new GameProfileForms(this.gameProfile, PbxProfileClouseOnClick);
-                    this.gameProfileForms.ShowDialog();
                 }
                 else
                 {

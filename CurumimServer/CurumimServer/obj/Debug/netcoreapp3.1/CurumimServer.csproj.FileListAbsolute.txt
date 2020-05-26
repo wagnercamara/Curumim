@@ -43,3 +43,4 @@ C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimS
 C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.dll
 C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.pdb
 C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.genruntimeconfig.cache
+C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csprojAssemblyReference.cache
