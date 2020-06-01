@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8RhUkyFB6/WZkrtm+SrDpO+KS8KJVIM++wbdZuxLOlSC9V5JL4HVV9XynYZS3XjGrjJfGkXMxXzgkFSBRZQr5w==",
+  "dgSpecHash": "8s5m5nNdVVqwyQ0Y1PqG0sR1VrRqWcCjfP4vCNtVmR0PX3Y/LtazW+lLongkKs+yQE9PQmiJCl5imU8PajGZ1g==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
+  "projectFilePath": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wagne\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\wagne\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
@@ -13,7 +13,8 @@
     "C:\\Users\\wagne\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\wagne\\.nuget\\packages\\system.data.sqlclient\\4.8.1\\system.data.sqlclient.4.8.1.nupkg.sha512",
     "C:\\Users\\wagne\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\wagne\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\wagne\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\wagne\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []
 }

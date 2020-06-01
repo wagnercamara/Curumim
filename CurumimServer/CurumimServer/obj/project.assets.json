@@ -500,11 +500,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
+      "projectUniqueName": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
       "projectName": "CurumimServer",
-      "projectPath": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
+      "projectPath": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
       "packagesPath": "C:\\Users\\wagne\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Curumim\\CurumimServer\\CurumimServer\\obj\\",
+      "outputPath": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wagne\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -550,12 +550,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
