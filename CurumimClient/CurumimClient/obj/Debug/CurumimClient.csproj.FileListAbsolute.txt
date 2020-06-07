@@ -1,88 +1,3 @@
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe.config
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.pdb
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.dll
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csprojAssemblyReference.cache
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAboutForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameArsenalForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAvatarForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameBaseForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameBattleForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameChatBatlleForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameChatPlayerFroms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameForgotPasswordForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameLoginForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GamePlayerForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameProfileForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameStoreForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.Properties.Resources.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.GenerateResource.cache
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CoreCompileInputs.cache
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CopyComplete
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.exe
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.pdb
-C:\myProject\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameRoomsForms.resources
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.xml
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.dll
-C:\myProject\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.pdb
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameBaseForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe.config
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.pdb
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.dll
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.dll
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.pdb
-C:\Projects\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.xml
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAboutForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameArsenalForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAvatarForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameBattleForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameChatBatlleForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameChatPlayerFroms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameForgotPasswordForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameLoginForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GamePlayerForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameProfileForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameRoomsForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameStoreForms.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.Properties.Resources.resources
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.GenerateResource.cache
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CoreCompileInputs.cache
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CopyComplete
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.exe
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.pdb
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csprojAssemblyReference.cache
-C:\Projects\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.GameLoadForms.resources
-<<<<<<< Updated upstream
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe.config
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.pdb
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.dll
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.dll
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.pdb
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.xml
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csprojAssemblyReference.cache
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAboutForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameArsenalForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAvatarForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameBaseForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameBattleForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameChatBatlleForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameChatPlayerFroms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameForgotPasswordForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.GameLoadForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameLoginForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GamePlayerForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameProfileForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameRoomsForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameStoreForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.Properties.Resources.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.GenerateResource.cache
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CoreCompileInputs.cache
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CopyComplete
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.exe
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.pdb
-=======
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe.config
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.exe
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Debug\CurumimClient.pdb
@@ -90,6 +5,7 @@ C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\b
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Debug\Base.pdb
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csprojAssemblyReference.cache
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAboutForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameArsenalForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimGameForms.GameAvatarForms.resources
@@ -110,4 +26,3 @@ C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\o
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.csproj.CopyComplete
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.exe
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Debug\CurumimClient.pdb
->>>>>>> Stashed changes

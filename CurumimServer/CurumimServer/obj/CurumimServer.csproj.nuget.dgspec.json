@@ -1,19 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< Updated upstream
-    "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj": {}
-  },
-  "projects": {
-    "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
-        "projectName": "CurumimServer",
-        "projectPath": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
-        "packagesPath": "C:\\Users\\wagne\\.nuget\\packages\\",
-        "outputPath": "C:\\projeto curumim\\Curumim\\CurumimServer\\CurumimServer\\obj\\",
-=======
     "C:\\Users\\Taylor\\OneDrive\\Documentos\\GitHub\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj": {}
   },
   "projects": {
@@ -25,7 +12,6 @@
         "projectPath": "C:\\Users\\Taylor\\OneDrive\\Documentos\\GitHub\\Curumim\\CurumimServer\\CurumimServer\\CurumimServer.csproj",
         "packagesPath": "C:\\Users\\Taylor\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Taylor\\OneDrive\\Documentos\\GitHub\\Curumim\\CurumimServer\\CurumimServer\\obj\\",
->>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -75,22 +61,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-<<<<<<< Updated upstream
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
-=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
->>>>>>> Stashed changes
         }
       }
     }

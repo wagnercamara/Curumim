@@ -221,34 +221,6 @@
     <EmbeddedResource Include="GameStoreForms.resx">
       <DependentUpon>GameStoreForms.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameAboutForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameArsenalForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameAvatarForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameBaseForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameBattleForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameChatBatlleForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameChatPlayerFroms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameForgotPasswordForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameLoginForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GamePlayerForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameProfileForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.GameStoreForms.resources" />
-    <EmbeddedResource Include="obj\Debug\CurumimGameForms.Properties.Resources.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameAboutForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameArsenalForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameAvatarForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameBaseForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameBattleForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameChatBatlleForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameChatPlayerFroms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameForgotPasswordForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameLoginForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameOptionForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GamePlayerForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameProfileForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameRegisterForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.GameStoreForms.resources" />
-    <EmbeddedResource Include="obj\Release\CurumimGameForms.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -259,21 +231,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="bin\Debug\CurumimClient.exe.config" />
-    <None Include="bin\Release\CurumimClient.exe.config" />
-    <None Include="obj\Debug\CurumimClient.csprojAssemblyReference.cache" />
-    <None Include="obj\Debug\CurumimGameForms.csproj.CopyComplete" />
-    <None Include="obj\Debug\CurumimGameForms.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\CurumimGameForms.csproj.GenerateResource.cache" />
-    <None Include="obj\Debug\CurumimGameForms.csprojAssemblyReference.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Release\CurumimGameForms.csproj.CopyComplete" />
-    <None Include="obj\Release\CurumimGameForms.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Release\CurumimGameForms.csproj.GenerateResource.cache" />
-    <None Include="obj\Release\CurumimGameForms.csprojAssemblyReference.cache" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -294,18 +251,6 @@
     <Content Include="Base\Base.pdb" />
     <Content Include="Base\Newtonsoft.Json.dll" />
     <Content Include="Base\Newtonsoft.Json.xml" />
-    <Content Include="bin\Debug\Base.dll" />
-    <Content Include="bin\Debug\Base.pdb" />
-    <Content Include="bin\Debug\CurumimClient.exe" />
-    <Content Include="bin\Debug\CurumimClient.pdb" />
-    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
-    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
-    <Content Include="bin\Release\Base.dll" />
-    <Content Include="bin\Release\Base.pdb" />
-    <Content Include="bin\Release\CurumimClient.exe" />
-    <Content Include="bin\Release\CurumimClient.pdb" />
-    <Content Include="bin\Release\Newtonsoft.Json.dll" />
-    <Content Include="bin\Release\Newtonsoft.Json.xml" />
     <Content Include="img\Avatar\Caramuru.PNG" />
     <Content Include="img\Avatar\Cauã.PNG" />
     <Content Include="img\Avatar\Coyote.png" />
@@ -466,14 +411,6 @@
     <Content Include="img\Rooms\Kianumaka-Manã.jpg" />
     <Content Include="img\Rooms\Tupã.jpg" />
     <Content Include="img\WallpaperGame\WallpaperGamaBaseForms.jpg" />
-    <Content Include="obj\Debug\CurumimGameForms.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\CurumimGameForms.exe" />
-    <Content Include="obj\Debug\CurumimGameForms.pdb" />
-    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-    <Content Include="obj\Release\CurumimGameForms.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Release\CurumimGameForms.exe" />
-    <Content Include="obj\Release\CurumimGameForms.pdb" />
-    <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

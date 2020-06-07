@@ -166,11 +166,11 @@ namespace CurumimGameForms
         {
             if (this.loginPlayer1 == loginPlayer)
             {
-                pnlFieldRight.Enabled = false;
+                pnlFieldLeft.Enabled = false;
             }
             else
             {
-                pnlFieldLeft.Enabled = false;
+                pnlFieldRight.Enabled = false;
             }
         }
 

@@ -74,13 +74,7 @@ namespace CurumimGameForms
                 {
                     valuesRoom = new int[]
                     {
-                        NumberRoom,
-                        BetRoom,
-                        PontuctionRoom,
-                        DetachedRoom,
-                        AmountChestRoom,
-                        ValueChest,
-                        idPlayer
+                        NumberRoom
                     }
                 });
             }
