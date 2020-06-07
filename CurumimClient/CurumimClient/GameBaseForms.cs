@@ -93,7 +93,18 @@ namespace CurumimGameForms
 
 
         ///taylor
-        ///
+        private const int BATTLE_TYPE_ENTERED_BATTLE = 50;
+        private const int BATTLE_TYPE_ENTERED_BATTLE_SUCCESS = 51;
+        private const int BATTLE_TYPE_EXIT_BATTLE = 52;
+        private const int BATTLE_TYPE_GET_FIELDS = 53;
+        private const int BATTLE_TYPE_GET_FIELDS_SUCCESS = 54;
+        private const int BATTLE_TYPE_GET_FIELDS_ERROR = 55;
+        private const int BATTLE_TYPE_SET_DESTROYED_SIDE = 56;
+        private const int BATTLE_TYPE_SET_DESTROYED_SIDE_SUCECSS = 57;
+        private const int BATTLE_TYPE_SET_DESTROYED_SIDE_ERROR = 58;
+        private const int BATTLE_TYPE_SET_WINNER_PLAYER = 59;
+
+
         //Froms
         GameLoginForms gameLoginForms = null;
         GameForgotPasswordForms gameForgotPasswordForms = null;
@@ -389,7 +400,7 @@ namespace CurumimGameForms
             {
                 if (pbxFormsOpenEventeArgs.Open == true)
                 {
-                    this.client.SendMessage(new {Type = PLAYER_TYPE_GET_POSITION, idPlayer = this.gameProfile.GetIdPlayer()});
+                    this.client.SendMessage(new { Type = PLAYER_TYPE_GET_POSITION, idPlayer = this.gameProfile.GetIdPlayer() });
                 }
                 else
                 {
@@ -420,12 +431,16 @@ namespace CurumimGameForms
             if (btnRoomsInformationEventArgs != null)
             {
                 int[] values = btnRoomsInformationEventArgs.valuesRoom;
-                this.gameBattleForms = new GameBattleForms(values[0]);
-                this.gameBattleForms.ShowDialog();
+                this.client.SendMessage(new
+                {
+                    Type = BATTLE_TYPE_ENTERED_BATTLE,
+                    loginPlayer = gameProfile.GetLoginPlayer(),
+                    typeBattle = values[0],
+                });
             }
             else
             {
-                MessageBox.Show("Error Buy Store");
+                MessageBox.Show("Error to Load Battle");
             }
         }
         private void ClouseRoomsOnClick(object sender, EventArgs e)// facha o forms das salas
@@ -849,6 +864,13 @@ namespace CurumimGameForms
             }
             OpenArsenal(x);
         }
+
+        private void OpenBattle(int[] Left, int[] Right, int typeRoom, string loginPlayer1, string loginPlayer2)
+        {
+            this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2);
+            this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
+            this.gameBattleForms.ShowDialog();
+        }
         private void OpenArsenal(Boolean Type)
         {
             string avatar = gameProfile.GetAvatarPlayer();
@@ -1010,7 +1032,14 @@ namespace CurumimGameForms
                     case PLAYER_TYPE_GET_POSITION_ERRO:
                         MessageBox.Show("Unable to load position", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
-
+                    case BATTLE_TYPE_GET_FIELDS:
+                        int[] left = messageEventArgs.Message.GetSingleDimArrayInt32("fieldLeft");
+                        int[] right = messageEventArgs.Message.GetSingleDimArrayInt32("fieldRight");
+                        string loginPlayer1 = messageEventArgs.Message.GetString("loginPlayer1");
+                        string loginPlayer2 = messageEventArgs.Message.GetString("loginPlayer2");
+                        int typeRoom = messageEventArgs.Message.GetInt32("typeRoom");
+                        OpenBattle(left, right, typeRoom, loginPlayer1, loginPlayer2);
+                        break;
                 }
             }
         }

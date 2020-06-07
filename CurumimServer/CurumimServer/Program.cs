@@ -16,6 +16,9 @@ namespace CurumimServer
         static List<ThreadClient> Login_threadClients = new List<ThreadClient>();
         static Dictionary<int, ThreadClient> MessegeOnLine = new Dictionary<int, ThreadClient>();
         static Dictionary<int, List<dynamic>> BuyPlayers = new Dictionary<int, List<dynamic>>(); //carrinho de cada jogador.
+        static Dictionary<string, ThreadClient>[] Rooms = new Dictionary<string, ThreadClient>[8]; //jogadoes em espera.
+        static Dictionary<string, ThreadClient> BattlePlayers = new Dictionary<string, ThreadClient>(); //jogadores em batalha.
+
         //Types
         //Types Login
         private const int LOGIN_TYPE_GET_PLAYER = 1;
@@ -83,6 +86,24 @@ namespace CurumimServer
 
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
+
+
+
+
+
+
+
+        //BATTLE
+        private const int BATTLE_TYPE_ENTERED_BATTLE = 50;
+        private const int BATTLE_TYPE_ENTERED_BATTLE_SUCCESS = 51;
+        private const int BATTLE_TYPE_EXIT_BATTLE = 52;
+        private const int BATTLE_TYPE_GET_FIELDS = 53;
+        private const int BATTLE_TYPE_GET_FIELDS_SUCCESS = 54;
+        private const int BATTLE_TYPE_GET_FIELDS_ERROR = 55;
+        private const int BATTLE_TYPE_SET_DESTROYED_SIDE = 56;
+        private const int BATTLE_TYPE_SET_DESTROYED_SIDE_SUCECSS = 57;
+        private const int BATTLE_TYPE_SET_DESTROYED_SIDE_ERROR = 58;
+        private const int BATTLE_TYPE_SET_WINNER_PLAYER = 59;
 
         static void Main(string[] args)
         {
@@ -257,6 +278,38 @@ namespace CurumimServer
 
 
         }
+        private static void SetRoomPlayer(ThreadClient client, string loginPlayer, int typeRoom, bool waiting)
+        {
+            switch (waiting)
+            {
+                case true:
+                    if (Rooms[typeRoom] == null)
+                    {
+                        Rooms[typeRoom] = new Dictionary<string, ThreadClient>();
+                    }
+                    Console.WriteLine($"Client Enter Room {typeRoom}");
+                    if (Rooms[typeRoom].ContainsKey(loginPlayer) == false)
+                    {
+                        Rooms[typeRoom].Add(loginPlayer, client);
+                        if (Rooms[typeRoom].Count() < 2)
+                        {
+                            client.SendMessage(new { Type = BATTLE_TYPE_ENTERED_BATTLE_SUCCESS });
+                        }
+                        if (Rooms[typeRoom].Count() == 2)
+                        {
+                            CreateBattle(typeRoom);
+                        }
+                    }
+                    break;
+                case false:
+                    Console.WriteLine($"Client Exit Room { typeRoom}");
+                    if (Rooms[typeRoom].ContainsKey(loginPlayer) == true)
+                    {
+                        Rooms[typeRoom].Remove(loginPlayer);
+                    }
+                    break;
+            }
+        }
         private static Boolean SetEmeraldUpdatePlayer(ThreadClient client, int idPlayer, int emerald)
         {
             SQLQuery sQLQuery = new SQLQuery();
@@ -364,7 +417,7 @@ namespace CurumimServer
             if (InsertSucess == true)
             {
                 BuyPlayers.Remove(idPlayer);
-                if (SetEmeraldUpdatePlayer(client, idPlayer, emerald)==true)
+                if (SetEmeraldUpdatePlayer(client, idPlayer, emerald) == true)
                 {
                     GetItemArsenal(client, idPlayer);
                     client.SendMessage(new { Type = STORE_TYPE_SET_BUY_SUCCESS });
@@ -413,6 +466,35 @@ namespace CurumimServer
                     GetListContacts(client, id);
                 }
             }
+        }
+        private static void CreateBattle(int typeRoom)
+        {
+            GameBattle gameBattle = new GameBattle(typeRoom, Rooms[typeRoom].ElementAt(0).Key, Rooms[typeRoom].ElementAt(1).Key);
+
+            BattlePlayers.Add(gameBattle.GetIdPlayer1(), Rooms[typeRoom][gameBattle.GetIdPlayer1()]);
+            BattlePlayers.Add(gameBattle.GetIdPlayer2(), Rooms[typeRoom][gameBattle.GetIdPlayer2()]);
+
+            Rooms[typeRoom].Remove(gameBattle.GetIdPlayer1());
+            Rooms[typeRoom].Remove(gameBattle.GetIdPlayer2());
+
+            BattlePlayers[gameBattle.GetIdPlayer1()].SendMessage(new
+            {
+                Type = BATTLE_TYPE_GET_FIELDS,
+                fieldLeft = gameBattle.GetFieldLeft(),
+                fieldRight = gameBattle.GetFieldRight(),
+                loginPlayer1 = gameBattle.GetIdPlayer1(),
+                loginPlayer2 = gameBattle.GetIdPlayer2(),
+                typeRoom
+            });
+            BattlePlayers[gameBattle.GetIdPlayer2()].SendMessage(new
+            {
+                Type = BATTLE_TYPE_GET_FIELDS,
+                fieldLeft = gameBattle.GetFieldLeft(),
+                fieldRight = gameBattle.GetFieldRight(),
+                loginPlayer1 = gameBattle.GetIdPlayer1(),
+                loginPlayer2 = gameBattle.GetIdPlayer2(),
+                typeRoom
+            });
         }
         private static void OnClientConnect(object sender, EventArgs e)
         {
@@ -539,6 +621,19 @@ namespace CurumimServer
                         Console.WriteLine("PLAYER_TYPE_GET_POSITION");
                         idPlayer = messageEventArgs.Message.GetInt32("idPlayer");
                         GetPlayerPosition(client, idPlayer);
+                        break;
+
+                    case BATTLE_TYPE_ENTERED_BATTLE:
+                        Console.WriteLine("BATTLE_TYPE_ENTERED_BATTLE");
+                        loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
+                        int typeRoom = messageEventArgs.Message.GetInt32("typeBattle");
+                        SetRoomPlayer(client, loginPlayer, typeRoom, true);
+                        break;
+                    case BATTLE_TYPE_EXIT_BATTLE:
+                        Console.WriteLine("BATTLE_TYPE_EXIT_BATTLE");
+                        loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
+                        typeRoom = messageEventArgs.Message.GetInt32("typeBattle");
+                        SetRoomPlayer(client, loginPlayer, typeRoom, false);
                         break;
                 }
             }

@@ -73,6 +73,12 @@
     <Compile Include="Classe\GameWeaponsClasse.cs" />
     <Compile Include="Classe\ImageClass.cs" />
     <Compile Include="Classe\MoveForms.cs" />
+    <Compile Include="Classe\PbxWeaponBattle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classe\PbxWeaponBattle.Designer.cs">
+      <DependentUpon>PbxWeaponBattle.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventArgsForms\GetSearchPlayerEventArgs.cs" />
     <Compile Include="EventArgsForms\LoadContactsEventArgs.cs" />
     <Compile Include="EventArgsForms\LoginSucessEventArgs.cs" />
@@ -253,6 +259,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\CurumimClient.exe.config" />
+    <None Include="bin\Release\CurumimClient.exe.config" />
     <None Include="obj\Debug\CurumimClient.csprojAssemblyReference.cache" />
     <None Include="obj\Debug\CurumimGameForms.csproj.CopyComplete" />
     <None Include="obj\Debug\CurumimGameForms.csproj.CoreCompileInputs.cache" />
@@ -286,6 +294,18 @@
     <Content Include="Base\Base.pdb" />
     <Content Include="Base\Newtonsoft.Json.dll" />
     <Content Include="Base\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\Base.dll" />
+    <Content Include="bin\Debug\Base.pdb" />
+    <Content Include="bin\Debug\CurumimClient.exe" />
+    <Content Include="bin\Debug\CurumimClient.pdb" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Release\Base.dll" />
+    <Content Include="bin\Release\Base.pdb" />
+    <Content Include="bin\Release\CurumimClient.exe" />
+    <Content Include="bin\Release\CurumimClient.pdb" />
+    <Content Include="bin\Release\Newtonsoft.Json.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.xml" />
     <Content Include="img\Avatar\Caramuru.PNG" />
     <Content Include="img\Avatar\Cauã.PNG" />
     <Content Include="img\Avatar\Coyote.png" />
@@ -303,6 +323,35 @@
     <Content Include="img\Avatar\Thaynara.PNG" />
     <Content Include="img\Avatar\Tupã.PNG" />
     <Content Include="img\Avatar\Ubirajara.PNG" />
+    <Content Include="img\Icon\battleForm\Bau.png" />
+    <Content Include="img\Icon\battleForm\bow1.png" />
+    <Content Include="img\Icon\battleForm\bow2.png" />
+    <Content Include="img\Icon\battleForm\bow3.png" />
+    <Content Include="img\Icon\battleForm\bush1.png" />
+    <Content Include="img\Icon\battleForm\bush1Destr.png" />
+    <Content Include="img\Icon\battleForm\bush2.png" />
+    <Content Include="img\Icon\battleForm\bush2Destr.png" />
+    <Content Include="img\Icon\battleForm\bush3.png" />
+    <Content Include="img\Icon\battleForm\bush3Destr.png" />
+    <Content Include="img\Icon\battleForm\bush4.png" />
+    <Content Include="img\Icon\battleForm\bush4Destr.png" />
+    <Content Include="img\Icon\battleForm\catapult1.png" />
+    <Content Include="img\Icon\battleForm\catapult2.png" />
+    <Content Include="img\Icon\battleForm\catapult3.png" />
+    <Content Include="img\Icon\battleForm\crossbow1.png" />
+    <Content Include="img\Icon\battleForm\crossbow2.png" />
+    <Content Include="img\Icon\battleForm\crossbow3.png" />
+    <Content Include="img\Icon\battleForm\destroyed.png" />
+    <Content Include="img\Icon\battleForm\esmerald.png" />
+    <Content Include="img\Icon\battleForm\Field.PNG" />
+    <Content Include="img\Icon\battleForm\fishingNet1.png" />
+    <Content Include="img\Icon\battleForm\fishingNet2.png" />
+    <Content Include="img\Icon\battleForm\hookRope1.png" />
+    <Content Include="img\Icon\battleForm\hookRope2.png" />
+    <Content Include="img\Icon\battleForm\hookRope3.PNG" />
+    <Content Include="img\Icon\battleForm\location.png" />
+    <Content Include="img\Icon\battleForm\Rope.png" />
+    <Content Include="img\Icon\battleForm\stone.png" />
     <Content Include="img\Icon\iconForm\Avatar.png" />
     <Content Include="img\Icon\iconForm\chang.png" />
     <Content Include="img\Icon\iconForm\loginBlock.png" />
@@ -426,8 +475,6 @@
     <Content Include="obj\Release\CurumimGameForms.pdb" />
     <Content Include="obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
