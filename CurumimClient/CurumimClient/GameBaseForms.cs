@@ -161,7 +161,7 @@ namespace CurumimGameForms
             Boolean x = false;
             try
             {
-                this.client = new Client("127.0.0.1", 5000);
+                this.client = new Client("40.74.239.7", 5000); // trocar a porta depois.
                 this.client.Connect(OnReceiveMessage);
                 x = true;
             }

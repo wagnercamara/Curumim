@@ -170,7 +170,6 @@ namespace CurumimGameForms
                 this.rbxHitory.SelectionFont = new Font("Arial", 7);
                 this.rbxHitory.AppendText(Environment.NewLine + $"{dateTime}:");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
-
             }
             else
             {
@@ -198,7 +197,6 @@ namespace CurumimGameForms
             {
                 this.loadContactsOnLoad.Invoke(this, new LoadContactsEventArgs() { loadContacts = false });
             }
-
         }
         private void pbxClosePnl_Click(object sender, EventArgs e)
         {
@@ -240,7 +238,6 @@ namespace CurumimGameForms
             switch (WidtOrHigth)
             {
                 case true:
-
                     switch (OpenForms)
                     {
                         case true:
@@ -260,7 +257,6 @@ namespace CurumimGameForms
                             MessageVisible(true);
                             break;
                     }
-
                     break;
             }
         }
@@ -318,17 +314,14 @@ namespace CurumimGameForms
                         this.listCotacts.Remove(IdReceiver);
                         this.listCotacts.Add(IdReceiver, new { status, loginPlayer });
                     }
-
                 }
             }
-
         }
         private void LoadDatagrid(Dictionary<int, dynamic> dictionary)
         {
             if (this.InvokeRequired == true)
             {
                 this.Invoke(new LoadDatagridDelegate(LoadDatagrid), new object[] { dictionary });
-
             }
             else
             {
@@ -350,7 +343,6 @@ namespace CurumimGameForms
                     this.dgvListConversaIniciada.Rows.Add(idReceiver, status, loginPlayer);
                 }
             }
-
         }
         private void AddMessageBox(int idReceiver, string sender)
         {
@@ -422,7 +414,6 @@ namespace CurumimGameForms
                     pbxCaixaMessage.Visible = true;
                     AddMessageBox(idSender, sender);
                 }
-
             }
         }
         public void SetMessageServer(string Message)
