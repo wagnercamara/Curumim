@@ -62,23 +62,19 @@ namespace CurumimGameForms
         {
             if ((Convert.ToInt32(this.lblAmoutEmeralPlayer.Text) >= (Convert.ToInt32(this.lblAmoutEmeraldRoom.Text))))
             {
-                int NumberRoom = this.CountIndex + 1;
+                int NumberRoom = this.CountIndex;
                 int BetRoom = Convert.ToInt32(this.lblAmoutEmeraldRoom.Text);
                 int PontuctionRoom = Convert.ToInt32(this.lblPontuction.Text);
                 int DetachedRoom = Convert.ToInt32(this.lblAmoutEmerald.Text);
                 int AmountChestRoom = Convert.ToInt32(this.lblAmoutChest.Text);
                 int ValueChest = Convert.ToInt32(this.lblAmoutEmeraldChest.Text);
+                int idPlayer = this.gameProfileClasse.GetIdPlayer(); 
 
                 this.IformationRoom.Invoke(this, new BtnRoomsInformationEventArgs()
                 {
                     valuesRoom = new int[]
                     {
-                        NumberRoom,
-                        BetRoom,
-                        PontuctionRoom,
-                        DetachedRoom,
-                        AmountChestRoom,
-                        ValueChest
+                        NumberRoom
                     }
                 });
             }

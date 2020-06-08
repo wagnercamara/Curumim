@@ -1,69 +1,23 @@
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.exe
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csprojAssemblyReference.cache
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfoInputs.cache
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfo.cs
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CopyComplete
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CoreCompileInputs.cache
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.deps.json
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.json
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.dev.json
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.pdb
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.pdb
-C:\myProject\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.genruntimeconfig.cache
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.dll
-C:\myProject\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.pdb
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.exe
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.deps.json
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.json
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.dev.json
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.pdb
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.pdb
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CoreCompileInputs.cache
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfoInputs.cache
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfo.cs
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CopyComplete
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.dll
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.pdb
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.genruntimeconfig.cache
-C:\Projects\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csprojAssemblyReference.cache
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.exe
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.deps.json
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.json
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.dev.json
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.pdb
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.pdb
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csprojAssemblyReference.cache
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfoInputs.cache
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfo.cs
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CoreCompileInputs.cache
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CopyComplete
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.dll
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.pdb
-C:\projeto curumim\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.genruntimeconfig.cache
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.exe
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.deps.json
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.json
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.runtimeconfig.dev.json
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\CurumimServer.pdb
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\bin\Debug\netcoreapp3.1\Base.pdb
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csprojAssemblyReference.cache
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CoreCompileInputs.cache
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfoInputs.cache
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.AssemblyInfo.cs
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.csproj.CopyComplete
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.dll
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.pdb
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimServer\CurumimServer\obj\Debug\netcoreapp3.1\CurumimServer.genruntimeconfig.cache
