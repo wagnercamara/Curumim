@@ -31,14 +31,16 @@ namespace CurumimGameForms
         private Random random = new Random();
         private string loginPlayer1;
         private string loginPlayer2;
+        private GameChatBatlleForms gameChatBatlleForms;
 
-        public GameBattleForms(int typeBattle, int[] typesFieldRight, int[] typesFieldLeft, string loginPlayer1, string loginPlayer2)
+        public GameBattleForms(int typeBattle, int[] typesFieldRight, int[] typesFieldLeft, string loginPlayer1, string loginPlayer2, GameChatBatlleForms gameChatBatlleForms)
         {
             this.typeBattle = typeBattle;
             this.loginPlayer1 = loginPlayer1;
             this.loginPlayer2 = loginPlayer2;
             this.typesFieldRight = typesFieldRight;
             this.typesFieldLeft = typesFieldLeft;
+            this.gameChatBatlleForms = gameChatBatlleForms;
 
             InitializeComponent();
 
@@ -212,6 +214,13 @@ namespace CurumimGameForms
         {
             MessageBox.Show($"  You Received a Premium of\n              {this.premiumEsmerald} emeralds\n                  {this.premiumScore} points");
             this.Close();
+            this.gameChatBatlleForms.Close(); // retirar deste lugar e colocar no Base.
+            this.gameChatBatlleForms = null;
+        }
+
+        private void pbxChatBattle_Click(object sender, EventArgs e)
+        {
+            this.gameChatBatlleForms.Visible = true;
         }
     }
 }

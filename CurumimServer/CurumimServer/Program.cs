@@ -86,7 +86,10 @@ namespace CurumimServer
 
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
-
+        //CHAT BATTLE
+        private const int NEW_MESSAGE_CHAT_BATTLE = 41;
+        private const int NEW_MESSAGE_CHAT_BATTLE_SUCESS = 42;
+        private const int NEW_MESSAGE_CHAT_BATTLE_ERRO = 43;
 
 
 
@@ -509,6 +512,24 @@ namespace CurumimServer
                 Console.WriteLine("Client conected");
             }
         }
+        private static void NewMessagechatBattle(ThreadClient client, string messageMessage, string login)
+        {
+            if(BattlePlayers.ContainsKey(login))
+            {
+                foreach(ThreadClient thread in BattlePlayers.Values)
+                {
+                    if(thread != client)
+                    {
+                        thread.SendMessage(new { Type= NEW_MESSAGE_CHAT_BATTLE_SUCESS, messageMessage });
+                    }
+                }
+            }
+            else
+            {
+                client.SendMessage(new { Type= NEW_MESSAGE_CHAT_BATTLE_ERRO });
+            }
+
+        }
         private static void OnClientReceiveMessage(object sender, EventArgs e) //
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
@@ -634,6 +655,12 @@ namespace CurumimServer
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
                         typeRoom = messageEventArgs.Message.GetInt32("typeBattle");
                         SetRoomPlayer(client, loginPlayer, typeRoom, false);
+                        break;
+                    case NEW_MESSAGE_CHAT_BATTLE:
+                        Console.WriteLine("NEW_MESSAGE_CHAT_BATTLE");
+                        messageMessage = messageEventArgs.Message.GetString("messageMessage");
+                        loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
+                        NewMessagechatBattle(client, messageMessage, loginPlayer);
                         break;
                 }
             }

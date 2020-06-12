@@ -117,6 +117,7 @@
             this.pbxChatBattle.Size = new System.Drawing.Size(51, 43);
             this.pbxChatBattle.TabIndex = 1;
             this.pbxChatBattle.TabStop = false;
+            this.pbxChatBattle.Click += new System.EventHandler(this.pbxChatBattle_Click);
             // 
             // GameBattleForms
             // 

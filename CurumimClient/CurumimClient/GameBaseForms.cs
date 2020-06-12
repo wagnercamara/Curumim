@@ -76,10 +76,10 @@ namespace CurumimGameForms
         private const int PLAYER_TYPE_GET_POSITION_ERRO = 39;
         //
         private const int PROGRESSBAR_TYPE_NEXT = 40;
-
-
-
-
+        //chat Battle
+        private const int NEW_MESSAGE_CHAT_BATTLE = 41;
+        private const int NEW_MESSAGE_CHAT_BATTLE_SUCESS = 42;
+        private const int NEW_MESSAGE_CHAT_BATTLE_ERRO = 43;
 
 
 
@@ -118,7 +118,7 @@ namespace CurumimGameForms
         GameAboutForms gameAboutForms = null;
         GameLoadForms gameLoadForms = null;
         GameBattleForms gameBattleForms = null;
-
+        GameChatBatlleForms gameChatBatlleForms = null;
         //Classe
         GameProfileClasse gameProfile = null;
 
@@ -172,7 +172,7 @@ namespace CurumimGameForms
             Boolean x = false;
             try
             {
-                this.client = new Client("40.74.239.7", 5000); // trocar a porta depois.
+                this.client = new Client("127.0.0.1", 5000); // trocar a porta depois.
                 this.client.Connect(OnReceiveMessage);
                 x = true;
             }
@@ -437,10 +437,30 @@ namespace CurumimGameForms
                     loginPlayer = gameProfile.GetLoginPlayer(),
                     typeBattle = values[0],
                 });
+                gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik);
+                gameChatBatlleForms.Visible = false;
+                gameChatBatlleForms.Show();
             }
             else
             {
                 MessageBox.Show("Error to Load Battle");
+            }
+        }
+        private void NewMessageChatBattleOnClik(object sender, EventArgs e) //manda a mensagem para um receiver.
+        {
+            PbxMessageSendMessageEventArgs pbxMessageSendMessageEventArgs = e as PbxMessageSendMessageEventArgs;
+            if (pbxMessageSendMessageEventArgs != null)
+            {
+                this.client.SendMessage(new
+                {
+                    Type = NEW_MESSAGE_CHAT_BATTLE,
+                    pbxMessageSendMessageEventArgs.messageMessage,
+                    loginPlayer = gameProfile.GetLoginPlayer()
+                }) ;
+            }
+            else
+            {
+                MessageBox.Show("Error Send new Message");
             }
         }
         private void ClouseRoomsOnClick(object sender, EventArgs e)// facha o forms das salas
@@ -864,12 +884,11 @@ namespace CurumimGameForms
             }
             OpenArsenal(x);
         }
-
         private void OpenBattle(int[] Left, int[] Right, int typeRoom, string loginPlayer1, string loginPlayer2)
         {
-            this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2);
+            this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, this.gameChatBatlleForms);
             this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
-            this.gameBattleForms.ShowDialog();
+            this.gameBattleForms.Show();
         }
         private void OpenArsenal(Boolean Type)
         {
@@ -1039,6 +1058,13 @@ namespace CurumimGameForms
                         string loginPlayer2 = messageEventArgs.Message.GetString("loginPlayer2");
                         int typeRoom = messageEventArgs.Message.GetInt32("typeRoom");
                         OpenBattle(left, right, typeRoom, loginPlayer1, loginPlayer2);
+                        break;
+                    case NEW_MESSAGE_CHAT_BATTLE_SUCESS:
+                        message = messageEventArgs.Message.GetString("messageMessage");
+                        this.gameChatBatlleForms.NewMessagem(message, 2);
+                        break;
+                    case NEW_MESSAGE_CHAT_BATTLE_ERRO:
+                        MessageBox.Show("Message cannot be delivered", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                 }
             }

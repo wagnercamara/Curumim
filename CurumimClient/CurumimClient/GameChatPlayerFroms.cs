@@ -4,6 +4,7 @@ using CurumimClient.Classe;
 using CurumimClient.EventArgsForms;
 using CurumimClient.PbxEventArgs;
 using System;
+using System.Activities.Expressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -127,7 +128,7 @@ namespace CurumimGameForms
             this.closeChat.Invoke(this, new PbxFormsCloseEventeArgs() { Close = true });
             this.Close();
         }
-        private void pbxSend_Click(object sender, EventArgs e)
+        private void btnSend_Click(object sender, EventArgs e)
         {
             if (receiver_id_tbPlayer != 0)
             {
@@ -160,28 +161,26 @@ namespace CurumimGameForms
 
             if (myPlayer == Send)
             {
-                this.rbxHitory.SelectionColor = Color.FromArgb(153, 217, 251);
-                this.rbxHitory.SelectionFont = new Font("Arial", 7);
-                this.rbxHitory.AppendText(Environment.NewLine + $":{Send}");
+                this.rbxHitory.SelectionColor = Color.FromArgb(65, 105, 255);
+                this.rbxHitory.SelectionFont = new Font("Gabriola", 18);
+                this.rbxHitory.AppendText(Environment.NewLine + $"{texto}");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
-                this.rbxHitory.SelectionFont = new Font("Segoe Print", 12);
-                this.rbxHitory.AppendText(Environment.NewLine + $"{texto} <");
-                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
-                this.rbxHitory.SelectionFont = new Font("Arial", 7);
-                this.rbxHitory.AppendText(Environment.NewLine + $"{dateTime}:");
+
+                this.rbxHitory.SelectionColor = Color.FromArgb(100, 149, 237);
+                this.rbxHitory.SelectionFont = new Font("Gabriola", 10);
+                this.rbxHitory.AppendText(Environment.NewLine + $"{Send}: {dateTime}");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
             }
             else
             {
-                this.rbxHitory.SelectionColor = Color.FromArgb(56, 184, 173);
-                this.rbxHitory.SelectionFont = new Font("Arial", 7);
-                this.rbxHitory.AppendText(Environment.NewLine + $":{Send}");
+                this.rbxHitory.SelectionColor = Color.FromArgb(0, 255, 255);
+                this.rbxHitory.SelectionFont = new Font("Gabriola", 18);
+                this.rbxHitory.AppendText(Environment.NewLine + $"{texto}");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
-                this.rbxHitory.SelectionFont = new Font("Segoe Print", 12);
-                this.rbxHitory.AppendText(Environment.NewLine + $"> {texto}");
-                this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
-                this.rbxHitory.SelectionFont = new Font("Arial", 7);
-                this.rbxHitory.AppendText(Environment.NewLine + $"{dateTime}:");
+
+                this.rbxHitory.SelectionColor = Color.FromArgb(0, 139, 139);
+                this.rbxHitory.SelectionFont = new Font("Gabriola", 10);
+                this.rbxHitory.AppendText(Environment.NewLine + $"{Send}: {dateTime}");
                 this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
             }
         }
@@ -284,11 +283,11 @@ namespace CurumimGameForms
             if (rbxMessage.Text.Trim() != "")
             {
                 lblServer.Text = "";
-                pbxSend.Visible = true;
+                btnSend.Visible = true;
             }
             else
             {
-                pbxSend.Visible = false;
+                btnSend.Visible = false;
             }
         }
         public void InsertDatagrid(int IdReceiver, string loginPlayer, string status)
@@ -475,5 +474,7 @@ namespace CurumimGameForms
                 this.lblErroSearch.Visible = true;
             }
         }
+
+
     }
 }

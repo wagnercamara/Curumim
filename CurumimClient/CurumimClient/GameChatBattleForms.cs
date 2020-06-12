@@ -1,5 +1,6 @@
 ﻿using Base;
 using CurumimClient.Classe;
+using CurumimClient.PbxEventArgs;
 using System;
 using System.Activities.Expressions;
 using System.Collections.Generic;
@@ -17,39 +18,31 @@ namespace CurumimGameForms
     {
         private MoveForms moveForms = new MoveForms();
         private List<string> history = new List<string>();
+        private EventHandler MessageSendMessageOnClik;
 
-        private int Cont = 0;
-        public GameChatBatlleForms()
+        public GameChatBatlleForms(EventHandler MessageSendMessageOnClik)
         {
             InitializeComponent();
+            this.MessageSendMessageOnClik = MessageSendMessageOnClik;
         }
 
         private void btnSendMessage_Click(object sender, EventArgs e)
         {
             if(MessageValidate())
             {
-                if(Cont % 2 == 0)
+                this.MessageSendMessageOnClik.Invoke(this, new PbxMessageSendMessageEventArgs()
                 {
-                    NewMessagem(this.rbxMessage.Text);
-                    Cont++;
-                }
-                else
-                {
-                    string teste = this.rbxMessage.Text;
-                    System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(() =>
-                    {
-                        NewMessagem(teste);
-                    }));
-                    Cont++;
-                    thread.Start();
-                }
-
+                    messageMessage = this.rbxMessage.Text
+                   ,name_Sender = null
+                   ,receiver_id_tbPlayer = 0
+                   ,sender_id_tbPlayer = 0
+                });
+                NewMessagem(this.rbxMessage.Text);
             }
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false;
         }
         private void panelUp_MouseMove(object sender, MouseEventArgs e)
         {
@@ -77,11 +70,15 @@ namespace CurumimGameForms
                 switch(Type)
                 {
                     case 1:
-                        this.rbxHitory.AppendText(Environment.NewLine + $":{message}");
+                        this.rbxHitory.SelectionColor = Color.FromArgb(65, 105, 255);
+                        this.rbxHitory.SelectionFont = new Font("Gabriola", 18);
+                        this.rbxHitory.AppendText(Environment.NewLine + $"{message}");
                         this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
                         break;
                     case 2:
-                        this.rbxHitory.AppendText(Environment.NewLine + $":{message}");
+                        this.rbxHitory.SelectionColor = Color.FromArgb(0, 255, 255);
+                        this.rbxHitory.SelectionFont = new Font("Gabriola", 18);
+                        this.rbxHitory.AppendText(Environment.NewLine + $"{message}");
                         this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
                         break;
                 }
@@ -91,11 +88,13 @@ namespace CurumimGameForms
 
         private void GameChatBatlleForms_Load(object sender, EventArgs e)
         {
-            foreach (string his in this.history)
+            int x = this.history.Count;
+            for (int i = 0; i < x; i++)
             {
-                string[] ToSeparate = his.Split(':');
+                string[] ToSeparate = this.history[i].Split(':');
                 NewMessagem(ToSeparate[1], Convert.ToInt32(ToSeparate[0]));
             }
         }
+
     }
 }
