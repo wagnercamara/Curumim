@@ -17,22 +17,26 @@ namespace CurumimGameForms
     public partial class GameArsenalForms : Form
     {
         private EventHandler pbxCloseArsenal { get; set; }
+        private EventHandler pbxStartBattle { get; set; }
         private ImageClass ImageClass { get; set; }
 
         private Dictionary<string, dynamic> battleList;
+        private Dictionary<string, GameWeaponsClasse> BattleList;
         private Dictionary<string, GameWeaponsClasse> itemArsenal;
         private Boolean startBattle { get; set; }
         private Boolean butomBattle { get; set; }
         private Boolean openListBattle { get; set; }
         private string avatar { get; set; }
 
-        public GameArsenalForms(bool type,string avatar, Dictionary<string, GameWeaponsClasse> itemArsenal,EventHandler PbxCloseArsenal)//GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
+        public GameArsenalForms(bool type, string avatar, Dictionary<string, GameWeaponsClasse> itemArsenal, EventHandler PbxCloseArsenal, EventHandler pbxStartBattle)//GameProfileClasse gameProfileClasse, Boolean sender, GameWeaponsClasse gameWeaponsClasse)
         {
             InitializeComponent();
             this.pbxCloseArsenal = PbxCloseArsenal;
+            this.pbxStartBattle = pbxStartBattle;
             this.avatar = avatar;
             this.itemArsenal = itemArsenal;
             this.startBattle = type;
+            this.butomBattle = type;
         }
         private void pbxBow1_Click(object sender, EventArgs e)
         {
@@ -175,7 +179,16 @@ namespace CurumimGameForms
         }
         private void pbxBattle_Click(object sender, EventArgs e)
         {
-            //// varificar que chamou se ta true or false;
+            this.BattleList = new Dictionary<string, GameWeaponsClasse>();
+            foreach (KeyValuePair<string, dynamic> weapon in this.battleList)
+            {
+                this.BattleList.Add((weapon.Key).ToLower(), this.itemArsenal[(weapon.Key).ToLower()]);
+                this.BattleList[(weapon.Key).ToLower()].SetAmountWeapons(this.battleList[weapon.Key].numberOfWeaponsInTheList);
+            }
+            this.pbxStartBattle.Invoke(this, new PbxStartBattleEventArgs
+            {
+                battleList = this.BattleList
+            });
         }
         // metodos
         private void CarryWarArsenal()
@@ -361,7 +374,7 @@ namespace CurumimGameForms
         }
         private void LoadCursorSelect(Boolean v)
         {
-            switch(v)
+            switch (v)
             {
                 case true:
                     this.pbxBow1.Cursor = Cursors.Hand;
@@ -540,7 +553,7 @@ namespace CurumimGameForms
 
                         case "trash":
 
-                            
+
                             stockQuantity = (stockQuantity + numberOfWeaponsInTheList);
                             labelQuantity.Text = (stockQuantity).ToString();
 

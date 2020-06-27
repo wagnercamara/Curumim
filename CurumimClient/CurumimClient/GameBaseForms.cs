@@ -131,6 +131,7 @@ namespace CurumimGameForms
         private delegate void LoadDelegate(MessageEventArgs messageEventArgs);
         private delegate void LoadNotParameterDelegate();
         private delegate void UpdateDelegate(Int32 value);
+        private delegate void StartBattleDelegate(int[] Left, int[] Right, int typeRoom, int premiumScore, int premiumEsmerald, string loginPlayer1, string loginPlayer2);
 
         public GameBaseForms()
         {
@@ -309,7 +310,8 @@ namespace CurumimGameForms
                 {
                     GameWeaponsClasse g = this.StoreItem[nameItem];
                     g.SetAmountWeapons(amountArsenal);
-                    this.ArsenalItem.Add(nameItem, g);
+                    //this.ArsenalItem.Add(nameItem, g);
+                    this.ArsenalItem[nameItem].SetAmountWeapons(amountArsenal);
                 }
             }
         }
@@ -431,15 +433,14 @@ namespace CurumimGameForms
             if (btnRoomsInformationEventArgs != null)
             {
                 int[] values = btnRoomsInformationEventArgs.valuesRoom;
+
                 this.client.SendMessage(new
                 {
                     Type = BATTLE_TYPE_ENTERED_BATTLE,
                     loginPlayer = gameProfile.GetLoginPlayer(),
                     typeBattle = values[0],
+                    betRoom = values[1]
                 });
-                gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik);
-                gameChatBatlleForms.Visible = false;
-                gameChatBatlleForms.Show();
             }
             else
             {
@@ -455,7 +456,8 @@ namespace CurumimGameForms
                 {
                     Type = NEW_MESSAGE_CHAT_BATTLE,
                     pbxMessageSendMessageEventArgs.messageMessage,
-                    loginPlayer = gameProfile.GetLoginPlayer()
+                    loginPlayer = gameProfile.GetLoginPlayer(),
+                    loginPlayerEnemy = this.gameBattleForms.GetLoginEnemy()
                 }) ;
             }
             else
@@ -479,6 +481,26 @@ namespace CurumimGameForms
                 MessageBox.Show("Error Close Rooms");
             }
         }
+
+        private void CloseBattleOnClick(object sender, EventArgs e)// facha o forms da batalha
+        {
+            PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
+            if (pbxFormsCloseEventeArgs != null)
+            {
+                if (pbxFormsCloseEventeArgs.Close == true)
+                {
+                    this.gameBattleForms.Close();
+                    this.gameBattleForms = null;
+                    this.gameChatBatlleForms.Close();
+                    this.gameChatBatlleForms = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error Close Battle");
+            }
+        }
+
         private void PbxProfileClouseOnClick(object sender, EventArgs e)
         {
             PbxFormsCloseEventeArgs pbxFormsCloseEventeArgs = e as PbxFormsCloseEventeArgs;
@@ -727,6 +749,7 @@ namespace CurumimGameForms
                 }
             }
         }
+
         private void PbxOpenArsenalOnClick(object sender, EventArgs e)
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
@@ -884,18 +907,95 @@ namespace CurumimGameForms
             }
             OpenArsenal(x);
         }
-        private void OpenBattle(int[] Left, int[] Right, int typeRoom, string loginPlayer1, string loginPlayer2)
+
+        private void StartBattle(object sender, EventArgs e)
         {
-            this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, this.gameChatBatlleForms);
-            this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
-            this.gameBattleForms.Show();
+            PbxStartBattleEventArgs pbxStartBattleEventArgs = e as PbxStartBattleEventArgs;
+            if (pbxStartBattleEventArgs != null)
+            {
+                this.gameBattleForms.SetWeaponsBattle(pbxStartBattleEventArgs.battleList);
+                this.gameArsenalForms.Close();
+                this.gameArsenalForms = null;
+                this.gameBattleForms.Show();
+                this.gameChatBatlleForms.Show();
+                this.gameChatBatlleForms.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Error Start Battle");
+            }
+        }
+
+        private void OpenBattle(int[] Left, int[] Right, int typeRoom, int premiumScore, int premiumEsmerald, string loginPlayer1, string loginPlayer2)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new StartBattleDelegate(OpenBattle), new object[] { Left, Right, typeRoom, premiumScore, premiumEsmerald, loginPlayer1, loginPlayer2 });
+            }
+            else
+            {
+                if (typeRoom != 0)
+                {
+                    this.gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik, this.gameProfile.GetLoginPlayer());
+                    this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms);
+                    this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
+                    this.gameBattleForms.SetPremiumBattle(premiumEsmerald, premiumScore);
+                    OpenArsenal(true);
+                }
+                else
+                {
+                    this.gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik, this.gameProfile.GetLoginPlayer());
+                    this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms);
+                    this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
+                    this.gameBattleForms.Show();
+                }
+            }
         }
         private void OpenArsenal(Boolean Type)
         {
             string avatar = gameProfile.GetAvatarPlayer();
-            this.gameArsenalForms = new GameArsenalForms(Type, avatar, this.ArsenalItem, PbxCloseArsenal);
+            this.gameArsenalForms = new GameArsenalForms(Type, avatar, this.ArsenalItem, PbxCloseArsenal, StartBattle);
             this.gameArsenalForms.ShowDialog();
         }
+
+        private void DestroyedButton(int[] locals, int typeItem )
+        {
+            this.gameBattleForms.DestroyedButton(locals, true, typeItem);
+        }
+
+        private void OnDestroyedButton(object sender, EventArgs e)
+        {
+            BtnDestroyedsEventArgs btnDestryedEventArgs = e as BtnDestroyedsEventArgs;
+            if (btnDestryedEventArgs != null)
+            {
+                int[] locals = btnDestryedEventArgs.locals;
+
+                this.client.SendMessage(new
+                {
+                    Type = BATTLE_TYPE_SET_DESTROYED_SIDE,
+                    locals,
+                    loginPlayer = btnDestryedEventArgs.loginPlayer,
+                    typeItem = btnDestryedEventArgs.typeItem
+                });
+            }
+            else
+            {
+                MessageBox.Show("Error to Load Battle");
+            }
+        }
+
+        private void WaitingOpponent()
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new LoadNotParameterDelegate(WaitingOpponent), new object[] { });
+            }
+            else
+            {
+                MessageBox.Show("Waiting for next opponent...");
+            }
+        }
+
         private void OnReceiveMessage(object sender, EventArgs e) // receiver
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
@@ -1054,10 +1154,20 @@ namespace CurumimGameForms
                     case BATTLE_TYPE_GET_FIELDS:
                         int[] left = messageEventArgs.Message.GetSingleDimArrayInt32("fieldLeft");
                         int[] right = messageEventArgs.Message.GetSingleDimArrayInt32("fieldRight");
+                        int premiumEsmerald = messageEventArgs.Message.GetInt32("premiumEsmerald");
+                        int premiumScore = messageEventArgs.Message.GetInt32("premiumScore");
                         string loginPlayer1 = messageEventArgs.Message.GetString("loginPlayer1");
                         string loginPlayer2 = messageEventArgs.Message.GetString("loginPlayer2");
                         int typeRoom = messageEventArgs.Message.GetInt32("typeRoom");
-                        OpenBattle(left, right, typeRoom, loginPlayer1, loginPlayer2);
+                        OpenBattle(left, right, typeRoom, premiumScore, premiumEsmerald, loginPlayer1, loginPlayer2);
+                        break;
+                    case BATTLE_TYPE_ENTERED_BATTLE_SUCCESS:
+                        WaitingOpponent();
+                        break;
+                    case BATTLE_TYPE_SET_DESTROYED_SIDE_SUCECSS:
+                        int[] locals = messageEventArgs.Message.GetSingleDimArrayInt32("locals");
+                        int typeItem = messageEventArgs.Message.GetInt32("typeItem");
+                        this.DestroyedButton(locals, typeItem);
                         break;
                     case NEW_MESSAGE_CHAT_BATTLE_SUCESS:
                         message = messageEventArgs.Message.GetString("messageMessage");

@@ -19,11 +19,13 @@ namespace CurumimGameForms
         private MoveForms moveForms = new MoveForms();
         private List<string> history = new List<string>();
         private EventHandler MessageSendMessageOnClik;
+        private string myLogin;
 
-        public GameChatBatlleForms(EventHandler MessageSendMessageOnClik)
+        public GameChatBatlleForms(EventHandler MessageSendMessageOnClik, string myLogin)
         {
             InitializeComponent();
             this.MessageSendMessageOnClik = MessageSendMessageOnClik;
+            this.myLogin = myLogin;
         }
 
         private void btnSendMessage_Click(object sender, EventArgs e)
@@ -33,11 +35,9 @@ namespace CurumimGameForms
                 this.MessageSendMessageOnClik.Invoke(this, new PbxMessageSendMessageEventArgs()
                 {
                     messageMessage = this.rbxMessage.Text
-                   ,name_Sender = null
-                   ,receiver_id_tbPlayer = 0
-                   ,sender_id_tbPlayer = 0
                 });
                 NewMessagem(this.rbxMessage.Text);
+                this.rbxMessage.Clear();
             }
         }
         private void btnClose_Click(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace CurumimGameForms
                     case 1:
                         this.rbxHitory.SelectionColor = Color.FromArgb(65, 105, 255);
                         this.rbxHitory.SelectionFont = new Font("Gabriola", 18);
-                        this.rbxHitory.AppendText(Environment.NewLine + $"{message}");
+                        this.rbxHitory.AppendText(Environment.NewLine + $"{this.myLogin}: {message}");
                         this.rbxHitory.SelectionAlignment = HorizontalAlignment.Right;
                         break;
                     case 2:
@@ -82,7 +82,7 @@ namespace CurumimGameForms
                         this.rbxHitory.SelectionAlignment = HorizontalAlignment.Left;
                         break;
                 }
-                this.history.Add($"{Type}:{message}");
+                this.history.Add($"{Type}|{message}");
             }
         }
 
@@ -91,7 +91,7 @@ namespace CurumimGameForms
             int x = this.history.Count;
             for (int i = 0; i < x; i++)
             {
-                string[] ToSeparate = this.history[i].Split(':');
+                string[] ToSeparate = this.history[i].Split('|');
                 NewMessagem(ToSeparate[1], Convert.ToInt32(ToSeparate[0]));
             }
         }

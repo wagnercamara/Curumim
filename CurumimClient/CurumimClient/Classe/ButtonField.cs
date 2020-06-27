@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,11 +18,14 @@ namespace CurumimGameForms
         private string[] imagensDestr = { "bush1Destr", "bush2Destr", "bush3Destr", "bush4Destr" };
         private int type;
         private int img;
+        private int idButton;
 
-        public ButtonField(int img)
+        public ButtonField(int img, int idButton)
         {
             this.img = img;
+            this.idButton = idButton;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BackColor = Color.Transparent;
             this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[img]); // troquei aqui taylor
             this.FlatAppearance.BorderSize = 0;
             this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -38,18 +42,18 @@ namespace CurumimGameForms
 
         public void EsmeraldButton()
         {
-            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[4]);
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[4]);
         }
         public void IndianButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[5]);
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[5]);
         }
 
         public void BauButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            //this.BackgroundImage = Image.FromFile(this.fileAppIcon + imagens[6]);
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[6]);
         }
 
         public void SetTypeButton(int type)
@@ -60,6 +64,16 @@ namespace CurumimGameForms
         public int GetTypeButton()
         {
             return this.type;
+        }
+
+        public int GetIdButton()
+        {
+            return this.idButton;
+        }
+
+        public void RestorButton()
+        {
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[this.img]); //fiz ate aqui.
         }
     }
 }

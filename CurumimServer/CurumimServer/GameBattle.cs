@@ -13,6 +13,7 @@ namespace CurumimServer
         private int premiumScore;
         private int premiumEsmerald;
         private int singleEsmeralds;
+        private int chestBattle;
         private int typeBattle;
         private Random random = new Random();
         private string loginPlayer1;
@@ -32,43 +33,51 @@ namespace CurumimServer
         {
             switch (this.typeBattle)
             {
-                case 1:
+                case 0:
                     this.singleEsmeralds = 0;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 100;
                     this.premiumScore = 5;
                     break;
-                case 2:
+                case 1:
                     this.singleEsmeralds = 50;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 100;
                     this.premiumScore = 20;
                     break;
-                case 3:
+                case 2:
                     this.singleEsmeralds = 60;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 250;
                     this.premiumScore = 40;
                     break;
-                case 4:
+                case 3:
                     this.singleEsmeralds = 70;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 500;
                     this.premiumScore = 60;
                     break;
-                case 5:
+                case 4:
                     this.singleEsmeralds = 80;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 1000;
                     this.premiumScore = 100;
                     break;
-                case 6:
+                case 5:
                     this.singleEsmeralds = 90;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 2500;
                     this.premiumScore = 250;
                     break;
-                case 7:
+                case 6:
                     this.singleEsmeralds = 150;
+                    this.chestBattle = 2;
                     this.premiumEsmerald = 5000;
                     this.premiumScore = 500;
                     break;
-                case 8:
+                case 7:
                     this.singleEsmeralds = this.random.Next(100, 401);
+                    this.chestBattle = this.random.Next(1, 11);
                     break;
             }
         }
@@ -76,24 +85,32 @@ namespace CurumimServer
         public void SetPremiumEsmeraldCrazy(int premiumEsmeraldCrazy)
         {
             this.premiumEsmerald = premiumEsmeraldCrazy;
-            this.premiumScore = this.premiumEsmerald / 5;
+            this.premiumScore = this.premiumEsmerald / this.chestBattle;
         }
 
         private void LoadFieldLeft()
         {
             int localIndian = this.random.Next(0, 300);
-            int localchest = -1;
-            if (this.typeBattle != 1) { localchest = this.random.Next(0, 300); }
+            int localchest = 0;
             int singleEsmeraldsLeft = 0;
 
             for (int i = 0; i < this.buttonFieldLefts.Length; i++)
             {
-                if (singleEsmeraldsLeft < this.singleEsmeralds)
+                this.buttonFieldLefts[i] = this.random.Next(0, 3);
+
+                if (this.buttonFieldLefts[i] == 2)
                 {
-                    this.buttonFieldLefts[i] = this.random.Next(0, 2);
-                    if (this.buttonFieldLefts[i] == 1) { singleEsmeraldsLeft += 1; }
+                    if (localchest < this.chestBattle) { localchest += 1; }
+                    else { this.buttonFieldLefts[i] = 0; }
                 }
-                else
+
+                if (this.buttonFieldLefts[i] == 1)
+                {
+                    if (singleEsmeraldsLeft < this.singleEsmeralds) { singleEsmeraldsLeft += 1; }
+                    else { this.buttonFieldLefts[i] = 0; }
+                }
+
+                if (this.buttonFieldLefts[i] == 3)
                 {
                     this.buttonFieldLefts[i] = 0;
                 }
@@ -108,10 +125,6 @@ namespace CurumimServer
                     {
                         this.buttonFieldLefts[button] = 3;
                     }
-                    else if (button == localchest)
-                    {
-                        this.buttonFieldLefts[button] = 2;
-                    }
                     button++;
                 }
             }
@@ -120,18 +133,26 @@ namespace CurumimServer
         private void LoadFieldRight()
         {
             int localIndian = this.random.Next(0, 300);
-            int localchest = -1;
-            if (this.typeBattle != 1) { localchest = this.random.Next(0, 300); }
+            int localchest = 0;
             int singleEsmeraldsRight = 0;
 
             for (int i = 0; i < this.buttonFieldRights.Length; i++)
             {
-                if (singleEsmeraldsRight < this.singleEsmeralds)
+                this.buttonFieldRights[i] = this.random.Next(0, 3);
+
+                if (this.buttonFieldRights[i] == 2)
                 {
-                    this.buttonFieldRights[i] = this.random.Next(0, 2);
-                    if (this.buttonFieldRights[i] == 1) { singleEsmeraldsRight += 1; }
+                    if (localchest < this.chestBattle) { localchest += 1; }
+                    else { this.buttonFieldRights[i] = 0; }
                 }
-                else
+
+                if (this.buttonFieldRights[i] == 1)
+                {
+                    if (singleEsmeraldsRight < this.singleEsmeralds) { singleEsmeraldsRight += 1; }
+                    else { this.buttonFieldRights[i] = 0; }
+                }
+
+                if(this.buttonFieldRights[i] == 3)
                 {
                     this.buttonFieldRights[i] = 0;
                 }
@@ -145,10 +166,6 @@ namespace CurumimServer
                     if (button == localIndian)
                     {
                         this.buttonFieldRights[button] = 3;
-                    }
-                    else if (button == localchest)
-                    {
-                        this.buttonFieldRights[button] = 2;
                     }
                     button++;
                 }
@@ -173,6 +190,16 @@ namespace CurumimServer
         public string GetIdPlayer2()
         {
             return this.loginPlayer2;
+        }
+
+        public int GetPremimEsmerald()
+        {
+            return this.premiumEsmerald;
+        }
+
+        public int GetPremimScore()
+        {
+            return this.premiumScore;
         }
     }
 }

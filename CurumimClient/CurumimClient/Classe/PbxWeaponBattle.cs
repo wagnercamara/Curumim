@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CurumimGameForms
 {
-    internal class PbxWeaponBattle : PictureBox
+    internal partial class PbxWeaponBattle : PictureBox
     {
         private ImageClass ImageClass = new ImageClass();
 
@@ -28,6 +28,11 @@ namespace CurumimGameForms
             this.Size = new Size(60, 50);
             this.TabIndex = 0;
             this.Enabled = true;
+        }
+
+        public int GetIdItem()
+        {
+            return this.idItem;
         }
     }
 }

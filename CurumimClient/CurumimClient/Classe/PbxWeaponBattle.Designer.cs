@@ -1,4 +1,4 @@
-﻿namespace CurumimClient.Classe
+﻿namespace CurumimGameForms
 {
     partial class PbxWeaponBattle
     {

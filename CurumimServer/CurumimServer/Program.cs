@@ -281,7 +281,7 @@ namespace CurumimServer
 
 
         }
-        private static void SetRoomPlayer(ThreadClient client, string loginPlayer, int typeRoom, bool waiting)
+        private static void SetRoomPlayer(ThreadClient client, string loginPlayer, int typeRoom, int betRoom, bool waiting)
         {
             switch (waiting)
             {
@@ -300,7 +300,7 @@ namespace CurumimServer
                         }
                         if (Rooms[typeRoom].Count() == 2)
                         {
-                            CreateBattle(typeRoom);
+                            CreateBattle(typeRoom, betRoom);
                         }
                     }
                     break;
@@ -470,9 +470,13 @@ namespace CurumimServer
                 }
             }
         }
-        private static void CreateBattle(int typeRoom)
+        private static void CreateBattle(int typeRoom, int betRoom)
         {
             GameBattle gameBattle = new GameBattle(typeRoom, Rooms[typeRoom].ElementAt(0).Key, Rooms[typeRoom].ElementAt(1).Key);
+            if (typeRoom == 7)
+            {
+                gameBattle.SetPremiumEsmeraldCrazy(betRoom);
+            }
 
             BattlePlayers.Add(gameBattle.GetIdPlayer1(), Rooms[typeRoom][gameBattle.GetIdPlayer1()]);
             BattlePlayers.Add(gameBattle.GetIdPlayer2(), Rooms[typeRoom][gameBattle.GetIdPlayer2()]);
@@ -485,6 +489,8 @@ namespace CurumimServer
                 Type = BATTLE_TYPE_GET_FIELDS,
                 fieldLeft = gameBattle.GetFieldLeft(),
                 fieldRight = gameBattle.GetFieldRight(),
+                premiumEsmerald = gameBattle.GetPremimEsmerald(),
+                premiumScore = gameBattle.GetPremimScore(),
                 loginPlayer1 = gameBattle.GetIdPlayer1(),
                 loginPlayer2 = gameBattle.GetIdPlayer2(),
                 typeRoom
@@ -494,11 +500,25 @@ namespace CurumimServer
                 Type = BATTLE_TYPE_GET_FIELDS,
                 fieldLeft = gameBattle.GetFieldLeft(),
                 fieldRight = gameBattle.GetFieldRight(),
+                premiumEsmerald = gameBattle.GetPremimEsmerald(),
+                premiumScore = gameBattle.GetPremimScore(),
                 loginPlayer1 = gameBattle.GetIdPlayer1(),
                 loginPlayer2 = gameBattle.GetIdPlayer2(),
                 typeRoom
             });
         }
+
+        private static void DestroyedButton(int[] locals, string loginPlayerEnemy, int typeItem)
+        {
+            ThreadClient clientee = BattlePlayers[loginPlayerEnemy];
+            clientee.SendMessage(new
+            {
+                Type = BATTLE_TYPE_SET_DESTROYED_SIDE_SUCECSS,
+                locals,
+                typeItem
+            });
+        }
+
         private static void OnClientConnect(object sender, EventArgs e)
         {
             ConnectEventArgs connectEventArgs = e as ConnectEventArgs;
@@ -512,21 +532,16 @@ namespace CurumimServer
                 Console.WriteLine("Client conected");
             }
         }
-        private static void NewMessagechatBattle(ThreadClient client, string messageMessage, string login)
+        private static void NewMessagechatBattle(ThreadClient client, string messageMessage, string login, string loginPlayerEnemy)
         {
-            if(BattlePlayers.ContainsKey(login))
+            if (BattlePlayers.ContainsKey(login))
             {
-                foreach(ThreadClient thread in BattlePlayers.Values)
-                {
-                    if(thread != client)
-                    {
-                        thread.SendMessage(new { Type= NEW_MESSAGE_CHAT_BATTLE_SUCESS, messageMessage });
-                    }
-                }
+                ThreadClient thread = BattlePlayers[loginPlayerEnemy];
+                thread.SendMessage(new { Type = NEW_MESSAGE_CHAT_BATTLE_SUCESS, messageMessage = $"{login}: {messageMessage}" });
             }
             else
             {
-                client.SendMessage(new { Type= NEW_MESSAGE_CHAT_BATTLE_ERRO });
+                client.SendMessage(new { Type = NEW_MESSAGE_CHAT_BATTLE_ERRO });
             }
 
         }
@@ -648,19 +663,28 @@ namespace CurumimServer
                         Console.WriteLine("BATTLE_TYPE_ENTERED_BATTLE");
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
                         int typeRoom = messageEventArgs.Message.GetInt32("typeBattle");
-                        SetRoomPlayer(client, loginPlayer, typeRoom, true);
+                        int betRoom = messageEventArgs.Message.GetInt32("betRoom");
+                        SetRoomPlayer(client, loginPlayer, typeRoom, betRoom, true);
                         break;
                     case BATTLE_TYPE_EXIT_BATTLE:
                         Console.WriteLine("BATTLE_TYPE_EXIT_BATTLE");
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
                         typeRoom = messageEventArgs.Message.GetInt32("typeBattle");
-                        SetRoomPlayer(client, loginPlayer, typeRoom, false);
+                        betRoom = messageEventArgs.Message.GetInt32("betRoom");
+                        SetRoomPlayer(client, loginPlayer, typeRoom, betRoom, false);
+                        break;
+                    case BATTLE_TYPE_SET_DESTROYED_SIDE:
+                        int[] locals = messageEventArgs.Message.GetSingleDimArrayInt32("locals");
+                        string loginPlayerEnemy = messageEventArgs.Message.GetString("loginPlayer");
+                        int typeItem = messageEventArgs.Message.GetInt32("typeItem");
+                        DestroyedButton(locals, loginPlayerEnemy, typeItem);
                         break;
                     case NEW_MESSAGE_CHAT_BATTLE:
                         Console.WriteLine("NEW_MESSAGE_CHAT_BATTLE");
                         messageMessage = messageEventArgs.Message.GetString("messageMessage");
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
-                        NewMessagechatBattle(client, messageMessage, loginPlayer);
+                        loginPlayerEnemy = messageEventArgs.Message.GetString("loginPlayerEnemy");
+                        NewMessagechatBattle(client, messageMessage, loginPlayer, loginPlayerEnemy);
                         break;
                 }
             }

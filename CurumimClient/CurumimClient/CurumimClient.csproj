@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="BtnEventArgs\BtnAvatarEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnAvatarSelectEventArgs.cs" />
+    <Compile Include="BtnEventArgs\BtnDestroyedsEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnForgotPaswordOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnGetMessagePlayerChatEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnLoginOnClickEventArgs.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="PbxEventArgs\PbxFormsCloseEventeArgs.cs" />
     <Compile Include="PbxEventArgs\PbxFormsOpenEventeArgs.cs" />
     <Compile Include="PbxEventArgs\PbxMessageSendMessageEventArgs.cs" />
+    <Compile Include="PbxEventArgs\PbxStartBattleEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GameAboutForms.resx">

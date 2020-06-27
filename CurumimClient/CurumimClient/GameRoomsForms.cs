@@ -74,9 +74,11 @@ namespace CurumimGameForms
                 {
                     valuesRoom = new int[]
                     {
-                        NumberRoom
+                        NumberRoom,
+                        BetRoom
                     }
                 });
+                this.ClouseRooms.Invoke(this, new PbxFormsCloseEventeArgs() { Close = true });
             }
             else
             {
