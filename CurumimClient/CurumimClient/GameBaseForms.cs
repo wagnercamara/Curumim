@@ -80,11 +80,11 @@ namespace CurumimGameForms
         private const int NEW_MESSAGE_CHAT_BATTLE = 41;
         private const int NEW_MESSAGE_CHAT_BATTLE_SUCESS = 42;
         private const int NEW_MESSAGE_CHAT_BATTLE_ERRO = 43;
-
-
-
-
-
+        //ChatGlobal_RankingJogadores.
+        private const int GET_INFO_GAME = 44;
+        private const int GET_INFO_GAME_SUCESS = 45;
+        private const int GET_INFO_GAME_ERRO = 46;
+        private const int SET_MESSAGE_GLOBAL = 47;
 
 
 
@@ -217,6 +217,7 @@ namespace CurumimGameForms
                 gameProfile.SetTotalBatllesPlayer(totalBatllesPlayer);
                 gameProfile.SetEsmeraldPlayer(esmeraldPlayer);
                 GetItemArsenal();
+
                 CreatGamePlayer();
             }
 
@@ -250,7 +251,7 @@ namespace CurumimGameForms
         {
             client.SendMessage(new { Type = STORE_TYPE_GET_ITEM });
         }
-        private void SetItemStore(MessageEventArgs messageEventArgs)
+        private void SetItemStore(MessageEventArgs messageEventArgs) // CARREGA OS ITENS DO ARSENAL E CHAMA O METODO DE CARREGAR O RAKING E CHATGLOBAL
         {
             if (this.InvokeRequired == true)
             {
@@ -280,13 +281,9 @@ namespace CurumimGameForms
                 }
             }
         }
-        private void GetItemArsenal()
+        private void GetInfoGame()//CHAT GLOBAL E RANKING
         {
-            client.SendMessage(new
-            {
-                Type = ARSENAL_TYPE_GET_ITEM,
-                idPlayer = gameProfile.GetIdPlayer()
-            });
+            client.SendMessage(new { Type = GET_INFO_GAME, Function = "full" });
         }
         private void SetItemArsenal(MessageEventArgs messageEventArgs)
         {
@@ -311,7 +308,16 @@ namespace CurumimGameForms
                     g.SetAmountWeapons(amountArsenal);
                     this.ArsenalItem.Add(nameItem, g);
                 }
+                //GetInfoGame(); // tirar daki
             }
+        }
+        private void GetItemArsenal()
+        {
+            client.SendMessage(new
+            {
+                Type = ARSENAL_TYPE_GET_ITEM,
+                idPlayer = gameProfile.GetIdPlayer()
+            });
         }
         private Boolean CloseGameCurumim()
         {
@@ -334,8 +340,38 @@ namespace CurumimGameForms
         }
         private void CreatGamePlayer()
         {
-            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick, OpenAboutOnClick);
+            gamePlayerForms = new GamePlayerForms(PbxProfileOnClick, PbxChatPlayerOpenOnClick, RoomsOpenOnClick, PbxOpenArsenalOnClick, PbxOpenStoreOnClick, CloseGameOnClick, OpenAboutOnClick,SendMessageOnCLick,GetRankingOnCLick, this.gameProfile.GetLoginPlayer(), this.gameProfile.GetIdPlayer() );
             gamePlayerForms.Show();
+        }
+        private void GetRankingOnCLick(object sender, EventArgs e)
+        {
+            PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
+
+            if(pbxFormsOpenEventeArgs != null)
+            {
+                if(pbxFormsOpenEventeArgs.Open == true)
+                {
+                    client.SendMessage(new {Type = GET_INFO_GAME , Function = "full"});
+                }
+            }
+        }
+        private void SendMessageOnCLick(object sender, EventArgs e)
+        {
+            PbxMessageSendMessageEventArgs pbxMessageSendMessageEventArgs = e as PbxMessageSendMessageEventArgs;
+            if (pbxMessageSendMessageEventArgs != null)
+            {
+                this.client.SendMessage(new
+                {
+                    Type = SET_MESSAGE_GLOBAL,
+                    pbxMessageSendMessageEventArgs.sender_id_tbPlayer,
+                    pbxMessageSendMessageEventArgs.messageMessage,
+                    pbxMessageSendMessageEventArgs.name_Sender
+                });
+            }
+            else
+            {
+                MessageBox.Show("Error Send new Message");
+            }
         }
         private void CloseGameOnClick(object sender, EventArgs e)
         {
@@ -393,7 +429,7 @@ namespace CurumimGameForms
                 MessageBox.Show("Error Close Profile");
             }
         }
-        private void PbxProfileOnClick(object sender, EventArgs e) // Chama o Forms profile do player
+        private void PbxProfileOnClick(object sender, EventArgs e) //possição do player no ranking
         {
             PbxFormsOpenEventeArgs pbxFormsOpenEventeArgs = e as PbxFormsOpenEventeArgs;
             if (pbxFormsOpenEventeArgs != null)
@@ -406,7 +442,6 @@ namespace CurumimGameForms
                 {
                     MessageBox.Show("Error Opening Profile");
                 }
-
             }
         }
         private void RoomsOpenOnClick(object sender, EventArgs e)//chama o forms das Salas.
@@ -446,7 +481,7 @@ namespace CurumimGameForms
                 MessageBox.Show("Error to Load Battle");
             }
         }
-        private void NewMessageChatBattleOnClik(object sender, EventArgs e) //manda a mensagem para um receiver.
+        private void NewMessageChatBattleOnClik(object sender, EventArgs e) //manda a mensagem durante a batalha.
         {
             PbxMessageSendMessageEventArgs pbxMessageSendMessageEventArgs = e as PbxMessageSendMessageEventArgs;
             if (pbxMessageSendMessageEventArgs != null)
@@ -456,7 +491,7 @@ namespace CurumimGameForms
                     Type = NEW_MESSAGE_CHAT_BATTLE,
                     pbxMessageSendMessageEventArgs.messageMessage,
                     loginPlayer = gameProfile.GetLoginPlayer()
-                }) ;
+                });
             }
             else
             {
@@ -1065,6 +1100,25 @@ namespace CurumimGameForms
                         break;
                     case NEW_MESSAGE_CHAT_BATTLE_ERRO:
                         MessageBox.Show("Message cannot be delivered", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    case GET_INFO_GAME_SUCESS:
+                        string Function = messageEventArgs.Message.GetString("Function");
+
+                        if (Function == "message")
+                        {
+                            login = messageEventArgs.Message.GetString("sender");
+                            message = messageEventArgs.Message.GetString("message");
+                            dateTime = messageEventArgs.Message.GetString("date");
+                            this.gamePlayerForms.NewMessage(login,message, dateTime);
+                        }
+                        else if (Function == "ranking")
+                        {
+                            string infomation = messageEventArgs.Message.GetString("infomation");
+                            this.gamePlayerForms.LoadRankig(infomation);
+                        }
+                        break;
+                    case GET_INFO_GAME_ERRO:
+                        MessageBox.Show("Could not load game information.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         break;
                 }
             }

@@ -160,12 +160,6 @@
     <Compile Include="GameRoomsForms.Designer.cs">
       <DependentUpon>GameRoomsForms.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameSpectatorForms.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameSpectatorForms.Designer.cs">
-      <DependentUpon>GameSpectatorForms.cs</DependentUpon>
-    </Compile>
     <Compile Include="GameStoreForms.cs">
       <SubType>Form</SubType>
     </Compile>

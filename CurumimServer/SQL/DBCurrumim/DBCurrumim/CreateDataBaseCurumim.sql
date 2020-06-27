@@ -216,6 +216,25 @@ GO
 
 
 
+CREATE TABLE [dbo].[tbMessageGlobal](
+	[idMessageGlobal] [int] IDENTITY(1,1) NOT NULL,
+	[sender_id_tbPlayer] [int] NOT NULL,
+	[messageMessage] [text] NOT NULL,
+	[dateTimeMessage] [datetime] NOT NULL,
+ CONSTRAINT [PK_tbMessageGLobal] PRIMARY KEY CLUSTERED 
+(
+	[idMessageGlobal] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[tbMessageGlobal]  WITH CHECK ADD  CONSTRAINT [FK_tbMessageGlobal_tbPlayer_sender] FOREIGN KEY([sender_id_tbPlayer])
+REFERENCES [dbo].[tbPlayer] ([idPlayer])
+GO
+
+ALTER TABLE [dbo].[tbMessage] CHECK CONSTRAINT [FK_tbMessage_tbPlayer_sender]
+GO
+
 
 CREATE TABLE [dbo].[tbPurchase](
 	[idPurchase] [int] IDENTITY(1,1) NOT NULL,
@@ -513,6 +532,31 @@ else
 
 END
 GO
+
+CREATE PROCEDURE [dbo].[SetMessageGlobal] --- gravar mensagem global
+
+@sender_id_tbPlayer varchar(50),
+@messageMessage text,
+@dateTimeMessage datetime
+
+AS
+BEGIN
+
+INSERT INTO [dbo].[tbMessageGlobal](
+
+[sender_id_tbPlayer],
+[messageMessage],
+[dateTimeMessage]
+
+)
+VALUES
+(
+@sender_id_tbPlayer,
+@messageMessage,
+@dateTimeMessage 
+)
+
+END
 ---=====================================================================
 ---Funções
 ---=====================================================================
@@ -646,7 +690,7 @@ SELECT
 )
 GO
 
-CREATE FUNCTION [dbo].[GetPlayerPosition] ---
+CREATE FUNCTION [dbo].[GetPlayerPosition] --- retorma a possição no ranking
 (@idPlayer int)
 RETURNS TABLE 
 AS
@@ -659,4 +703,34 @@ SELECT t.* FROM(
 	FROM tbPlayer) t
 WHERE t.idPlayer = @idPlayer
 )
+GO
+
+CREATE FUNCTION [dbo].[GetPlayerRanking] ---Retorna o ranking dos jogadores.
+()
+RETURNS TABLE 
+AS
+RETURN 
+(
+SELECT t.* FROM(
+	SELECT
+		ROW_NUMBER() OVER(order by punctuationPlayer desc) AS position,
+		loginPlayer,
+		punctuationPlayer
+	FROM tbPlayer) t
+)
+GO
+
+CREATE FUNCTION [dbo].[GetMessageGLobal] --- carregar mensagem do banco de dados.
+()
+RETURNS TABLE 
+AS
+RETURN 
+(
+SELECT 
+	p.loginPlayer as sender
+      ,messageMessage
+      ,dateTimeMessage
+  FROM [dbo].[tbMessageGlobal] as m
+  INNER JOIN [dbo].[tbPlayer] as p on p.idPlayer = m.sender_id_tbPlayer
+  )
 GO
