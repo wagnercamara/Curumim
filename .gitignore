@@ -347,3 +347,11 @@ CurumimServer/CurumimServer/obj/
 CurumimClient/CurumimClient/bin/
 
 CurumimClient/CurumimClient/obj/
+
+CurumimServer/CurumimServer/bin/Debug/netcoreapp3.1/CurumimServer.dll
+
+CurumimServer/CurumimServer/bin/Debug/netcoreapp3.1/CurumimServer.runtimeconfig.dev.json
+
+CurumimServer/CurumimServer/bin/Release/netcoreapp3.1/CurumimServer.dll
+
+CurumimServer/CurumimServer/bin/Release/netcoreapp3.1/CurumimServer.runtimeconfig.dev.json
