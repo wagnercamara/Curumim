@@ -66,7 +66,11 @@ namespace CurumimServer
         private const int PLAYER_TYPE_GET_POSITION_SUCCESS = 38;
         private const int PLAYER_TYPE_GET_POSITION_ERRO = 39;
 
-
+        //ChatGlobal_RankingJogadores.
+        private const int GET_INFO_GAME = 44;
+        private const int GET_INFO_GAME_SUCESS = 45;
+        private const int GET_INFO_GAME_ERRO = 46;
+        private const int SET_MESSAGE_GLOBAL = 47;
 
         private ConnectionDB sQLConnection = new ConnectionDB();
 
@@ -207,6 +211,43 @@ namespace CurumimServer
 
                 this.sqlCommand.Parameters.AddWithValue("@sender_id_tbPlayer", sender_id_tbPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@receiver_id_tbPlayer", receiver_id_tbPlayer);
+                this.sqlCommand.Parameters.AddWithValue("@messageMessage", messageMessage);
+                this.sqlCommand.Parameters.AddWithValue("@dateTimeMessage", dateTimeMessage);
+
+                try
+                {
+                    this.sqlCommand.ExecuteNonQuery();
+                    newMessageSucess = true;
+                }
+                catch
+                {
+                    newMessageSucess = false;
+                }
+            }
+            this.sQLConnection.ClouseConnection();
+            return newMessageSucess;
+        }
+        public Boolean SqlInsertMenssageGlobal(int sender_id_tbPlayer, string messageMessage, DateTime dateTimeMessage)
+        {
+            Boolean successfullyConnected = false;
+            Boolean newMessageSucess = false;
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = "SetMessageGlobal";
+                this.sqlCommand.CommandType = CommandType.StoredProcedure;
+                this.sqlCommand.Parameters.Clear();
+
+                this.sqlCommand.Parameters.AddWithValue("@sender_id_tbPlayer", sender_id_tbPlayer);
                 this.sqlCommand.Parameters.AddWithValue("@messageMessage", messageMessage);
                 this.sqlCommand.Parameters.AddWithValue("@dateTimeMessage", dateTimeMessage);
 
@@ -673,6 +714,105 @@ namespace CurumimServer
 
             this.sQLConnection.ClouseConnection();
             return message;
+        }
+        public List<dynamic> SqlGetMessageGlobal()
+        {
+            Boolean successfullyConnected = false;
+            List<dynamic> message = new List<dynamic>();
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetMessageGLobal] ()";
+                this.sqlCommand.Parameters.Clear();
+
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+
+                    while (reader.Read() == true)
+                    {
+                        message.Add(new
+                        {
+                            Type = GET_INFO_GAME_SUCESS,
+                            Function = "message",
+                            sender = reader["sender"].ToString(),
+                            message = reader["messageMessage"].ToString(),
+                            date = reader["dateTimeMessage"].ToString(),
+                        });
+                    }
+                }
+                catch
+                {
+                    message.Add(new { Type = GET_INFO_GAME_ERRO });
+                }
+
+            }
+            else
+            {
+                message.Add(new { Type = GET_INFO_GAME_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return message;
+        }
+        public List<dynamic> SqlGetRanking()
+        {
+            Boolean successfullyConnected = false;
+            List<dynamic> ranking = new List<dynamic>();
+            try
+            {
+                this.sqlCommand.Connection = sQLConnection.OpenConnection();
+
+                successfullyConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            if (successfullyConnected == true)
+            {
+                this.sqlCommand.CommandText = @"SELECT * FROM [dbo].[GetPlayerRanking] ()";
+                this.sqlCommand.Parameters.Clear();
+
+                try
+                {
+                    SqlDataReader reader = this.sqlCommand.ExecuteReader();
+
+                    while (reader.Read() == true)
+                    {
+                        string position = reader["position"].ToString();
+                        string loginPlayer = reader["loginPlayer"].ToString();
+                        Int32 punctuationPlayer = Int32.Parse(reader["punctuationPlayer"].ToString());
+
+                        string infomation = $"{position}:{loginPlayer}:{punctuationPlayer}";
+
+                        ranking.Add(new
+                        {
+                            Type = GET_INFO_GAME_SUCESS,
+                            Function = "ranking",
+                            infomation
+                        });
+                    }
+                }
+                catch
+                {
+                    ranking.Add(new { Type = GET_INFO_GAME_ERRO });
+                }
+            }
+            else
+            {
+                ranking.Add(new { Type = GET_INFO_GAME_ERRO });
+            }
+            this.sQLConnection.ClouseConnection();
+            return ranking;
         }
         public List<dynamic> SqlGetItemStore()
         {

@@ -30,9 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GamePlayerForms));
             this.pnlUp = new System.Windows.Forms.Panel();
-            this.pnlSpc = new System.Windows.Forms.Panel();
-            this.pbxSpectador = new System.Windows.Forms.PictureBox();
-            this.lblSpectator = new System.Windows.Forms.Label();
+            this.pnlInfoGame = new System.Windows.Forms.Panel();
+            this.pbxComic = new System.Windows.Forms.PictureBox();
+            this.tbxMessage = new System.Windows.Forms.TextBox();
+            this.rbxHistoryMessage = new System.Windows.Forms.RichTextBox();
+            this.gbxRanking = new System.Windows.Forms.GroupBox();
+            this.txtBoxRanking = new System.Windows.Forms.TextBox();
+            this.btnSendMessage = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -53,8 +57,9 @@
             this.pbxHome = new System.Windows.Forms.PictureBox();
             this.pbxImgFundo = new System.Windows.Forms.PictureBox();
             this.pnlUp.SuspendLayout();
-            this.pnlSpc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSpectador)).BeginInit();
+            this.pnlInfoGame.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxComic)).BeginInit();
+            this.gbxRanking.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUpDown)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxBatlle)).BeginInit();
@@ -68,7 +73,7 @@
             // pnlUp
             // 
             this.pnlUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.pnlUp.Controls.Add(this.pnlSpc);
+            this.pnlUp.Controls.Add(this.pnlInfoGame);
             this.pnlUp.Controls.Add(this.button3);
             this.pnlUp.Controls.Add(this.button2);
             this.pnlUp.Controls.Add(this.button1);
@@ -89,41 +94,90 @@
             this.pnlUp.TabIndex = 5;
             this.pnlUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlUp_MouseMove);
             // 
-            // pnlSpc
+            // pnlInfoGame
             // 
-            this.pnlSpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.pnlSpc.Controls.Add(this.pbxSpectador);
-            this.pnlSpc.Controls.Add(this.lblSpectator);
-            this.pnlSpc.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlSpc.Location = new System.Drawing.Point(0, 32);
-            this.pnlSpc.Name = "pnlSpc";
-            this.pnlSpc.Size = new System.Drawing.Size(998, 3);
-            this.pnlSpc.TabIndex = 14;
+            this.pnlInfoGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.pnlInfoGame.Controls.Add(this.pbxComic);
+            this.pnlInfoGame.Controls.Add(this.tbxMessage);
+            this.pnlInfoGame.Controls.Add(this.rbxHistoryMessage);
+            this.pnlInfoGame.Controls.Add(this.gbxRanking);
+            this.pnlInfoGame.Controls.Add(this.btnSendMessage);
+            this.pnlInfoGame.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlInfoGame.Location = new System.Drawing.Point(12, 32);
+            this.pnlInfoGame.Name = "pnlInfoGame";
+            this.pnlInfoGame.Size = new System.Drawing.Size(974, 3);
+            this.pnlInfoGame.TabIndex = 14;
             // 
-            // pbxSpectador
+            // pbxComic
             // 
-            this.pbxSpectador.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbxSpectador.Image = ((System.Drawing.Image)(resources.GetObject("pbxSpectador.Image")));
-            this.pbxSpectador.Location = new System.Drawing.Point(390, 15);
-            this.pbxSpectador.Name = "pbxSpectador";
-            this.pbxSpectador.Size = new System.Drawing.Size(252, 253);
-            this.pbxSpectador.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxSpectador.TabIndex = 9;
-            this.pbxSpectador.TabStop = false;
-            this.pbxSpectador.Visible = false;
-            this.pbxSpectador.Click += new System.EventHandler(this.pbxSpectador_Click);
+            this.pbxComic.Image = ((System.Drawing.Image)(resources.GetObject("pbxComic.Image")));
+            this.pbxComic.Location = new System.Drawing.Point(710, 313);
+            this.pbxComic.Name = "pbxComic";
+            this.pbxComic.Size = new System.Drawing.Size(255, 136);
+            this.pbxComic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxComic.TabIndex = 4;
+            this.pbxComic.TabStop = false;
             // 
-            // lblSpectator
+            // tbxMessage
             // 
-            this.lblSpectator.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpectator.ForeColor = System.Drawing.Color.Black;
-            this.lblSpectator.Location = new System.Drawing.Point(390, 269);
-            this.lblSpectator.Name = "lblSpectator";
-            this.lblSpectator.Size = new System.Drawing.Size(252, 23);
-            this.lblSpectator.TabIndex = 7;
-            this.lblSpectator.Text = "Modo Spectador";
-            this.lblSpectator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblSpectator.Visible = false;
+            this.tbxMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.tbxMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxMessage.ForeColor = System.Drawing.Color.MediumTurquoise;
+            this.tbxMessage.Location = new System.Drawing.Point(6, 417);
+            this.tbxMessage.Multiline = true;
+            this.tbxMessage.Name = "tbxMessage";
+            this.tbxMessage.Size = new System.Drawing.Size(643, 32);
+            this.tbxMessage.TabIndex = 3;
+            // 
+            // rbxHistoryMessage
+            // 
+            this.rbxHistoryMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.rbxHistoryMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rbxHistoryMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbxHistoryMessage.Location = new System.Drawing.Point(6, 5);
+            this.rbxHistoryMessage.Name = "rbxHistoryMessage";
+            this.rbxHistoryMessage.ReadOnly = true;
+            this.rbxHistoryMessage.Size = new System.Drawing.Size(698, 408);
+            this.rbxHistoryMessage.TabIndex = 2;
+            this.rbxHistoryMessage.Text = "";
+            // 
+            // gbxRanking
+            // 
+            this.gbxRanking.Controls.Add(this.txtBoxRanking);
+            this.gbxRanking.ForeColor = System.Drawing.Color.Turquoise;
+            this.gbxRanking.Location = new System.Drawing.Point(710, 3);
+            this.gbxRanking.Name = "gbxRanking";
+            this.gbxRanking.Size = new System.Drawing.Size(261, 301);
+            this.gbxRanking.TabIndex = 1;
+            this.gbxRanking.TabStop = false;
+            this.gbxRanking.Text = "Ranking";
+            // 
+            // txtBoxRanking
+            // 
+            this.txtBoxRanking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.txtBoxRanking.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRanking.ForeColor = System.Drawing.Color.MediumTurquoise;
+            this.txtBoxRanking.Location = new System.Drawing.Point(6, 19);
+            this.txtBoxRanking.Multiline = true;
+            this.txtBoxRanking.Name = "txtBoxRanking";
+            this.txtBoxRanking.Size = new System.Drawing.Size(249, 274);
+            this.txtBoxRanking.TabIndex = 4;
+            this.txtBoxRanking.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnSendMessage
+            // 
+            this.btnSendMessage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSendMessage.BackgroundImage")));
+            this.btnSendMessage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSendMessage.FlatAppearance.BorderSize = 0;
+            this.btnSendMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendMessage.Location = new System.Drawing.Point(655, 419);
+            this.btnSendMessage.Name = "btnSendMessage";
+            this.btnSendMessage.Size = new System.Drawing.Size(49, 32);
+            this.btnSendMessage.TabIndex = 0;
+            this.btnSendMessage.UseVisualStyleBackColor = true;
+            this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
             // 
             // button3
             // 
@@ -353,6 +407,7 @@
             // 
             // GamePlayerForms
             // 
+            this.AcceptButton = this.btnSendMessage;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
@@ -367,8 +422,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.pnlUp.ResumeLayout(false);
             this.pnlUp.PerformLayout();
-            this.pnlSpc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSpectador)).EndInit();
+            this.pnlInfoGame.ResumeLayout(false);
+            this.pnlInfoGame.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxComic)).EndInit();
+            this.gbxRanking.ResumeLayout(false);
+            this.gbxRanking.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUpDown)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxBatlle)).EndInit();
@@ -384,7 +442,6 @@
         #endregion
         private System.Windows.Forms.Panel pnlUp;
         private System.Windows.Forms.PictureBox pbxUpDown;
-        private System.Windows.Forms.Label lblSpectator;
         private System.Windows.Forms.Label lblAbout;
         private System.Windows.Forms.Label lblLocationBatlle;
         private System.Windows.Forms.Label lblLocaitionStore;
@@ -403,7 +460,12 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel pnlSpc;
-        private System.Windows.Forms.PictureBox pbxSpectador;
+        private System.Windows.Forms.Panel pnlInfoGame;
+        private System.Windows.Forms.TextBox tbxMessage;
+        private System.Windows.Forms.RichTextBox rbxHistoryMessage;
+        private System.Windows.Forms.GroupBox gbxRanking;
+        private System.Windows.Forms.Button btnSendMessage;
+        private System.Windows.Forms.PictureBox pbxComic;
+        private System.Windows.Forms.TextBox txtBoxRanking;
     }
 }

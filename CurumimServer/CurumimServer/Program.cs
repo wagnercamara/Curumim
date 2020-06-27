@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using Base;
 using System.Threading;
+using Microsoft.VisualBasic;
 
 namespace CurumimServer
 {
@@ -91,8 +92,11 @@ namespace CurumimServer
         private const int NEW_MESSAGE_CHAT_BATTLE_SUCESS = 42;
         private const int NEW_MESSAGE_CHAT_BATTLE_ERRO = 43;
 
-
-
+        //ChatGlobal_RankingJogadores.
+        private const int GET_INFO_GAME = 44;
+        private const int GET_INFO_GAME_SUCESS = 45;
+        private const int GET_INFO_GAME_ERRO = 46;
+        private const int SET_MESSAGE_GLOBAL = 47;
 
 
 
@@ -168,6 +172,24 @@ namespace CurumimServer
             dynamic dynamic = sQLQuery.GetPlayerPosition(idPlayer);
             client.SendMessage(dynamic);
         }
+        private static void GetMessageGLobal(ThreadClient client)
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            List<dynamic> dynamics = sQLQuery.SqlGetMessageGlobal();
+            foreach (dynamic din in dynamics)
+            {
+                client.SendMessage(din);
+            }
+        }
+        private static void GetRankig(ThreadClient client) // capturar array do raking
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            List<dynamic> dynamics = sQLQuery.SqlGetRanking();
+            foreach (dynamic din in dynamics)
+            {
+                client.SendMessage(din);
+            }
+        }
         private static void SetNewPlayer(ThreadClient client, string fullNamePlayer, string loginPlayer, string passwordPlayer, string secretPhresePlayer, string avatarPlayer)
         {
             SQLQuery sQLQuery = new SQLQuery();
@@ -229,7 +251,30 @@ namespace CurumimServer
                     });
                     break;
             }
+        }
+        private static void NewMessageChatGlobal(ThreadClient client, int sender_id_tbPlayer, string messageMessage, DateTime dateTimeMessage, string loginSender)
+        {
+            SQLQuery sQLQuery = new SQLQuery();
+            Boolean OkSend = sQLQuery.SqlInsertMenssageGlobal(sender_id_tbPlayer, messageMessage, dateTimeMessage);
 
+            switch (OkSend)
+            {
+                case true:
+                    foreach (ThreadClient threadClient in Login_threadClients)
+                    {
+                        string sender = loginSender;
+                        string message = messageMessage;
+                        string date = dateTimeMessage.ToString();
+                        threadClient.SendMessage(new {Type = GET_INFO_GAME_SUCESS, Function = "message", sender, message, date });
+                    }
+                    break;
+                case false:
+                    client.SendMessage(new
+                    {
+                        Type = GET_INFO_GAME_ERRO
+                    });
+                    break;
+            }
         }
         private static void SetOffOrOnPlayer(ThreadClient client, int idPlayer, int OffOn)
         {
@@ -685,6 +730,34 @@ namespace CurumimServer
                         loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
                         loginPlayerEnemy = messageEventArgs.Message.GetString("loginPlayerEnemy");
                         NewMessagechatBattle(client, messageMessage, loginPlayer, loginPlayerEnemy);
+                        break;
+                    case GET_INFO_GAME:
+                        string Function = messageEventArgs.Message.GetString("Function");
+                        Console.WriteLine($"GET_INFO_GAME: { Function }");
+                        if (Function == "message")
+                        {
+                            GetMessageGLobal(client);
+                        }
+                        else if(Function == "ranking" )
+                        {
+                            GetRankig(client);
+                        }
+                        else
+                        {
+                            GetMessageGLobal(client);
+                            GetRankig(client);
+                        }
+                        break;
+                    case SET_MESSAGE_GLOBAL:
+                        {
+                            sender_id_tbPlayer = messageEventArgs.Message.GetInt32("sender_id_tbPlayer");
+                            messageMessage = messageEventArgs.Message.GetString("messageMessage");
+                            loginPlayer = messageEventArgs.Message.GetString("name_Sender");
+
+                            DateTime dateT = DateTime.Now;
+
+                            NewMessageChatGlobal(client, sender_id_tbPlayer, messageMessage, dateT, loginPlayer);
+                        }
                         break;
                 }
             }
