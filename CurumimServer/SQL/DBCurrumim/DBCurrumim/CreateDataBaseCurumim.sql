@@ -557,10 +557,11 @@ VALUES
 )
 
 END
+GO
 ---=====================================================================
 ---Funções
 ---=====================================================================
-CREATE FUNCTION [dbo].[GetPlayer] ---
+CREATE FUNCTION [dbo].[GetPlayer]
 (	
 @login varchar(50),
 @password varchar(50)
