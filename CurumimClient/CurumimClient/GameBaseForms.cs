@@ -8,6 +8,7 @@ using CurumimClient.PbxEventArgs;
 using CurumimGameForms.BtnEventArgs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace CurumimGameForms
@@ -184,7 +185,7 @@ namespace CurumimGameForms
                         x = false;
                         break;
                     case DialogResult.No:
-                        Application.Exit();
+                        this.Close();
                         break;
                 }
             }
@@ -383,7 +384,7 @@ namespace CurumimGameForms
                     if (CloseGameCurumim() == true)
                     {
                         gamePlayerForms.Close();
-                        Application.Exit();
+                        this.Close();
                         return;
                     }
                     else
@@ -1028,7 +1029,7 @@ namespace CurumimGameForms
                 MessageBox.Show("Waiting for next opponent...");
             }
         }
-
+        protected override void OnClosing(CancelEventArgs e) => Close();
         private void OnReceiveMessage(object sender, EventArgs e) // receiver
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;

@@ -56,3 +56,5 @@ C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient
 C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.exe
 C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.pdb
 >>>>>>> master
+C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csprojAssemblyReference.cache
+C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.GameWinOrLoserForms.resources
