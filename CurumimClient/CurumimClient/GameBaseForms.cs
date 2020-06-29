@@ -8,8 +8,6 @@ using CurumimClient.PbxEventArgs;
 using CurumimGameForms.BtnEventArgs;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CurumimGameForms

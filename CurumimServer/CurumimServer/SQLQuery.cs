@@ -792,7 +792,7 @@ namespace CurumimServer
                         string loginPlayer = reader["loginPlayer"].ToString();
                         Int32 punctuationPlayer = Int32.Parse(reader["punctuationPlayer"].ToString());
 
-                        string infomation = $"{position}:{loginPlayer}:{punctuationPlayer}";
+                        string infomation = $"Position: {position}° \nName: {loginPlayer} Score: {punctuationPlayer} ";
 
                         ranking.Add(new
                         {

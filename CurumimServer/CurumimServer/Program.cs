@@ -181,7 +181,7 @@ namespace CurumimServer
                 client.SendMessage(din);
             }
         }
-        private static void GetRankig(ThreadClient client) // capturar array do raking
+        private static void GetRankig(ThreadClient client)
         {
             SQLQuery sQLQuery = new SQLQuery();
             List<dynamic> dynamics = sQLQuery.SqlGetRanking();

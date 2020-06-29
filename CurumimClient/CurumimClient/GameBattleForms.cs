@@ -125,9 +125,6 @@ namespace CurumimGameForms
             }
             LoadWeaponsBattle();
         }
-
-
-
         private void LoadFieldLeft()
         {
             int image = 0;
@@ -169,7 +166,6 @@ namespace CurumimGameForms
                 x = 2;
             }
         }
-
         private void LoadFieldRight()
         {
             int image = 0;
@@ -211,12 +207,10 @@ namespace CurumimGameForms
                 x = 12;
             }
         }
-
         private void panelUp_MouseMove(object sender, MouseEventArgs e)
         {
             this.moveForms.Move(this.Handle);
         }
-
         private void GameBattleForms_BackColorChanged(object sender, EventArgs e)
         {
             ButtonField button = sender as ButtonField;

@@ -111,9 +111,9 @@
             // pbxComic
             // 
             this.pbxComic.Image = ((System.Drawing.Image)(resources.GetObject("pbxComic.Image")));
-            this.pbxComic.Location = new System.Drawing.Point(710, 313);
+            this.pbxComic.Location = new System.Drawing.Point(655, 313);
             this.pbxComic.Name = "pbxComic";
-            this.pbxComic.Size = new System.Drawing.Size(255, 136);
+            this.pbxComic.Size = new System.Drawing.Size(310, 136);
             this.pbxComic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxComic.TabIndex = 4;
             this.pbxComic.TabStop = false;
@@ -127,7 +127,7 @@
             this.tbxMessage.Location = new System.Drawing.Point(6, 417);
             this.tbxMessage.Multiline = true;
             this.tbxMessage.Name = "tbxMessage";
-            this.tbxMessage.Size = new System.Drawing.Size(643, 32);
+            this.tbxMessage.Size = new System.Drawing.Size(588, 32);
             this.tbxMessage.TabIndex = 3;
             // 
             // rbxHistoryMessage
@@ -138,7 +138,7 @@
             this.rbxHistoryMessage.Location = new System.Drawing.Point(6, 5);
             this.rbxHistoryMessage.Name = "rbxHistoryMessage";
             this.rbxHistoryMessage.ReadOnly = true;
-            this.rbxHistoryMessage.Size = new System.Drawing.Size(698, 408);
+            this.rbxHistoryMessage.Size = new System.Drawing.Size(643, 408);
             this.rbxHistoryMessage.TabIndex = 2;
             this.rbxHistoryMessage.Text = "";
             // 
@@ -146,9 +146,9 @@
             // 
             this.gbxRanking.Controls.Add(this.txtBoxRanking);
             this.gbxRanking.ForeColor = System.Drawing.Color.Turquoise;
-            this.gbxRanking.Location = new System.Drawing.Point(710, 3);
+            this.gbxRanking.Location = new System.Drawing.Point(655, 3);
             this.gbxRanking.Name = "gbxRanking";
-            this.gbxRanking.Size = new System.Drawing.Size(261, 301);
+            this.gbxRanking.Size = new System.Drawing.Size(316, 301);
             this.gbxRanking.TabIndex = 1;
             this.gbxRanking.TabStop = false;
             this.gbxRanking.Text = "Ranking";
@@ -157,12 +157,12 @@
             // 
             this.txtBoxRanking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.txtBoxRanking.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxRanking.Font = new System.Drawing.Font("Snap ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxRanking.ForeColor = System.Drawing.Color.MediumTurquoise;
-            this.txtBoxRanking.Location = new System.Drawing.Point(6, 19);
+            this.txtBoxRanking.Location = new System.Drawing.Point(6, 21);
             this.txtBoxRanking.Multiline = true;
             this.txtBoxRanking.Name = "txtBoxRanking";
-            this.txtBoxRanking.Size = new System.Drawing.Size(249, 274);
+            this.txtBoxRanking.Size = new System.Drawing.Size(304, 274);
             this.txtBoxRanking.TabIndex = 4;
             this.txtBoxRanking.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -172,7 +172,7 @@
             this.btnSendMessage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSendMessage.FlatAppearance.BorderSize = 0;
             this.btnSendMessage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendMessage.Location = new System.Drawing.Point(655, 419);
+            this.btnSendMessage.Location = new System.Drawing.Point(600, 419);
             this.btnSendMessage.Name = "btnSendMessage";
             this.btnSendMessage.Size = new System.Drawing.Size(49, 32);
             this.btnSendMessage.TabIndex = 0;

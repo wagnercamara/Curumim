@@ -1,11 +1,8 @@
-﻿using Base;
-using CurumimClient.BtnEventArgs;
+﻿using CurumimClient.BtnEventArgs;
 using CurumimClient.Classe;
 using CurumimClient.EventArgsForms;
 using CurumimClient.PbxEventArgs;
 using System;
-using System.Activities.Expressions;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
