@@ -293,7 +293,6 @@ namespace CurumimGameForms
                 }
             }
         }
-
         public void DestroyedButton(int[] locals, bool mysidefield, int typeItem)
         {
             if (this.InvokeRequired == true)
@@ -323,7 +322,6 @@ namespace CurumimGameForms
                                     if (typeItem == 0)
                                         this.buttonFieldLefts[locals[i]].BauButton();
                                     this.buttonFieldLefts[locals[i]].Enabled = false;
-                                    MessageBox.Show($"{this.buttonFieldLefts[locals[i]].Name}\nBaú");
                                     break;
                                 case 3:
                                     this.pnlFieldLeft.Enabled = true;
@@ -331,11 +329,12 @@ namespace CurumimGameForms
                                     this.buttonFieldLefts[locals[i]].Enabled = false;
                                     this.MoveIndian = true;
                                     this.pnlFieldRight.Enabled = false;
-                                    MessageBox.Show("Move Your Indian!");
                                     if (typeItem == 1)
                                     {
                                         Lost();
                                     }
+                                    else
+                                        MessageBox.Show("Move Your Indian!");
                                     break;
                             }
                         }
@@ -422,7 +421,6 @@ namespace CurumimGameForms
                                     if (typeItem == 0)
                                         this.buttonFieldRights[locals[i]].BauButton();
                                     this.buttonFieldRights[locals[i]].Enabled = false;
-                                    MessageBox.Show($"{this.buttonFieldRights[locals[i]].Name}\nBaú");
                                     break;
                                 case 3:
                                     this.pnlFieldRight.Enabled = true;
@@ -430,11 +428,12 @@ namespace CurumimGameForms
                                     this.buttonFieldRights[locals[i]].Enabled = false;
                                     this.MoveIndian = true;
                                     this.pnlFieldLeft.Enabled = false;
-                                    MessageBox.Show("Move Your Indian!");
                                     if (typeItem == 1)
                                     {
                                         Lost();
                                     }
+                                    else
+                                        MessageBox.Show("Move Your Indian!");
                                     break;
                             }
                         }
