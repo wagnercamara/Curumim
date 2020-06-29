@@ -1,5 +1,3 @@
-C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameRoomsForms.resources
-C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameStoreForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Release\CurumimClient.exe.config
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Release\CurumimClient.exe
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Release\CurumimClient.pdb
@@ -7,7 +5,6 @@ C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\b
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Release\Newtonsoft.Json.dll
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Release\Base.pdb
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\bin\Release\Newtonsoft.Json.xml
-C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csprojAssemblyReference.cache
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameAboutForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameArsenalForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameAvatarForms.resources
@@ -20,39 +17,13 @@ C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\o
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameLoginForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GamePlayerForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameProfileForms.resources
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameRoomsForms.resources
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameStoreForms.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.Properties.Resources.resources
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csproj.GenerateResource.cache
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csproj.CoreCompileInputs.cache
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csproj.CopyComplete
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.exe
 C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.pdb
-<<<<<<< HEAD
-=======
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\CurumimClient.exe.config
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\CurumimClient.exe
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\CurumimClient.pdb
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\Base.dll
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\Newtonsoft.Json.dll
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\Base.pdb
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\bin\Release\Newtonsoft.Json.xml
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameAboutForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameArsenalForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameAvatarForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameBaseForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameBattleForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameChatBatlleForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameChatPlayerFroms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameForgotPasswordForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.GameLoadForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameLoginForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GamePlayerForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameProfileForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameRoomsForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimGameForms.GameStoreForms.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.Properties.Resources.resources
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csproj.GenerateResource.cache
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csproj.CoreCompileInputs.cache
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csproj.CopyComplete
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.exe
-C:\projeto curumim\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.pdb
->>>>>>> master
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.csprojAssemblyReference.cache
+C:\Users\Taylor\OneDrive\Documentos\GitHub\Curumim\CurumimClient\CurumimClient\obj\Release\CurumimClient.GameWinOrLoserForms.resources

@@ -18,10 +18,13 @@ namespace CurumimGameForms
             { 1012,"hookRope1" }, { 1013,"hookRope2" }, { 1014,"hookRope3" }, { 1015,"fishingNet1" }, { 1016,"fishingNet2" } };
 
         private int idItem;
+        private int qntItem;
 
-        public PbxWeaponBattle(int idItem)
+
+        public PbxWeaponBattle(int idItem, int qntItem)
         {
             this.idItem = idItem;
+            this.qntItem = qntItem;
             this.BackColor = Color.Transparent;
             this.BackgroundImageLayout = ImageLayout.Zoom;
             this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[this.idItem]);
@@ -33,6 +36,15 @@ namespace CurumimGameForms
         public int GetIdItem()
         {
             return this.idItem;
+        }
+        public int GetQntItem()
+        {
+            return this.qntItem;
+        }
+
+        public void SetQntItem(int value)
+        {
+            this.qntItem = value;
         }
     }
 }

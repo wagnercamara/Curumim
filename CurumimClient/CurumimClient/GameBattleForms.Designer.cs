@@ -33,13 +33,20 @@
             this.pnlFieldRight = new System.Windows.Forms.Panel();
             this.pnlFieldLeft = new System.Windows.Forms.Panel();
             this.pnlBattle = new System.Windows.Forms.Panel();
+            this.lblQntChest = new System.Windows.Forms.Label();
+            this.lblQntEsmrld = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblTurn = new System.Windows.Forms.Label();
+            this.panelUp = new System.Windows.Forms.Panel();
             this.btnExitBattle = new System.Windows.Forms.Button();
             this.lblPlayer2Name = new System.Windows.Forms.Label();
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.pbxChatBattle = new System.Windows.Forms.PictureBox();
-            this.panelUp = new System.Windows.Forms.Panel();
             this.pnlField.SuspendLayout();
             this.pnlBattle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxChatBattle)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +80,11 @@
             // 
             // pnlBattle
             // 
+            this.pnlBattle.Controls.Add(this.lblQntChest);
+            this.pnlBattle.Controls.Add(this.lblQntEsmrld);
+            this.pnlBattle.Controls.Add(this.pictureBox2);
+            this.pnlBattle.Controls.Add(this.pictureBox1);
+            this.pnlBattle.Controls.Add(this.lblTurn);
             this.pnlBattle.Controls.Add(this.panelUp);
             this.pnlBattle.Controls.Add(this.btnExitBattle);
             this.pnlBattle.Controls.Add(this.lblPlayer2Name);
@@ -84,6 +96,71 @@
             this.pnlBattle.Name = "pnlBattle";
             this.pnlBattle.Size = new System.Drawing.Size(1222, 572);
             this.pnlBattle.TabIndex = 2;
+            // 
+            // lblQntChest
+            // 
+            this.lblQntChest.AutoSize = true;
+            this.lblQntChest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQntChest.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblQntChest.Location = new System.Drawing.Point(4, 277);
+            this.lblQntChest.Name = "lblQntChest";
+            this.lblQntChest.Size = new System.Drawing.Size(55, 15);
+            this.lblQntChest.TabIndex = 11;
+            this.lblQntChest.Text = "qntChest";
+            this.lblQntChest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblQntEsmrld
+            // 
+            this.lblQntEsmrld.AutoSize = true;
+            this.lblQntEsmrld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQntEsmrld.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblQntEsmrld.Location = new System.Drawing.Point(7, 170);
+            this.lblQntEsmrld.Name = "lblQntEsmrld";
+            this.lblQntEsmrld.Size = new System.Drawing.Size(49, 15);
+            this.lblQntEsmrld.TabIndex = 10;
+            this.lblQntEsmrld.Text = "qntEsm";
+            this.lblQntEsmrld.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Location = new System.Drawing.Point(7, 220);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(46, 61);
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 117);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 55);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblTurn
+            // 
+            this.lblTurn.AutoSize = true;
+            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurn.ForeColor = System.Drawing.Color.Red;
+            this.lblTurn.Location = new System.Drawing.Point(574, 52);
+            this.lblTurn.Name = "lblTurn";
+            this.lblTurn.Size = new System.Drawing.Size(98, 15);
+            this.lblTurn.TabIndex = 7;
+            this.lblTurn.Text = "Opponent\'s Turn";
+            this.lblTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelUp
+            // 
+            this.panelUp.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.panelUp.Location = new System.Drawing.Point(33, 0);
+            this.panelUp.Name = "panelUp";
+            this.panelUp.Size = new System.Drawing.Size(1189, 34);
+            this.panelUp.TabIndex = 6;
+            this.panelUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseMove);
             // 
             // btnExitBattle
             // 
@@ -137,21 +214,12 @@
             this.pbxChatBattle.TabStop = false;
             this.pbxChatBattle.Click += new System.EventHandler(this.pbxChatBattle_Click);
             // 
-            // panelUp
-            // 
-            this.panelUp.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.panelUp.Location = new System.Drawing.Point(33, 0);
-            this.panelUp.Name = "panelUp";
-            this.panelUp.Size = new System.Drawing.Size(1189, 34);
-            this.panelUp.TabIndex = 6;
-            this.panelUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseMove);
-            // 
             // GameBattleForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1222, 572);
             this.ControlBox = false;
@@ -164,6 +232,8 @@
             this.pnlField.ResumeLayout(false);
             this.pnlBattle.ResumeLayout(false);
             this.pnlBattle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxChatBattle)).EndInit();
             this.ResumeLayout(false);
 
@@ -180,5 +250,10 @@
         private System.Windows.Forms.PictureBox pbxChatBattle;
         private System.Windows.Forms.Button btnExitBattle;
         private System.Windows.Forms.Panel panelUp;
+        private System.Windows.Forms.Label lblQntChest;
+        private System.Windows.Forms.Label lblQntEsmrld;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblTurn;
     }
 }

@@ -101,6 +101,8 @@ namespace CurumimGameForms
         private const int BATTLE_TYPE_SET_DESTROYED_SIDE_SUCECSS = 57;
         private const int BATTLE_TYPE_SET_DESTROYED_SIDE_ERROR = 58;
         private const int BATTLE_TYPE_SET_WINNER_PLAYER = 59;
+        private const int BATTLE_TYPE_SYNC_LOCAL_INDIAN = 60;
+        private const int BATTLE_TYPE_SYNC_LOCAL_INDIAN_SUCCESS = 61;
 
 
         //Froms
@@ -970,7 +972,7 @@ namespace CurumimGameForms
                 if (typeRoom != 0)
                 {
                     this.gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik, this.gameProfile.GetLoginPlayer());
-                    this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms);
+                    this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms, SyncLocalIndian);
                     this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
                     this.gameBattleForms.SetPremiumBattle(premiumEsmerald, premiumScore);
                     OpenArsenal(true);
@@ -978,7 +980,7 @@ namespace CurumimGameForms
                 else
                 {
                     this.gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik, this.gameProfile.GetLoginPlayer());
-                    this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms);
+                    this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms, SyncLocalIndian);
                     this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
                     this.gameBattleForms.Show();
                 }
@@ -994,6 +996,10 @@ namespace CurumimGameForms
         private void DestroyedButton(int[] locals, int typeItem )
         {
             this.gameBattleForms.DestroyedButton(locals, true, typeItem);
+        }
+        private void SyncEnemyIndianLocal(int newLocal, int oldLocal)
+        {
+            this.gameBattleForms.SyncIndianLocal(newLocal, oldLocal);
         }
 
         private void OnDestroyedButton(object sender, EventArgs e)
@@ -1013,7 +1019,26 @@ namespace CurumimGameForms
             }
             else
             {
-                MessageBox.Show("Error to Load Battle");
+                MessageBox.Show("Error to Load Attack");
+            }
+        }
+
+        private void SyncLocalIndian(object sender, EventArgs e)
+        {
+            SyncLocalIndianEventArgs syncLocalIndianEventArgs = e as SyncLocalIndianEventArgs;
+            if (syncLocalIndianEventArgs != null)
+            {
+                this.client.SendMessage(new
+                {
+                    Type = BATTLE_TYPE_SYNC_LOCAL_INDIAN,
+                    newLocal = syncLocalIndianEventArgs.newLocal,
+                    loginPlayer = syncLocalIndianEventArgs.loginPlayer,
+                    oldLocal = syncLocalIndianEventArgs.oldLocal
+            });
+            }
+            else
+            {
+                MessageBox.Show("Error to Load Sync Local Indian");
             }
         }
 
@@ -1201,6 +1226,11 @@ namespace CurumimGameForms
                         int[] locals = messageEventArgs.Message.GetSingleDimArrayInt32("locals");
                         int typeItem = messageEventArgs.Message.GetInt32("typeItem");
                         this.DestroyedButton(locals, typeItem);
+                        break;
+                    case BATTLE_TYPE_SYNC_LOCAL_INDIAN_SUCCESS:
+                        int oldLocal = messageEventArgs.Message.GetInt32("oldLocal");
+                        int newLocal = messageEventArgs.Message.GetInt32("newLocal");
+                        this.SyncEnemyIndianLocal(newLocal, oldLocal);
                         break;
                     case NEW_MESSAGE_CHAT_BATTLE_SUCESS:
                         message = messageEventArgs.Message.GetString("messageMessage");

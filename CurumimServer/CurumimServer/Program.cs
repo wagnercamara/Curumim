@@ -111,6 +111,8 @@ namespace CurumimServer
         private const int BATTLE_TYPE_SET_DESTROYED_SIDE_SUCECSS = 57;
         private const int BATTLE_TYPE_SET_DESTROYED_SIDE_ERROR = 58;
         private const int BATTLE_TYPE_SET_WINNER_PLAYER = 59;
+        private const int BATTLE_TYPE_SYNC_LOCAL_INDIAN = 60;
+        private const int BATTLE_TYPE_SYNC_LOCAL_INDIAN_SUCCESS = 61;
 
         static void Main(string[] args)
         {
@@ -590,6 +592,14 @@ namespace CurumimServer
             }
 
         }
+        private static void SyncLocalIndian(int newLocal, int oldLocal, string loginPlayer)
+        {
+            if (BattlePlayers.ContainsKey(loginPlayer))
+            {
+                ThreadClient thread = BattlePlayers[loginPlayer];
+                thread.SendMessage(new { Type = BATTLE_TYPE_SYNC_LOCAL_INDIAN_SUCCESS, oldLocal, newLocal });
+            }
+        }
         private static void OnClientReceiveMessage(object sender, EventArgs e) //
         {
             MessageEventArgs messageEventArgs = e as MessageEventArgs;
@@ -723,6 +733,12 @@ namespace CurumimServer
                         string loginPlayerEnemy = messageEventArgs.Message.GetString("loginPlayer");
                         int typeItem = messageEventArgs.Message.GetInt32("typeItem");
                         DestroyedButton(locals, loginPlayerEnemy, typeItem);
+                        break;
+                    case BATTLE_TYPE_SYNC_LOCAL_INDIAN:
+                        int newLocal = messageEventArgs.Message.GetInt32("newLocal");
+                        loginPlayer = messageEventArgs.Message.GetString("loginPlayer");
+                        int oldLocal = messageEventArgs.Message.GetInt32("oldLocal");
+                        SyncLocalIndian(newLocal, oldLocal, loginPlayer);
                         break;
                     case NEW_MESSAGE_CHAT_BATTLE:
                         Console.WriteLine("NEW_MESSAGE_CHAT_BATTLE");

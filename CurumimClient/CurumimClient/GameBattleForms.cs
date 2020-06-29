@@ -1,4 +1,5 @@
 ﻿using Base;
+using CurumimClient;
 using CurumimClient.BtnEventArgs;
 using CurumimClient.Classe;
 using CurumimClient.PbxEventArgs;
@@ -20,14 +21,18 @@ namespace CurumimGameForms
     {
         private EventHandler PbxCloseBattle { get; set; }
         private delegate void DestroyedButtonDelegate(int[] locals, bool mysidefield, int typeItem);
+        private delegate void SyncLocalIndianDelegate(int newLocal, int oldLocal);
+        private delegate void SetWeaponsBattleDelegate(Dictionary<string, GameWeaponsClasse> weapons);
         private MoveForms moveForms = new MoveForms();
         private EventHandler OnClickButtonField;
         private EventHandler onDestroyedButton { get; set; }
+        private EventHandler SyncLocalIndian { get; set; }
         private Dictionary<int, ButtonField> buttonFieldLefts = new Dictionary<int, ButtonField>();
         private Dictionary<int, ButtonField> buttonFieldRights = new Dictionary<int, ButtonField>();
         private int[] typesFieldRight;
         private int[] typesFieldLeft;
         private Dictionary<int, PbxWeaponBattle> pbxWeapons = new Dictionary<int, PbxWeaponBattle>();
+        private Dictionary<int, Label> lblQntWeapons = new Dictionary<int, Label>();
         private Dictionary<int, GameWeaponsClasse> weaponsBattle = new Dictionary<int, GameWeaponsClasse>();
         private GameWeaponsClasse selectedWeapon;
         private List<int> buttonshit = new List<int>();
@@ -44,8 +49,11 @@ namespace CurumimGameForms
         private GameChatBatlleForms gameChatBatlleForms;
         private int myIndian;
         private bool MoveIndian;
+        private bool myTurn;
+        private int qntChestLeft;
+        private int qntChestRight;
 
-        public GameBattleForms(int typeBattle, int[] typesFieldRight, int[] typesFieldLeft, string loginPlayer1, string loginPlayer2, EventHandler PbxCloseBattle, EventHandler onDestroyedButton, GameChatBatlleForms gameChatBatlleForms)
+        public GameBattleForms(int typeBattle, int[] typesFieldRight, int[] typesFieldLeft, string loginPlayer1, string loginPlayer2, EventHandler PbxCloseBattle, EventHandler onDestroyedButton, GameChatBatlleForms gameChatBatlleForms, EventHandler SyncLocalIndian)
         {
             this.typeBattle = typeBattle;
             this.loginPlayer1 = loginPlayer1;
@@ -55,6 +63,7 @@ namespace CurumimGameForms
             this.PbxCloseBattle = PbxCloseBattle;
             this.onDestroyedButton = onDestroyedButton;
             this.gameChatBatlleForms = gameChatBatlleForms;
+            this.SyncLocalIndian = SyncLocalIndian;
 
             InitializeComponent();
 
@@ -70,6 +79,9 @@ namespace CurumimGameForms
             }
             this.lblPlayer1Name.Text = loginPlayer1;
             this.lblPlayer2Name.Text = loginPlayer2;
+            this.lblQntChest.Text = "0";
+            this.lblQntEsmrld.Text = "0";
+            this.lblTurn.Text = "";
             LoadFieldLeft();
             LoadFieldRight();
         }
@@ -84,13 +96,23 @@ namespace CurumimGameForms
                     weapon.Parent = this.pnlBattle;
                     weapon.Location = new Point(x, 496);
                     weapon.Click += this.OnClick_PbxWeaponBattle;
+                    Label lblqntWeapon = new Label();
+                    lblqntWeapon.Size = new Size(60, 15);
+                    lblqntWeapon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    lblqntWeapon.ForeColor = System.Drawing.SystemColors.ButtonFace;
+                    lblqntWeapon.Name = $"{weapon.GetIdItem()}";
+                    lblqntWeapon.Text = weapon.GetQntItem() == -1 ? "" : Convert.ToString(weapon.GetQntItem());
+                    lblqntWeapon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                    lblqntWeapon.Location = new Point(x, 546);
+                    this.pnlBattle.Controls.Add(lblqntWeapon);
+                    this.lblQntWeapons.Add(weapon.GetIdItem(), lblqntWeapon);
                     weapon.Show();
                     x += 64;
                 }
             }
             else
             {
-                PbxWeaponBattle stone = new PbxWeaponBattle(1001);
+                PbxWeaponBattle stone = new PbxWeaponBattle(1001, -1);
                 stone.Parent = this.pnlBattle;
                 stone.Location = new Point(60, 496);
                 stone.Click += this.OnClick_PbxWeaponBattle;
@@ -98,7 +120,7 @@ namespace CurumimGameForms
                 GameWeaponsClasse wstone = new GameWeaponsClasse(1001, 1, 0, 1, 1, 20, 1);
                 this.weaponsBattle.Add(wstone.GetIdItem(), wstone);
 
-                PbxWeaponBattle crossbow3 = new PbxWeaponBattle(1007);
+                PbxWeaponBattle crossbow3 = new PbxWeaponBattle(1007, 1);
                 crossbow3.Parent = this.pnlBattle;
                 crossbow3.Location = new Point(124, 496);
                 crossbow3.Click += this.OnClick_PbxWeaponBattle;
@@ -110,20 +132,27 @@ namespace CurumimGameForms
 
         public void SetWeaponsBattle(Dictionary<string, GameWeaponsClasse> weapons)
         {
-            GameWeaponsClasse wstone = new GameWeaponsClasse(1001, 1, 0, 1, 1, 20, 1);
-            this.weaponsBattle.Add(wstone.GetIdItem(), wstone);
-            this.pbxWeapons.Add(1001, new PbxWeaponBattle(1001));
-
-            GameWeaponsClasse wrope = new GameWeaponsClasse(1011, 1, 0, 1, 1, 20, 0);
-            this.weaponsBattle.Add(wrope.GetIdItem(), wrope);
-            this.pbxWeapons.Add(1011, new PbxWeaponBattle(1011));
-
-            foreach (GameWeaponsClasse weapon in weapons.Values)
+            if (this.InvokeRequired == true)
             {
-                this.weaponsBattle.Add(weapon.GetIdItem(), weapon);
-                this.pbxWeapons.Add(weapon.GetIdItem(), new PbxWeaponBattle(weapon.GetIdItem()));
+                this.Invoke(new SetWeaponsBattleDelegate(SetWeaponsBattle), new object[] { weapons });
             }
-            LoadWeaponsBattle();
+            else
+            {
+                GameWeaponsClasse wstone = new GameWeaponsClasse(1001, 1, 0, 1, 1, 20, 1);
+                this.weaponsBattle.Add(wstone.GetIdItem(), wstone);
+                this.pbxWeapons.Add(1001, new PbxWeaponBattle(1001, -1));
+
+                GameWeaponsClasse wrope = new GameWeaponsClasse(1011, 1, 0, 1, 1, 20, 0);
+                this.weaponsBattle.Add(wrope.GetIdItem(), wrope);
+                this.pbxWeapons.Add(1011, new PbxWeaponBattle(1011, -1));
+
+                foreach (GameWeaponsClasse weapon in weapons.Values)
+                {
+                    this.weaponsBattle.Add(weapon.GetIdItem(), weapon);
+                    this.pbxWeapons.Add(weapon.GetIdItem(), new PbxWeaponBattle(weapon.GetIdItem(), weapon.GetAmountWeapons()));
+                }
+                LoadWeaponsBattle();
+            }
         }
         private void LoadFieldLeft()
         {
@@ -155,8 +184,12 @@ namespace CurumimGameForms
                     buttonFieldLefts[button].BackColorChanged += GameBattleForms_BackColorChanged;
                     if ((buttonFieldLefts[button].GetTypeButton() == 3) && myside == 0)
                     {
-                        int[] local = { button };
-                        this.DestroyedButton(local, true, 0);
+                        buttonFieldLefts[button].IndianButton();
+                        this.myIndian = button;
+                    }
+                    if (buttonFieldLefts[button].GetTypeButton() == 3)
+                    {
+                        this.qntChestLeft += 1;
                     }
                     buttonFieldLefts[button].Show();
                     x += 25;
@@ -196,8 +229,12 @@ namespace CurumimGameForms
                     buttonFieldRights[button].BackColorChanged += GameBattleForms_BackColorChanged;
                     if ((buttonFieldRights[button].GetTypeButton() == 3) && myside == 1)
                     {
-                        int[] local = { button };
-                        this.DestroyedButton(local, true, 0);
+                        buttonFieldRights[button].IndianButton();
+                        this.myIndian = button;
+                    }
+                    if (buttonFieldRights[button].GetTypeButton() == 3)
+                    {
+                        this.qntChestRight += 1;
                     }
                     buttonFieldRights[button].Show();
                     x += 25;
@@ -226,11 +263,34 @@ namespace CurumimGameForms
             {
                 pnlFieldLeft.Enabled = false;
                 this.myside = 0;
+                this.myTurn = true;
             }
             else
             {
                 pnlFieldRight.Enabled = false;
                 this.myside = 1;
+                this.myTurn = false;
+            }
+        }
+
+        public void SyncIndianLocal(int newLocal, int oldLocal)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new SyncLocalIndianDelegate(SyncIndianLocal), new object[] { newLocal, oldLocal });
+            }
+            else
+            {
+                if (myside == 0)
+                {
+                    buttonFieldRights[oldLocal].SetTypeButton(0);
+                    buttonFieldRights[newLocal].SetTypeButton(3);
+                }
+                else
+                {
+                    buttonFieldLefts[oldLocal].SetTypeButton(0);
+                    buttonFieldLefts[newLocal].SetTypeButton(3);
+                }
             }
         }
 
@@ -255,39 +315,32 @@ namespace CurumimGameForms
                                     this.buttonFieldLefts[locals[i]].Enabled = false;
                                     break;
                                 case 1:
-                                    this.buttonFieldLefts[locals[i]].EsmeraldButton();
+                                    if (typeItem == 0)
+                                        this.buttonFieldLefts[locals[i]].EsmeraldButton();
                                     this.buttonFieldLefts[locals[i]].Enabled = false;
                                     break;
                                 case 2:
-                                    this.buttonFieldLefts[locals[i]].BauButton();
+                                    if (typeItem == 0)
+                                        this.buttonFieldLefts[locals[i]].BauButton();
                                     this.buttonFieldLefts[locals[i]].Enabled = false;
                                     MessageBox.Show($"{this.buttonFieldLefts[locals[i]].Name}\nBaú");
                                     break;
                                 case 3:
-                                    this.buttonFieldLefts[locals[i]].IndianButton();
                                     this.pnlFieldLeft.Enabled = true;
                                     this.selectedWeapon = null;
                                     this.buttonFieldLefts[locals[i]].Enabled = false;
-                                    this.myIndian = locals[i];
                                     this.MoveIndian = true;
                                     this.pnlFieldRight.Enabled = false;
-                                    foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
-                                    {
-                                        weapon.Enabled = false;
-                                    }
+                                    MessageBox.Show("Move Your Indian!");
                                     if (typeItem == 1)
                                     {
-                                        MessageBox.Show($"          {this.buttonFieldLefts[locals[i]].Name}\n     YOU Lost!");
                                         Lost();
                                     }
                                     break;
                             }
                         }
-                        this.pnlFieldLeft.Enabled = true;
-                        foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
-                        {
-                            weapon.Visible = true;
-                        }
+                        this.myTurn = this.MoveIndian == true ? false : true;
+                        if (this.myTurn) { this.lblTurn.Text = "Your Turn"; }
                     }
                     else
                     {
@@ -300,20 +353,46 @@ namespace CurumimGameForms
                                     if (this.selectedWeapon.GetTypeItem() != 1)
                                     {
                                         this.buttonFieldRights[locals[i]].EsmeraldButton();
+                                        this.lblQntEsmrld.Text = Convert.ToString(Convert.ToInt32(this.lblQntEsmrld.Text) + 1);
                                     }
                                     break;
                                 case 2:
                                     if (this.selectedWeapon.GetTypeItem() != 1)
                                     {
                                         this.buttonFieldRights[locals[i]].BauButton();
-                                        MessageBox.Show($"{this.buttonFieldRights[locals[i]].Name}\nBaú");
+                                        this.lblQntChest.Text = Convert.ToString(Convert.ToInt32(this.lblQntChest.Text) + 1);
+                                        int valorChest = 0;
+                                        switch (this.typeBattle)
+                                        {
+                                            case 1:
+                                                valorChest = 100;
+                                                break;
+                                            case 2:
+                                                valorChest = 250;
+                                                break;
+                                            case 3:
+                                                valorChest = 500;
+                                                break;
+                                            case 4:
+                                                valorChest = 1000;
+                                                break;
+                                            case 5:
+                                                valorChest = 2500;
+                                                break;
+                                            case 6:
+                                                valorChest = 5000;
+                                                break;
+                                            case 7:
+                                                valorChest = this.myside == 0 ? (this.premiumEsmerald / this.qntChestRight) : (this.premiumEsmerald / this.qntChestLeft);
+                                                break;
+                                        }
+                                        this.lblQntEsmrld.Text = Convert.ToString(Convert.ToInt32(this.lblQntEsmrld.Text) + valorChest);
                                     }
                                     break;
                                 case 3:
                                     this.buttonFieldRights[locals[i]].IndianButton();
                                     if (this.selectedWeapon.GetTypeItem() != 0)
                                     {
-                                        MessageBox.Show($"          {this.buttonFieldRights[locals[i]].Name}\n    Enemy Indian Hit!\n           YOU WON!");
                                         Win();
                                     }
                                     break;
@@ -335,39 +414,32 @@ namespace CurumimGameForms
                                     this.buttonFieldRights[locals[i]].Enabled = false;
                                     break;
                                 case 1:
-                                    this.buttonFieldRights[locals[i]].EsmeraldButton();
+                                    if (typeItem == 0)
+                                        this.buttonFieldRights[locals[i]].EsmeraldButton();
                                     this.buttonFieldRights[locals[i]].Enabled = false;
                                     break;
                                 case 2:
-                                    this.buttonFieldRights[locals[i]].BauButton();
+                                    if (typeItem == 0)
+                                        this.buttonFieldRights[locals[i]].BauButton();
                                     this.buttonFieldRights[locals[i]].Enabled = false;
                                     MessageBox.Show($"{this.buttonFieldRights[locals[i]].Name}\nBaú");
                                     break;
                                 case 3:
-                                    this.buttonFieldRights[locals[i]].IndianButton();
                                     this.pnlFieldRight.Enabled = true;
                                     this.selectedWeapon = null;
                                     this.buttonFieldRights[locals[i]].Enabled = false;
-                                    this.myIndian = locals[i];
                                     this.MoveIndian = true;
                                     this.pnlFieldLeft.Enabled = false;
-                                    foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
-                                    {
-                                        weapon.Enabled = false;
-                                    }
+                                    MessageBox.Show("Move Your Indian!");
                                     if (typeItem == 1)
                                     {
-                                        MessageBox.Show($"          {this.buttonFieldRights[locals[i]].Name}\n   YOU Lost!");
                                         Lost();
                                     }
                                     break;
                             }
                         }
-                        this.pnlFieldRight.Enabled = true;
-                        foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
-                        {
-                            weapon.Visible = true;
-                        }
+                        this.myTurn = this.MoveIndian == true ? false : true;
+                        if (this.myTurn) { this.lblTurn.Text = "Your Turn"; }
                     }
                     else
                     {
@@ -380,20 +452,46 @@ namespace CurumimGameForms
                                     if (this.selectedWeapon.GetTypeItem() != 1)
                                     {
                                         this.buttonFieldLefts[locals[i]].EsmeraldButton();
+                                        this.lblQntEsmrld.Text = Convert.ToString(Convert.ToInt32(this.lblQntEsmrld.Text) + 1);
                                     }
                                     break;
                                 case 2:
                                     if (this.selectedWeapon.GetTypeItem() != 1)
                                     {
                                         this.buttonFieldLefts[locals[i]].BauButton();
-                                        MessageBox.Show($"{this.buttonFieldLefts[locals[i]].Name}\nBaú");
+                                        this.lblQntChest.Text = Convert.ToString(Convert.ToInt32(this.lblQntChest.Text) + 1);
+                                        int valorChest = 0;
+                                        switch (this.typeBattle)
+                                        {
+                                            case 1:
+                                                valorChest = 100;
+                                                break;
+                                            case 2:
+                                                valorChest = 250;
+                                                break;
+                                            case 3:
+                                                valorChest = 500;
+                                                break;
+                                            case 4:
+                                                valorChest = 1000;
+                                                break;
+                                            case 5:
+                                                valorChest = 2500;
+                                                break;
+                                            case 6:
+                                                valorChest = 5000;
+                                                break;
+                                            case 7:
+                                                valorChest = this.myside == 0 ? (this.premiumEsmerald / this.qntChestRight) : (this.premiumEsmerald / this.qntChestLeft);
+                                                break;
+                                        }
+                                        this.lblQntEsmrld.Text = Convert.ToString(Convert.ToInt32(this.lblQntEsmrld.Text) + valorChest);
                                     }
                                     break;
                                 case 3:
                                     buttonFieldLefts[locals[i]].IndianButton();
                                     if (this.selectedWeapon.GetTypeItem() != 0)
                                     {
-                                        MessageBox.Show($"          {this.buttonFieldLefts[locals[i]].Name}\n    Enemy Indian Hit!\n           YOU WON!");
                                         Win();
                                     }
                                     break;
@@ -407,7 +505,7 @@ namespace CurumimGameForms
 
         private void OnClick_ButtonField(object sender, EventArgs e)
         {
-            if (this.selectedWeapon != null)
+            if (this.selectedWeapon != null && this.myTurn == true && this.MoveIndian == false)
             {
                 int[] locals = this.buttonshit.ToArray();
                 if (this.selectedWeapon.GetIdItem() == 1003)
@@ -428,11 +526,15 @@ namespace CurumimGameForms
                     loginPlayer = this.myside == 0 ? this.loginPlayer2 : this.loginPlayer1,
                     typeItem = selectedWeapon.GetTypeItem()
                 });
-                foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
+                if (this.selectedWeapon.GetIdItem() != 1001 && this.selectedWeapon.GetIdItem() != 1011)
                 {
-                    weapon.Visible = false;
+                    this.lblQntWeapons[this.selectedWeapon.GetIdItem()].Text = Convert.ToString(Convert.ToInt32(this.lblQntWeapons[this.selectedWeapon.GetIdItem()].Text) - 1);
+                    if (Convert.ToInt32(this.lblQntWeapons[this.selectedWeapon.GetIdItem()].Text) == 0) { this.pbxWeapons[this.selectedWeapon.GetIdItem()].Enabled = false; }
                 }
-                this.pnlField.Enabled = false;
+                this.selectedWeapon = null;
+                this.myTurn = false;
+                this.MoveIndian = false;
+
             }
             else
             {
@@ -440,54 +542,70 @@ namespace CurumimGameForms
                 {
                     ButtonField button = sender as ButtonField;
                     button.SetTypeButton(3);
-                    int[] local = { button.GetIdButton() };
+                    button.IndianButton();
                     buttonFieldLefts[this.myIndian].RestorButton();
-                    this.DestroyedButton(local, true, 0);
+                    int oldLocal = this.myIndian;
+                    this.myIndian = button.GetIdButton();
                     this.pnlFieldLeft.Enabled = false;
                     this.pnlFieldRight.Enabled = true;
-                    foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
+                    this.SyncLocalIndian.Invoke(this, new SyncLocalIndianEventArgs
                     {
-                        weapon.Enabled = true;
-                    }
+                        newLocal = this.myIndian,
+                        oldLocal = oldLocal,
+                        loginPlayer = this.loginPlayer2
+                    });
                     this.MoveIndian = false;
+                    this.myTurn = true;
                 }
                 else if (myside == 1 && this.MoveIndian == true)
                 {
                     ButtonField button = sender as ButtonField;
                     button.SetTypeButton(3);
-                    int[] local = { button.GetIdButton() };
+                    button.IndianButton();
                     buttonFieldRights[this.myIndian].RestorButton();
-                    this.DestroyedButton(local, true, 0);
+                    int oldLocal = this.myIndian;
+                    this.myIndian = button.GetIdButton();
                     this.pnlFieldRight.Enabled = false;
                     this.pnlFieldLeft.Enabled = true;
-                    foreach (PbxWeaponBattle weapon in this.pbxWeapons.Values)
+                    this.SyncLocalIndian.Invoke(this, new SyncLocalIndianEventArgs
                     {
-                        weapon.Enabled = true;
-                    }
+                        newLocal = this.myIndian,
+                        oldLocal = oldLocal,
+                        loginPlayer = this.loginPlayer1
+                    });
                     this.MoveIndian = false;
+                    this.myTurn = true;
                 }
+            }
+            if (this.MoveIndian == false && this.myTurn == false)
+            {
+                this.lblTurn.Text = "Opponent's Turn";
             }
         }
 
         private void OnClick_PbxWeaponBattle(object sender, EventArgs e)
         {
-            PbxWeaponBattle weapon = sender as PbxWeaponBattle;
-            this.selectedWeapon = this.weaponsBattle[weapon.GetIdItem()];
-            if (this.myside == 0)
+            if (this.myTurn && this.MoveIndian == false)
             {
-                for (int i = 0; i < this.buttonFieldRights.Count; i++)
+                PbxWeaponBattle weapon = sender as PbxWeaponBattle;
+                this.selectedWeapon = this.weaponsBattle[weapon.GetIdItem()];
+                if (this.myside == 0)
                 {
-                    this.buttonFieldRights[i].MouseEnter += this.AimField;
+                    for (int i = 0; i < this.buttonFieldRights.Count; i++)
+                    {
+                        this.buttonFieldRights[i].MouseEnter += this.AimField;
+                    }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < this.buttonFieldRights.Count; i++)
+                else
                 {
-                    this.buttonFieldLefts[i].MouseEnter += this.AimField;
+                    for (int i = 0; i < this.buttonFieldRights.Count; i++)
+                    {
+                        this.buttonFieldLefts[i].MouseEnter += this.AimField;
+                    }
                 }
-            }
 
+                weapon.Enabled = this.lblQntWeapons[weapon.GetIdItem()].Text != "0" ? true : false;
+            }
         }
 
         private void AimField(object sender, EventArgs ea)
@@ -846,12 +964,15 @@ namespace CurumimGameForms
 
         private void Win()
         {
-            MessageBox.Show($"  You Received a Premium of\n              {this.premiumEsmerald} emeralds\n                  {this.premiumScore} points");
+            GameWinOrLoserForms gameWinOrLoserFor = new GameWinOrLoserForms(1, Convert.ToInt32(this.lblQntChest.Text), Convert.ToInt32(this.lblQntEsmrld.Text) + this.premiumEsmerald, this.premiumScore);
+            gameWinOrLoserFor.ShowDialog();
             this.Close();
         }
 
         private void Lost()
         {
+            GameWinOrLoserForms gameWinOrLoserFor = new GameWinOrLoserForms(0);
+            gameWinOrLoserFor.ShowDialog();
             this.Close();
         }
 

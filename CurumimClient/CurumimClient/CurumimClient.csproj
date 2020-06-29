@@ -67,6 +67,7 @@
     <Compile Include="BtnEventArgs\BtnReplaceOnClickEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnRoomsInformationEventArgs.cs" />
     <Compile Include="BtnEventArgs\BtnSelectRoomsEventArgs.cs" />
+    <Compile Include="BtnEventArgs\SyncLocalIndianEventArgs.cs" />
     <Compile Include="Classe\ButtonField.cs">
       <SubType>Component</SubType>
     </Compile>

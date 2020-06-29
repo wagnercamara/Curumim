@@ -37,23 +37,27 @@ namespace CurumimGameForms
 
         public void DestroyedButton()
         {
-            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagensDestr[this.img]); //fiz ate aqui.
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagensDestr[this.img]);
+            this.BackColor = Color.Transparent;
         }
 
         public void EsmeraldButton()
         {
             this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[4]);
+            this.BackColor = Color.Transparent;
         }
         public void IndianButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[5]);
+            this.BackColor = Color.Transparent;
         }
 
         public void BauButton()
         {
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[6]);
+            this.BackColor = Color.Transparent;
         }
 
         public void SetTypeButton(int type)
@@ -73,7 +77,9 @@ namespace CurumimGameForms
 
         public void RestorButton()
         {
-            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[this.img]); //fiz ate aqui.
+            this.BackgroundImage = this.ImageClass.GetImageIconBattleForms(imagens[this.img]);
+            this.BackColor = Color.Transparent;
+            this.type = 0;
         }
     }
 }
