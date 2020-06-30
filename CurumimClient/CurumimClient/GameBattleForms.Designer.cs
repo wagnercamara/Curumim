@@ -43,6 +43,7 @@
             this.lblPlayer2Name = new System.Windows.Forms.Label();
             this.lblPlayer1Name = new System.Windows.Forms.Label();
             this.pbxChatBattle = new System.Windows.Forms.PictureBox();
+            this.lblMoveIndian = new System.Windows.Forms.Label();
             this.pnlField.SuspendLayout();
             this.pnlBattle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -80,6 +81,7 @@
             // 
             // pnlBattle
             // 
+            this.pnlBattle.Controls.Add(this.lblMoveIndian);
             this.pnlBattle.Controls.Add(this.lblQntChest);
             this.pnlBattle.Controls.Add(this.lblQntEsmrld);
             this.pnlBattle.Controls.Add(this.pictureBox2);
@@ -143,14 +145,13 @@
             // 
             // lblTurn
             // 
-            this.lblTurn.AutoSize = true;
-            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurn.ForeColor = System.Drawing.Color.Red;
-            this.lblTurn.Location = new System.Drawing.Point(574, 52);
+            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.lblTurn.Location = new System.Drawing.Point(561, 38);
             this.lblTurn.Name = "lblTurn";
-            this.lblTurn.Size = new System.Drawing.Size(98, 15);
+            this.lblTurn.Size = new System.Drawing.Size(113, 14);
             this.lblTurn.TabIndex = 7;
-            this.lblTurn.Text = "Opponent\'s Turn";
+            this.lblTurn.Text = "Oponent\'s Turn";
             this.lblTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelUp
@@ -214,6 +215,18 @@
             this.pbxChatBattle.TabStop = false;
             this.pbxChatBattle.Click += new System.EventHandler(this.pbxChatBattle_Click);
             // 
+            // lblMoveIndian
+            // 
+            this.lblMoveIndian.AutoSize = true;
+            this.lblMoveIndian.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMoveIndian.ForeColor = System.Drawing.Color.Red;
+            this.lblMoveIndian.Location = new System.Drawing.Point(562, 55);
+            this.lblMoveIndian.Name = "lblMoveIndian";
+            this.lblMoveIndian.Size = new System.Drawing.Size(111, 13);
+            this.lblMoveIndian.TabIndex = 12;
+            this.lblMoveIndian.Text = "Move Your Indian!";
+            this.lblMoveIndian.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // GameBattleForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -255,5 +268,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTurn;
+        private System.Windows.Forms.Label lblMoveIndian;
     }
 }

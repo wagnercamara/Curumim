@@ -983,6 +983,7 @@ namespace CurumimGameForms
                     this.gameChatBatlleForms = new GameChatBatlleForms(NewMessageChatBattleOnClik, this.gameProfile.GetLoginPlayer());
                     this.gameBattleForms = new GameBattleForms(typeRoom, Right, Left, loginPlayer1, loginPlayer2, CloseBattleOnClick, OnDestroyedButton, this.gameChatBatlleForms, SyncLocalIndian);
                     this.gameBattleForms.SetSideField(gameProfile.GetLoginPlayer());
+                    this.gameBattleForms.SetPremiumBattle(premiumEsmerald, premiumScore);
                     this.gameBattleForms.Show();
                 }
             }
